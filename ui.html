@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Inter, sans-serif;
+      padding: 20px;
+    }
+    button {
+      background-color: #18A0FB;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #0D8DE3;
+    }
+  </style>
+</head>
+<body>
+  <button id="export">Export Design Tokens</button>
+  <script>
+    document.getElementById('export').onclick = () => {
+      parent.postMessage({ pluginMessage: { type: 'export-tokens' } }, '*');
+    };
+
+    // Queue to manage downloads
+    const downloadQueue = [];
+    let isDownloading = false;
+
+    // Process the next download in the queue
+    async function processNextDownload() {
+      if (isDownloading || downloadQueue.length === 0) return;
+      
+      isDownloading = true;
+      const { content, filename } = downloadQueue.shift();
+      
+      // Create and trigger download
+      const blob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      
+      // Wait a bit before triggering the download
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      
+      // Wait a bit before processing the next download
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      isDownloading = false;
+      processNextDownload();
+    }
+
+    // Listen for messages from the plugin code
+    onmessage = (event) => {
+      const message = event.data.pluginMessage;
+      if (message.type === 'download') {
+        // Add to download queue and process
+        downloadQueue.push({
+          content: message.content,
+          filename: message.filename
+        });
+        processNextDownload();
+      }
+    };
+  </script>
+</body>
+</html> 
