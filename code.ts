@@ -1,15 +1,24 @@
 /// <reference types="@figma/plugin-typings" />
 
+/**
+ * Message interface for communication between the plugin and UI
+ */
 interface Message {
   type: string;
 }
 
+/**
+ * Represents a design token with its value, type, and optional description
+ */
 interface TokenData {
   value: any;
   type: string;
   description?: string;
 }
 
+/**
+ * Represents a nested structure of design tokens
+ */
 interface TokenCollection {
   [key: string]: TokenData | TokenCollection;
 }
@@ -39,7 +48,13 @@ function rgbaToHex(color: RGBA | RGB | { r: number; g: number; b: number; a?: nu
   }
 }
 
-// Find matching core color
+/**
+ * Finds a matching color in the core collection
+ * Used to convert direct color values to variable references
+ * @param color - The color to match
+ * @param coreCollection - The core variable collection to search in
+ * @returns The name of the matching core color variable, or null if not found
+ */
 function findMatchingCoreColor(color: RGBA | RGB, coreCollection: VariableCollection): string | null {
   try {
     for (const varId of coreCollection.variableIds) {
@@ -64,7 +79,14 @@ function findMatchingCoreColor(color: RGBA | RGB, coreCollection: VariableCollec
   }
 }
 
-// Find matching core number variable
+/**
+ * Finds a matching number variable in the core collection
+ * Used to convert direct number values to variable references
+ * @param value - The number value to match
+ * @param coreCollection - The core variable collection to search in
+ * @param pathPrefix - The prefix to match in variable names
+ * @returns The name of the matching core number variable, or null if not found
+ */
 function findMatchingCoreNumber(value: number, coreCollection: VariableCollection, pathPrefix: string): string | null {
   try {
     // Round the value to the nearest integer if it's a percentage
@@ -88,12 +110,15 @@ function findMatchingCoreNumber(value: number, coreCollection: VariableCollectio
   }
 }
 
-// Convert pixels to rems
+/**
+ * Converts pixel values to rem units
+ * Assumes a base font size of 16px
+ */
 function pxToRem(px: number): string {
   return `${(px / 16).toFixed(3)}rem`;
 }
 
-// Types that should be converted to rems
+// Types that should be converted to rem units
 const remTypes = new Set([
   'spacing',
   'sizing',
@@ -109,7 +134,10 @@ const remTypes = new Set([
   'float'
 ]);
 
-// Map of variable path patterns to their desired output type
+/**
+ * Maps variable path patterns to specific token types
+ * Used to ensure consistent type naming in the output
+ */
 const typeMapping: { pattern: RegExp; type: string }[] = [
   { pattern: /^fontSize/, type: 'fontSizes' },
   { pattern: /^borderRadius/, type: 'borderRadius' },
@@ -117,7 +145,12 @@ const typeMapping: { pattern: RegExp; type: string }[] = [
   { pattern: /^(breakpoint|alignment)/, type: 'sizing' }
 ];
 
-// Get the correct type for a variable based on its path and original type
+/**
+ * Determines the appropriate token type based on the variable path and original type
+ * @param variablePath - The full path of the variable
+ * @param originalType - The original Figma variable type
+ * @returns The standardized token type
+ */
 function getTokenType(variablePath: string, originalType: string): string {
   if (originalType === 'color') return 'color';
   
@@ -125,7 +158,13 @@ function getTokenType(variablePath: string, originalType: string): string {
   return mapping ? mapping.type : originalType.toLowerCase();
 }
 
-// Convert Figma variable to token format
+/**
+ * Converts a Figma variable to a design token format
+ * Handles variable references, color values, and number conversions
+ * @param variable - The Figma variable to convert
+ * @param specificModeId - Optional mode ID to use for the variable value
+ * @returns A TokenData object representing the design token
+ */
 function convertVariableToToken(variable: Variable, specificModeId?: string): TokenData {
   const type = variable.resolvedType.toLowerCase();
   
@@ -238,7 +277,13 @@ function convertVariableToToken(variable: Variable, specificModeId?: string): To
   }
 }
 
-// Process variables collection into token structure
+/**
+ * Processes a variable collection into a token structure
+ * Creates a nested object structure based on variable paths
+ * @param collection - The Figma variable collection to process
+ * @param modeId - Optional mode ID to use for variable values
+ * @returns A nested token collection
+ */
 function processCollection(collection: VariableCollection, modeId?: string): TokenCollection {
   const result: TokenCollection = {};
   
@@ -270,7 +315,11 @@ function processCollection(collection: VariableCollection, modeId?: string): Tok
   return result;
 }
 
-// Process text styles into token format
+/**
+ * Processes text styles into a token structure
+ * Handles variable bindings and converts values to the appropriate format
+ * @returns A nested token collection of typography styles
+ */
 function processTextStyles(): TokenCollection {
   const textStyles = figma.getLocalTextStyles();
   const result: TokenCollection = {};
@@ -432,7 +481,11 @@ function processTextStyles(): TokenCollection {
   return result;
 }
 
-// Process effect styles into token format
+/**
+ * Processes effect styles into a token structure
+ * Converts shadow effects to a standardized format
+ * @returns A nested token collection of effect styles
+ */
 function processEffectStyles(): TokenCollection {
   const effectStyles = figma.getLocalEffectStyles();
   const result: TokenCollection = {};
@@ -472,8 +525,13 @@ function processEffectStyles(): TokenCollection {
   return result;
 }
 
+// Initialize the plugin UI
 figma.showUI(__html__, { width: 300, height: 100 });
 
+/**
+ * Main message handler for the plugin
+ * Processes export requests and generates the token output
+ */
 figma.ui.onmessage = async (msg: Message) => {
   if (msg.type === 'export-tokens') {
     try {
@@ -482,10 +540,10 @@ figma.ui.onmessage = async (msg: Message) => {
       const allTokens: { [key: string]: any } = {};
       
       for (const collection of collections) {
-        // For collections with modes, create an entry for each mode
+        // Process collections with multiple modes
         if (collection.modes.length > 1) {
           for (const mode of collection.modes) {
-            // Replace leading dot with $ to mark base collections, then handle other special characters
+            // Format collection name (replace leading dot with $, convert to kebab-case)
             const collectionName = collection.name
               .replace(/^\./, '$')
               .replace(/[\/\.]/g, '-')
@@ -506,7 +564,7 @@ figma.ui.onmessage = async (msg: Message) => {
             }
           }
         } else {
-          // For collections without multiple modes
+          // Process collections without multiple modes
           const collectionName = collection.name
             .replace(/^\./, '$')
             .replace(/[\/\.]/g, '-')
@@ -526,7 +584,7 @@ figma.ui.onmessage = async (msg: Message) => {
         }
       }
 
-      // Send all tokens in a single download
+      // Send the tokens to the UI for download
       figma.ui.postMessage({
         type: 'download',
         content: allTokens,
