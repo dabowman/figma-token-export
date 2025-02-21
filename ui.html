@@ -28,49 +28,20 @@
       parent.postMessage({ pluginMessage: { type: 'export-tokens' } }, '*');
     };
 
-    // Queue to manage downloads
-    const downloadQueue = [];
-    let isDownloading = false;
-
-    // Process the next download in the queue
-    async function processNextDownload() {
-      if (isDownloading || downloadQueue.length === 0) return;
-      
-      isDownloading = true;
-      const { content, filename } = downloadQueue.shift();
-      
-      // Create and trigger download
-      const blob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = filename;
-      document.body.appendChild(link);
-      
-      // Wait a bit before triggering the download
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-      
-      // Wait a bit before processing the next download
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      isDownloading = false;
-      processNextDownload();
-    }
-
     // Listen for messages from the plugin code
     onmessage = (event) => {
       const message = event.data.pluginMessage;
       if (message.type === 'download') {
-        // Add to download queue and process
-        downloadQueue.push({
-          content: message.content,
-          filename: message.filename
-        });
-        processNextDownload();
+        // Create and trigger download
+        const blob = new Blob([JSON.stringify(message.content, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = message.filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
       }
     };
   </script>

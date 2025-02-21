@@ -1,34 +1,29 @@
 {
-  "rem": {
-    "value": "16",
-    "type": "other",
-    "description": "Use as the base rem value for calculations in Figma Tokens. In production all size values should be in rems, which is modifiable by the user. Since Figma Tokens doesn't support different units, we use this variable to do rem calculations. For our purposes, we're setting the rem value to 16px."
-  },
   "fontSize": {
     "static": {
       "0": {
-        "value": "{rem}*.625",
+        "value": "0.625rem",
         "type": "fontSizes"
       },
       "1": {
-        "value": ".75 * {rem}",
+        "value": "0.75rem",
         "type": "fontSizes",
         "description": "these are non-responsive font sizes used for body copy, helper text and other elements that don't need to respond to viewport width."
       },
       "2": {
-        "value": ".875 * {rem}",
+        "value": "0.875rem",
         "type": "fontSizes"
       },
       "3": {
-        "value": "1 * {rem}",
+        "value": "1rem",
         "type": "fontSizes"
       },
       "4": {
-        "value": "1.125 * {rem}",
+        "value": "1.125rem",
         "type": "fontSizes"
       },
       "5": {
-        "value": "1.25 * {rem}",
+        "value": "1.25rem",
         "type": "fontSizes"
       }
     },
@@ -522,31 +517,31 @@
   "borderRadius": {
     "static": {
       "0": {
-        "value": "{rem}*.13",
+        "value": "0.13rem",
         "type": "borderRadius"
       },
       "1": {
-        "value": "{rem} * .25",
+        "value": "0.25rem",
         "type": "borderRadius"
       },
       "2": {
-        "value": "{rem} * .5",
+        "value": "0.5rem",
         "type": "borderRadius"
       },
       "3": {
-        "value": "{rem} * 1",
+        "value": "1rem",
         "type": "borderRadius"
       },
       "4": {
-        "value": "{rem} * 2",
+        "value": "2rem",
         "type": "borderRadius"
       },
       "5": {
-        "value": "{rem} * 2.5",
+        "value": "2.5rem",
         "type": "borderRadius"
       },
       "6": {
-        "value": "{rem} * 3.5",
+        "value": "3.5rem",
         "type": "borderRadius"
       }
     },
@@ -564,47 +559,47 @@
   "space": {
     "static": {
       "0": {
-        "value": "0.13 * {rem}",
+        "value": "0.13rem",
         "type": "spacing"
       },
       "1": {
-        "value": "0.25 * {rem}",
+        "value": "0.25rem",
         "type": "spacing"
       },
       "2": {
-        "value": "0.50 * {rem}",
+        "value": "0.50rem",
         "type": "spacing"
       },
       "3": {
-        "value": "0.75 * {rem}",
+        "value": "0.75rem",
         "type": "spacing"
       },
       "4": {
-        "value": "1.00 * {rem}",
+        "value": "1.00rem",
         "type": "spacing"
       },
       "5": {
-        "value": "1.50 * {rem}",
+        "value": "1.50rem",
         "type": "spacing"
       },
       "6": {
-        "value": "2.00 * {rem}",
+        "value": "2.00rem",
         "type": "spacing"
       },
       "7": {
-        "value": "3.50 * {rem}",
+        "value": "3.50rem",
         "type": "spacing"
       },
       "8": {
-        "value": "5.00 * {rem}",
+        "value": "5.00rem",
         "type": "spacing"
       },
       "9": {
-        "value": "7.00 * {rem}",
+        "value": "7.00rem",
         "type": "spacing"
       },
       "10": {
-        "value": "10.00 * {rem}",
+        "value": "10.00rem",
         "type": "spacing"
       }
     },
