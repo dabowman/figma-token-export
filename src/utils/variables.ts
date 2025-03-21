@@ -65,39 +65,106 @@ export function getTokenType(variablePath: string, originalType: string): string
 }
 
 /**
+ * Converts a value and unit to a dimension token value
+ * @param value - The numeric value
+ * @param unit - The unit (px, rem, em, etc.)
+ * @returns A dimension token value object
+ */
+function createDimensionValue(value: number, unit: string): { value: number; unit: string } {
+  return {
+    value: Number(value.toFixed(3)),
+    unit
+  };
+}
+
+/**
+ * Validates a token value against its type according to W3C spec
+ */
+function validateTokenValue(value: any, type: string): boolean {
+  switch (type) {
+    case 'color':
+      // Must be a hex color or a reference
+      return typeof value === 'string' && (
+        /^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$/.test(value) || // hex color
+        /^rgba\(\{.*\},\d*\.?\d+\)$/.test(value) || // rgba reference
+        /^\{.*\}$/.test(value) // direct reference
+      );
+    
+    case 'dimension':
+      // Must be an object with value and unit or a reference
+      if (typeof value === 'string') {
+        return /^\{.*\}$/.test(value); // reference
+      }
+      return typeof value === 'object' && 
+             'value' in value && 
+             'unit' in value &&
+             typeof value.value === 'number' &&
+             typeof value.unit === 'string' &&
+             /^(px|rem|em|%|vh|vw|vmin|vmax)$/.test(value.unit);
+    
+    case 'fontFamily':
+      // Must be a string or reference
+      return typeof value === 'string';
+    
+    case 'fontWeight':
+      // Must be a number between 1-1000 or a reference
+      return (typeof value === 'number' && value >= 1 && value <= 1000) ||
+             (typeof value === 'string' && /^\{.*\}$/.test(value));
+    
+    case 'duration':
+      // Must be a number with ms or s unit
+      return typeof value === 'string' && /^-?\d*\.?\d+(ms|s)$/.test(value);
+    
+    case 'cubicBezier':
+      // Must be array of 4 numbers between 0 and 1
+      return Array.isArray(value) && 
+             value.length === 4 &&
+             value.every(n => typeof n === 'number' && n >= 0 && n <= 1);
+    
+    case 'number':
+      // Must be a number or reference
+      return typeof value === 'number' ||
+             (typeof value === 'string' && /^\{.*\}$/.test(value));
+    
+    default:
+      // For composite types, allow object values
+      return true;
+  }
+}
+
+/**
  * Converts a Figma variable to a design token format
  * Handles variable references, color values, and number conversions
  * @param variable - The Figma variable to convert
  * @param specificModeId - Optional mode ID to use for the variable value
- * @returns A TokenData object representing the design token
- * 
- * This function is the core transformer that converts Figma variables into
- * the standardized design token format. It handles various cases:
- * 
- * 1. Variable references: Converts to the format {collection.name}
- * 2. Color values: Converts to hex or rgba with references
- * 3. Number values: Converts to rem units for spacing, sizing, etc.
- * 4. Other primitive values: Preserves as-is
- * 
- * For colors with opacity, it attempts to find a matching core color and
- * represent it as an rgba reference (e.g., rgba({color.black},0.5))
+ * @returns A TokenData object representing the design token in W3C format
  */
 export function convertVariableToToken(variable: Variable, specificModeId?: string): TokenData {
   const type = variable.resolvedType.toLowerCase();
+  const variablePath = variable.name.toLowerCase();
   
   try {
     // Use specific mode if provided, otherwise get the first mode's value
     const modeId = specificModeId || Object.keys(variable.valuesByMode)[0];
     const value = variable.valuesByMode[modeId];
-    const variablePath = variable.name.toLowerCase();
 
     // Handle undefined or invalid values
     if (value === undefined || value === null) {
       console.error('Missing value for variable:', variable.name);
       return {
-        value: type === 'color' ? '#000000' : 0,
-        type: getTokenType(variable.name, type),
-        ...(variable.description && { description: variable.description })
+        $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' },
+        $type: getTokenType(variable.name, type),
+        ...(variable.description && { $description: variable.description })
+      };
+    }
+
+    // Special handling for core lineHeight and letterSpacing tokens
+    if (type === 'float' && 
+        (variablePath.startsWith('lineheight') || variablePath.startsWith('letterspacing'))) {
+      return {
+        $value: createDimensionValue(value as number, '%'),
+        $type: 'dimension',
+        ...(variable.description && { $description: variable.description })
       };
     }
 
@@ -107,10 +174,17 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
       if (referencedVariable) {
         // Convert the reference path to the expected format
         const refPath = referencedVariable.name.split('/');
+        const tokenType = getTokenType(variable.name, type);
+        const tokenValue = `{${refPath.join('.')}}`;
+        
+        if (!validateTokenValue(tokenValue, tokenType)) {
+          console.warn(`Invalid reference value for type ${tokenType}:`, tokenValue);
+        }
+        
         return {
-          value: `{${refPath.join('.')}}`,
-          type: getTokenType(variable.name, type),
-          ...(variable.description && { description: variable.description })
+          $value: tokenValue,
+          $type: tokenType,
+          ...(variable.description && { $description: variable.description })
         };
       }
     }
@@ -121,9 +195,9 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
       if (!value || typeof value !== 'object' || !('r' in value) || !('g' in value) || !('b' in value)) {
         console.error('Invalid color value structure:', value, 'for variable:', variable.name);
         return {
-          value: '#000000',
-          type: 'color',
-          ...(variable.description && { description: variable.description })
+          $value: '#000000',
+          $type: 'color',
+          ...(variable.description && { $description: variable.description })
         };
       }
 
@@ -137,23 +211,31 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
           const matchingCorePath = findMatchingCoreColor(value, coreCollection);
           if (matchingCorePath) {
             // Format as rgba with the reference and opacity value
+            const tokenValue = `rgba({${matchingCorePath.split('/').join('.')}},${value.a.toFixed(3)})`;
+            if (!validateTokenValue(tokenValue, 'color')) {
+              console.warn('Invalid rgba color value:', tokenValue);
+            }
             return {
-              value: `rgba({${matchingCorePath.split('/').join('.')}},${value.a.toFixed(3)})`,
-              type: 'color',
-              ...(variable.description && { description: variable.description })
+              $value: tokenValue,
+              $type: 'color',
+              ...(variable.description && { $description: variable.description })
             };
           }
         }
       }
       
+      const tokenValue = rgbaToHex(value as RGBA);
+      if (!validateTokenValue(tokenValue, 'color')) {
+        console.warn('Invalid hex color value:', tokenValue);
+      }
       return {
-        value: rgbaToHex(value as RGBA),
-        type: 'color',
-        ...(variable.description && { description: variable.description })
+        $value: tokenValue,
+        $type: 'color',
+        ...(variable.description && { $description: variable.description })
       };
     }
 
-    // Convert number values to rems for specific types or if the value is a float
+    // Convert number values to dimensions with rem units
     if (typeof value === 'number' && (remTypes.has(type) || type === 'float')) {
       // Check if this is in a path that should be converted to rems
       const shouldConvertToRem = variablePath.includes('space') ||
@@ -170,28 +252,53 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
                                 );
       
       if (shouldConvertToRem) {
+        const tokenType = 'dimension';
+        const pixelValue = value;
+        const remValue = pixelValue / 16;
+        const tokenValue = createDimensionValue(remValue, 'rem');
+        
+        if (!validateTokenValue(tokenValue, tokenType)) {
+          console.warn('Invalid dimension value:', tokenValue);
+        }
         return {
-          value: pxToRem(value),
-          type: getTokenType(variable.name, type),
-          ...(variable.description && { description: variable.description })
+          $value: tokenValue,
+          $type: tokenType,
+          ...(variable.description && { $description: variable.description })
         };
       }
     }
     
-    // For all other values, return as is
+    // For all other values, return as is with appropriate type
+    const tokenType = getTokenType(variable.name, type);
+    if (!validateTokenValue(value, tokenType)) {
+      console.warn(`Invalid value for type ${tokenType}:`, value);
+    }
     return {
-      value: value,
-      type: getTokenType(variable.name, type),
-      ...(variable.description && { description: variable.description })
+      $value: value,
+      $type: tokenType,
+      ...(variable.description && { $description: variable.description })
     };
   } catch (error) {
     console.error('Error converting variable to token:', error, 'for variable:', variable.name);
     return {
-      value: type === 'color' ? '#000000' : 0,
-      type: getTokenType(variable.name, type),
-      ...(variable.description && { description: variable.description })
+      $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' },
+      $type: getTokenType(variable.name, type),
+      ...(variable.description && { $description: variable.description })
     };
   }
+}
+
+/**
+ * Sanitizes a name according to W3C Design Token Format Module specification
+ * Removes restricted characters and ensures valid token naming
+ * @param name - The name to sanitize
+ * @returns The sanitized name
+ */
+function sanitizeTokenName(name: string): string {
+  // Remove leading special characters (., $, etc.)
+  return name.replace(/^[.$]/, '')
+    // Replace other special characters with empty string
+    .replace(/[.$]/g, '');
 }
 
 /**
@@ -224,7 +331,8 @@ export function processCollection(collection: VariableCollection, modeId?: strin
       continue;
     }
 
-    const path = variable.name.split('/');
+    // Split path and sanitize each segment
+    const path = variable.name.split('/').map(sanitizeTokenName);
     let current = result;
 
     // Create nested structure based on variable name

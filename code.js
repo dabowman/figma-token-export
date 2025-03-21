@@ -4,16 +4,23 @@
     /// <reference types="@figma/plugin-typings" />
     /**
      * Maps variable path patterns to specific token types
-     * Used to ensure consistent type naming in the output
+     * Following the W3C Design Token Format Module specification
      */
     const typeMapping = [
-        { pattern: /^fontSize/, type: 'fontSizes' },
-        { pattern: /^borderRadius/, type: 'borderRadius' },
-        { pattern: /^space/, type: 'spacing' },
-        { pattern: /^(breakpoint|alignment)/, type: 'sizing' }
+        { pattern: /^color/, type: 'color' },
+        { pattern: /^fontSize/, type: 'dimension' },
+        { pattern: /^borderRadius/, type: 'dimension' },
+        { pattern: /^space/, type: 'dimension' },
+        { pattern: /^(breakpoint|alignment)/, type: 'dimension' },
+        { pattern: /^fontFamily/, type: 'fontFamily' },
+        { pattern: /^fontWeight/, type: 'fontWeight' },
+        { pattern: /^duration/, type: 'duration' },
+        { pattern: /^cubicBezier/, type: 'cubicBezier' },
+        { pattern: /^number/, type: 'number' }
     ];
     /**
      * Types that should be converted to rem units
+     * Only applies to dimension type values
      */
     const remTypes = new Set([
         'spacing',
@@ -24,10 +31,8 @@
         'lineheight',
         'letterspacing',
         'paragraphspacing',
-        'dimension',
-        'borderradius',
         'gap',
-        'float'
+        'borderradius'
     ]);
 
     /// <reference types="@figma/plugin-typings" />
@@ -91,13 +96,6 @@
 
     /// <reference types="@figma/plugin-typings" />
     /**
-     * Converts pixel values to rem units
-     * Assumes a base font size of 16px
-     */
-    function pxToRem(px) {
-        return `${(px / 16).toFixed(3)}rem`;
-    }
-    /**
      * Finds a matching number variable in the core collection
      * Used to convert direct number values to variable references
      * @param value - The number value to match
@@ -149,34 +147,86 @@
         return mapping ? mapping.type : originalType.toLowerCase();
     }
     /**
+     * Converts a value and unit to a dimension token value
+     * @param value - The numeric value
+     * @param unit - The unit (px, rem, em, etc.)
+     * @returns A dimension token value object
+     */
+    function createDimensionValue$1(value, unit) {
+        return {
+            value: Number(value.toFixed(3)),
+            unit
+        };
+    }
+    /**
+     * Validates a token value against its type according to W3C spec
+     */
+    function validateTokenValue(value, type) {
+        switch (type) {
+            case 'color':
+                // Must be a hex color or a reference
+                return typeof value === 'string' && (/^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$/.test(value) || // hex color
+                    /^rgba\(\{.*\},\d*\.?\d+\)$/.test(value) || // rgba reference
+                    /^\{.*\}$/.test(value) // direct reference
+                );
+            case 'dimension':
+                // Must be an object with value and unit or a reference
+                if (typeof value === 'string') {
+                    return /^\{.*\}$/.test(value); // reference
+                }
+                return typeof value === 'object' &&
+                    'value' in value &&
+                    'unit' in value &&
+                    typeof value.value === 'number' &&
+                    typeof value.unit === 'string' &&
+                    /^(px|rem|em|%|vh|vw|vmin|vmax)$/.test(value.unit);
+            case 'fontFamily':
+                // Must be a string or reference
+                return typeof value === 'string';
+            case 'fontWeight':
+                // Must be a number between 1-1000 or a reference
+                return (typeof value === 'number' && value >= 1 && value <= 1000) ||
+                    (typeof value === 'string' && /^\{.*\}$/.test(value));
+            case 'duration':
+                // Must be a number with ms or s unit
+                return typeof value === 'string' && /^-?\d*\.?\d+(ms|s)$/.test(value);
+            case 'cubicBezier':
+                // Must be array of 4 numbers between 0 and 1
+                return Array.isArray(value) &&
+                    value.length === 4 &&
+                    value.every(n => typeof n === 'number' && n >= 0 && n <= 1);
+            case 'number':
+                // Must be a number or reference
+                return typeof value === 'number' ||
+                    (typeof value === 'string' && /^\{.*\}$/.test(value));
+            default:
+                // For composite types, allow object values
+                return true;
+        }
+    }
+    /**
      * Converts a Figma variable to a design token format
      * Handles variable references, color values, and number conversions
      * @param variable - The Figma variable to convert
      * @param specificModeId - Optional mode ID to use for the variable value
-     * @returns A TokenData object representing the design token
-     *
-     * This function is the core transformer that converts Figma variables into
-     * the standardized design token format. It handles various cases:
-     *
-     * 1. Variable references: Converts to the format {collection.name}
-     * 2. Color values: Converts to hex or rgba with references
-     * 3. Number values: Converts to rem units for spacing, sizing, etc.
-     * 4. Other primitive values: Preserves as-is
-     *
-     * For colors with opacity, it attempts to find a matching core color and
-     * represent it as an rgba reference (e.g., rgba({color.black},0.5))
+     * @returns A TokenData object representing the design token in W3C format
      */
     function convertVariableToToken(variable, specificModeId) {
         const type = variable.resolvedType.toLowerCase();
+        const variablePath = variable.name.toLowerCase();
         try {
             // Use specific mode if provided, otherwise get the first mode's value
             const modeId = specificModeId || Object.keys(variable.valuesByMode)[0];
             const value = variable.valuesByMode[modeId];
-            const variablePath = variable.name.toLowerCase();
             // Handle undefined or invalid values
             if (value === undefined || value === null) {
                 console.error('Missing value for variable:', variable.name);
-                return Object.assign({ value: type === 'color' ? '#000000' : 0, type: getTokenType(variable.name, type) }, (variable.description && { description: variable.description }));
+                return Object.assign({ $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' }, $type: getTokenType(variable.name, type) }, (variable.description && { $description: variable.description }));
+            }
+            // Special handling for core lineHeight and letterSpacing tokens
+            if (type === 'float' &&
+                (variablePath.startsWith('lineheight') || variablePath.startsWith('letterspacing'))) {
+                return Object.assign({ $value: createDimensionValue$1(value, '%'), $type: 'dimension' }, (variable.description && { $description: variable.description }));
             }
             // If the value is a variable reference, return it as is
             if (value && typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS') {
@@ -184,7 +234,12 @@
                 if (referencedVariable) {
                     // Convert the reference path to the expected format
                     const refPath = referencedVariable.name.split('/');
-                    return Object.assign({ value: `{${refPath.join('.')}}`, type: getTokenType(variable.name, type) }, (variable.description && { description: variable.description }));
+                    const tokenType = getTokenType(variable.name, type);
+                    const tokenValue = `{${refPath.join('.')}}`;
+                    if (!validateTokenValue(tokenValue, tokenType)) {
+                        console.warn(`Invalid reference value for type ${tokenType}:`, tokenValue);
+                    }
+                    return Object.assign({ $value: tokenValue, $type: tokenType }, (variable.description && { $description: variable.description }));
                 }
             }
             // Handle direct values
@@ -192,7 +247,7 @@
                 // Validate color object structure
                 if (!value || typeof value !== 'object' || !('r' in value) || !('g' in value) || !('b' in value)) {
                     console.error('Invalid color value structure:', value, 'for variable:', variable.name);
-                    return Object.assign({ value: '#000000', type: 'color' }, (variable.description && { description: variable.description }));
+                    return Object.assign({ $value: '#000000', $type: 'color' }, (variable.description && { $description: variable.description }));
                 }
                 // If the color has opacity, try to find a matching core color
                 if ('a' in value && value.a !== 1 && value.a !== undefined) {
@@ -203,13 +258,21 @@
                         const matchingCorePath = findMatchingCoreColor(value, coreCollection);
                         if (matchingCorePath) {
                             // Format as rgba with the reference and opacity value
-                            return Object.assign({ value: `rgba({${matchingCorePath.split('/').join('.')}},${value.a.toFixed(3)})`, type: 'color' }, (variable.description && { description: variable.description }));
+                            const tokenValue = `rgba({${matchingCorePath.split('/').join('.')}},${value.a.toFixed(3)})`;
+                            if (!validateTokenValue(tokenValue, 'color')) {
+                                console.warn('Invalid rgba color value:', tokenValue);
+                            }
+                            return Object.assign({ $value: tokenValue, $type: 'color' }, (variable.description && { $description: variable.description }));
                         }
                     }
                 }
-                return Object.assign({ value: rgbaToHex(value), type: 'color' }, (variable.description && { description: variable.description }));
+                const tokenValue = rgbaToHex(value);
+                if (!validateTokenValue(tokenValue, 'color')) {
+                    console.warn('Invalid hex color value:', tokenValue);
+                }
+                return Object.assign({ $value: tokenValue, $type: 'color' }, (variable.description && { $description: variable.description }));
             }
-            // Convert number values to rems for specific types or if the value is a float
+            // Convert number values to dimensions with rem units
             if (typeof value === 'number' && (remTypes.has(type) || type === 'float')) {
                 // Check if this is in a path that should be converted to rems
                 const shouldConvertToRem = variablePath.includes('space') ||
@@ -223,16 +286,39 @@
                     variable.resolvedType === 'FLOAT' && (variablePath.startsWith('breakpoint') ||
                         variablePath.startsWith('alignment'));
                 if (shouldConvertToRem) {
-                    return Object.assign({ value: pxToRem(value), type: getTokenType(variable.name, type) }, (variable.description && { description: variable.description }));
+                    const tokenType = 'dimension';
+                    const pixelValue = value;
+                    const remValue = pixelValue / 16;
+                    const tokenValue = createDimensionValue$1(remValue, 'rem');
+                    if (!validateTokenValue(tokenValue, tokenType)) {
+                        console.warn('Invalid dimension value:', tokenValue);
+                    }
+                    return Object.assign({ $value: tokenValue, $type: tokenType }, (variable.description && { $description: variable.description }));
                 }
             }
-            // For all other values, return as is
-            return Object.assign({ value: value, type: getTokenType(variable.name, type) }, (variable.description && { description: variable.description }));
+            // For all other values, return as is with appropriate type
+            const tokenType = getTokenType(variable.name, type);
+            if (!validateTokenValue(value, tokenType)) {
+                console.warn(`Invalid value for type ${tokenType}:`, value);
+            }
+            return Object.assign({ $value: value, $type: tokenType }, (variable.description && { $description: variable.description }));
         }
         catch (error) {
             console.error('Error converting variable to token:', error, 'for variable:', variable.name);
-            return Object.assign({ value: type === 'color' ? '#000000' : 0, type: getTokenType(variable.name, type) }, (variable.description && { description: variable.description }));
+            return Object.assign({ $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' }, $type: getTokenType(variable.name, type) }, (variable.description && { $description: variable.description }));
         }
+    }
+    /**
+     * Sanitizes a name according to W3C Design Token Format Module specification
+     * Removes restricted characters and ensures valid token naming
+     * @param name - The name to sanitize
+     * @returns The sanitized name
+     */
+    function sanitizeTokenName(name) {
+        // Remove leading special characters (., $, etc.)
+        return name.replace(/^[.$]/, '')
+            // Replace other special characters with empty string
+            .replace(/[.$]/g, '');
     }
     /**
      * Processes a variable collection into a token structure
@@ -262,7 +348,8 @@
                 console.warn(`Variable ${variable.name} does not have mode ${modeId}`);
                 continue;
             }
-            const path = variable.name.split('/');
+            // Split path and sanitize each segment
+            const path = variable.name.split('/').map(sanitizeTokenName);
             let current = result;
             // Create nested structure based on variable name
             path.forEach((segment, index) => {
@@ -282,167 +369,113 @@
 
     /// <reference types="@figma/plugin-typings" />
     /**
+     * Creates a dimension value object following W3C format
+     */
+    function createDimensionValue(value, unit) {
+        return {
+            value: Number(value.toFixed(3)),
+            unit
+        };
+    }
+    /**
      * Processes text styles into a token structure
      * Handles variable bindings and converts values to the appropriate format
-     * @returns A nested token collection of typography styles
+     * @returns A nested token collection of typography styles in W3C format
      */
     function processTextStyles() {
         const textStyles = figma.getLocalTextStyles();
         const result = {};
         // Get core collection for matching percentage values
         const coreCollection = figma.variables.getLocalVariableCollections()
-            .find(c => c.name.toLowerCase().includes('.core'));
+            .find(c => c.name.toLowerCase().includes('core'));
         for (const style of textStyles) {
             const path = style.name.split('/');
             let current = result;
             // Create nested structure based on style name
             path.forEach((segment, index) => {
-                var _a, _b, _c, _d, _e, _f, _g;
+                var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
                 if (index === path.length - 1) {
                     // Get variable references if they exist
-                    const value = {};
-                    // Handle font family
-                    if ((_a = style.boundVariables) === null || _a === void 0 ? void 0 : _a.fontFamily) {
-                        const familyVar = figma.variables.getVariableById(style.boundVariables.fontFamily.id);
-                        if (familyVar) {
-                            value.fontFamily = `{${familyVar.name.split('/').join('.')}}`;
-                        }
-                        else {
-                            value.fontFamily = style.fontName.family;
-                        }
+                    const value = {
+                        // Required properties according to W3C spec
+                        fontFamily: ((_a = style.boundVariables) === null || _a === void 0 ? void 0 : _a.fontFamily) ?
+                            `{${(_b = figma.variables.getVariableById(style.boundVariables.fontFamily.id)) === null || _b === void 0 ? void 0 : _b.name.split('/').join('.')}}` :
+                            style.fontName.family,
+                        fontSize: ((_c = style.boundVariables) === null || _c === void 0 ? void 0 : _c.fontSize) ?
+                            `{${(_d = figma.variables.getVariableById(style.boundVariables.fontSize.id)) === null || _d === void 0 ? void 0 : _d.name.split('/').join('.')}}` :
+                            createDimensionValue(style.fontSize, 'px'),
+                        fontWeight: ((_e = style.boundVariables) === null || _e === void 0 ? void 0 : _e.fontWeight) ?
+                            `{${(_f = figma.variables.getVariableById(style.boundVariables.fontWeight.id)) === null || _f === void 0 ? void 0 : _f.name.split('/').join('.')}}` :
+                            parseInt(style.fontName.style, 10) || style.fontName.style,
+                    };
+                    // Handle lineHeight
+                    if ((_g = style.boundVariables) === null || _g === void 0 ? void 0 : _g.lineHeight) {
+                        value.lineHeight = `{${(_h = figma.variables.getVariableById(style.boundVariables.lineHeight.id)) === null || _h === void 0 ? void 0 : _h.name.split('/').join('.')}}`;
                     }
                     else {
-                        value.fontFamily = style.fontName.family;
-                    }
-                    // Handle font weight
-                    if ((_b = style.boundVariables) === null || _b === void 0 ? void 0 : _b.fontWeight) {
-                        const weightVar = figma.variables.getVariableById(style.boundVariables.fontWeight.id);
-                        if (weightVar) {
-                            value.fontWeight = `{${weightVar.name.split('/').join('.')}}`;
-                        }
-                        else {
-                            value.fontWeight = style.fontName.style;
-                        }
-                    }
-                    else {
-                        value.fontWeight = style.fontName.style;
-                    }
-                    // Handle line height
-                    if ((_c = style.boundVariables) === null || _c === void 0 ? void 0 : _c.lineHeight) {
-                        const lineHeightVar = figma.variables.getVariableById(style.boundVariables.lineHeight.id);
-                        if (lineHeightVar) {
-                            value.lineHeight = `{${lineHeightVar.name.split('/').join('.')}}`;
-                        }
-                    }
-                    else if (coreCollection) {
-                        // Try to match percentage values to core variables
+                        // Try to match with core lineHeight token
+                        let lineHeightValue;
                         if (typeof style.lineHeight === 'number') {
-                            const matchingCore = findMatchingCoreNumber(style.lineHeight, coreCollection, 'lineheight');
+                            lineHeightValue = style.lineHeight * 100; // Convert multiplier to percentage
+                        }
+                        else if ('value' in style.lineHeight) {
+                            lineHeightValue = style.lineHeight.value;
+                        }
+                        else {
+                            lineHeightValue = 100; // Default
+                        }
+                        if (coreCollection) {
+                            const matchingCore = findMatchingCoreNumber(lineHeightValue, coreCollection, 'lineheight');
                             if (matchingCore) {
                                 value.lineHeight = `{${matchingCore.split('/').join('.')}}`;
                             }
                             else {
-                                value.lineHeight = `${style.lineHeight}%`;
+                                value.lineHeight = createDimensionValue(lineHeightValue, '%');
                             }
-                        }
-                        else if ('value' in style.lineHeight && style.lineHeight.unit !== 'PIXELS') {
-                            const matchingCore = findMatchingCoreNumber(style.lineHeight.value, coreCollection, 'lineheight');
-                            if (matchingCore) {
-                                value.lineHeight = `{${matchingCore.split('/').join('.')}}`;
-                            }
-                            else {
-                                value.lineHeight = `${style.lineHeight.value}%`;
-                            }
-                        }
-                        else if ('unit' in style.lineHeight && style.lineHeight.unit === 'PIXELS') {
-                            value.lineHeight = `${style.lineHeight.value}px`;
                         }
                         else {
-                            value.lineHeight = 'auto';
+                            value.lineHeight = createDimensionValue(lineHeightValue, '%');
                         }
                     }
-                    else {
-                        // Fallback if core collection not found
-                        value.lineHeight = typeof style.lineHeight === 'number' ?
-                            `${style.lineHeight}%` :
-                            'unit' in style.lineHeight && style.lineHeight.unit === 'PIXELS' ?
-                                `${style.lineHeight.value}px` :
-                                'value' in style.lineHeight ?
-                                    `${style.lineHeight.value}%` :
-                                    'auto';
+                    // Handle letterSpacing
+                    if ((_j = style.boundVariables) === null || _j === void 0 ? void 0 : _j.letterSpacing) {
+                        value.letterSpacing = `{${(_k = figma.variables.getVariableById(style.boundVariables.letterSpacing.id)) === null || _k === void 0 ? void 0 : _k.name.split('/').join('.')}}`;
                     }
-                    // Handle font size
-                    if ((_d = style.boundVariables) === null || _d === void 0 ? void 0 : _d.fontSize) {
-                        const fontSizeVar = figma.variables.getVariableById(style.boundVariables.fontSize.id);
-                        if (fontSizeVar) {
-                            value.fontSize = `{${fontSizeVar.name.split('/').join('.')}}`;
-                        }
-                        else {
-                            value.fontSize = `${style.fontSize}`;
-                        }
-                    }
-                    else {
-                        value.fontSize = `${style.fontSize}`;
-                    }
-                    // Handle letter spacing
-                    if ((_e = style.boundVariables) === null || _e === void 0 ? void 0 : _e.letterSpacing) {
-                        const letterSpacingVar = figma.variables.getVariableById(style.boundVariables.letterSpacing.id);
-                        if (letterSpacingVar) {
-                            value.letterSpacing = `{${letterSpacingVar.name.split('/').join('.')}}`;
-                        }
-                    }
-                    else if (style.letterSpacing && typeof style.letterSpacing === 'object' && coreCollection) {
-                        if (style.letterSpacing.unit !== 'PIXELS') {
-                            const matchingCore = findMatchingCoreNumber(style.letterSpacing.value, coreCollection, 'letterspacing');
+                    else if (style.letterSpacing && typeof style.letterSpacing === 'object') {
+                        const letterSpacingValue = style.letterSpacing.value;
+                        if (coreCollection) {
+                            const matchingCore = findMatchingCoreNumber(letterSpacingValue, coreCollection, 'letterspacing');
                             if (matchingCore) {
                                 value.letterSpacing = `{${matchingCore.split('/').join('.')}}`;
                             }
                             else {
-                                value.letterSpacing = `${style.letterSpacing.value}%`;
+                                value.letterSpacing = createDimensionValue(letterSpacingValue, style.letterSpacing.unit === 'PIXELS' ? 'px' : '%');
                             }
                         }
                         else {
-                            value.letterSpacing = `${style.letterSpacing.value}px`;
+                            value.letterSpacing = createDimensionValue(letterSpacingValue, style.letterSpacing.unit === 'PIXELS' ? 'px' : '%');
                         }
                     }
-                    // Handle paragraph spacing
-                    if ((_f = style.boundVariables) === null || _f === void 0 ? void 0 : _f.paragraphSpacing) {
-                        const paragraphSpacingVar = figma.variables.getVariableById(style.boundVariables.paragraphSpacing.id);
-                        if (paragraphSpacingVar) {
-                            value.paragraphSpacing = `{${paragraphSpacingVar.name.split('/').join('.')}}`;
-                        }
-                        else if (typeof style.paragraphSpacing === 'number') {
-                            value.paragraphSpacing = `${style.paragraphSpacing}px`;
-                        }
+                    // Handle paragraphSpacing
+                    if ((_l = style.boundVariables) === null || _l === void 0 ? void 0 : _l.paragraphSpacing) {
+                        value.paragraphSpacing = `{${(_m = figma.variables.getVariableById(style.boundVariables.paragraphSpacing.id)) === null || _m === void 0 ? void 0 : _m.name.split('/').join('.')}}`;
                     }
                     else if (typeof style.paragraphSpacing === 'number') {
-                        value.paragraphSpacing = `${style.paragraphSpacing}px`;
+                        value.paragraphSpacing = createDimensionValue(style.paragraphSpacing, 'px');
                     }
-                    // Handle text case (if set)
+                    // Handle text case and decoration
                     if (style.textCase && style.textCase !== 'ORIGINAL') {
                         value.textCase = style.textCase.toLowerCase();
                     }
-                    // Handle text decoration (if set)
                     if (style.textDecoration && style.textDecoration !== 'NONE') {
                         value.textDecoration = style.textDecoration.toLowerCase();
                     }
-                    // Handle paragraph indent
-                    if ((_g = style.boundVariables) === null || _g === void 0 ? void 0 : _g.paragraphIndent) {
-                        const paragraphIndentVar = figma.variables.getVariableById(style.boundVariables.paragraphIndent.id);
-                        if (paragraphIndentVar) {
-                            value.paragraphIndent = `{${paragraphIndentVar.name.split('/').join('.')}}`;
-                        }
-                        else if (typeof style.paragraphIndent === 'number' && style.paragraphIndent !== 0) {
-                            value.paragraphIndent = `${style.paragraphIndent}px`;
-                        }
-                    }
-                    else if (typeof style.paragraphIndent === 'number' && style.paragraphIndent !== 0) {
-                        value.paragraphIndent = `${style.paragraphIndent}px`;
-                    }
+                    // Remove undefined properties
+                    Object.keys(value).forEach(key => value[key] === undefined && delete value[key]);
                     // Last segment - add the actual token
                     current[segment] = {
-                        value,
-                        type: 'typography'
+                        $value: value,
+                        $type: 'typography'
                     };
                 }
                 else {
@@ -457,7 +490,7 @@
     /**
      * Processes effect styles into a token structure
      * Converts shadow effects to a standardized format
-     * @returns A nested token collection of effect styles
+     * @returns A nested token collection of effect styles in W3C format
      */
     function processEffectStyles() {
         const effectStyles = figma.getLocalEffectStyles();
@@ -469,22 +502,23 @@
             path.forEach((segment, index) => {
                 if (index === path.length - 1) {
                     // Last segment - add the actual token
-                    current[segment] = {
-                        value: style.effects.map(effect => {
-                            if (effect.type === 'DROP_SHADOW' || effect.type === 'INNER_SHADOW') {
-                                return {
-                                    type: effect.type === 'DROP_SHADOW' ? 'dropShadow' : 'innerShadow',
-                                    color: rgbaToHex(effect.color),
-                                    x: effect.offset.x,
-                                    y: effect.offset.y,
-                                    blur: effect.radius,
-                                    spread: effect.spread || 0
-                                };
-                            }
-                            return effect;
-                        }),
-                        type: 'effect'
-                    };
+                    const shadowEffects = style.effects
+                        .filter(effect => effect.type === 'DROP_SHADOW' || effect.type === 'INNER_SHADOW')
+                        .map(effect => ({
+                        // Required properties according to W3C spec
+                        color: rgbaToHex(effect.color),
+                        offsetX: `${effect.offset.x}px`,
+                        offsetY: `${effect.offset.y}px`,
+                        blur: `${effect.radius}px`,
+                        spread: `${effect.spread || 0}px`,
+                        type: effect.type === 'DROP_SHADOW' ? 'dropShadow' : 'innerShadow'
+                    }));
+                    if (shadowEffects.length > 0) {
+                        current[segment] = {
+                            $value: shadowEffects.length === 1 ? shadowEffects[0] : shadowEffects,
+                            $type: 'shadow'
+                        };
+                    }
                 }
                 else {
                     // Create nested object if it doesn't exist
@@ -500,6 +534,23 @@
     // Initialize the plugin UI
     figma.showUI(__html__, { width: 300, height: 100 });
     /**
+     * Sanitizes a collection name according to W3C Design Token Format Module specification
+     * @param name - The collection name to sanitize
+     * @returns The sanitized collection name
+     */
+    function sanitizeCollectionName(name) {
+        return name
+            // Remove leading special characters
+            .replace(/^[.$]/, '')
+            // Replace other special characters with dash
+            .replace(/[.$]/g, '')
+            // Convert to kebab-case
+            .replace(/[\/\.]/g, '-')
+            .toLowerCase()
+            // Remove leading dash
+            .replace(/^-/, '');
+    }
+    /**
      * Main message handler for the plugin
      * Processes export requests and generates the token output
      */
@@ -513,12 +564,8 @@
                     // Process collections with multiple modes
                     if (collection.modes.length > 1) {
                         for (const mode of collection.modes) {
-                            // Format collection name (replace leading dot with $, convert to kebab-case)
-                            const collectionName = collection.name
-                                .replace(/^\./, '$')
-                                .replace(/[\/\.]/g, '-')
-                                .toLowerCase()
-                                .replace(/^-/, '');
+                            // Format and sanitize collection name
+                            const collectionName = sanitizeCollectionName(collection.name);
                             const modeName = mode.name.toLowerCase();
                             const tokenName = `${collectionName}_${modeName}`;
                             // Include styles for non-base collections in all modes
@@ -531,12 +578,8 @@
                         }
                     }
                     else {
-                        // Process collections without multiple modes
-                        const collectionName = collection.name
-                            .replace(/^\./, '$')
-                            .replace(/[\/\.]/g, '-')
-                            .toLowerCase()
-                            .replace(/^-/, '');
+                        // Format and sanitize collection name
+                        const collectionName = sanitizeCollectionName(collection.name);
                         // Include styles for non-base collections
                         if (!collection.name.startsWith('.')) {
                             allTokens[collectionName] = Object.assign(Object.assign({}, processCollection(collection)), { typography: processTextStyles(), effects: processEffectStyles() });

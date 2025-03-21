@@ -5,7 +5,7 @@
   "main": "code.js",
   "scripts": {
     "build": "tsc -p tsconfig.json && npm run bundle",
-    "watch": "tsc -p tsconfig.json --watch",
+    "start": "tsc -p tsconfig.json --watch",
     "bundle": "rollup -c",
     "dev": "concurrently \"npm run watch\" \"rollup -c -w\""
   },

@@ -5,9 +5,41 @@ import { rgbaToHex } from '../utils/colors';
 import { findMatchingCoreNumber } from '../utils/variables';
 
 /**
- * Processes text styles into a token structure
- * Handles variable bindings and converts values to the appropriate format
- * @returns A nested token collection of typography styles
+ * Creates a dimension value object following W3C Design Token Format Module specification
+ * @param value - The numeric value
+ * @param unit - The unit (px, rem, em, %, etc.)
+ * @returns A dimension token value object with separate value and unit keys
+ */
+function createDimensionValue(value: number, unit: string): { value: number; unit: string } {
+  return {
+    value: Number(value.toFixed(3)),
+    unit
+  };
+}
+
+/**
+ * Processes text styles into a token structure following W3C Design Token Format Module
+ * Handles variable bindings and converts values to the appropriate format.
+ * Special handling for lineHeight and letterSpacing:
+ * - Converts multipliers to percentages
+ * - Attempts to match values with core tokens for proper aliasing
+ * - Formats as dimension values with proper units when no matching token exists
+ * 
+ * @returns A nested token collection of typography styles in W3C format
+ * 
+ * Example output:
+ * {
+ *   "heading-1": {
+ *     "$type": "typography",
+ *     "$value": {
+ *       "fontFamily": "Aktiv Grotesk VF",
+ *       "fontSize": { "value": 24, "unit": "px" },
+ *       "fontWeight": 700,
+ *       "lineHeight": "{lineHeight.1}",
+ *       "letterSpacing": "{letterSpacing.tight}"
+ *     }
+ *   }
+ * }
  */
 export function processTextStyles(): TokenCollection {
   const textStyles = figma.getLocalTextStyles();
@@ -15,7 +47,7 @@ export function processTextStyles(): TokenCollection {
   
   // Get core collection for matching percentage values
   const coreCollection = figma.variables.getLocalVariableCollections()
-    .find(c => c.name.toLowerCase().includes('.core'));
+    .find(c => c.name.toLowerCase().includes('core'));
 
   for (const style of textStyles) {
     const path = style.name.split('/');
@@ -25,139 +57,87 @@ export function processTextStyles(): TokenCollection {
     path.forEach((segment: string, index: number) => {
       if (index === path.length - 1) {
         // Get variable references if they exist
-        const value: any = {};
+        const value: any = {
+          // Required properties according to W3C spec
+          fontFamily: style.boundVariables?.fontFamily ? 
+            `{${figma.variables.getVariableById(style.boundVariables.fontFamily.id)?.name.split('/').join('.')}}` : 
+            style.fontName.family,
+          
+          fontSize: style.boundVariables?.fontSize ?
+            `{${figma.variables.getVariableById(style.boundVariables.fontSize.id)?.name.split('/').join('.')}}` :
+            createDimensionValue(style.fontSize, 'px'),
+          
+          fontWeight: style.boundVariables?.fontWeight ?
+            `{${figma.variables.getVariableById(style.boundVariables.fontWeight.id)?.name.split('/').join('.')}}` :
+            parseInt(style.fontName.style, 10) || style.fontName.style,
+        };
 
-        // Handle font family
-        if (style.boundVariables?.fontFamily) {
-          const familyVar = figma.variables.getVariableById(style.boundVariables.fontFamily.id);
-          if (familyVar) {
-            value.fontFamily = `{${familyVar.name.split('/').join('.')}}`;
-          } else {
-            value.fontFamily = style.fontName.family;
-          }
-        } else {
-          value.fontFamily = style.fontName.family;
-        }
-
-        // Handle font weight
-        if (style.boundVariables?.fontWeight) {
-          const weightVar = figma.variables.getVariableById(style.boundVariables.fontWeight.id);
-          if (weightVar) {
-            value.fontWeight = `{${weightVar.name.split('/').join('.')}}`;
-          } else {
-            value.fontWeight = style.fontName.style;
-          }
-        } else {
-          value.fontWeight = style.fontName.style;
-        }
-
-        // Handle line height
+        // Handle lineHeight
         if (style.boundVariables?.lineHeight) {
-          const lineHeightVar = figma.variables.getVariableById(style.boundVariables.lineHeight.id);
-          if (lineHeightVar) {
-            value.lineHeight = `{${lineHeightVar.name.split('/').join('.')}}`;
-          }
-        } else if (coreCollection) {
-          // Try to match percentage values to core variables
+          value.lineHeight = `{${figma.variables.getVariableById(style.boundVariables.lineHeight.id)?.name.split('/').join('.')}}`;
+        } else {
+          // Try to match with core lineHeight token
+          let lineHeightValue: number;
           if (typeof style.lineHeight === 'number') {
-            const matchingCore = findMatchingCoreNumber(style.lineHeight, coreCollection, 'lineheight');
+            lineHeightValue = style.lineHeight * 100; // Convert multiplier to percentage
+          } else if ('value' in style.lineHeight) {
+            lineHeightValue = style.lineHeight.value;
+          } else {
+            lineHeightValue = 100; // Default
+          }
+
+          if (coreCollection) {
+            const matchingCore = findMatchingCoreNumber(lineHeightValue, coreCollection, 'lineheight');
             if (matchingCore) {
               value.lineHeight = `{${matchingCore.split('/').join('.')}}`;
             } else {
-              value.lineHeight = `${style.lineHeight}%`;
+              value.lineHeight = createDimensionValue(lineHeightValue, '%');
             }
-          } else if ('value' in style.lineHeight && style.lineHeight.unit !== 'PIXELS') {
-            const matchingCore = findMatchingCoreNumber(style.lineHeight.value, coreCollection, 'lineheight');
-            if (matchingCore) {
-              value.lineHeight = `{${matchingCore.split('/').join('.')}}`;
-            } else {
-              value.lineHeight = `${style.lineHeight.value}%`;
-            }
-          } else if ('unit' in style.lineHeight && style.lineHeight.unit === 'PIXELS') {
-            value.lineHeight = `${style.lineHeight.value}px`;
           } else {
-            value.lineHeight = 'auto';
+            value.lineHeight = createDimensionValue(lineHeightValue, '%');
           }
-        } else {
-          // Fallback if core collection not found
-          value.lineHeight = typeof style.lineHeight === 'number' ? 
-            `${style.lineHeight}%` : 
-            'unit' in style.lineHeight && style.lineHeight.unit === 'PIXELS' ? 
-              `${style.lineHeight.value}px` : 
-              'value' in style.lineHeight ? 
-                `${style.lineHeight.value}%` : 
-                'auto';
         }
 
-        // Handle font size
-        if (style.boundVariables?.fontSize) {
-          const fontSizeVar = figma.variables.getVariableById(style.boundVariables.fontSize.id);
-          if (fontSizeVar) {
-            value.fontSize = `{${fontSizeVar.name.split('/').join('.')}}`;
-          } else {
-            value.fontSize = `${style.fontSize}`;
-          }
-        } else {
-          value.fontSize = `${style.fontSize}`;
-        }
-
-        // Handle letter spacing
+        // Handle letterSpacing
         if (style.boundVariables?.letterSpacing) {
-          const letterSpacingVar = figma.variables.getVariableById(style.boundVariables.letterSpacing.id);
-          if (letterSpacingVar) {
-            value.letterSpacing = `{${letterSpacingVar.name.split('/').join('.')}}`;
-          }
-        } else if (style.letterSpacing && typeof style.letterSpacing === 'object' && coreCollection) {
-          if (style.letterSpacing.unit !== 'PIXELS') {
-            const matchingCore = findMatchingCoreNumber(style.letterSpacing.value, coreCollection, 'letterspacing');
+          value.letterSpacing = `{${figma.variables.getVariableById(style.boundVariables.letterSpacing.id)?.name.split('/').join('.')}}`;
+        } else if (style.letterSpacing && typeof style.letterSpacing === 'object') {
+          const letterSpacingValue = style.letterSpacing.value;
+          if (coreCollection) {
+            const matchingCore = findMatchingCoreNumber(letterSpacingValue, coreCollection, 'letterspacing');
             if (matchingCore) {
               value.letterSpacing = `{${matchingCore.split('/').join('.')}}`;
             } else {
-              value.letterSpacing = `${style.letterSpacing.value}%`;
+              value.letterSpacing = createDimensionValue(letterSpacingValue, style.letterSpacing.unit === 'PIXELS' ? 'px' : '%');
             }
           } else {
-            value.letterSpacing = `${style.letterSpacing.value}px`;
+            value.letterSpacing = createDimensionValue(letterSpacingValue, style.letterSpacing.unit === 'PIXELS' ? 'px' : '%');
           }
         }
 
-        // Handle paragraph spacing
+        // Handle paragraphSpacing
         if (style.boundVariables?.paragraphSpacing) {
-          const paragraphSpacingVar = figma.variables.getVariableById(style.boundVariables.paragraphSpacing.id);
-          if (paragraphSpacingVar) {
-            value.paragraphSpacing = `{${paragraphSpacingVar.name.split('/').join('.')}}`;
-          } else if (typeof style.paragraphSpacing === 'number') {
-            value.paragraphSpacing = `${style.paragraphSpacing}px`;
-          }
+          value.paragraphSpacing = `{${figma.variables.getVariableById(style.boundVariables.paragraphSpacing.id)?.name.split('/').join('.')}}`;
         } else if (typeof style.paragraphSpacing === 'number') {
-          value.paragraphSpacing = `${style.paragraphSpacing}px`;
+          value.paragraphSpacing = createDimensionValue(style.paragraphSpacing, 'px');
         }
 
-        // Handle text case (if set)
+        // Handle text case and decoration
         if (style.textCase && style.textCase !== 'ORIGINAL') {
           value.textCase = style.textCase.toLowerCase();
         }
 
-        // Handle text decoration (if set)
         if (style.textDecoration && style.textDecoration !== 'NONE') {
           value.textDecoration = style.textDecoration.toLowerCase();
         }
 
-        // Handle paragraph indent
-        if (style.boundVariables?.paragraphIndent) {
-          const paragraphIndentVar = figma.variables.getVariableById(style.boundVariables.paragraphIndent.id);
-          if (paragraphIndentVar) {
-            value.paragraphIndent = `{${paragraphIndentVar.name.split('/').join('.')}}`;
-          } else if (typeof style.paragraphIndent === 'number' && style.paragraphIndent !== 0) {
-            value.paragraphIndent = `${style.paragraphIndent}px`;
-          }
-        } else if (typeof style.paragraphIndent === 'number' && style.paragraphIndent !== 0) {
-          value.paragraphIndent = `${style.paragraphIndent}px`;
-        }
+        // Remove undefined properties
+        Object.keys(value).forEach(key => value[key] === undefined && delete value[key]);
 
         // Last segment - add the actual token
         current[segment] = {
-          value,
-          type: 'typography'
+          $value: value,
+          $type: 'typography'
         };
       } else {
         // Create nested object if it doesn't exist
@@ -171,9 +151,24 @@ export function processTextStyles(): TokenCollection {
 }
 
 /**
- * Processes effect styles into a token structure
- * Converts shadow effects to a standardized format
- * @returns A nested token collection of effect styles
+ * Processes effect styles into a token structure following W3C Design Token Format Module
+ * Converts shadow effects to the standardized shadow type format
+ * @returns A nested token collection of effect styles in W3C format
+ * 
+ * Example output:
+ * {
+ *   "shadow-1": {
+ *     "$type": "shadow",
+ *     "$value": {
+ *       "color": "#00000026",
+ *       "offsetX": "0px",
+ *       "offsetY": "1px",
+ *       "blur": "1px",
+ *       "spread": "0px",
+ *       "type": "dropShadow"
+ *     }
+ *   }
+ * }
  */
 export function processEffectStyles(): TokenCollection {
   const effectStyles = figma.getLocalEffectStyles();
@@ -187,22 +182,24 @@ export function processEffectStyles(): TokenCollection {
     path.forEach((segment: string, index: number) => {
       if (index === path.length - 1) {
         // Last segment - add the actual token
-        current[segment] = {
-          value: style.effects.map(effect => {
-            if (effect.type === 'DROP_SHADOW' || effect.type === 'INNER_SHADOW') {
-              return {
-                type: effect.type === 'DROP_SHADOW' ? 'dropShadow' : 'innerShadow',
-                color: rgbaToHex(effect.color),
-                x: effect.offset.x,
-                y: effect.offset.y,
-                blur: effect.radius,
-                spread: effect.spread || 0
-              };
-            }
-            return effect;
-          }),
-          type: 'effect'
-        };
+        const shadowEffects = style.effects
+          .filter(effect => effect.type === 'DROP_SHADOW' || effect.type === 'INNER_SHADOW')
+          .map(effect => ({
+            // Required properties according to W3C spec
+            color: rgbaToHex(effect.color),
+            offsetX: `${effect.offset.x}px`,
+            offsetY: `${effect.offset.y}px`,
+            blur: `${effect.radius}px`,
+            spread: `${effect.spread || 0}px`,
+            type: effect.type === 'DROP_SHADOW' ? 'dropShadow' : 'innerShadow'
+          }));
+
+        if (shadowEffects.length > 0) {
+          current[segment] = {
+            $value: shadowEffects.length === 1 ? shadowEffects[0] : shadowEffects,
+            $type: 'shadow'
+          };
+        }
       } else {
         // Create nested object if it doesn't exist
         current[segment] = current[segment] || {};

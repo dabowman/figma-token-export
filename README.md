@@ -1,188 +1,121 @@
-# Figma Design Token Exporter
+# Figma Token Export
 
-A Figma plugin that exports variables and styles as design tokens in a standardized JSON format. The plugin processes Figma variables, text styles, and effect styles, maintaining variable references and handling multiple modes/themes.
+A Figma plugin that exports design tokens following the [W3C Design Token Format Module](https://tr.designtokens.org/format/) specification.
 
 ## Features
 
-- Exports Figma variables as design tokens
-- Preserves variable references (e.g., `{color.gray.10}`)
-- Handles color opacity with rgba references (e.g., `rgba({color.black},0.7)`)
-- Converts measurements to rem values where appropriate
-- Processes text styles with variable bindings
-- Processes effect styles (shadows)
-- Supports multiple modes/themes
-- Maintains collection structure and naming
+- Exports Figma variables and styles as design tokens in W3C format
+- Proper handling of dimension values with separate value and unit properties
+- Automatic conversion of lineHeight and letterSpacing to percentage-based dimension tokens
+- Smart aliasing of typography values to core tokens
+- Support for composite tokens (typography, shadows)
+- Maintains token references and relationships
 
-## Installation
+## Token Format
 
-1. Clone this repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Build the plugin:
-   ```bash
-   npm run build
-   ```
-4. Import the plugin into Figma:
-   - Open Figma
-   - Go to Plugins > Development > Import plugin from manifest
-   - Select the `manifest.json` file from this repository
-
-## Usage
-
-1. In Figma, organize your variables and styles:
-   - Variables should be organized in collections
-   - Collections starting with a dot (e.g., `.core`) are treated as base collections
-   - Text styles and effect styles will be included in non-base collections
-
-2. Run the plugin:
-   - Select Plugins > Design Token Exporter
-   - Click "Export Design Tokens"
-   - The plugin will generate a JSON file containing all tokens
-
-3. Integration examples:
-   - Use with design token platforms like [Style Dictionary](https://amzn.github.io/style-dictionary/)
-   - Import into your design system documentation
-   - Use directly in your codebase with token transformation tools
-
-## Output Structure
-
-The plugin generates a JSON file with the following structure:
+### Core Tokens
+Core tokens (like colors, spacing, etc.) are exported in W3C format:
 
 ```json
 {
-  "$core": {
-    // Base variables (from collections starting with ".")
-    "color": {
-      "black": {
-        "value": "#13191e",
-        "type": "color"
-      }
-    }
+  "color-primary": {
+    "$type": "color",
+    "$value": "#0f62fe"
   },
-  "collection-name_mode": {
-    // Variables specific to this collection and mode
-    "background": {
-      "primary": {
-        "value": "{color.gray.95}",
-        "type": "color",
-        "description": "Use as main application background"
-      }
-    },
-    // Typography styles
-    "typography": {
-      "heading-1": {
-        "value": {
-          "fontFamily": "Inter",
-          "fontWeight": "Bold",
-          "fontSize": "32",
-          "lineHeight": "150%"
-        },
-        "type": "typography"
-      }
-    },
-    // Effect styles
-    "effects": {
-      "shadow-1": {
-        "value": [
-          {
-            "type": "dropShadow",
-            "color": "#00000020",
-            "x": 0,
-            "y": 2,
-            "blur": 4,
-            "spread": 0
-          }
-        ],
-        "type": "effect"
-      }
+  "spacing-1": {
+    "$type": "dimension",
+    "$value": {
+      "value": 0.25,
+      "unit": "rem"
     }
   }
 }
 ```
 
-## Token Types
+### Typography Tokens
+Typography tokens are exported as composite tokens with proper dimension formatting and aliasing:
 
-The plugin handles several types of tokens:
+```json
+{
+  "heading-1": {
+    "$type": "typography",
+    "$value": {
+      "fontFamily": "Aktiv Grotesk VF",
+      "fontSize": {
+        "value": 24,
+        "unit": "px"
+      },
+      "fontWeight": 700,
+      "lineHeight": "{lineHeight.1}",
+      "letterSpacing": "{letterSpacing.tight}"
+    }
+  }
+}
+```
 
-### Variables
-- **Colors**: Exported as hex values or rgba references
-- **Numbers**: Converted to rems when appropriate (font sizes, spacing, etc.)
-- **References**: Preserved as references to other variables
+### Shadow Tokens
+Shadow effects are exported following the W3C shadow type format:
 
-### Typography
-- Font family (with variable references if bound)
-- Font weight (with variable references if bound)
-- Font size (with variable references if bound)
-- Line height
-- Letter spacing
-- Paragraph spacing
-- Text case
-- Text decoration
-- Paragraph indent
+```json
+{
+  "shadow-1": {
+    "$type": "shadow",
+    "$value": {
+      "color": "#00000026",
+      "offsetX": "0px",
+      "offsetY": "1px",
+      "blur": "1px",
+      "spread": "0px",
+      "type": "dropShadow"
+    }
+  }
+}
+```
 
-### Effects
-- Drop shadows
-- Inner shadows
-- Other effects preserved as-is
+## Special Handling
 
-## Collection Handling
+### LineHeight and LetterSpacing
+Since Figma doesn't support percentage units in variables, the plugin:
+1. Converts lineHeight multipliers to percentages (e.g., 1.2 → 120%)
+2. Attempts to match values with core tokens for proper aliasing
+3. Formats unmatched values as dimension tokens with percentage units
 
-- **Base Collections** (starting with `.`):
-  - Only include variables
-  - Used for core/foundation tokens
-  - Names are prefixed with `$` in output
+### Dimension Values
+All dimension values follow the W3C format with separate value and unit properties:
+```json
+{
+  "value": 16,
+  "unit": "px"
+}
+```
 
-- **Regular Collections**:
-  - Include variables, typography, and effects
-  - Each mode gets its own set of tokens
-  - Names are converted to lowercase with hyphens
+### Token References
+References to other tokens use the curly brace syntax:
+```json
+{
+  "button-color": {
+    "$type": "color",
+    "$value": "{color.primary}"
+  }
+}
+```
+
+## File Format
+- Output files use the `.tokens.json` extension as recommended by the W3C spec
+- Files use the `application/design-tokens+json` MIME type
+- JSON output is properly formatted and human-readable
+
+## Usage
+
+1. Install the plugin in Figma
+2. Select "Export Design Tokens" from the plugin menu
+3. The plugin will generate a W3C-compliant design tokens file
 
 ## Development
 
-- `code.ts`: Main plugin code
-- `ui.html`: Plugin UI
-- `manifest.json`: Plugin configuration
-- Build with `npm run build`
-- Watch mode: `npm run watch`
+To modify or build the plugin:
 
-## Troubleshooting
-
-### Common Issues
-
-- **Missing TypeScript definitions**: If you get TypeScript errors about missing Figma types, make sure you have installed `@figma/plugin-typings` package:
-  ```bash
-  npm install --save-dev @figma/plugin-typings
-  ```
-
-- **Token structure issues**: If your tokens aren't structured as expected, check that your Figma variables and styles follow the naming conventions (using `/` as separators for nesting).
-
-- **Figma API errors**: Make sure you're using a recent version of Figma that supports variables and the latest API.
-
-## Limitations
-
-- The plugin exports all collections and modes at once, which may result in large JSON files for complex design systems
-- Some complex Figma features (like blend modes) may not export perfectly
-- The plugin assumes a 16px base for rem calculations (not configurable yet)
-- Text styles and effect styles are included in all modes, even if they differ between modes
-
-## Roadmap
-
-- [ ] Add configuration options for rem base value
-- [ ] Support selective export of specific collections or modes
-- [ ] Add JSON format customization options
-- [ ] Improve UI with token preview
-- [ ] Add support for more token transformation formats
-
-## Version
-
-Current version: 1.0.0
-
-## Notes
-
-- The plugin assumes a 16px base for rem calculations
-- Color opacity is handled by finding matching core colors
-- Variable references use dot notation in the output
-- All measurements (except percentages) are converted to rems
-- Text styles and effect styles are included in all modes of non-base collections 
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Build the plugin: `npm run build`
+4. Start development mode: `npm run start` 

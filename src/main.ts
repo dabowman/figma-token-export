@@ -8,6 +8,24 @@ import { processTextStyles, processEffectStyles } from './processors/styles';
 figma.showUI(__html__, { width: 300, height: 100 });
 
 /**
+ * Sanitizes a collection name according to W3C Design Token Format Module specification
+ * @param name - The collection name to sanitize
+ * @returns The sanitized collection name
+ */
+function sanitizeCollectionName(name: string): string {
+  return name
+    // Remove leading special characters
+    .replace(/^[.$]/, '')
+    // Replace other special characters with dash
+    .replace(/[.$]/g, '')
+    // Convert to kebab-case
+    .replace(/[\/\.]/g, '-')
+    .toLowerCase()
+    // Remove leading dash
+    .replace(/^-/, '');
+}
+
+/**
  * Main message handler for the plugin
  * Processes export requests and generates the token output
  */
@@ -22,12 +40,8 @@ figma.ui.onmessage = async (msg: Message) => {
         // Process collections with multiple modes
         if (collection.modes.length > 1) {
           for (const mode of collection.modes) {
-            // Format collection name (replace leading dot with $, convert to kebab-case)
-            const collectionName = collection.name
-              .replace(/^\./, '$')
-              .replace(/[\/\.]/g, '-')
-              .toLowerCase()
-              .replace(/^-/, '');
+            // Format and sanitize collection name
+            const collectionName = sanitizeCollectionName(collection.name);
             const modeName = mode.name.toLowerCase();
             const tokenName = `${collectionName}_${modeName}`;
             
@@ -43,12 +57,8 @@ figma.ui.onmessage = async (msg: Message) => {
             }
           }
         } else {
-          // Process collections without multiple modes
-          const collectionName = collection.name
-            .replace(/^\./, '$')
-            .replace(/[\/\.]/g, '-')
-            .toLowerCase()
-            .replace(/^-/, '');
+          // Format and sanitize collection name
+          const collectionName = sanitizeCollectionName(collection.name);
           
           // Include styles for non-base collections
           if (!collection.name.startsWith('.')) {
