@@ -1,9 +1,17 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "lib": ["es2017"],
+    "lib": ["es2017", "dom"],
     "strict": true,
     "typeRoots": ["./node_modules/@types", "./node_modules/@figma"],
-    "moduleResolution": "node"
-  }
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "sourceMap": false
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 } 

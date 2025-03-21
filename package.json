@@ -4,13 +4,20 @@
   "description": "Figma plugin to export variables as design tokens",
   "main": "code.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "watch": "tsc -p tsconfig.json --watch"
+    "build": "tsc -p tsconfig.json && npm run bundle",
+    "watch": "tsc -p tsconfig.json --watch",
+    "bundle": "rollup -c",
+    "dev": "concurrently \"npm run watch\" \"rollup -c -w\""
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@figma/plugin-typings": "^1.82.0",
+    "@figma/plugin-typings": "^1.109.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "concurrently": "^8.2.2",
+    "rollup": "^4.9.5",
     "typescript": "^5.3.3"
   }
-} 
+}

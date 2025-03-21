@@ -41,6 +41,11 @@ A Figma plugin that exports variables and styles as design tokens in a standardi
    - Click "Export Design Tokens"
    - The plugin will generate a JSON file containing all tokens
 
+3. Integration examples:
+   - Use with design token platforms like [Style Dictionary](https://amzn.github.io/style-dictionary/)
+   - Import into your design system documentation
+   - Use directly in your codebase with token transformation tools
+
 ## Output Structure
 
 The plugin generates a JSON file with the following structure:
@@ -141,6 +146,38 @@ The plugin handles several types of tokens:
 - `manifest.json`: Plugin configuration
 - Build with `npm run build`
 - Watch mode: `npm run watch`
+
+## Troubleshooting
+
+### Common Issues
+
+- **Missing TypeScript definitions**: If you get TypeScript errors about missing Figma types, make sure you have installed `@figma/plugin-typings` package:
+  ```bash
+  npm install --save-dev @figma/plugin-typings
+  ```
+
+- **Token structure issues**: If your tokens aren't structured as expected, check that your Figma variables and styles follow the naming conventions (using `/` as separators for nesting).
+
+- **Figma API errors**: Make sure you're using a recent version of Figma that supports variables and the latest API.
+
+## Limitations
+
+- The plugin exports all collections and modes at once, which may result in large JSON files for complex design systems
+- Some complex Figma features (like blend modes) may not export perfectly
+- The plugin assumes a 16px base for rem calculations (not configurable yet)
+- Text styles and effect styles are included in all modes, even if they differ between modes
+
+## Roadmap
+
+- [ ] Add configuration options for rem base value
+- [ ] Support selective export of specific collections or modes
+- [ ] Add JSON format customization options
+- [ ] Improve UI with token preview
+- [ ] Add support for more token transformation formats
+
+## Version
+
+Current version: 1.0.0
 
 ## Notes
 
