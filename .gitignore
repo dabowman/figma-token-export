@@ -16,6 +16,7 @@ build/
 .vscode/
 *.swp
 *.swo
+.specstory/
 
 # Logs
 npm-debug.log*
