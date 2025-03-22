@@ -137,7 +137,9 @@ export function processTextStyles(): TokenCollection {
         // Last segment - add the actual token
         current[segment] = {
           $value: value,
-          $type: 'typography'
+          $type: 'typography',
+          $figmaId: style.id,
+          ...(style.description && { $description: style.description })
         };
       } else {
         // Create nested object if it doesn't exist
@@ -197,7 +199,9 @@ export function processEffectStyles(): TokenCollection {
         if (shadowEffects.length > 0) {
           current[segment] = {
             $value: shadowEffects.length === 1 ? shadowEffects[0] : shadowEffects,
-            $type: 'shadow'
+            $type: 'shadow',
+            $figmaId: style.id,
+            ...(style.description && { $description: style.description })
           };
         }
       } else {

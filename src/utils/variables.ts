@@ -49,7 +49,7 @@ export function findMatchingCoreNumber(value: number, coreCollection: VariableCo
  * @returns The standardized token type
  * 
  * This function maps Figma variable types to standardized design token types
- * by examining the path naming patterns and original variable type.
+ * by first checking the native Figma type, then examining path naming patterns.
  * It ensures consistent token type naming across the exported JSON structure.
  * 
  * Examples:
@@ -58,9 +58,17 @@ export function findMatchingCoreNumber(value: number, coreCollection: VariableCo
  * - A variable path "color/primary" with type "color" remains type "color"
  */
 export function getTokenType(variablePath: string, originalType: string): string {
-  if (originalType === 'color') return 'color';
+  // First check for a matching resolvedType in the typeMapping
+  // Note: originalType might be lowercase from previous processing
+  const resolvedTypeMatch = typeMapping.find(m => 
+    m.resolvedType === originalType.toUpperCase() || m.resolvedType === originalType
+  );
+  if (resolvedTypeMatch) {
+    return resolvedTypeMatch.type;
+  }
   
-  const mapping = typeMapping.find(m => m.pattern.test(variablePath));
+  // Then fall back to path-based pattern matching
+  const mapping = typeMapping.find(m => !m.resolvedType && m.pattern.test(variablePath));
   return mapping ? mapping.type : originalType.toLowerCase();
 }
 
@@ -140,7 +148,8 @@ function validateTokenValue(value: any, type: string): boolean {
  * @returns A TokenData object representing the design token in W3C format
  */
 export function convertVariableToToken(variable: Variable, specificModeId?: string): TokenData {
-  const type = variable.resolvedType.toLowerCase();
+  const resolvedType = variable.resolvedType;  // Keep original case for type matching
+  const type = resolvedType.toLowerCase();     // Lowercase for our internal use
   const variablePath = variable.name.toLowerCase();
   
   try {
@@ -153,7 +162,8 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
       console.error('Missing value for variable:', variable.name);
       return {
         $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' },
-        $type: getTokenType(variable.name, type),
+        $type: getTokenType(variable.name, resolvedType),  // Pass original resolvedType
+        $figmaId: variable.id,
         ...(variable.description && { $description: variable.description })
       };
     }
@@ -164,6 +174,7 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
       return {
         $value: createDimensionValue(value as number, '%'),
         $type: 'dimension',
+        $figmaId: variable.id,
         ...(variable.description && { $description: variable.description })
       };
     }
@@ -174,7 +185,7 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
       if (referencedVariable) {
         // Convert the reference path to the expected format
         const refPath = referencedVariable.name.split('/');
-        const tokenType = getTokenType(variable.name, type);
+        const tokenType = getTokenType(variable.name, resolvedType);  // Pass original resolvedType
         const tokenValue = `{${refPath.join('.')}}`;
         
         if (!validateTokenValue(tokenValue, tokenType)) {
@@ -184,6 +195,7 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
         return {
           $value: tokenValue,
           $type: tokenType,
+          $figmaId: variable.id,
           ...(variable.description && { $description: variable.description })
         };
       }
@@ -197,6 +209,7 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
         return {
           $value: '#000000',
           $type: 'color',
+          $figmaId: variable.id,
           ...(variable.description && { $description: variable.description })
         };
       }
@@ -218,6 +231,7 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
             return {
               $value: tokenValue,
               $type: 'color',
+              $figmaId: variable.id,
               ...(variable.description && { $description: variable.description })
             };
           }
@@ -231,6 +245,7 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
       return {
         $value: tokenValue,
         $type: 'color',
+        $figmaId: variable.id,
         ...(variable.description && { $description: variable.description })
       };
     }
@@ -246,7 +261,7 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
                                 variablePath.includes('radius') ||
                                 variablePath.includes('breakpoint') ||
                                 variablePath.includes('alignment') ||
-                                variable.resolvedType === 'FLOAT' && (
+                                resolvedType === 'FLOAT' && (
                                   variablePath.startsWith('breakpoint') ||
                                   variablePath.startsWith('alignment')
                                 );
@@ -263,26 +278,29 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
         return {
           $value: tokenValue,
           $type: tokenType,
+          $figmaId: variable.id,
           ...(variable.description && { $description: variable.description })
         };
       }
     }
     
     // For all other values, return as is with appropriate type
-    const tokenType = getTokenType(variable.name, type);
+    const tokenType = getTokenType(variable.name, resolvedType);  // Pass original resolvedType
     if (!validateTokenValue(value, tokenType)) {
       console.warn(`Invalid value for type ${tokenType}:`, value);
     }
     return {
       $value: value,
       $type: tokenType,
+      $figmaId: variable.id,
       ...(variable.description && { $description: variable.description })
     };
   } catch (error) {
     console.error('Error converting variable to token:', error, 'for variable:', variable.name);
     return {
       $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' },
-      $type: getTokenType(variable.name, type),
+      $type: getTokenType(variable.name, resolvedType),  // Pass original resolvedType
+      $figmaId: variable.id,
       ...(variable.description && { $description: variable.description })
     };
   }

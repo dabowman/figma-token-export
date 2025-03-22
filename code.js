@@ -7,11 +7,18 @@
      * Following the W3C Design Token Format Module specification
      */
     const typeMapping = [
+        // First check Figma's native types
+        { pattern: /.+/, type: 'color', resolvedType: 'COLOR' },
+        { pattern: /.+/, type: 'number', resolvedType: 'FLOAT' },
+        { pattern: /.+/, type: 'string', resolvedType: 'STRING' },
+        { pattern: /.+/, type: 'boolean', resolvedType: 'BOOLEAN' },
+        // Then fall back to name-based patterns for more specific typing
         { pattern: /^color/, type: 'color' },
         { pattern: /^fontSize/, type: 'dimension' },
         { pattern: /^borderRadius/, type: 'dimension' },
         { pattern: /^space/, type: 'dimension' },
-        { pattern: /^(breakpoint|alignment)/, type: 'dimension' },
+        { pattern: /^breakpoint/, type: 'dimension' },
+        { pattern: /^alignment/, type: 'dimension' },
         { pattern: /^fontFamily/, type: 'fontFamily' },
         { pattern: /^fontWeight/, type: 'fontWeight' },
         { pattern: /^duration/, type: 'duration' },
@@ -132,7 +139,7 @@
      * @returns The standardized token type
      *
      * This function maps Figma variable types to standardized design token types
-     * by examining the path naming patterns and original variable type.
+     * by first checking the native Figma type, then examining path naming patterns.
      * It ensures consistent token type naming across the exported JSON structure.
      *
      * Examples:
@@ -141,9 +148,14 @@
      * - A variable path "color/primary" with type "color" remains type "color"
      */
     function getTokenType(variablePath, originalType) {
-        if (originalType === 'color')
-            return 'color';
-        const mapping = typeMapping.find(m => m.pattern.test(variablePath));
+        // First check for a matching resolvedType in the typeMapping
+        // Note: originalType might be lowercase from previous processing
+        const resolvedTypeMatch = typeMapping.find(m => m.resolvedType === originalType.toUpperCase() || m.resolvedType === originalType);
+        if (resolvedTypeMatch) {
+            return resolvedTypeMatch.type;
+        }
+        // Then fall back to path-based pattern matching
+        const mapping = typeMapping.find(m => !m.resolvedType && m.pattern.test(variablePath));
         return mapping ? mapping.type : originalType.toLowerCase();
     }
     /**
@@ -212,7 +224,8 @@
      * @returns A TokenData object representing the design token in W3C format
      */
     function convertVariableToToken(variable, specificModeId) {
-        const type = variable.resolvedType.toLowerCase();
+        const resolvedType = variable.resolvedType; // Keep original case for type matching
+        const type = resolvedType.toLowerCase(); // Lowercase for our internal use
         const variablePath = variable.name.toLowerCase();
         try {
             // Use specific mode if provided, otherwise get the first mode's value
@@ -221,12 +234,12 @@
             // Handle undefined or invalid values
             if (value === undefined || value === null) {
                 console.error('Missing value for variable:', variable.name);
-                return Object.assign({ $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' }, $type: getTokenType(variable.name, type) }, (variable.description && { $description: variable.description }));
+                return Object.assign({ $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' }, $type: getTokenType(variable.name, resolvedType), $figmaId: variable.id }, (variable.description && { $description: variable.description }));
             }
             // Special handling for core lineHeight and letterSpacing tokens
             if (type === 'float' &&
                 (variablePath.startsWith('lineheight') || variablePath.startsWith('letterspacing'))) {
-                return Object.assign({ $value: createDimensionValue$1(value, '%'), $type: 'dimension' }, (variable.description && { $description: variable.description }));
+                return Object.assign({ $value: createDimensionValue$1(value, '%'), $type: 'dimension', $figmaId: variable.id }, (variable.description && { $description: variable.description }));
             }
             // If the value is a variable reference, return it as is
             if (value && typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS') {
@@ -234,12 +247,12 @@
                 if (referencedVariable) {
                     // Convert the reference path to the expected format
                     const refPath = referencedVariable.name.split('/');
-                    const tokenType = getTokenType(variable.name, type);
+                    const tokenType = getTokenType(variable.name, resolvedType); // Pass original resolvedType
                     const tokenValue = `{${refPath.join('.')}}`;
                     if (!validateTokenValue(tokenValue, tokenType)) {
                         console.warn(`Invalid reference value for type ${tokenType}:`, tokenValue);
                     }
-                    return Object.assign({ $value: tokenValue, $type: tokenType }, (variable.description && { $description: variable.description }));
+                    return Object.assign({ $value: tokenValue, $type: tokenType, $figmaId: variable.id }, (variable.description && { $description: variable.description }));
                 }
             }
             // Handle direct values
@@ -247,7 +260,7 @@
                 // Validate color object structure
                 if (!value || typeof value !== 'object' || !('r' in value) || !('g' in value) || !('b' in value)) {
                     console.error('Invalid color value structure:', value, 'for variable:', variable.name);
-                    return Object.assign({ $value: '#000000', $type: 'color' }, (variable.description && { $description: variable.description }));
+                    return Object.assign({ $value: '#000000', $type: 'color', $figmaId: variable.id }, (variable.description && { $description: variable.description }));
                 }
                 // If the color has opacity, try to find a matching core color
                 if ('a' in value && value.a !== 1 && value.a !== undefined) {
@@ -262,7 +275,7 @@
                             if (!validateTokenValue(tokenValue, 'color')) {
                                 console.warn('Invalid rgba color value:', tokenValue);
                             }
-                            return Object.assign({ $value: tokenValue, $type: 'color' }, (variable.description && { $description: variable.description }));
+                            return Object.assign({ $value: tokenValue, $type: 'color', $figmaId: variable.id }, (variable.description && { $description: variable.description }));
                         }
                     }
                 }
@@ -270,7 +283,7 @@
                 if (!validateTokenValue(tokenValue, 'color')) {
                     console.warn('Invalid hex color value:', tokenValue);
                 }
-                return Object.assign({ $value: tokenValue, $type: 'color' }, (variable.description && { $description: variable.description }));
+                return Object.assign({ $value: tokenValue, $type: 'color', $figmaId: variable.id }, (variable.description && { $description: variable.description }));
             }
             // Convert number values to dimensions with rem units
             if (typeof value === 'number' && (remTypes.has(type) || type === 'float')) {
@@ -283,7 +296,7 @@
                     variablePath.includes('radius') ||
                     variablePath.includes('breakpoint') ||
                     variablePath.includes('alignment') ||
-                    variable.resolvedType === 'FLOAT' && (variablePath.startsWith('breakpoint') ||
+                    resolvedType === 'FLOAT' && (variablePath.startsWith('breakpoint') ||
                         variablePath.startsWith('alignment'));
                 if (shouldConvertToRem) {
                     const tokenType = 'dimension';
@@ -293,19 +306,19 @@
                     if (!validateTokenValue(tokenValue, tokenType)) {
                         console.warn('Invalid dimension value:', tokenValue);
                     }
-                    return Object.assign({ $value: tokenValue, $type: tokenType }, (variable.description && { $description: variable.description }));
+                    return Object.assign({ $value: tokenValue, $type: tokenType, $figmaId: variable.id }, (variable.description && { $description: variable.description }));
                 }
             }
             // For all other values, return as is with appropriate type
-            const tokenType = getTokenType(variable.name, type);
+            const tokenType = getTokenType(variable.name, resolvedType); // Pass original resolvedType
             if (!validateTokenValue(value, tokenType)) {
                 console.warn(`Invalid value for type ${tokenType}:`, value);
             }
-            return Object.assign({ $value: value, $type: tokenType }, (variable.description && { $description: variable.description }));
+            return Object.assign({ $value: value, $type: tokenType, $figmaId: variable.id }, (variable.description && { $description: variable.description }));
         }
         catch (error) {
             console.error('Error converting variable to token:', error, 'for variable:', variable.name);
-            return Object.assign({ $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' }, $type: getTokenType(variable.name, type) }, (variable.description && { $description: variable.description }));
+            return Object.assign({ $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' }, $type: getTokenType(variable.name, resolvedType), $figmaId: variable.id }, (variable.description && { $description: variable.description }));
         }
     }
     /**
@@ -369,7 +382,10 @@
 
     /// <reference types="@figma/plugin-typings" />
     /**
-     * Creates a dimension value object following W3C format
+     * Creates a dimension value object following W3C Design Token Format Module specification
+     * @param value - The numeric value
+     * @param unit - The unit (px, rem, em, %, etc.)
+     * @returns A dimension token value object with separate value and unit keys
      */
     function createDimensionValue(value, unit) {
         return {
@@ -378,9 +394,28 @@
         };
     }
     /**
-     * Processes text styles into a token structure
-     * Handles variable bindings and converts values to the appropriate format
+     * Processes text styles into a token structure following W3C Design Token Format Module
+     * Handles variable bindings and converts values to the appropriate format.
+     * Special handling for lineHeight and letterSpacing:
+     * - Converts multipliers to percentages
+     * - Attempts to match values with core tokens for proper aliasing
+     * - Formats as dimension values with proper units when no matching token exists
+     *
      * @returns A nested token collection of typography styles in W3C format
+     *
+     * Example output:
+     * {
+     *   "heading-1": {
+     *     "$type": "typography",
+     *     "$value": {
+     *       "fontFamily": "Aktiv Grotesk VF",
+     *       "fontSize": { "value": 24, "unit": "px" },
+     *       "fontWeight": 700,
+     *       "lineHeight": "{lineHeight.1}",
+     *       "letterSpacing": "{letterSpacing.tight}"
+     *     }
+     *   }
+     * }
      */
     function processTextStyles() {
         const textStyles = figma.getLocalTextStyles();
@@ -473,10 +508,7 @@
                     // Remove undefined properties
                     Object.keys(value).forEach(key => value[key] === undefined && delete value[key]);
                     // Last segment - add the actual token
-                    current[segment] = {
-                        $value: value,
-                        $type: 'typography'
-                    };
+                    current[segment] = Object.assign({ $value: value, $type: 'typography', $figmaId: style.id }, (style.description && { $description: style.description }));
                 }
                 else {
                     // Create nested object if it doesn't exist
@@ -488,9 +520,24 @@
         return result;
     }
     /**
-     * Processes effect styles into a token structure
-     * Converts shadow effects to a standardized format
+     * Processes effect styles into a token structure following W3C Design Token Format Module
+     * Converts shadow effects to the standardized shadow type format
      * @returns A nested token collection of effect styles in W3C format
+     *
+     * Example output:
+     * {
+     *   "shadow-1": {
+     *     "$type": "shadow",
+     *     "$value": {
+     *       "color": "#00000026",
+     *       "offsetX": "0px",
+     *       "offsetY": "1px",
+     *       "blur": "1px",
+     *       "spread": "0px",
+     *       "type": "dropShadow"
+     *     }
+     *   }
+     * }
      */
     function processEffectStyles() {
         const effectStyles = figma.getLocalEffectStyles();
@@ -514,10 +561,7 @@
                         type: effect.type === 'DROP_SHADOW' ? 'dropShadow' : 'innerShadow'
                     }));
                     if (shadowEffects.length > 0) {
-                        current[segment] = {
-                            $value: shadowEffects.length === 1 ? shadowEffects[0] : shadowEffects,
-                            $type: 'shadow'
-                        };
+                        current[segment] = Object.assign({ $value: shadowEffects.length === 1 ? shadowEffects[0] : shadowEffects, $type: 'shadow', $figmaId: style.id }, (style.description && { $description: style.description }));
                     }
                 }
                 else {
