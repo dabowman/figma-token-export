@@ -1,0 +1,120 @@
+---
+description: Tips for creating figma plugins
+globs: 
+alwaysApply: false
+---
+ # Figma Plugin API
+
+You are an expert in Figma plugin development, following Figma's official documentation and best practices.
+
+## Plugin Architecture
+
+- Figma plugins consist of two primary parts:
+  - **Main Code (code.js/ts)**: Runs in a sandbox environment and can access the Figma document
+  - **UI Code (ui.html)**: Runs in an iframe and can access browser APIs like fetch
+
+- Communication between these components happens through message passing:
+  - Main code to UI: `figma.ui.postMessage(message)`
+  - UI to main code: `parent.postMessage({ pluginMessage: message }, '*')`
+
+## Essential Files
+
+1. **manifest.json**: Plugin metadata and configuration
+   - Required fields: `name`, `id`, `api`, `main`
+   - Common optional fields: `ui`, `editorType`, `networkAccess`, `documentAccess`
+
+2. **code.js/ts**: The main plugin script that interacts with the Figma document
+   - Must call `figma.closePlugin()` when done to prevent the plugin from hanging
+
+3. **ui.html**: User interface code (if your plugin needs UI)
+   - Contains HTML, CSS, and JavaScript for the interface
+   - Use Figma's design patterns and components for consistent UX
+
+## Best Practices
+
+### Security
+- Restrict network access to only the domains your plugin requires
+- Use HTTPS for all external requests
+- Don't store sensitive data in client storage without encryption
+- Follow secure authentication patterns (OAuth, Auth0)
+
+### Performance
+- Keep the plugin lightweight and focused on specific tasks
+- Avoid manipulating large parts of the document unnecessarily
+- Use batched operations for multiple document changes
+- Consider using worker threads for computation-heavy operations
+
+### UI Design
+- Use Figma's design patterns and component libraries:
+  - React: `react-figma-plugin-ds`, `figma-styled-components`
+  - Svelte: `figma-plugin-ds-svelte`
+  - Vue: `figma-vue-boilerplate`
+  - Vanilla JS: `figma-plugin-ds`
+- Support both light and dark themes with CSS variables
+- Make UI accessible and responsive for different window sizes
+
+### Code Structure
+- Use TypeScript for better type safety and development experience
+- Separate concerns: document manipulation, UI logic, data processing
+- Error handling: Anticipate and handle errors gracefully
+- Set up proper build processes with tools like figplug or create-figma-plugin
+
+### Error Handling
+- Check for proper selection state before operations
+- Validate user input
+- Provide meaningful error messages to users
+- Handle network failures gracefully
+- Consider edge cases (offline users, missing fonts, etc.)
+
+## Common Patterns
+
+### Plugin Initialization
+```javascript
+// Show UI with a specific size
+figma.showUI(__html__, { width: 300, height: 400, themeColors: true });
+
+// Listen for messages from UI
+figma.ui.onmessage = msg => {
+  if (msg.type === 'create-rectangles') {
+    // Handle the message
+    // ...
+    
+    // Notify UI of completion
+    figma.ui.postMessage({ type: 'creation-complete' });
+  }
+  
+  // Close plugin when done (or keep open if UI is persistent)
+  // figma.closePlugin();
+};
+```
+
+### UI Communication
+```html
+<script>
+  // Listen for messages from the plugin code
+  window.onmessage = event => {
+    const message = event.data.pluginMessage;
+    if (message.type === 'creation-complete') {
+      // Update UI to show completion
+    }
+  };
+  
+  // Send message to plugin code
+  document.getElementById('create-button').onclick = () => {
+    parent.postMessage({ 
+      pluginMessage: { 
+        type: 'create-rectangles',
+        count: 5 
+      } 
+    }, '*');
+  };
+</script>
+```
+
+When building Figma plugins:
+1. Keep focused on solving specific problems
+2. Follow Figma's UI design patterns
+3. Handle errors and edge cases gracefully
+4. Close the plugin when done
+5. Document your code clearly
+6. Test thoroughly with different document states

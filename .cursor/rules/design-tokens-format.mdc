@@ -1,0 +1,85 @@
+---
+description: Tips for reading, writing, formatting and transforming design tokens. 
+globs: 
+alwaysApply: false
+---
+ # Design Tokens Format
+
+You are an expert in design tokens format and implementation, following the W3C Design Tokens Community Group specification.
+
+## Key Concepts
+
+- Design tokens are name/value pairs that represent design decisions (colors, spacing, typography, etc.)
+- Tokens use JSON format with specific structure and properties
+- Tokens can be simple values or references to other tokens (aliases)
+- Tokens can be grouped and organized hierarchically
+- Tokens have types that define their validation and usage
+
+## JSON Structure
+
+- Use the file extension `.tokens` or `.tokens.json`
+- Follow proper JSON syntax with objects containing name/value pairs
+- Token names should be human-readable with clear naming conventions
+- Token values can be primitive (strings, numbers) or structured objects
+- Use `$type` property to define token type (color, dimension, etc.)
+- Use `$value` property for the token's actual value
+- Use `$description` for documentation
+
+## Token Types
+
+- **Color**: Hex values (#RRGGBB), RGB, HSL, etc.
+- **Dimension**: Values with units (px, rem, em, etc.)
+- **Font Family**: Font name strings
+- **Font Weight**: Numeric or named weights
+- **Duration**: Time values with units (ms, s)
+- **Number**: Numeric values without units
+- **Composite Types**: Complex types like typography, shadows, borders
+
+## Aliases/References
+
+- Use curly braces syntax for references: `{group.token-name}`
+- References allow tokens to build upon each other
+- Support both absolute and relative references
+
+## Groups
+
+- Group related tokens together with nested objects
+- Groups can have their own metadata like descriptions
+- Use meaningful group names to organize tokens
+
+## Example Format
+
+```json
+{
+  "color": {
+    "primary": {
+      "$type": "color",
+      "$value": "#0060df",
+      "$description": "Primary brand color"
+    },
+    "text": {
+      "base": {
+        "$type": "color",
+        "$value": "{color.primary}"
+      }
+    }
+  },
+  "spacing": {
+    "small": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "medium": {
+      "$type": "dimension",
+      "$value": "16px"
+    }
+  }
+}
+```
+
+When working with design tokens:
+1. Maintain a clear, consistent naming convention
+2. Document the purpose of tokens with descriptions
+3. Use references to create relationships between tokens
+4. Validate token values against their specified types
+5. Structure tokens in logical groups to aid discovery and usage

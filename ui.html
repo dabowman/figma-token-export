@@ -15,17 +15,90 @@
       cursor: pointer;
       font-size: 14px;
       width: 100%;
+      margin-bottom: 10px;
+    }
+    button.secondary {
+      background-color: #F5F5F5;
+      color: #333;
+      border: 1px solid #E5E5E5;
     }
     button:hover {
       background-color: #0D8DE3;
     }
+    button.secondary:hover {
+      background-color: #EAEAEA;
+    }
+    .status {
+      font-size: 12px;
+      color: #333;
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 4px;
+      background-color: #f5f5f5;
+      display: none;
+    }
+    .info {
+      font-size: 12px;
+      color: #666;
+      margin-top: 15px;
+    }
+    .divider {
+      height: 1px;
+      background-color: #E5E5E5;
+      margin: 15px 0;
+    }
+    h4 {
+      margin: 15px 0 10px 0;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
-  <button id="export">Export Design Tokens</button>
+  <h3>Design Token Exporter</h3>
+  <p>Export Figma variables and styles as W3C design tokens.</p>
+  
+  <button id="export-combined">Export Combined File</button>
+  
+  <div class="divider"></div>
+  
+  <h4>Advanced Options</h4>
+  <button id="export-tokens" class="secondary">Export Tokens Only</button>
+  <button id="export-raw" class="secondary">Export Raw Data Only</button>
+  
+  <div id="status" class="status"></div>
+  
+  <div class="info">
+    <p><strong>Export Options:</strong></p>
+    <ul>
+      <li><strong>Combined File:</strong> Contains both tokens and raw data in a single file</li>
+      <li><strong>Tokens Only:</strong> W3C formatted design tokens</li>
+      <li><strong>Raw Data Only:</strong> Raw Figma API data for debugging</li>
+    </ul>
+    <p><small>Use the comparison tool in the repo to analyze exports</small></p>
+  </div>
+  
   <script>
-    document.getElementById('export').onclick = () => {
+    const statusEl = document.getElementById('status');
+    
+    // Combined export (tokens + raw data)
+    document.getElementById('export-combined').onclick = () => {
+      statusEl.textContent = 'Exporting combined tokens and raw data...';
+      statusEl.style.display = 'block';
       parent.postMessage({ pluginMessage: { type: 'export-tokens' } }, '*');
+    };
+    
+    // Tokens only
+    document.getElementById('export-tokens').onclick = () => {
+      statusEl.textContent = 'Exporting tokens only...';
+      statusEl.style.display = 'block';
+      parent.postMessage({ pluginMessage: { type: 'export-tokens-only' } }, '*');
+    };
+    
+    // Raw data only
+    document.getElementById('export-raw').onclick = () => {
+      statusEl.textContent = 'Exporting raw data only...';
+      statusEl.style.display = 'block';
+      parent.postMessage({ pluginMessage: { type: 'export-raw-only' } }, '*');
     };
 
     // Listen for messages from the plugin code
@@ -42,6 +115,14 @@
         link.click();
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
+        
+        // Update status message
+        statusEl.textContent = `Downloaded: ${message.filename}`;
+        
+        // Reset status after a while
+        setTimeout(() => {
+          statusEl.textContent += '\nExport complete! ✅';
+        }, 500);
       }
     };
   </script>

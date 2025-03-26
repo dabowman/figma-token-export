@@ -1,0 +1,48 @@
+{
+  "brand": {
+    "primary": {
+      "$type": "color",
+      "$value": "#0066CC",
+      "$description": "Primary brand color"
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": "#009933",
+      "$description": "Secondary brand color"
+    },
+    "accent": {
+      "$type": "color",
+      "$value": "#FF6600",
+      "$description": "Accent color"
+    }
+  },
+  "neutral": {
+    "white": {
+      "$type": "color",
+      "$value": "#FFFFFF",
+      "$description": "White"
+    },
+    "grey": {
+      "100": {
+        "$type": "color",
+        "$value": "#F5F5F5",
+        "$description": "Light grey"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#808080",
+        "$description": "Medium grey"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#333333",
+        "$description": "Dark grey"
+      }
+    },
+    "black": {
+      "$type": "color",
+      "$value": "#000000",
+      "$description": "Black"
+    }
+  }
+}

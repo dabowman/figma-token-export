@@ -1,0 +1,64 @@
+{
+  "fontFamily": {
+    "primary": {
+      "$type": "fontFamily",
+      "$value": "Inter, sans-serif",
+      "$description": "Primary font family"
+    },
+    "secondary": {
+      "$type": "fontFamily",
+      "$value": "Georgia, serif",
+      "$description": "Secondary font family"
+    }
+  },
+  "fontSize": {
+    "xs": {
+      "$type": "dimension",
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      },
+      "$description": "Extra small text"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      },
+      "$description": "Small text"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Medium text"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      },
+      "$description": "Large text"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "Extra large text"
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      },
+      "$description": "2x large text"
+    }
+  }
+}

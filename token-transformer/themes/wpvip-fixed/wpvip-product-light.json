@@ -1,0 +1,2231 @@
+{
+  "background": {
+    "primary": {
+      "$value": "#fbfbfb",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13161",
+      "$description": "Use as main application background"
+    },
+    "overlay": {
+      "$value": "rgba({color.black},0.700)",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13162",
+      "$description": "Use as modal UI overlay"
+    }
+  },
+  "layer": {
+    "1": {
+      "$value": "#f4f3f2",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13163"
+    },
+    "2": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13164"
+    },
+    "3": {
+      "$value": "#ebe9e8",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13165"
+    },
+    "4": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13166"
+    },
+    "inverse": {
+      "$value": "#13191e",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13167",
+      "$description": "Use as component background in high-contrast situations."
+    },
+    "accent": {
+      "$value": "#d29137",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13168"
+    }
+  },
+  "input": {
+    "label": {
+      "default": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13170"
+      }
+    },
+    "text": {
+      "default": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13171",
+        "$description": "Use for default text color in inputs"
+      },
+      "placeholder": {
+        "$value": "#767372",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13172",
+        "$description": "Use for placeholder text in fields"
+      }
+    },
+    "border": {
+      "default": {
+        "$value": "#8f8c8b",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13173",
+        "$description": "Use for input borders (AA contrast compliant on app bg)"
+      },
+      "disabled": {
+        "$value": "#bfbcbb",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13174"
+      },
+      "error": {
+        "$value": "#d3372b",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13175"
+      },
+      "read-only": {
+        "$value": "#444140",
+        "$type": "color",
+        "$figmaId": "VariableID:8366:28051"
+      }
+    },
+    "switcher": {
+      "background": {
+        "primary": {
+          "$value": "#007934",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13176"
+        },
+        "secondary": {
+          "$value": "#007586",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13177"
+        }
+      }
+    },
+    "radio-box": {
+      "background": {
+        "default": {
+          "$value": "rgba({color.gray.0},0.000)",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13178"
+        },
+        "hover": {
+          "$value": "#f4f3f2",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13179"
+        },
+        "active": {
+          "$value": "rgba({color.gray.0},0.000)",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13180"
+        },
+        "disabled": {
+          "$value": "rgba({color.gray.0},0.000)",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13181"
+        }
+      },
+      "label": {
+        "primary": {
+          "default": {
+            "$value": "#e3e0df",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13182"
+          },
+          "hover": {
+            "$value": "#e3e0df",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13183"
+          },
+          "active": {
+            "$value": "#e3e0df",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13184"
+          },
+          "disabled": {
+            "$value": "#767372",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13185"
+          }
+        },
+        "secondary": {
+          "default": {
+            "$value": "#a7a4a3",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13186"
+          },
+          "hover": {
+            "$value": "#a7a4a3",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13187"
+          },
+          "active": {
+            "$value": "#a7a4a3",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13188"
+          },
+          "disabled": {
+            "$value": "#767372",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13189"
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "$value": "#8f8c8b",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13190"
+        },
+        "hover": {
+          "$value": "#8f8c8b",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13191"
+        },
+        "active": {
+          "$value": "#9a6014",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13192"
+        },
+        "disabled": {
+          "$value": "#bfbcbb",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13193"
+        }
+      }
+    },
+    "background": {
+      "default": {
+        "$value": "rgba({color.gray.0},0.000)",
+        "$type": "color",
+        "$figmaId": "VariableID:7986:11541",
+        "$description": "Use for input backgrounds"
+      },
+      "primary": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7986:11542"
+      },
+      "success": {
+        "$value": "#007934",
+        "$type": "color",
+        "$figmaId": "VariableID:7986:11543"
+      },
+      "brand": {
+        "$value": "#9a6014",
+        "$type": "color",
+        "$figmaId": "VariableID:7986:11544"
+      },
+      "inactive": {
+        "$value": "#827f7e",
+        "$type": "color",
+        "$figmaId": "VariableID:7986:11545"
+      },
+      "disabled": {
+        "$value": "#cbc7c6",
+        "$type": "color",
+        "$figmaId": "VariableID:8029:16990"
+      },
+      "read-only": {
+        "$value": "#1b1918",
+        "$type": "color",
+        "$figmaId": "VariableID:8366:28050"
+      }
+    },
+    "toggle": {
+      "switch": {
+        "default": {
+          "$value": "#ffffff",
+          "$type": "color",
+          "$figmaId": "VariableID:8029:16992"
+        },
+        "disabled": {
+          "$value": "#ebe9e8",
+          "$type": "color",
+          "$figmaId": "VariableID:8029:16993"
+        }
+      }
+    }
+  },
+  "border": {
+    "1": {
+      "$value": "#bfbcbb",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13194",
+      "$description": "Use for separator lines on layer 1 (no contrast requriements)"
+    },
+    "2": {
+      "$value": "#e3e0df",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13195",
+      "$description": "Use for soft borders on default page bg"
+    },
+    "3": {
+      "$value": "#b3afae",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13196"
+    },
+    "4": {
+      "$value": "#e3e0df",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13197",
+      "$description": "Use for table spearator lines"
+    },
+    "inverse": {
+      "$value": "#827f7e",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13198"
+    },
+    "accent": {
+      "$value": "#ba7920",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13199"
+    }
+  },
+  "text": {
+    "primary": {
+      "$value": "#13191e",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13200",
+      "$description": "Use for headings"
+    },
+    "secondary": {
+      "$value": "#514e4d",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13201",
+      "$description": "Use for body text"
+    },
+    "helper": {
+      "$value": "#6a6766",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13202",
+      "$description": "Use for helper text"
+    },
+    "disabled": {
+      "$value": "#9b9796",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13203"
+    },
+    "inverse": {
+      "$value": "#fbfbfb",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13204",
+      "$description": "Use for primary text on an inverse layer"
+    },
+    "inverse-secondary": {
+      "$value": "#b3afae",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13205",
+      "$description": "Use for secondary text on an inverse layer."
+    },
+    "accent": {
+      "$value": "#9a6014",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13206"
+    },
+    "error": {
+      "$value": "#bf2a23",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13207",
+      "$description": "Use for error text/icons outside of notices."
+    },
+    "success": {
+      "$value": "#007934",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13208",
+      "$description": "Use for success text/icons outisde of notices."
+    }
+  },
+  "link": {
+    "default": {
+      "$value": "#9a6014",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13209",
+      "$description": "Use for text links"
+    },
+    "hover": {
+      "$value": "#7a4909",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13210"
+    },
+    "active": {
+      "$value": "#522e03",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13211"
+    },
+    "visited": {
+      "$value": "#7a4909",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13212"
+    }
+  },
+  "icon": {
+    "primary": {
+      "$value": "#2c2a29",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13213"
+    },
+    "secondary": {
+      "$value": "#827f7e",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13214"
+    },
+    "helper": {
+      "$value": "#9b9796",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13215"
+    },
+    "inverse": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13216"
+    },
+    "disabled": {
+      "$value": "#8f8c8b",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13217"
+    },
+    "brand": {
+      "$value": "#9a6014",
+      "$type": "color",
+      "$figmaId": "VariableID:7986:11546"
+    },
+    "inverse-disabled": {
+      "$value": "#e3e0df",
+      "$type": "color",
+      "$figmaId": "VariableID:8029:16991"
+    }
+  },
+  "button": {
+    "primary": {
+      "background": {
+        "default": {
+          "$value": "#13191e",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13218"
+        },
+        "hover": {
+          "$value": "#d8a45f",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13219"
+        },
+        "disabled": {
+          "$value": "#bfbcbb",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13220"
+        }
+      },
+      "label": {
+        "default": {
+          "$value": "#13191e",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13221"
+        },
+        "hover": {
+          "$value": "#e3e0df",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13222"
+        },
+        "disabled": {
+          "$value": "#767372",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13223"
+        }
+      }
+    },
+    "secondary": {
+      "background": {
+        "default": {
+          "$value": "#e3e0df",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13224"
+        },
+        "hover": {
+          "$value": "#d8a45f",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13225"
+        },
+        "disabled": {
+          "$value": "#bfbcbb",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13226"
+        }
+      },
+      "label": {
+        "default": {
+          "$value": "#e3e0df",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13227"
+        },
+        "hover": {
+          "$value": "#e3e0df",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13228"
+        },
+        "disabled": {
+          "$value": "#767372",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13229"
+        }
+      }
+    },
+    "tertiary": {
+      "background": {
+        "default": {
+          "$value": "rgba({color.gray.0},0.000)",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13230"
+        },
+        "hover": {
+          "$value": "#e3e0df",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13231"
+        },
+        "disabled": {
+          "$value": "rgba({color.gray.0},0.000)",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13232"
+        }
+      },
+      "border": {
+        "default": {
+          "$value": "#8f8c8b",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13233"
+        },
+        "hover": {
+          "$value": "#e3e0df",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13234"
+        },
+        "disabled": {
+          "$value": "#bfbcbb",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13235"
+        }
+      },
+      "label": {
+        "default": {
+          "$value": "#e3e0df",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13236"
+        },
+        "hover": {
+          "$value": "#e3e0df",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13237"
+        },
+        "disabled": {
+          "$value": "#767372",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13238"
+        }
+      }
+    },
+    "ghost": {
+      "background": {
+        "default": {
+          "$value": "rgba({color.gray.0},0.000)",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13239"
+        },
+        "hover": {
+          "$value": "#e3e0df",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13240"
+        },
+        "disabled": {
+          "$value": "rgba({color.gray.0},0.000)",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13241"
+        }
+      },
+      "label": {
+        "default": {
+          "$value": "#c5832a",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13242"
+        },
+        "hover": {
+          "$value": "#e3e0df",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13243"
+        },
+        "disabled": {
+          "$value": "#767372",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13244"
+        }
+      }
+    },
+    "display": {
+      "background": {
+        "default": {
+          "$value": "#d8a45f",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13245"
+        },
+        "hover": {
+          "$value": "#9a6014",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13246"
+        },
+        "disabled": {
+          "$value": "#bfbcbb",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13247"
+        }
+      },
+      "label": {
+        "default": {
+          "$value": "#e3e0df",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13248"
+        },
+        "hover": {
+          "$value": "#13191e",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13249"
+        },
+        "disabled": {
+          "$value": "#767372",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13250"
+        }
+      }
+    },
+    "danger": {
+      "primary": {
+        "background": {
+          "default": {
+            "$value": "#d3372b",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13251"
+          },
+          "hover": {
+            "$value": "#9a1a19",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13252"
+          },
+          "disabled": {
+            "$value": "#bfbcbb",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13253"
+          }
+        },
+        "label": {
+          "default": {
+            "$value": "#13191e",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13254"
+          },
+          "hover": {
+            "$value": "#13191e",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13255"
+          },
+          "disabled": {
+            "$value": "#767372",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13256"
+          }
+        }
+      },
+      "secondary": {
+        "background": {
+          "default": {
+            "$value": "rgba({color.gray.0},0.000)",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13257"
+          },
+          "hover": {
+            "$value": "#9a1a19",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13258"
+          },
+          "disabled": {
+            "$value": "rgba({color.gray.0},0.000)",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13259"
+          }
+        },
+        "label": {
+          "default": {
+            "$value": "#d3372b",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13260"
+          },
+          "hover": {
+            "$value": "#13191e",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13261"
+          },
+          "disabled": {
+            "$value": "#767372",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13262"
+          }
+        },
+        "border": {
+          "default": {
+            "$value": "#d3372b",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13263"
+          },
+          "hover": {
+            "$value": "#9a1a19",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13264"
+          },
+          "disabled": {
+            "$value": "#bfbcbb",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13265"
+          }
+        }
+      },
+      "ghost": {
+        "background": {
+          "default": {
+            "$value": "rgba({color.gray.0},0.000)",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13266"
+          },
+          "hover": {
+            "$value": "#9a1a19",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13267"
+          },
+          "disabled": {
+            "$value": "rgba({color.gray.0},0.000)",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13268"
+          }
+        },
+        "label": {
+          "default": {
+            "$value": "#d3372b",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13269"
+          },
+          "hover": {
+            "$value": "#13191e",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13270"
+          },
+          "disabled": {
+            "$value": "#767372",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13271"
+          }
+        }
+      }
+    }
+  },
+  "support": {
+    "background": {
+      "error": {
+        "$value": "#ffdedb",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13272"
+      },
+      "warning": {
+        "$value": "#ffe2c2",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13273"
+      },
+      "info": {
+        "$value": "#ddebf3",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13274"
+      },
+      "success": {
+        "$value": "#d7efdf",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13275"
+      },
+      "neutral": {
+        "$value": "#ebe9e8",
+        "$type": "color",
+        "$figmaId": "VariableID:10139:59082"
+      },
+      "feature": {
+        "$value": "#e8ccff",
+        "$type": "color",
+        "$figmaId": "VariableID:10139:81757"
+      }
+    },
+    "text": {
+      "neutral": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:10139:81758"
+      },
+      "error": {
+        "$value": "#5e0000",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13276"
+      },
+      "warning": {
+        "$value": "#491d00",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13277"
+      },
+      "info": {
+        "$value": "#003344",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13278"
+      },
+      "success": {
+        "$value": "#003700",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13279"
+      },
+      "feature": {
+        "$value": "#270047",
+        "$type": "color",
+        "$figmaId": "VariableID:10139:81759"
+      }
+    },
+    "icon": {
+      "neutral": {
+        "$value": "#9b9796",
+        "$type": "color",
+        "$figmaId": "VariableID:10139:81760"
+      },
+      "error": {
+        "$value": "#e74135",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13280"
+      },
+      "warning": {
+        "$value": "#d38500",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13281"
+      },
+      "info": {
+        "$value": "#19a8b8",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13282"
+      },
+      "success": {
+        "$value": "#30ac63",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13283"
+      },
+      "feature": {
+        "$value": "#a73dff",
+        "$type": "color",
+        "$figmaId": "VariableID:10139:81761"
+      }
+    },
+    "accent": {
+      "error": {
+        "$value": "#e74135",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13284"
+      },
+      "warning": {
+        "$value": "#b86e01",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13285"
+      },
+      "info": {
+        "$value": "#30b5c4",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13286"
+      },
+      "success": {
+        "$value": "#007934",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13287"
+      },
+      "neutral": {
+        "$value": "#827f7e",
+        "$type": "color",
+        "$figmaId": "VariableID:10139:81728"
+      },
+      "feature": {
+        "$value": "#8000eb",
+        "$type": "color",
+        "$figmaId": "VariableID:10139:81762"
+      }
+    },
+    "link": {
+      "neutral": {
+        "default": {
+          "$value": "#13191e",
+          "$type": "color",
+          "$figmaId": "VariableID:10376:87747",
+          "$description": "Use for text links"
+        },
+        "hover": {
+          "$value": "#514e4d",
+          "$type": "color",
+          "$figmaId": "VariableID:10376:87748"
+        },
+        "active": {
+          "$value": "#514e4d",
+          "$type": "color",
+          "$figmaId": "VariableID:10376:87749"
+        },
+        "visited": {
+          "$value": "#383635",
+          "$type": "color",
+          "$figmaId": "VariableID:10376:87750"
+        }
+      },
+      "error": {
+        "default": {
+          "$value": "#bf2a23",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13288",
+          "$description": "Use for text links"
+        },
+        "hover": {
+          "$value": "#9a1a19",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13289"
+        },
+        "active": {
+          "$value": "#710208",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13290"
+        },
+        "visited": {
+          "$value": "#710208",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13291"
+        }
+      },
+      "warning": {
+        "default": {
+          "$value": "#985600",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13292",
+          "$description": "Use for text links"
+        },
+        "hover": {
+          "$value": "#7b3f01",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13293"
+        },
+        "active": {
+          "$value": "#592800",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13294"
+        },
+        "visited": {
+          "$value": "#7b3f01",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13295"
+        }
+      },
+      "info": {
+        "default": {
+          "$value": "#006979",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13296",
+          "$description": "Use for text links"
+        },
+        "hover": {
+          "$value": "#005b6d",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13297"
+        },
+        "active": {
+          "$value": "#004252",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13298"
+        },
+        "visited": {
+          "$value": "#005b6d",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13299"
+        }
+      },
+      "success": {
+        "default": {
+          "$value": "#007934",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13300",
+          "$description": "Use for text links"
+        },
+        "hover": {
+          "$value": "#00611e",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13301"
+        },
+        "active": {
+          "$value": "#004502",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13302"
+        },
+        "visited": {
+          "$value": "#00611e",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13303"
+        }
+      }
+    }
+  },
+  "focus": {
+    "default": {
+      "$value": "#0f62fe",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13304"
+    },
+    "inset": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13305"
+    }
+  },
+  "tag": {
+    "gray": {
+      "background": {
+        "$value": "#ebe9e8",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13306"
+      },
+      "text": {
+        "$value": "#2c2a29",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13307"
+      },
+      "icon": {
+        "$value": "#5e5b5a",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13308"
+      },
+      "hover": {
+        "$value": "#d7d4d3",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13309"
+      },
+      "active": {
+        "$value": "#cbc7c6",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13310"
+      }
+    },
+    "blue": {
+      "background": {
+        "$value": "#ddebf3",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13311"
+      },
+      "text": {
+        "$value": "#003344",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13312"
+      },
+      "icon": {
+        "$value": "#006979",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13313"
+      },
+      "hover": {
+        "$value": "#b2dde6",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13314"
+      },
+      "active": {
+        "$value": "#94d4de",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13315"
+      }
+    },
+    "green": {
+      "background": {
+        "$value": "#d7efdf",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13316"
+      },
+      "text": {
+        "$value": "#003700",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13317"
+      },
+      "icon": {
+        "$value": "#006d29",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13318"
+      },
+      "hover": {
+        "$value": "#aae1b7",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13319"
+      },
+      "active": {
+        "$value": "#89daa0",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13320"
+      }
+    },
+    "red": {
+      "background": {
+        "$value": "#ffdedb",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13321"
+      },
+      "text": {
+        "$value": "#5e0000",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13322"
+      },
+      "icon": {
+        "$value": "#ad221f",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13323"
+      },
+      "hover": {
+        "$value": "#ffc3b9",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13324"
+      },
+      "active": {
+        "$value": "#ffb0a1",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13325"
+      }
+    },
+    "gold": {
+      "background": {
+        "$value": "#eeeae5",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13326"
+      },
+      "text": {
+        "$value": "#3f2300",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13327"
+      },
+      "icon": {
+        "$value": "#8c5407",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13328"
+      },
+      "hover": {
+        "$value": "#e3d0b8",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13329"
+      },
+      "active": {
+        "$value": "#dfc39e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13330"
+      }
+    },
+    "yellow": {
+      "background": {
+        "$value": "#ffe2c2",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13331"
+      },
+      "text": {
+        "$value": "#491d00",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13332"
+      },
+      "icon": {
+        "$value": "#894b00",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13333"
+      },
+      "hover": {
+        "$value": "#ffc876",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13334"
+      },
+      "active": {
+        "$value": "#ffb84a",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13335"
+      }
+    },
+    "orange": {
+      "background": {
+        "$value": "#ffe0cc",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13336"
+      },
+      "text": {
+        "$value": "#5f0000",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13337"
+      },
+      "icon": {
+        "$value": "#a53100",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13338"
+      },
+      "hover": {
+        "$value": "#ffc39f",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13339"
+      },
+      "active": {
+        "$value": "#ffb27e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13340"
+      }
+    },
+    "salmon": {
+      "background": {
+        "$value": "#fedfd8",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13341"
+      },
+      "text": {
+        "$value": "#5e0010",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13342"
+      },
+      "icon": {
+        "$value": "#993c2b",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13343"
+      },
+      "hover": {
+        "$value": "#fec3b1",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13344"
+      },
+      "active": {
+        "$value": "#ffb296",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13345"
+      }
+    },
+    "pink": {
+      "background": {
+        "$value": "#ffdedb",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13346"
+      },
+      "text": {
+        "$value": "#530e2b",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13347"
+      },
+      "icon": {
+        "$value": "#894755",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13348"
+      },
+      "hover": {
+        "$value": "#ffc5c1",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13349"
+      },
+      "active": {
+        "$value": "#fbb7b4",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13350"
+      }
+    }
+  },
+  "sticker": {
+    "gray": {
+      "background": {
+        "$value": "#201e1d",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13351"
+      },
+      "background-secondary": {
+        "$value": "#cbc7c6",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13352"
+      },
+      "text": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13353"
+      },
+      "text-secondary": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13354"
+      },
+      "icon": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13355"
+      },
+      "hover": {
+        "$value": "#383635",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13356"
+      },
+      "active": {
+        "$value": "#444140",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13357"
+      }
+    },
+    "blue": {
+      "background": {
+        "$value": "#54c0cd",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13358"
+      },
+      "background-secondary": {
+        "$value": "#ddebf3",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13359"
+      },
+      "text": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13360"
+      },
+      "text-secondary": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13361"
+      },
+      "icon": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13362"
+      },
+      "hover": {
+        "$value": "#19a8b8",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13363"
+      },
+      "active": {
+        "$value": "#009bad",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13364"
+      }
+    },
+    "green": {
+      "background": {
+        "$value": "#4dc679",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13365"
+      },
+      "background-secondary": {
+        "$value": "#d7efdf",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13366"
+      },
+      "text": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13367"
+      },
+      "text-secondary": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13368"
+      },
+      "icon": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13369"
+      },
+      "hover": {
+        "$value": "#30ac63",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13370"
+      },
+      "active": {
+        "$value": "#1da158",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13371"
+      }
+    },
+    "red": {
+      "background": {
+        "$value": "#bf2a23",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13372"
+      },
+      "background-secondary": {
+        "$value": "#ffdedb",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13373"
+      },
+      "text": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13374"
+      },
+      "text-secondary": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13375"
+      },
+      "icon": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13376"
+      },
+      "hover": {
+        "$value": "#9a1a19",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13377"
+      },
+      "active": {
+        "$value": "#840b10",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13378"
+      }
+    },
+    "gold": {
+      "background": {
+        "$value": "#d8a45f",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13379"
+      },
+      "background-secondary": {
+        "$value": "#eeeae5",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13380"
+      },
+      "text": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13381"
+      },
+      "text-secondary": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13382"
+      },
+      "icon": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13383"
+      },
+      "hover": {
+        "$value": "#d29137",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13384"
+      },
+      "active": {
+        "$value": "#c5832a",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13385"
+      }
+    },
+    "yellow": {
+      "background": {
+        "$value": "#f09d01",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13386"
+      },
+      "background-secondary": {
+        "$value": "#ffe2c2",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13387"
+      },
+      "text": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13388"
+      },
+      "text-secondary": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13389"
+      },
+      "icon": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13390"
+      },
+      "hover": {
+        "$value": "#d38500",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13391"
+      },
+      "active": {
+        "$value": "#c67a00",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13392"
+      }
+    },
+    "orange": {
+      "background": {
+        "$value": "#ff7b28",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13393"
+      },
+      "background-secondary": {
+        "$value": "#ffe0cc",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13394"
+      },
+      "text": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13395"
+      },
+      "text-secondary": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13396"
+      },
+      "icon": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13397"
+      },
+      "hover": {
+        "$value": "#e76205",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13398"
+      },
+      "active": {
+        "$value": "#d75001",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13399"
+      }
+    },
+    "salmon": {
+      "background": {
+        "$value": "#f9945e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13400"
+      },
+      "background-secondary": {
+        "$value": "#fedfd8",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13401"
+      },
+      "text": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13402"
+      },
+      "text-secondary": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13403"
+      },
+      "icon": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13404"
+      },
+      "hover": {
+        "$value": "#e07b4d",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13405"
+      },
+      "active": {
+        "$value": "#d27146",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13406"
+      }
+    },
+    "pink": {
+      "background": {
+        "$value": "#e29e9d",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13407"
+      },
+      "background-secondary": {
+        "$value": "#ffdedb",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13408"
+      },
+      "text": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13409"
+      },
+      "text-secondary": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13410"
+      },
+      "icon": {
+        "$value": "#13191e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13411"
+      },
+      "hover": {
+        "$value": "#ca8588",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13412"
+      },
+      "active": {
+        "$value": "#bc7a7e",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13413"
+      }
+    }
+  },
+  "toolbar": {
+    "background": {
+      "$value": "#13191e",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13414",
+      "$description": "The background color for the top toolbar"
+    },
+    "text": {
+      "default": {
+        "$value": "#ebe9e8",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13415",
+        "$description": "Default text color for the top toolbar's contents"
+      },
+      "hover": {
+        "$value": "#ebe9e8",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13416"
+      }
+    },
+    "brand": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13417",
+      "$description": "Use for the logo"
+    }
+  },
+  "logs": {
+    "text": {
+      "primary": {
+        "$value": "#ebe9e8",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13418",
+        "$description": "Use for monotype output in an invere layer."
+      },
+      "secondary": {
+        "$value": "#b3afae",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13419",
+        "$description": "Use for timestamp or secondary monotype output in an inverse layer."
+      }
+    },
+    "background": {
+      "$value": "#13191e",
+      "$type": "color",
+      "$figmaId": "VariableID:7973:13420",
+      "$description": "Use for the pseudo terminal window background color."
+    }
+  },
+  "option-row": {
+    "default": {
+      "background": {
+        "$value": "#d29137",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13421"
+      },
+      "icon": {
+        "$value": "#1b1918",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13422"
+      }
+    },
+    "alt": {
+      "background": {
+        "$value": "#d7d4d3",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13423"
+      },
+      "icon": {
+        "$value": "#ebe9e8",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13424"
+      }
+    }
+  },
+  "space": {
+    "1": {
+      "$value": {
+        "value": 0.25,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13426"
+    },
+    "2": {
+      "$value": {
+        "value": 0.5,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13427"
+    },
+    "3": {
+      "$value": {
+        "value": 0.75,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13428"
+    },
+    "4": {
+      "$value": {
+        "value": 1,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13429"
+    },
+    "5": {
+      "$value": {
+        "value": 1.5,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13430"
+    },
+    "6": {
+      "$value": {
+        "value": 2,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13431"
+    },
+    "7": {
+      "$value": {
+        "value": 3.5,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13432"
+    },
+    "8": {
+      "$value": {
+        "value": 5,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13433"
+    },
+    "9": {
+      "$value": {
+        "value": 10,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13434"
+    }
+  },
+  "borderRadius": {
+    "1": {
+      "$value": {
+        "value": 0.13,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13435"
+    },
+    "2": {
+      "$value": {
+        "value": 0.25,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13436"
+    },
+    "3": {
+      "$value": {
+        "value": 0.5,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13437"
+    },
+    "4": {
+      "$value": {
+        "value": 1,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13438"
+    },
+    "5": {
+      "$value": {
+        "value": 2,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13439"
+    },
+    "6": {
+      "$value": {
+        "value": 2.5,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13440"
+    },
+    "7": {
+      "$value": {
+        "value": 3.5,
+        "unit": "rem"
+      },
+      "$type": "number",
+      "$figmaId": "VariableID:7973:13441"
+    }
+  },
+  "typography": {
+    "support": {
+      "helper-text": {
+        "$value": {
+          "fontFamily": "{fontFamily.body}",
+          "fontSize": "{fontSize.static.1}",
+          "fontWeight": "{fontWeight.regular}",
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": {
+            "value": 1,
+            "unit": "%"
+          },
+          "paragraphSpacing": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:2ffd324aff338a6dd8cd7c4cc78011e5a1b4c4af,"
+      },
+      "label-xs": {
+        "$value": {
+          "fontFamily": "{fontFamily.body}",
+          "fontSize": "{fontSize.static.0}",
+          "fontWeight": "{fontWeight.regular}",
+          "lineHeight": {
+            "value": 100,
+            "unit": "%"
+          },
+          "letterSpacing": {
+            "value": 2,
+            "unit": "%"
+          },
+          "paragraphSpacing": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:72cd491e1ff725611279ddc6d1110865ff7bfe17,"
+      },
+      "label-small": {
+        "$value": {
+          "fontFamily": "{fontFamily.body}",
+          "fontSize": "{fontSize.static.1}",
+          "fontWeight": "{fontWeight.regular}",
+          "lineHeight": {
+            "value": 100,
+            "unit": "%"
+          },
+          "letterSpacing": {
+            "value": 0.5,
+            "unit": "%"
+          },
+          "paragraphSpacing": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:b43350f14fc2b6f02d947161c5eb95b64ccfb4b2,"
+      },
+      "label-default": {
+        "$value": {
+          "fontFamily": "{fontFamily.body}",
+          "fontSize": "{fontSize.static.2}",
+          "fontWeight": "{fontWeight.semiBold}",
+          "lineHeight": {
+            "value": 100,
+            "unit": "%"
+          },
+          "letterSpacing": {
+            "value": 0.5,
+            "unit": "%"
+          },
+          "paragraphSpacing": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:b91dafb14448c14894993730b19020fd09b4e4e9,"
+      },
+      "label-default-quiet": {
+        "$value": {
+          "fontFamily": "{fontFamily.body}",
+          "fontSize": "{fontSize.static.2}",
+          "fontWeight": "{fontWeight.regular}",
+          "lineHeight": {
+            "value": 100,
+            "unit": "%"
+          },
+          "letterSpacing": {
+            "value": 0.5,
+            "unit": "%"
+          },
+          "paragraphSpacing": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:6086212bf26b40bd3dc1c9e694ca9f675882b896,"
+      },
+      "label-default-loud": {
+        "$value": {
+          "fontFamily": "{fontFamily.body}",
+          "fontSize": "{fontSize.static.2}",
+          "fontWeight": "{fontWeight.bold}",
+          "lineHeight": {
+            "value": 100,
+            "unit": "%"
+          },
+          "letterSpacing": {
+            "value": 0.5,
+            "unit": "%"
+          },
+          "paragraphSpacing": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:47ab3b323a4a1b918655442890d3f16dafdff081,"
+      },
+      "label-caps": {
+        "$value": {
+          "fontFamily": "{fontFamily.body}",
+          "fontSize": "{fontSize.static.1}",
+          "fontWeight": "{fontWeight.semiBold}",
+          "lineHeight": {
+            "value": 100,
+            "unit": "%"
+          },
+          "letterSpacing": "{letterSpacing.x-loose}",
+          "paragraphSpacing": {
+            "value": 0,
+            "unit": "px"
+          },
+          "textCase": "upper"
+        },
+        "$type": "typography",
+        "$figmaId": "S:5631cc676d769e806f854e60a0eadd68cbbec62a,"
+      }
+    },
+    "heading": {
+      "1": {
+        "$value": {
+          "fontFamily": "{fontFamily.heading}",
+          "fontSize": "{fontSize.static.7}",
+          "fontWeight": "{fontWeight.bold}",
+          "lineHeight": "{lineHeight.3}",
+          "letterSpacing": "{letterSpacing.tight}",
+          "paragraphSpacing": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:bb72b147d2fc7d278fdd7cac253e33603a63176a,"
+      },
+      "2": {
+        "$value": {
+          "fontFamily": "{fontFamily.heading}",
+          "fontSize": "{fontSize.static.6}",
+          "fontWeight": "{fontWeight.semiBold}",
+          "lineHeight": "{lineHeight.2}",
+          "letterSpacing": "{letterSpacing.none}",
+          "paragraphSpacing": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:642cb11b7d3b027dfca7d62e623149787743b826,"
+      },
+      "3": {
+        "$value": {
+          "fontFamily": "{fontFamily.heading}",
+          "fontSize": "{fontSize.static.4}",
+          "fontWeight": "{fontWeight.semiBold}",
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": "{letterSpacing.none}",
+          "paragraphSpacing": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:c1da6743e33c4128b8bf5758a7f910a99b6f9518,"
+      },
+      "4": {
+        "$value": {
+          "fontFamily": "{fontFamily.heading}",
+          "fontSize": "{fontSize.static.2}",
+          "fontWeight": "{fontWeight.bold}",
+          "lineHeight": "{lineHeight.6}",
+          "letterSpacing": "{letterSpacing.none}",
+          "paragraphSpacing": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:7d188139e10392856be7afa936d9d69d9d6c1b0a,"
+      },
+      "5": {
+        "$value": {
+          "fontFamily": "{fontFamily.heading}",
+          "fontSize": "{fontSize.static.1}",
+          "fontWeight": "{fontWeight.bold}",
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": "{letterSpacing.none}",
+          "paragraphSpacing": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:a5d346be1097d4b8c549ba3481daf4448a38aabc,"
+      },
+      "caps": {
+        "$value": {
+          "fontFamily": "{fontFamily.heading}",
+          "fontSize": "{fontSize.static.1}",
+          "fontWeight": "{fontWeight.semiBold}",
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": "{letterSpacing.x-loose}",
+          "paragraphSpacing": {
+            "value": 0,
+            "unit": "px"
+          },
+          "textCase": "upper"
+        },
+        "$type": "typography",
+        "$figmaId": "S:9917cc916435fb8d3d7008d64ee7aef7c378f9d9,"
+      }
+    },
+    "text": {
+      "small": {
+        "$value": {
+          "fontFamily": "{fontFamily.body}",
+          "fontSize": "{fontSize.static.1}",
+          "fontWeight": "{fontWeight.regular}",
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": {
+            "value": 1,
+            "unit": "%"
+          },
+          "paragraphSpacing": {
+            "value": 12,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:7828f455ace6d3a8be8e61f51215242a34e38635,"
+      },
+      "default": {
+        "$value": {
+          "fontFamily": "{fontFamily.body}",
+          "fontSize": "{fontSize.static.2}",
+          "fontWeight": "{fontWeight.regular}",
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": {
+            "value": 1,
+            "unit": "%"
+          },
+          "paragraphSpacing": {
+            "value": 14,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:93d3170f10ae1b76c5ed804f0ec5e05e7f4ec71b,"
+      },
+      "large": {
+        "$value": {
+          "fontFamily": "{fontFamily.body}",
+          "fontSize": "{fontSize.static.5}",
+          "fontWeight": "{fontWeight.regular}",
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": {
+            "value": 1,
+            "unit": "%"
+          },
+          "paragraphSpacing": {
+            "value": 19,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:3ac840cbbeddb910784b575c743df86a06f20e91,"
+      },
+      "mono": {
+        "$value": {
+          "fontFamily": "{fontFamily.mono}",
+          "fontSize": "{fontSize.static.2}",
+          "fontWeight": "{fontWeight.regular}",
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": "{letterSpacing.none}",
+          "paragraphSpacing": {
+            "value": 14,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:5e42a9844f90d2c5ff6a0af5fdc97e844573b627,"
+      },
+      "mono-bold": {
+        "$value": {
+          "fontFamily": "{fontFamily.mono}",
+          "fontSize": "{fontSize.static.2}",
+          "fontWeight": "{fontWeight.bold}",
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": "{letterSpacing.none}",
+          "paragraphSpacing": {
+            "value": 14,
+            "unit": "px"
+          }
+        },
+        "$type": "typography",
+        "$figmaId": "S:bc5fa086ca21bdac62ec85a5a46765de34a446b9,"
+      }
+    }
+  },
+  "effects": {
+    "High": {
+      "$value": [
+        {
+          "color": "#00000005",
+          "offsetX": "0px",
+          "offsetY": "2.767256498336792px",
+          "blur": "2.2138051986694336px",
+          "spread": "0px",
+          "type": "dropShadow"
+        },
+        {
+          "color": "#00000007",
+          "offsetX": "0px",
+          "offsetY": "6.650102138519287px",
+          "blur": "5.32008171081543px",
+          "spread": "0px",
+          "type": "dropShadow"
+        },
+        {
+          "color": "#00000009",
+          "offsetX": "0px",
+          "offsetY": "12.521552085876465px",
+          "blur": "10.017241477966309px",
+          "spread": "0px",
+          "type": "dropShadow"
+        },
+        {
+          "color": "#0000000b",
+          "offsetX": "0px",
+          "offsetY": "22.3363094329834px",
+          "blur": "17.869047164916992px",
+          "spread": "0px",
+          "type": "dropShadow"
+        },
+        {
+          "color": "#0000000d",
+          "offsetX": "0px",
+          "offsetY": "41.777610778808594px",
+          "blur": "33.422088623046875px",
+          "spread": "0px",
+          "type": "dropShadow"
+        },
+        {
+          "color": "#00000012",
+          "offsetX": "0px",
+          "offsetY": "100px",
+          "blur": "80px",
+          "spread": "0px",
+          "type": "dropShadow"
+        }
+      ],
+      "$type": "shadow",
+      "$figmaId": "S:10423adf28fcbc450f7bb07b5463f39b24949b54,"
+    },
+    "Medium": {
+      "$value": [
+        {
+          "color": "#00000003",
+          "offsetX": "0px",
+          "offsetY": "0.11069025844335556px",
+          "blur": "1.0515574216842651px",
+          "spread": "0px",
+          "type": "dropShadow"
+        },
+        {
+          "color": "#00000003",
+          "offsetX": "0px",
+          "offsetY": "0.2660040855407715px",
+          "blur": "2.527038812637329px",
+          "spread": "0px",
+          "type": "dropShadow"
+        },
+        {
+          "color": "#00000005",
+          "offsetX": "0px",
+          "offsetY": "0.5008620619773865px",
+          "blur": "4.758189678192139px",
+          "spread": "0px",
+          "type": "dropShadow"
+        },
+        {
+          "color": "#00000005",
+          "offsetX": "0px",
+          "offsetY": "0.8934523463249207px",
+          "blur": "8.487797737121582px",
+          "spread": "0px",
+          "type": "dropShadow"
+        },
+        {
+          "color": "#00000006",
+          "offsetX": "0px",
+          "offsetY": "1.6711044311523438px",
+          "blur": "15.87549114227295px",
+          "spread": "0px",
+          "type": "dropShadow"
+        },
+        {
+          "color": "#0000000a",
+          "offsetX": "0px",
+          "offsetY": "14px",
+          "blur": "38px",
+          "spread": "0px",
+          "type": "dropShadow"
+        }
+      ],
+      "$type": "shadow",
+      "$figmaId": "S:5d713be8691854c7e04a78b591ee60a94cab5a88,"
+    },
+    "Low": {
+      "$value": [
+        {
+          "color": "#00000026",
+          "offsetX": "0px",
+          "offsetY": "1px",
+          "blur": "1px",
+          "spread": "0px",
+          "type": "dropShadow"
+        },
+        {
+          "color": "#0000000d",
+          "offsetX": "0px",
+          "offsetY": "1px",
+          "blur": "5px",
+          "spread": "0px",
+          "type": "dropShadow"
+        }
+      ],
+      "$type": "shadow",
+      "$figmaId": "S:7ba42f11d53aba9c8f0bc813be67c154292422fb,"
+    }
+  }
+}

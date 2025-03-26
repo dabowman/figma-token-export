@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+      "Figma MCP": {
+        "url": "http://localhost:3333/sse",
+        "env": {
+            "FIGMA_API_KEY": "figd_UfcdSWFebBdsivpGrRMztNNyiE-1TZUR2jWjblzm",
+            "PORT": "3333"
+        }
+      }
+    }
+  }

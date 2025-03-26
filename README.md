@@ -1,121 +1,174 @@
-# Figma Token Export
+# Figma Design Token Exporter
 
-A Figma plugin that exports design tokens following the [W3C Design Token Format Module](https://tr.designtokens.org/format/) specification.
+A Figma plugin that exports variables and styles from Figma in the W3C design token standard format.
 
 ## Features
 
-- Exports Figma variables and styles as design tokens in W3C format
-- Proper handling of dimension values with separate value and unit properties
-- Automatic conversion of lineHeight and letterSpacing to percentage-based dimension tokens
-- Smart aliasing of typography values to core tokens
-- Support for composite tokens (typography, shadows)
-- Maintains token references and relationships
+- Exports Figma variables as W3C design tokens
+- Exports text styles as typography tokens
+- Exports effect styles as shadow tokens
+- Preserves variable references and aliases
+- Handles multiple collection modes (e.g., light and dark themes)
+- Exports raw Figma API data for QA and debugging
+- Includes a token transformer tool for generating platform-specific formats
 
-## Token Format
+## Installation
 
-### Core Tokens
-Core tokens (like colors, spacing, etc.) are exported in W3C format:
-
-```json
-{
-  "color-primary": {
-    "$type": "color",
-    "$value": "#0f62fe"
-  },
-  "spacing-1": {
-    "$type": "dimension",
-    "$value": {
-      "value": 0.25,
-      "unit": "rem"
-    }
-  }
-}
-```
-
-### Typography Tokens
-Typography tokens are exported as composite tokens with proper dimension formatting and aliasing:
-
-```json
-{
-  "heading-1": {
-    "$type": "typography",
-    "$value": {
-      "fontFamily": "Aktiv Grotesk VF",
-      "fontSize": {
-        "value": 24,
-        "unit": "px"
-      },
-      "fontWeight": 700,
-      "lineHeight": "{lineHeight.1}",
-      "letterSpacing": "{letterSpacing.tight}"
-    }
-  }
-}
-```
-
-### Shadow Tokens
-Shadow effects are exported following the W3C shadow type format:
-
-```json
-{
-  "shadow-1": {
-    "$type": "shadow",
-    "$value": {
-      "color": "#00000026",
-      "offsetX": "0px",
-      "offsetY": "1px",
-      "blur": "1px",
-      "spread": "0px",
-      "type": "dropShadow"
-    }
-  }
-}
-```
-
-## Special Handling
-
-### LineHeight and LetterSpacing
-Since Figma doesn't support percentage units in variables, the plugin:
-1. Converts lineHeight multipliers to percentages (e.g., 1.2 → 120%)
-2. Attempts to match values with core tokens for proper aliasing
-3. Formats unmatched values as dimension tokens with percentage units
-
-### Dimension Values
-All dimension values follow the W3C format with separate value and unit properties:
-```json
-{
-  "value": 16,
-  "unit": "px"
-}
-```
-
-### Token References
-References to other tokens use the curly brace syntax:
-```json
-{
-  "button-color": {
-    "$type": "color",
-    "$value": "{color.primary}"
-  }
-}
-```
-
-## File Format
-- Output files use the `.tokens.json` extension as recommended by the W3C spec
-- Files use the `application/design-tokens+json` MIME type
-- JSON output is properly formatted and human-readable
+1. Download the latest release from [GitHub](https://github.com/yourusername/figma-token-export/releases)
+2. In Figma, go to Plugins > Development > Import plugin from manifest
+3. Select the `manifest.json` file from the downloaded release
 
 ## Usage
 
-1. Install the plugin in Figma
-2. Select "Export Design Tokens" from the plugin menu
-3. The plugin will generate a W3C-compliant design tokens file
+1. Open a Figma file containing variables and styles you want to export
+2. Run the plugin from the Plugins menu
+3. Choose the export option that best suits your needs:
+   - **Export Combined File**: Creates a single file containing both tokens and raw Figma data
+   - **Export Tokens Only**: Exports just the W3C formatted design tokens
+   - **Export Raw Data Only**: Exports just the raw Figma API data for debugging
+
+## Token Structure
+
+The exported tokens follow the [W3C Design Token Format Module](https://design-tokens.github.io/community-group/format/) specification:
+
+```json
+{
+  "color": {
+    "primary": {
+      "$value": "#0077CC",
+      "$type": "color",
+      "$description": "Primary brand color",
+      "$figmaId": "VariableID:123:456"
+    }
+  }
+}
+```
+
+## Combined File Structure
+
+When using the combined export option, the file will have the following structure:
+
+```json
+{
+  "tokens": {
+    // W3C design tokens here
+  },
+  "rawData": {
+    // Raw Figma API data here
+  },
+  "metadata": {
+    "exportDate": "2023-06-10T12:34:56.789Z",
+    "pluginVersion": "1.0.0",
+    "figmaVersion": "1.0.0"
+  }
+}
+```
+
+## Token Transformer
+
+The repository includes a powerful token transformer tool to convert W3C design tokens into platform-specific formats using Style Dictionary.
+
+### Features
+
+- Transforms W3C design tokens into CSS, SCSS, JavaScript, iOS, and Android formats
+- Supports both combined export and tokens-only files
+- Handles complex token types including colors, dimensions, typography, and shadows
+- Offers watch mode for automatic rebuilds during development
+- Customizable output formats and file structure
+
+### Usage
+
+```bash
+# Install dependencies
+cd token-transformer
+npm install
+
+# Basic usage (transform to CSS, SCSS, and JavaScript)
+node index.js -i ../path/to/figma-design-tokens-export.json -o ./build
+
+# Build for specific platforms
+node index.js -i ../path/to/figma-design-tokens-export.json -o ./build -p css,scss,js,ios,android
+
+# Watch for changes
+node index.js -i ../path/to/figma-design-tokens-export.json -o ./build -w
+
+# See all options
+node index.js --help
+```
+
+See the [Token Transformer README](./token-transformer/README.md) for complete documentation.
+
+## Quality Assurance
+
+This plugin includes tools to help verify the accuracy of the exported tokens:
+
+### Raw Data Export
+
+The plugin exports both the W3C design tokens and the raw Figma API data. This allows you to compare what's in Figma with the transformed output.
+
+### Comparison Tool
+
+The repository includes a Node.js script `src/utils/compare.js` that helps verify the token export:
+
+#### For Combined Files (Recommended)
+
+```bash
+# Using the default filename (figma-design-tokens-export.json)
+node src/utils/compare.js --combined
+
+# Or specify a custom filename
+node src/utils/compare.js --combined=path/to/your-export.json
+```
+
+#### For Separate Files
+
+If you've exported the tokens and raw data separately:
+
+```bash
+# Place both files in the same directory as the script and run:
+node src/utils/compare.js
+```
+
+The script will:
+- Check if all variables from Figma are present in the token output
+- Verify that text and effect styles are properly transformed
+- Report any discrepancies between the raw data and token output
+
+## Workflow Integration
+
+### Recommended Workflow
+
+1. **Design in Figma**: Create and organize your design tokens as variables and styles
+2. **Export Tokens**: Use this plugin to export your tokens in the W3C format
+3. **Transform Tokens**: Use the token transformer to generate platform-specific formats
+4. **Integrate in Codebase**: Import the generated files into your application
+
+### Automation
+
+For automated workflows, consider:
+- Setting up CI/CD to run the token transformer on design system changes
+- Using git hooks to transform tokens on commit
+- Integrating with design system versioning workflows
 
 ## Development
 
-To modify or build the plugin:
+### Setup
 
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Build the plugin: `npm run build`
-4. Start development mode: `npm run start` 
+```bash
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+### Building
+
+```bash
+# Build the plugin
+npm run build
+```
+
+## License
+
+MIT 

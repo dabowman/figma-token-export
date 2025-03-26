@@ -1,0 +1,35 @@
+{
+  "sm": {
+    "$type": "shadow",
+    "$value": {
+      "color": "rgba(0, 0, 0, 0.1)",
+      "offsetX": "0px",
+      "offsetY": "1px",
+      "blur": "2px",
+      "spread": "0px"
+    },
+    "$description": "Small shadow"
+  },
+  "md": {
+    "$type": "shadow",
+    "$value": {
+      "color": "rgba(0, 0, 0, 0.1)",
+      "offsetX": "0px",
+      "offsetY": "4px",
+      "blur": "6px",
+      "spread": "0px"
+    },
+    "$description": "Medium shadow"
+  },
+  "lg": {
+    "$type": "shadow",
+    "$value": {
+      "color": "rgba(0, 0, 0, 0.1)",
+      "offsetX": "0px",
+      "offsetY": "10px",
+      "blur": "15px",
+      "spread": "0px"
+    },
+    "$description": "Large shadow"
+  }
+}
