@@ -1,236 +1,219 @@
-/**
- * Utility script to help compare raw Figma API data with processed design tokens
- * This script is meant to be run in a Node.js environment, not in the plugin
- * 
- * Usage:
- * 1. Export files using the plugin (combined or individual files)
- * 2. Place them in the same directory as this script
- * 3. Run: node compare.js [--combined combined-file.json]
- */
+#!/usr/bin/env node
 
 const fs = require('fs');
 const path = require('path');
 
-// Configuration
-const RAW_FILE = 'figma-raw-data.json';
-const TOKEN_FILE = 'design-tokens.json';
-const COMBINED_FILE = 'figma-design-tokens-export.json';
-
-// Parse command line arguments
-const args = process.argv.slice(2);
-const useCombined = args.includes('--combined') || args.some(arg => arg.startsWith('--combined='));
-const combinedFilePath = args.find(arg => arg.startsWith('--combined='))?.split('=')[1] || COMBINED_FILE;
-
-function loadJSON(filePath) {
+/**
+ * Load a JSON file
+ * @param {string} filePath Path to the JSON file
+ * @returns {Object} Parsed JSON data
+ */
+function loadJson(filePath) {
   try {
-    const data = fs.readFileSync(filePath, 'utf8');
-    return JSON.parse(data);
+    // Resolve path if it's relative
+    const resolvedPath = path.resolve(process.cwd(), filePath);
+    console.log(`Loading file: ${resolvedPath}`);
+    
+    // Read and parse the file
+    const fileContent = fs.readFileSync(resolvedPath, 'utf8');
+    return JSON.parse(fileContent);
   } catch (error) {
-    console.error(`Error loading ${filePath}:`, error.message);
+    console.error(`Error loading file ${filePath}:`, error.message);
     process.exit(1);
   }
 }
 
-function compareVariables(rawData, tokenData) {
-  console.log('=== Variable Comparison ===');
-  
-  // Get all raw variables
-  const rawVarIds = new Set(Object.keys(rawData.variableValues));
-  console.log(`Raw data contains ${rawVarIds.size} variables`);
-  
-  // Count variables in token data
-  let tokenVarCount = 0;
-  // Track variables by ID to check for coverage
-  const tokenVarIds = new Set();
-  
-  // Helper to recursively traverse token data and extract IDs
-  function findVariables(obj) {
-    if (!obj) return;
-    
-    // If it's a token with a Figma ID
-    if (obj.$figmaId && obj.$type) {
-      tokenVarCount++;
-      tokenVarIds.add(obj.$figmaId);
-      return;
-    }
-    
-    // Recursively search in nested objects
-    if (typeof obj === 'object') {
-      for (const key in obj) {
-        findVariables(obj[key]);
+/**
+ * Compare variables from raw data with processed tokens
+ * @param {Object} rawData The raw Figma API data
+ * @param {Object} tokens The processed W3C design tokens
+ * @returns {number} Number of discrepancies found
+ */
+function compareVariables(rawData, tokens) {
+  console.log('\n==== Comparing Variables ====');
+  let discrepancies = 0;
+
+  // Get all variable IDs from raw data
+  const variableIds = Object.keys(rawData.variableValues);
+  console.log(`Found ${variableIds.length} variables in Figma raw data`);
+
+  // Create a flat map of all tokens to check against
+  const allTokens = {};
+  const flattenTokens = (obj, prefix = '') => {
+    for (const [key, value] of Object.entries(obj)) {
+      if (value && typeof value === 'object' && '$value' in value) {
+        allTokens[`${prefix}${key}`] = value;
+      } else if (value && typeof value === 'object' && !('$value' in value)) {
+        flattenTokens(value, `${prefix}${key}.`);
       }
     }
+  };
+
+  // Process all token collections
+  for (const collection of Object.values(tokens)) {
+    flattenTokens(collection);
   }
-  
-  // Process all collections in token data
-  findVariables(tokenData);
-  
-  console.log(`Token data contains ${tokenVarCount} variables`);
-  
-  // Find variables missing from token data
-  const missingVars = [...rawVarIds].filter(id => !tokenVarIds.has(id));
-  if (missingVars.length > 0) {
-    console.log(`\n${missingVars.length} variables from Figma are not in the token output:`);
-    for (const id of missingVars.slice(0, 10)) { // Limit to 10 for brevity
-      const variable = rawData.variableValues[id];
-      console.log(`- "${variable.name}" (${id}), type: ${variable.resolvedType}`);
+
+  console.log(`Found ${Object.keys(allTokens).length} tokens in the processed output`);
+
+  // Check each variable from raw data
+  for (const varId of variableIds) {
+    const varData = rawData.variableValues[varId];
+    
+    // Check if variable is present in tokens by figmaId
+    let found = false;
+    for (const [tokenName, tokenValue] of Object.entries(allTokens)) {
+      if (tokenValue.$figmaId === varId) {
+        found = true;
+        break;
+      }
     }
-    if (missingVars.length > 10) {
-      console.log(`... and ${missingVars.length - 10} more`);
+
+    if (!found) {
+      console.log(`❌ Variable not found in tokens: ${varData.name} (${varId})`);
+      discrepancies++;
     }
+  }
+
+  if (discrepancies === 0) {
+    console.log('✅ All variables from Figma were found in the token output');
   } else {
-    console.log('\nAll Figma variables are present in the token output!');
+    console.log(`❌ Found ${discrepancies} variables missing from the token output`);
   }
-  
-  // Find token variables not in raw data (shouldn't happen but check anyway)
-  const extraVars = [...tokenVarIds].filter(id => !rawVarIds.has(id));
-  if (extraVars.length > 0) {
-    console.log(`\n${extraVars.length} token variables are not in the raw Figma data:`);
-    for (const id of extraVars.slice(0, 10)) {
-      console.log(`- ${id}`);
-    }
-    if (extraVars.length > 10) {
-      console.log(`... and ${extraVars.length - 10} more`);
-    }
-  }
+
+  return discrepancies;
 }
 
-function compareStyles(rawData, tokenData) {
-  console.log('\n=== Style Comparison ===');
-  
-  // Get all text styles from raw data
-  const rawTextStyleIds = new Set(rawData.textStyles.map(style => style.id));
-  console.log(`Raw data contains ${rawTextStyleIds.size} text styles`);
-  
-  // Get all effect styles from raw data
-  const rawEffectStyleIds = new Set(rawData.effectStyles.map(style => style.id));
-  console.log(`Raw data contains ${rawEffectStyleIds.size} effect styles`);
-  
-  // Count styles in token data
-  let tokenTextStyleCount = 0;
-  let tokenEffectStyleCount = 0;
-  const tokenTextStyleIds = new Set();
-  const tokenEffectStyleIds = new Set();
-  
-  // Helper to find typography and effect styles in tokens
-  function findStyles(obj, path = []) {
-    if (!obj) return;
-    
-    // Check for typography token
-    if (obj.$figmaId && obj.$type === 'typography') {
-      tokenTextStyleCount++;
-      tokenTextStyleIds.add(obj.$figmaId);
-      return;
-    }
-    
-    // Check for effect/shadow token
-    if (obj.$figmaId && (obj.$type === 'shadow' || obj.$type === 'blur')) {
-      tokenEffectStyleCount++;
-      tokenEffectStyleIds.add(obj.$figmaId);
-      return;
-    }
-    
-    // Recursively search in nested objects
-    if (typeof obj === 'object') {
-      for (const key in obj) {
-        findStyles(obj[key], [...path, key]);
-      }
+/**
+ * Compare styles from raw data with processed tokens
+ * @param {Object} rawData The raw Figma API data
+ * @param {Object} tokens The processed W3C design tokens
+ * @returns {number} Number of discrepancies found
+ */
+function compareStyles(rawData, tokens) {
+  console.log('\n==== Comparing Styles ====');
+  let discrepancies = 0;
+
+  // Text styles check
+  console.log('\n--- Text Styles ---');
+  const textStyles = rawData.textStyles;
+  console.log(`Found ${textStyles.length} text styles in Figma raw data`);
+
+  // Find typography tokens
+  let typographyTokens = [];
+  for (const collection of Object.values(tokens)) {
+    if (collection.typography) {
+      typographyTokens = [...typographyTokens, ...Object.values(collection.typography)];
     }
   }
-  
-  // Only search for styles in collections where styles exist
-  for (const collectionName in tokenData) {
-    // Typography is usually at the top level of a collection
-    if (tokenData[collectionName].typography) {
-      findStyles(tokenData[collectionName].typography);
-    }
-    
-    // Effects/shadows are usually at the top level of a collection
-    if (tokenData[collectionName].effects) {
-      findStyles(tokenData[collectionName].effects);
-    }
-  }
-  
-  console.log(`Token data contains ${tokenTextStyleCount} typography tokens`);
-  console.log(`Token data contains ${tokenEffectStyleCount} effect/shadow tokens`);
-  
+  console.log(`Found ${typographyTokens.length} typography tokens in the processed output`);
+
   // Check for missing text styles
-  const missingTextStyles = [...rawTextStyleIds].filter(id => !tokenTextStyleIds.has(id));
-  if (missingTextStyles.length > 0) {
-    console.log(`\n${missingTextStyles.length} text styles from Figma are not in the token output:`);
-    for (const id of missingTextStyles.slice(0, 10)) {
-      const style = rawData.textStyles.find(s => s.id === id);
-      console.log(`- "${style?.name || id}"`);
+  for (const style of textStyles) {
+    let found = false;
+    for (const token of typographyTokens) {
+      if (token.$figmaId === style.id) {
+        found = true;
+        break;
+      }
     }
-    if (missingTextStyles.length > 10) {
-      console.log(`... and ${missingTextStyles.length - 10} more`);
+
+    if (!found) {
+      console.log(`❌ Text style not found in tokens: ${style.name} (${style.id})`);
+      discrepancies++;
     }
-  } else {
-    console.log('\nAll Figma text styles are present in the token output!');
   }
-  
+
+  // Effect styles check
+  console.log('\n--- Effect Styles ---');
+  const effectStyles = rawData.effectStyles;
+  console.log(`Found ${effectStyles.length} effect styles in Figma raw data`);
+
+  // Find effect tokens
+  let effectTokens = [];
+  for (const collection of Object.values(tokens)) {
+    if (collection.effects) {
+      effectTokens = [...effectTokens, ...Object.values(collection.effects)];
+    }
+  }
+  console.log(`Found ${effectTokens.length} effect tokens in the processed output`);
+
   // Check for missing effect styles
-  const missingEffectStyles = [...rawEffectStyleIds].filter(id => !tokenEffectStyleIds.has(id));
-  if (missingEffectStyles.length > 0) {
-    console.log(`\n${missingEffectStyles.length} effect styles from Figma are not in the token output:`);
-    for (const id of missingEffectStyles.slice(0, 10)) {
-      const style = rawData.effectStyles.find(s => s.id === id);
-      console.log(`- "${style?.name || id}"`);
+  for (const style of effectStyles) {
+    let found = false;
+    for (const token of effectTokens) {
+      if (token.$figmaId === style.id) {
+        found = true;
+        break;
+      }
     }
-    if (missingEffectStyles.length > 10) {
-      console.log(`... and ${missingEffectStyles.length - 10} more`);
+
+    if (!found) {
+      console.log(`❌ Effect style not found in tokens: ${style.name} (${style.id})`);
+      discrepancies++;
     }
+  }
+
+  if (discrepancies === 0) {
+    console.log('\n✅ All styles from Figma were found in the token output');
   } else {
-    console.log('\nAll Figma effect styles are present in the token output!');
+    console.log(`\n❌ Found ${discrepancies} styles missing from the token output`);
+  }
+
+  return discrepancies;
+}
+
+/**
+ * Main function to run the comparison
+ */
+function main() {
+  console.log('Design Token Export Comparison Tool\n');
+
+  // Parse command line arguments
+  const args = process.argv.slice(2);
+  let tokensPath = 'design-tokens.json';
+  let rawDataPath = 'figma-raw-data.json';
+
+  // Process arguments
+  for (const arg of args) {
+    if (arg.startsWith('--tokens=')) {
+      tokensPath = arg.split('=')[1];
+    } else if (arg.startsWith('--raw=')) {
+      rawDataPath = arg.split('=')[1];
+    } else if (arg === '--help' || arg === '-h') {
+      console.log(`
+Usage: node compare.js [options]
+
+Options:
+  --tokens=<path>    Path to the design tokens JSON file (default: design-tokens.json)
+  --raw=<path>       Path to the raw Figma data JSON file (default: figma-raw-data.json)
+  --help, -h         Show this help message
+      `);
+      return;
+    }
+  }
+
+  // Load the tokens and raw data files
+  console.log(`Using tokens file: ${tokensPath}`);
+  console.log(`Using raw data file: ${rawDataPath}`);
+  const tokens = loadJson(tokensPath);
+  const rawData = loadJson(rawDataPath);
+
+  // Run comparisons
+  const variableDiscrepancies = compareVariables(rawData, tokens);
+  const styleDiscrepancies = compareStyles(rawData, tokens);
+  
+  // Summary
+  console.log('\n==== Summary ====');
+  const totalDiscrepancies = variableDiscrepancies + styleDiscrepancies;
+  
+  if (totalDiscrepancies === 0) {
+    console.log('✅ No discrepancies found! The token export is complete and accurate.');
+  } else {
+    console.log(`❌ Found ${totalDiscrepancies} total discrepancies.`);
+    console.log('Review the details above and check your Figma file and export settings.');
   }
 }
 
-// Main execution
-try {
-  console.log('Design Token / Figma Data Comparison Tool');
-  console.log('----------------------------------------');
-  
-  let rawData;
-  let tokenData;
-  
-  if (useCombined) {
-    // Load and process the combined file
-    const combinedPath = path.resolve(process.cwd(), combinedFilePath);
-    console.log(`Loading combined data from: ${combinedPath}`);
-    
-    const combinedData = loadJSON(combinedPath);
-    
-    // Extract token and raw data from the combined file
-    rawData = combinedData.rawData;
-    tokenData = combinedData.tokens;
-    
-    if (!rawData || !tokenData) {
-      console.error('Invalid combined file format. Expected "tokens" and "rawData" properties.');
-      process.exit(1);
-    }
-    
-    console.log(`File created on: ${combinedData.metadata?.exportDate || 'unknown'}`);
-    console.log(`Figma API version: ${combinedData.metadata?.figmaVersion || 'unknown'}`);
-  } else {
-    // Use separate files
-    const rawDataPath = path.resolve(process.cwd(), RAW_FILE);
-    const tokenDataPath = path.resolve(process.cwd(), TOKEN_FILE);
-    
-    console.log(`Loading raw data from: ${rawDataPath}`);
-    console.log(`Loading token data from: ${tokenDataPath}`);
-    
-    // Load both files
-    rawData = loadJSON(rawDataPath);
-    tokenData = loadJSON(tokenDataPath);
-  }
-  
-  console.log('\nAnalyzing data...\n');
-  
-  // Run comparisons
-  compareVariables(rawData, tokenData);
-  compareStyles(rawData, tokenData);
-  
-  console.log('\nComparison complete!');
-} catch (error) {
-  console.error('Error during comparison:', error);
-} 
+// Run the script
+main(); 

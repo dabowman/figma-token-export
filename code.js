@@ -576,7 +576,7 @@
 
     /// <reference types="@figma/plugin-typings" />
     // Initialize the plugin UI
-    figma.showUI(__html__, { width: 300, height: 200 });
+    figma.showUI(__html__, { themeColors: true, width: 300, height: 200 });
     /**
      * Sanitizes a collection name according to W3C Design Token Format Module specification
      * @param name - The collection name to sanitize
@@ -744,7 +744,7 @@
      * Processes export requests and generates the token output
      */
     figma.ui.onmessage = async (msg) => {
-        if (msg.type === 'export-tokens') {
+        if (msg.type === 'export-tokens-only') {
             try {
                 // Get all collections
                 const collections = figma.variables.getLocalVariableCollections();
@@ -778,66 +778,7 @@
                         }
                     }
                 }
-                // Get raw Figma data for comparison
-                const rawFigmaData = collectRawFigmaData();
-                // Combine tokens and raw data into a single export
-                const combinedExport = {
-                    tokens: allTokens,
-                    rawData: rawFigmaData,
-                    metadata: {
-                        exportDate: new Date().toISOString(),
-                        pluginVersion: '1.0.0',
-                        figmaVersion: figma.apiVersion
-                    }
-                };
-                // Send the combined data to the UI for download
-                figma.ui.postMessage({
-                    type: 'download',
-                    content: combinedExport,
-                    filename: 'figma-design-tokens-export.json'
-                });
-                figma.notify('Successfully exported design tokens with raw data!');
-            }
-            catch (error) {
-                console.error('Error exporting tokens:', error);
-                figma.notify('Error exporting tokens. Check the console for details.');
-            }
-        }
-        else if (msg.type === 'export-tokens-only') {
-            try {
-                // Get all collections
-                const collections = figma.variables.getLocalVariableCollections();
-                const allTokens = {};
-                for (const collection of collections) {
-                    // Process collections with multiple modes
-                    if (collection.modes.length > 1) {
-                        for (const mode of collection.modes) {
-                            // Format and sanitize collection name
-                            const collectionName = sanitizeCollectionName(collection.name);
-                            const modeName = mode.name.toLowerCase();
-                            const tokenName = `${collectionName}_${modeName}`;
-                            // Include styles for non-base collections in all modes
-                            if (!collection.name.startsWith('.')) {
-                                allTokens[tokenName] = Object.assign(Object.assign({}, processCollection(collection, mode.modeId)), { typography: processTextStyles(), effects: processEffectStyles() });
-                            }
-                            else {
-                                allTokens[tokenName] = processCollection(collection, mode.modeId);
-                            }
-                        }
-                    }
-                    else {
-                        // Format and sanitize collection name
-                        const collectionName = sanitizeCollectionName(collection.name);
-                        // Include styles for non-base collections
-                        if (!collection.name.startsWith('.')) {
-                            allTokens[collectionName] = Object.assign(Object.assign({}, processCollection(collection)), { typography: processTextStyles(), effects: processEffectStyles() });
-                        }
-                        else {
-                            allTokens[collectionName] = processCollection(collection);
-                        }
-                    }
-                }
-                // Send just the token data
+                // Send only the tokens data to the UI for download
                 figma.ui.postMessage({
                     type: 'download',
                     content: allTokens,
@@ -847,24 +788,24 @@
             }
             catch (error) {
                 console.error('Error exporting tokens:', error);
-                figma.notify('Error exporting tokens. Check the console for details.');
+                figma.notify('Error exporting tokens: ' + (error instanceof Error ? error.message : String(error)), { error: true });
             }
         }
         else if (msg.type === 'export-raw-only') {
             try {
                 // Get raw Figma data
                 const rawFigmaData = collectRawFigmaData();
-                // Send just the raw data
+                // Send only the raw data to the UI for download
                 figma.ui.postMessage({
                     type: 'download',
                     content: rawFigmaData,
                     filename: 'figma-raw-data.json'
                 });
-                figma.notify('Successfully exported raw Figma data!');
+                figma.notify('Successfully exported raw data!');
             }
             catch (error) {
                 console.error('Error exporting raw data:', error);
-                figma.notify('Error exporting raw data. Check the console for details.');
+                figma.notify('Error exporting raw data: ' + (error instanceof Error ? error.message : String(error)), { error: true });
             }
         }
     };

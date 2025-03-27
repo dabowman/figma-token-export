@@ -2,101 +2,58 @@
 <html>
 <head>
   <style>
+    /* Import Figma Plugin DS CSS */
+    @import url('https://cdn.jsdelivr.net/gh/thomas-lowry/figma-plugin-ds/dist/figma-plugin-ds.css');
+
     body {
-      font-family: Inter, sans-serif;
-      padding: 20px;
+      background-color: var(--figma-color-bg);
+      color: var(--figma-color-text);
+      height: 100%;
     }
-    button {
-      background-color: #18A0FB;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
+    .container {
+      gap: var(--size-xxsmall);
+      height: 100%;
+    }
+    .button-container {
+      gap: var(--size-xxsmall);
+      flex-grow: 1;
+    }
+    .button {
       cursor: pointer;
-      font-size: 14px;
-      width: 100%;
-      margin-bottom: 10px;
-    }
-    button.secondary {
-      background-color: #F5F5F5;
-      color: #333;
-      border: 1px solid #E5E5E5;
-    }
-    button:hover {
-      background-color: #0D8DE3;
-    }
-    button.secondary:hover {
-      background-color: #EAEAEA;
     }
     .status {
-      font-size: 12px;
-      color: #333;
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 4px;
-      background-color: #f5f5f5;
+      font-size: var(--font-size-small);
+      border-radius: var(--border-radius-large);
+      background-color: var(--figma-color-bg-secondary);
+      color: var(--figma-color-text-secondary);
       display: none;
-    }
-    .info {
-      font-size: 12px;
-      color: #666;
-      margin-top: 15px;
-    }
-    .divider {
-      height: 1px;
-      background-color: #E5E5E5;
-      margin: 15px 0;
-    }
-    h4 {
-      margin: 15px 0 10px 0;
-      font-size: 14px;
+      flex-grow: 2;
     }
   </style>
 </head>
-<body>
-  <h3>Design Token Exporter</h3>
-  <p>Export Figma variables and styles as W3C design tokens.</p>
-  
-  <button id="export-combined">Export Combined File</button>
-  
-  <div class="divider"></div>
-  
-  <h4>Advanced Options</h4>
-  <button id="export-tokens" class="secondary">Export Tokens Only</button>
-  <button id="export-raw" class="secondary">Export Raw Data Only</button>
-  
-  <div id="status" class="status"></div>
-  
-  <div class="info">
-    <p><strong>Export Options:</strong></p>
-    <ul>
-      <li><strong>Combined File:</strong> Contains both tokens and raw data in a single file</li>
-      <li><strong>Tokens Only:</strong> W3C formatted design tokens</li>
-      <li><strong>Raw Data Only:</strong> Raw Figma API data for debugging</li>
-    </ul>
-    <p><small>Use the comparison tool in the repo to analyze exports</small></p>
+<body class="p-small">
+  <div class="container flex column flex-no-wrap justify-content-start align-content-stretch">
+    <div class="button-container flex column justify-content-start align-content-stretc flex-no-grow">
+      <button class="button button--primary" id="export-tokens" title="Export standard format design tokens">Export Tokens</button>
+      <button class="button button--secondary" id="export-raw" title="Export Raw Figma API data for debugging">Export Raw Data</button>
+    </div>
+    <div id="status" class="status p-xsmall"></div>
   </div>
   
   <script>
     const statusEl = document.getElementById('status');
     
-    // Combined export (tokens + raw data)
-    document.getElementById('export-combined').onclick = () => {
-      statusEl.textContent = 'Exporting combined tokens and raw data...';
-      statusEl.style.display = 'block';
-      parent.postMessage({ pluginMessage: { type: 'export-tokens' } }, '*');
-    };
     
-    // Tokens only
+    // Tokens only (main option)
     document.getElementById('export-tokens').onclick = () => {
-      statusEl.textContent = 'Exporting tokens only...';
+      statusEl.textContent = 'Exporting tokens…';
       statusEl.style.display = 'block';
       parent.postMessage({ pluginMessage: { type: 'export-tokens-only' } }, '*');
     };
     
     // Raw data only
     document.getElementById('export-raw').onclick = () => {
-      statusEl.textContent = 'Exporting raw data only...';
+      statusEl.textContent = 'Exporting raw data…';
       statusEl.style.display = 'block';
       parent.postMessage({ pluginMessage: { type: 'export-raw-only' } }, '*');
     };
@@ -117,12 +74,8 @@
         URL.revokeObjectURL(url);
         
         // Update status message
-        statusEl.textContent = `Downloaded: ${message.filename}`;
+        statusEl.textContent = `✅ ${message.filename} downloaded.`;
         
-        // Reset status after a while
-        setTimeout(() => {
-          statusEl.textContent += '\nExport complete! ✅';
-        }, 500);
       }
     };
   </script>

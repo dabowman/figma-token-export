@@ -23,8 +23,7 @@ A Figma plugin that exports variables and styles from Figma in the W3C design to
 1. Open a Figma file containing variables and styles you want to export
 2. Run the plugin from the Plugins menu
 3. Choose the export option that best suits your needs:
-   - **Export Combined File**: Creates a single file containing both tokens and raw Figma data
-   - **Export Tokens Only**: Exports just the W3C formatted design tokens
+   - **Export Tokens Only**: Exports just the W3C formatted design tokens (recommended)
    - **Export Raw Data Only**: Exports just the raw Figma API data for debugging
 
 ## Token Structure
@@ -44,26 +43,6 @@ The exported tokens follow the [W3C Design Token Format Module](https://design-t
 }
 ```
 
-## Combined File Structure
-
-When using the combined export option, the file will have the following structure:
-
-```json
-{
-  "tokens": {
-    // W3C design tokens here
-  },
-  "rawData": {
-    // Raw Figma API data here
-  },
-  "metadata": {
-    "exportDate": "2023-06-10T12:34:56.789Z",
-    "pluginVersion": "1.0.0",
-    "figmaVersion": "1.0.0"
-  }
-}
-```
-
 ## Token Transformer
 
 The repository includes a powerful token transformer tool to convert W3C design tokens into platform-specific formats using Style Dictionary.
@@ -71,7 +50,7 @@ The repository includes a powerful token transformer tool to convert W3C design 
 ### Features
 
 - Transforms W3C design tokens into CSS, SCSS, JavaScript, iOS, and Android formats
-- Supports both combined export and tokens-only files
+- Supports tokens-only files
 - Handles complex token types including colors, dimensions, typography, and shadows
 - Offers watch mode for automatic rebuilds during development
 - Customizable output formats and file structure
@@ -84,19 +63,31 @@ cd token-transformer
 npm install
 
 # Basic usage (transform to CSS, SCSS, and JavaScript)
-node index.js -i ../path/to/figma-design-tokens-export.json -o ./build
+node index.js -i ../path/to/design-tokens.json -o ./build
 
 # Build for specific platforms
-node index.js -i ../path/to/figma-design-tokens-export.json -o ./build -p css,scss,js,ios,android
+node index.js -i ../path/to/design-tokens.json -o ./build -p css,scss,js,ios,android
 
 # Watch for changes
-node index.js -i ../path/to/figma-design-tokens-export.json -o ./build -w
+node index.js -i ../path/to/design-tokens.json -o ./build -w
 
 # See all options
 node index.js --help
 ```
 
-See the [Token Transformer README](./token-transformer/README.md) for complete documentation.
+### Theme Splitter
+
+The token transformer also includes a theme splitter tool that can split your exported tokens into separate theme files:
+
+```bash
+# Split your design tokens into separate files by theme
+node split-themes.js -i ../path/to/design-tokens.json -o ./themes
+
+# With verbose output
+node split-themes.js -i ../path/to/design-tokens.json -o ./themes -v
+```
+
+See the [Token Transformer README](./token-transformer/README.md) and [Theme Splitter documentation](./token-transformer/THEME-SPLITTER.md) for complete documentation.
 
 ## Quality Assurance
 
@@ -110,23 +101,9 @@ The plugin exports both the W3C design tokens and the raw Figma API data. This a
 
 The repository includes a Node.js script `src/utils/compare.js` that helps verify the token export:
 
-#### For Combined Files (Recommended)
-
 ```bash
-# Using the default filename (figma-design-tokens-export.json)
-node src/utils/compare.js --combined
-
-# Or specify a custom filename
-node src/utils/compare.js --combined=path/to/your-export.json
-```
-
-#### For Separate Files
-
-If you've exported the tokens and raw data separately:
-
-```bash
-# Place both files in the same directory as the script and run:
-node src/utils/compare.js
+# Using export files from the plugin
+node src/utils/compare.js --tokens=path/to/design-tokens.json --raw=path/to/figma-raw-data.json
 ```
 
 The script will:

@@ -1,7 +1,7 @@
 ---
-description: Tips for creating figma plugins
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
  # Figma Plugin API
 

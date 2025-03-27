@@ -1,23 +1,20 @@
-# Figma Token Transformer
+# Token Transformer
 
-A tool to transform W3C design tokens exported from the Figma Design Token Exporter plugin into platform-specific formats using Style Dictionary.
+A powerful tool for transforming W3C design tokens exported from the Figma Design Token Exporter plugin into various platform-specific formats using Style Dictionary.
 
 ## Features
 
-- Transforms W3C design tokens into multiple platform formats
-- Supports CSS, SCSS, JavaScript, iOS, and Android output
-- Works with both combined exports and tokens-only exports
-- Watch mode for automatic rebuilding when tokens change
-- Command-line options for customizing the build process
+- Transforms W3C design tokens into CSS, SCSS, JavaScript, iOS, and Android formats
+- Handles complex token types including colors, dimensions, typography, and shadows
+- Offers watch mode for automatic rebuilds during development
+- Provides clean option to delete previous builds
+- Customizable output formats and file structure
 
 ## Installation
 
 ```bash
 # Install dependencies
 npm install
-
-# Optional: Install globally to use as a CLI tool
-npm install -g .
 ```
 
 ## Usage
@@ -25,85 +22,95 @@ npm install -g .
 ### Basic Usage
 
 ```bash
-# Transform tokens with default settings
-node index.js
+# Transform tokens to all supported platforms
+node index.js -i ../path/to/design-tokens.json -o ./build
 
-# Using NPM script
-npm run transform
+# Specify only certain platforms
+node index.js -i ../path/to/design-tokens.json -o ./build -p css,scss,js
+
+# Watch for changes
+node index.js -i ../path/to/design-tokens.json -o ./build -w
+
+# Clean output directory first
+node index.js -i ../path/to/design-tokens.json -o ./build -c
 ```
-
-This will read `figma-design-tokens-export.json` from the current directory and output platform files to the `build` directory.
 
 ### Command Line Options
 
-```bash
-# Specify input and output
-node index.js --input=path/to/tokens.json --output=path/to/output
-
-# Build only specific platforms
-node index.js --platforms=css,scss,js
-
-# Watch for changes and rebuild automatically
-node index.js --watch
-
-# Clean output directory before building
-node index.js --clean
-
-# See all options
-node index.js --help
+```
+Options:
+  -i, --input <path>      Path to the design tokens file (design-tokens.json)
+  -o, --output <path>     Path to the output directory
+  -p, --platforms <list>  Comma-separated list of platforms to build (default: all)
+  -w, --watch             Watch for changes to the input file
+  -c, --clean             Clean the output directory before building
+  -h, --help              Show help
 ```
 
-### NPM Scripts
+### Available Platforms
 
-```bash
-# Transform tokens
-npm run transform
+- `css` - CSS Custom Properties
+- `scss` - SCSS Variables
+- `js` - JavaScript Constants
+- `ios` - Swift UI 
+- `android` - Android XML
 
-# Transform with watch mode
-npm run transform:watch
-```
+## Output Structure
 
-## Output
-
-The transformer generates platform-specific outputs in the following structure:
+The transformer generates a `build/` directory with the following structure:
 
 ```
 build/
 ├── css/
-│   └── variables.css
+│   ├── tokens.css
+│   └── tokens-modules/
+│       ├── color.css
+│       ├── size.css
+│       └── ...
 ├── scss/
-│   └── _variables.scss
+│   ├── _tokens.scss
+│   └── _tokens-modules/
+│       ├── _color.scss
+│       ├── _size.scss
+│       └── ...
 ├── js/
-│   └── tokens.js
+│   ├── tokens.js
+│   └── tokens-modules/
+│       ├── color.js
+│       ├── size.js
+│       └── ...
 ├── ios/
-│   ├── StyleDictionaryColor.h
-│   ├── StyleDictionaryColor.m
-│   ├── StyleDictionarySize.h
-│   └── StyleDictionarySize.m
+│   └── StyleDictionary.swift
 └── android/
-    ├── colors.xml
-    ├── dimens.xml
-    └── font_dimens.xml
+    └── tokens.xml
 ```
 
-## Integration with Design System
+## Integrating Outputs
 
-### CSS Variables
+### CSS
 
 ```css
-@import 'path/to/build/css/variables.css';
+/* Import all tokens */
+@import 'path/to/build/css/tokens.css';
 
+/* Usage */
 .button {
   background-color: var(--color-primary);
   padding: var(--spacing-medium);
 }
 ```
 
-### SCSS Variables
+### SCSS
 
 ```scss
-@import 'path/to/build/scss/variables';
+// Import all tokens
+@import 'path/to/build/scss/tokens';
 
+// Or import specific modules
+@import 'path/to/build/scss/tokens-modules/color';
+@import 'path/to/build/scss/tokens-modules/spacing';
+
+// Usage
 .button {
   background-color: $color-primary;
   padding: $spacing-medium;
@@ -112,33 +119,76 @@ build/
 
 ### JavaScript
 
-```javascript
-import tokens from 'path/to/build/js/tokens';
+```js
+// Import all tokens
+import tokens from 'path/to/build/js/tokens.js';
 
-const Button = styled.button`
-  background-color: ${tokens.color.primary.value};
-  padding: ${tokens.spacing.medium.value};
-`;
+// Or import specific modules
+import { COLOR, SPACING } from 'path/to/build/js/tokens.js';
+import colors from 'path/to/build/js/tokens-modules/color.js';
+
+// Usage
+const buttonStyle = {
+  backgroundColor: tokens.COLOR.PRIMARY,
+  padding: tokens.SPACING.MEDIUM
+};
 ```
 
 ## Customization
 
-To customize the transformer for your project's specific needs:
+### Modifying Formats
 
-1. Modify the `createConfig` function in `index.js` to adjust the output formats
-2. Register custom formats or transformations using Style Dictionary's extension API
-3. Create project-specific filters for organizing your design tokens
+To customize the output formats, modify the `createConfig` function in `index.js`. The Style Dictionary configuration can be extended to support additional formats or customize the existing ones.
 
-See the [Style Dictionary documentation](https://amzn.github.io/style-dictionary/#/) for more detailed information on customization options.
+### Adding Custom Formats
+
+```js
+// Example: Add a new custom format
+StyleDictionary.registerFormat({
+  name: 'custom/format',
+  formatter: function({ dictionary, platform }) {
+    // Custom formatting logic
+    return formattedOutput;
+  }
+});
+```
+
+### Creating Custom Filters
+
+```js
+// Example: Add a custom filter
+StyleDictionary.registerFilter({
+  name: 'isColor',
+  matcher: function(token) {
+    return token.type === 'color';
+  }
+});
+```
+
+See the [Style Dictionary documentation](https://amzn.github.io/style-dictionary/#/README) for more detailed customization options.
+
+## Theme Splitter
+
+The token transformer also includes a theme splitter tool that can separate your exported tokens into theme-specific files:
+
+```bash
+# Split your tokens into theme files
+node split-themes.js -i ../path/to/design-tokens.json -o ./themes
+
+# With verbose output
+node split-themes.js -i ../path/to/design-tokens.json -o ./themes -v
+```
+
+See [THEME-SPLITTER.md](./THEME-SPLITTER.md) for complete documentation.
 
 ## Workflow Integration
 
 For the best workflow:
 
 1. Export tokens from Figma using the Design Token Exporter plugin
-2. Run the token transformer with your desired options
-3. Integrate the generated files into your application's build process
-4. Set up CI/CD to automate token transformation during deployment
+2. Run the token transformer to generate platform-specific files
+3. Import the files into your application build process
+4. (Optional) Set up a CI/CD pipeline to automate this process
 
 ## License
 
