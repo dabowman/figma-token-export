@@ -16,30 +16,42 @@ export function pxToRem(px: number): string {
  * Used to convert direct number values to variable references
  * @param value - The number value to match
  * @param coreCollection - The core variable collection to search in
- * @param pathPrefix - The prefix to match in variable names
+ * @param type - The type of the variable to match (e.g., lineheight, letterspacing)
  * @returns The name of the matching core number variable, or null if not found
  */
-export function findMatchingCoreNumber(value: number, coreCollection: VariableCollection, pathPrefix: string): string | null {
-  try {
-    // Round the value to the nearest integer if it's a percentage
-    const roundedValue = Math.round(value);
-    
-    for (const varId of coreCollection.variableIds) {
-      const coreVar = figma.variables.getVariableById(varId);
-      if (!coreVar || !coreVar.name.toLowerCase().startsWith(pathPrefix)) continue;
-      
-      const coreValue = coreVar.valuesByMode[Object.keys(coreVar.valuesByMode)[0]];
-      if (typeof coreValue !== 'number') continue;
+export async function findMatchingCoreNumber(
+  value: number,
+  coreCollection: VariableCollection,
+  type: string
+): Promise<string | null> {
+  // Collect all variable IDs from the core collection that match the type
+  const coreVarIds: string[] = [];
+  for (const varId of coreCollection.variableIds) {
+    const variable = await figma.variables.getVariableByIdAsync(varId);
+    if (variable?.name.toLowerCase().includes(type)) {
+      coreVarIds.push(varId);
+    }
+  }
 
-      if (Math.round(coreValue) === roundedValue) {
-        return coreVar.name;
+  // Find the closest matching value
+  let closestMatch: string | null = null;
+  let minDiff = Infinity;
+
+  for (const varId of coreVarIds) {
+    const variable = await figma.variables.getVariableByIdAsync(varId);
+    if (!variable) continue;
+
+    const varValue = variable.valuesByMode[Object.keys(variable.valuesByMode)[0]];
+    if (typeof varValue === 'number') {
+      const diff = Math.abs(varValue - value);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestMatch = variable.name;
       }
     }
-    return null;
-  } catch (error) {
-    console.error('Error finding matching core number:', error);
-    return null;
   }
+
+  return closestMatch;
 }
 
 /**
@@ -147,7 +159,7 @@ function validateTokenValue(value: any, type: string): boolean {
  * @param specificModeId - Optional mode ID to use for the variable value
  * @returns A TokenData object representing the design token in W3C format
  */
-export function convertVariableToToken(variable: Variable, specificModeId?: string): TokenData {
+export async function convertVariableToToken(variable: Variable, specificModeId?: string): Promise<TokenData> {
   const resolvedType = variable.resolvedType;  // Keep original case for type matching
   const type = resolvedType.toLowerCase();     // Lowercase for our internal use
   const variablePath = variable.name.toLowerCase();
@@ -160,28 +172,34 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
     // Handle undefined or invalid values
     if (value === undefined || value === null) {
       console.error('Missing value for variable:', variable.name);
-      return {
+      const tokenData: TokenData = {
         $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' },
-        $type: getTokenType(variable.name, resolvedType),  // Pass original resolvedType
-        $figmaId: variable.id,
-        ...(variable.description && { $description: variable.description })
+        $type: getTokenType(variable.name, resolvedType),
+        $figmaId: variable.id
       };
+      if (variable.description) {
+        tokenData.$description = variable.description;
+      }
+      return tokenData;
     }
 
     // Special handling for core lineHeight and letterSpacing tokens
     if (type === 'float' && 
         (variablePath.startsWith('lineheight') || variablePath.startsWith('letterspacing'))) {
-      return {
+      const tokenData: TokenData = {
         $value: createDimensionValue(value as number, '%'),
         $type: 'dimension',
-        $figmaId: variable.id,
-        ...(variable.description && { $description: variable.description })
+        $figmaId: variable.id
       };
+      if (variable.description) {
+        tokenData.$description = variable.description;
+      }
+      return tokenData;
     }
 
     // If the value is a variable reference, return it as is
     if (value && typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS') {
-      const referencedVariable = figma.variables.getVariableById(value.id);
+      const referencedVariable = await figma.variables.getVariableByIdAsync(value.id);
       if (referencedVariable) {
         // Convert the reference path to the expected format
         const refPath = referencedVariable.name.split('/');
@@ -192,12 +210,15 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
           console.warn(`Invalid reference value for type ${tokenType}:`, tokenValue);
         }
         
-        return {
+        const tokenData: TokenData = {
           $value: tokenValue,
           $type: tokenType,
-          $figmaId: variable.id,
-          ...(variable.description && { $description: variable.description })
+          $figmaId: variable.id
         };
+        if (variable.description) {
+          tokenData.$description = variable.description;
+        }
+        return tokenData;
       }
     }
 
@@ -206,34 +227,40 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
       // Validate color object structure
       if (!value || typeof value !== 'object' || !('r' in value) || !('g' in value) || !('b' in value)) {
         console.error('Invalid color value structure:', value, 'for variable:', variable.name);
-        return {
+        const tokenData: TokenData = {
           $value: '#000000',
           $type: 'color',
-          $figmaId: variable.id,
-          ...(variable.description && { $description: variable.description })
+          $figmaId: variable.id
         };
+        if (variable.description) {
+          tokenData.$description = variable.description;
+        }
+        return tokenData;
       }
 
       // If the color has opacity, try to find a matching core color
       if ('a' in value && value.a !== 1 && value.a !== undefined) {
         // Get the core collection
-        const coreCollection = figma.variables.getLocalVariableCollections()
-          .find(c => c.name.toLowerCase().includes('.core'));
+        const collections = await figma.variables.getLocalVariableCollectionsAsync();
+        const coreCollection = collections.find(c => c.name.toLowerCase().includes('core'));
         
         if (coreCollection) {
-          const matchingCorePath = findMatchingCoreColor(value, coreCollection);
+          const matchingCorePath = await findMatchingCoreColor(value as RGBA, coreCollection);
           if (matchingCorePath) {
             // Format as rgba with the reference and opacity value
             const tokenValue = `rgba({${matchingCorePath.split('/').join('.')}},${value.a.toFixed(3)})`;
             if (!validateTokenValue(tokenValue, 'color')) {
               console.warn('Invalid rgba color value:', tokenValue);
             }
-            return {
+            const tokenData: TokenData = {
               $value: tokenValue,
               $type: 'color',
-              $figmaId: variable.id,
-              ...(variable.description && { $description: variable.description })
+              $figmaId: variable.id
             };
+            if (variable.description) {
+              tokenData.$description = variable.description;
+            }
+            return tokenData;
           }
         }
       }
@@ -242,12 +269,15 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
       if (!validateTokenValue(tokenValue, 'color')) {
         console.warn('Invalid hex color value:', tokenValue);
       }
-      return {
+      const tokenData: TokenData = {
         $value: tokenValue,
         $type: 'color',
-        $figmaId: variable.id,
-        ...(variable.description && { $description: variable.description })
+        $figmaId: variable.id
       };
+      if (variable.description) {
+        tokenData.$description = variable.description;
+      }
+      return tokenData;
     }
 
     // Convert number values to dimensions with rem units
@@ -275,12 +305,15 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
         if (!validateTokenValue(tokenValue, tokenType)) {
           console.warn('Invalid dimension value:', tokenValue);
         }
-        return {
+        const tokenData: TokenData = {
           $value: tokenValue,
           $type: tokenType,
-          $figmaId: variable.id,
-          ...(variable.description && { $description: variable.description })
+          $figmaId: variable.id
         };
+        if (variable.description) {
+          tokenData.$description = variable.description;
+        }
+        return tokenData;
       }
     }
     
@@ -289,20 +322,26 @@ export function convertVariableToToken(variable: Variable, specificModeId?: stri
     if (!validateTokenValue(value, tokenType)) {
       console.warn(`Invalid value for type ${tokenType}:`, value);
     }
-    return {
+    const tokenData: TokenData = {
       $value: value,
       $type: tokenType,
-      $figmaId: variable.id,
-      ...(variable.description && { $description: variable.description })
+      $figmaId: variable.id
     };
+    if (variable.description) {
+      tokenData.$description = variable.description;
+    }
+    return tokenData;
   } catch (error) {
     console.error('Error converting variable to token:', error, 'for variable:', variable.name);
-    return {
+    const tokenData: TokenData = {
       $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' },
-      $type: getTokenType(variable.name, resolvedType),  // Pass original resolvedType
-      $figmaId: variable.id,
-      ...(variable.description && { $description: variable.description })
+      $type: getTokenType(variable.name, resolvedType),
+      $figmaId: variable.id
     };
+    if (variable.description) {
+      tokenData.$description = variable.description;
+    }
+    return tokenData;
   }
 }
 
@@ -337,34 +376,29 @@ function sanitizeTokenName(name: string): string {
  * The resulting object maintains the original collection hierarchy with standardized
  * token formatting for all values.
  */
-export function processCollection(collection: VariableCollection, modeId?: string): TokenCollection {
+export async function processCollection(collection: VariableCollection, modeId?: string): Promise<TokenCollection> {
   const result: TokenCollection = {};
   
-  for (const variable of collection.variableIds.map((id: string) => figma.variables.getVariableById(id))) {
+  for (const varId of collection.variableIds) {
+    const variable = await figma.variables.getVariableByIdAsync(varId);
     if (!variable) continue;
-
-    // Skip variables that don't have the specified mode (if provided)
-    if (modeId && !variable.valuesByMode[modeId]) {
-      console.warn(`Variable ${variable.name} does not have mode ${modeId}`);
-      continue;
-    }
-
-    // Split path and sanitize each segment
-    const path = variable.name.split('/').map(sanitizeTokenName);
+    
+    const path = variable.name.split('/');
     let current = result;
-
+    
     // Create nested structure based on variable name
-    path.forEach((segment: string, index: number) => {
-      if (index === path.length - 1) {
+    for (let i = 0; i < path.length; i++) {
+      const segment = path[i];
+      if (i === path.length - 1) {
         // Last segment - add the actual token
-        current[segment] = convertVariableToToken(variable, modeId);
+        current[segment] = await convertVariableToToken(variable, modeId);
       } else {
         // Create nested object if it doesn't exist
         current[segment] = current[segment] || {};
         current = current[segment] as TokenCollection;
       }
-    });
+    }
   }
-
+  
   return result;
 } 

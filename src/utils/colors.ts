@@ -1,61 +1,39 @@
 /// <reference types="@figma/plugin-typings" />
 
 /**
- * Convert RGB color to hex
- * @param color - The RGB color object to convert
- * @returns Hex color string
+ * Converts an RGBA color object to a hex string with alpha channel
+ * @param color - The RGBA color object
+ * @returns A hex color string with alpha channel
  */
-export function rgbaToHex(color: RGBA | RGB | { r: number; g: number; b: number; a?: number }): string {
-  try {
-    // Ensure values are valid numbers
-    const r = Math.max(0, Math.min(1, color.r));
-    const g = Math.max(0, Math.min(1, color.g));
-    const b = Math.max(0, Math.min(1, color.b));
-    const a = ('a' in color && color.a !== undefined) ? Math.max(0, Math.min(1, color.a)) : 1;
-
-    const rHex = Math.round(r * 255).toString(16).padStart(2, '0');
-    const gHex = Math.round(g * 255).toString(16).padStart(2, '0');
-    const bHex = Math.round(b * 255).toString(16).padStart(2, '0');
-    
-    if (a === 1) {
-      return `#${rHex}${gHex}${bHex}`;
-    }
-    
-    const aHex = Math.round(a * 255).toString(16).padStart(2, '0');
-    return `#${rHex}${gHex}${bHex}${aHex}`;
-  } catch (error) {
-    console.error('Error converting color to hex:', error, color);
-    return '#000000';
-  }
+export function rgbaToHex(color: RGBA): string {
+  const r = Math.round(color.r * 255);
+  const g = Math.round(color.g * 255);
+  const b = Math.round(color.b * 255);
+  const a = Math.round(color.a * 255);
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}${a.toString(16).padStart(2, '0')}`;
 }
 
 /**
- * Finds a matching color in the core collection
- * Used to convert direct color values to variable references
- * @param color - The color to match
+ * Finds a matching core color variable based on RGBA values
+ * @param color - The RGBA color object to match
  * @param coreCollection - The core variable collection to search in
- * @returns The name of the matching core color variable, or null if not found
+ * @returns The path of the matching core color variable, or null if no match found
  */
-export function findMatchingCoreColor(color: RGBA | RGB, coreCollection: VariableCollection): string | null {
-  try {
-    for (const varId of coreCollection.variableIds) {
-      const coreVar = figma.variables.getVariableById(varId);
-      if (!coreVar || coreVar.resolvedType !== 'COLOR') continue;
-      
-      const coreValue = coreVar.valuesByMode[Object.keys(coreVar.valuesByMode)[0]];
-      if (!coreValue || typeof coreValue !== 'object' || !('r' in coreValue)) continue;
+export async function findMatchingCoreColor(color: RGBA, coreCollection: VariableCollection): Promise<string | null> {
+  for (const varId of coreCollection.variableIds) {
+    const coreVar = await figma.variables.getVariableByIdAsync(varId);
+    if (!coreVar || coreVar.resolvedType !== 'COLOR') continue;
 
-      // Compare RGB values with small tolerance for floating point differences
-      const tolerance = 0.001;
-      if (Math.abs(coreValue.r - color.r) < tolerance &&
-          Math.abs(coreValue.g - color.g) < tolerance &&
-          Math.abs(coreValue.b - color.b) < tolerance) {
+    const coreValue = coreVar.valuesByMode[Object.keys(coreVar.valuesByMode)[0]];
+    if (typeof coreValue === 'object' && 'r' in coreValue) {
+      if (
+        Math.abs(coreValue.r - color.r) < 0.01 &&
+        Math.abs(coreValue.g - color.g) < 0.01 &&
+        Math.abs(coreValue.b - color.b) < 0.01
+      ) {
         return coreVar.name;
       }
     }
-    return null;
-  } catch (error) {
-    console.error('Error finding matching core color:', error);
-    return null;
   }
+  return null;
 } 

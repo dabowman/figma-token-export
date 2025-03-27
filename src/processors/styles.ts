@@ -1,6 +1,6 @@
 /// <reference types="@figma/plugin-typings" />
 
-import { TokenCollection } from '../types';
+import { TokenCollection, TokenData } from '../types';
 import { rgbaToHex } from '../utils/colors';
 import { findMatchingCoreNumber } from '../utils/variables';
 
@@ -41,40 +41,53 @@ function createDimensionValue(value: number, unit: string): { value: number; uni
  *   }
  * }
  */
-export function processTextStyles(): TokenCollection {
-  const textStyles = figma.getLocalTextStyles();
+export async function processTextStyles(): Promise<TokenCollection> {
+  const textStyles = await figma.getLocalTextStylesAsync();
   const result: TokenCollection = {};
   
   // Get core collection for matching percentage values
-  const coreCollection = figma.variables.getLocalVariableCollections()
-    .find(c => c.name.toLowerCase().includes('core'));
+  const collections = await figma.variables.getLocalVariableCollectionsAsync();
+  const coreCollection = collections.find(c => c.name.toLowerCase().includes('core'));
 
   for (const style of textStyles) {
     const path = style.name.split('/');
     let current = result;
 
     // Create nested structure based on style name
-    path.forEach((segment: string, index: number) => {
-      if (index === path.length - 1) {
+    for (let i = 0; i < path.length; i++) {
+      const segment = path[i];
+      if (i === path.length - 1) {
         // Get variable references if they exist
-        const value: any = {
-          // Required properties according to W3C spec
-          fontFamily: style.boundVariables?.fontFamily ? 
-            `{${figma.variables.getVariableById(style.boundVariables.fontFamily.id)?.name.split('/').join('.')}}` : 
-            style.fontName.family,
-          
-          fontSize: style.boundVariables?.fontSize ?
-            `{${figma.variables.getVariableById(style.boundVariables.fontSize.id)?.name.split('/').join('.')}}` :
-            createDimensionValue(style.fontSize, 'px'),
-          
-          fontWeight: style.boundVariables?.fontWeight ?
-            `{${figma.variables.getVariableById(style.boundVariables.fontWeight.id)?.name.split('/').join('.')}}` :
-            parseInt(style.fontName.style, 10) || style.fontName.style,
-        };
+        const value: any = {};
+        
+        // Handle font family
+        if (style.boundVariables?.fontFamily) {
+          const fontVar = await figma.variables.getVariableByIdAsync(style.boundVariables.fontFamily.id);
+          value.fontFamily = `{${fontVar?.name.split('/').join('.')}}`;
+        } else {
+          value.fontFamily = style.fontName.family;
+        }
+        
+        // Handle font size
+        if (style.boundVariables?.fontSize) {
+          const sizeVar = await figma.variables.getVariableByIdAsync(style.boundVariables.fontSize.id);
+          value.fontSize = `{${sizeVar?.name.split('/').join('.')}}`;
+        } else {
+          value.fontSize = createDimensionValue(style.fontSize, 'px');
+        }
+        
+        // Handle font weight
+        if (style.boundVariables?.fontWeight) {
+          const weightVar = await figma.variables.getVariableByIdAsync(style.boundVariables.fontWeight.id);
+          value.fontWeight = `{${weightVar?.name.split('/').join('.')}}`;
+        } else {
+          value.fontWeight = parseInt(style.fontName.style, 10) || style.fontName.style;
+        }
 
         // Handle lineHeight
         if (style.boundVariables?.lineHeight) {
-          value.lineHeight = `{${figma.variables.getVariableById(style.boundVariables.lineHeight.id)?.name.split('/').join('.')}}`;
+          const lineHeightVar = await figma.variables.getVariableByIdAsync(style.boundVariables.lineHeight.id);
+          value.lineHeight = `{${lineHeightVar?.name.split('/').join('.')}}`;
         } else {
           // Try to match with core lineHeight token
           let lineHeightValue: number;
@@ -87,7 +100,7 @@ export function processTextStyles(): TokenCollection {
           }
 
           if (coreCollection) {
-            const matchingCore = findMatchingCoreNumber(lineHeightValue, coreCollection, 'lineheight');
+            const matchingCore = await findMatchingCoreNumber(lineHeightValue, coreCollection, 'lineheight');
             if (matchingCore) {
               value.lineHeight = `{${matchingCore.split('/').join('.')}}`;
             } else {
@@ -100,11 +113,12 @@ export function processTextStyles(): TokenCollection {
 
         // Handle letterSpacing
         if (style.boundVariables?.letterSpacing) {
-          value.letterSpacing = `{${figma.variables.getVariableById(style.boundVariables.letterSpacing.id)?.name.split('/').join('.')}}`;
+          const letterSpacingVar = await figma.variables.getVariableByIdAsync(style.boundVariables.letterSpacing.id);
+          value.letterSpacing = `{${letterSpacingVar?.name.split('/').join('.')}}`;
         } else if (style.letterSpacing && typeof style.letterSpacing === 'object') {
           const letterSpacingValue = style.letterSpacing.value;
           if (coreCollection) {
-            const matchingCore = findMatchingCoreNumber(letterSpacingValue, coreCollection, 'letterspacing');
+            const matchingCore = await findMatchingCoreNumber(letterSpacingValue, coreCollection, 'letterspacing');
             if (matchingCore) {
               value.letterSpacing = `{${matchingCore.split('/').join('.')}}`;
             } else {
@@ -117,7 +131,8 @@ export function processTextStyles(): TokenCollection {
 
         // Handle paragraphSpacing
         if (style.boundVariables?.paragraphSpacing) {
-          value.paragraphSpacing = `{${figma.variables.getVariableById(style.boundVariables.paragraphSpacing.id)?.name.split('/').join('.')}}`;
+          const paragraphSpacingVar = await figma.variables.getVariableByIdAsync(style.boundVariables.paragraphSpacing.id);
+          value.paragraphSpacing = `{${paragraphSpacingVar?.name.split('/').join('.')}}`;
         } else if (typeof style.paragraphSpacing === 'number') {
           value.paragraphSpacing = createDimensionValue(style.paragraphSpacing, 'px');
         }
@@ -134,19 +149,25 @@ export function processTextStyles(): TokenCollection {
         // Remove undefined properties
         Object.keys(value).forEach(key => value[key] === undefined && delete value[key]);
 
-        // Last segment - add the actual token
-        current[segment] = {
+        // Create the base token object
+        const tokenData: TokenData = {
           $value: value,
           $type: 'typography',
-          $figmaId: style.id,
-          ...(style.description && { $description: style.description })
+          $figmaId: style.id
         };
+
+        // Add description if it exists
+        if (style.description) {
+          tokenData.$description = style.description;
+        }
+
+        current[segment] = tokenData;
       } else {
         // Create nested object if it doesn't exist
         current[segment] = current[segment] || {};
         current = current[segment] as TokenCollection;
       }
-    });
+    }
   }
 
   return result;
@@ -172,8 +193,8 @@ export function processTextStyles(): TokenCollection {
  *   }
  * }
  */
-export function processEffectStyles(): TokenCollection {
-  const effectStyles = figma.getLocalEffectStyles();
+export async function processEffectStyles(): Promise<TokenCollection> {
+  const effectStyles = await figma.getLocalEffectStylesAsync();
   const result: TokenCollection = {};
 
   for (const style of effectStyles) {
@@ -181,8 +202,9 @@ export function processEffectStyles(): TokenCollection {
     let current = result;
 
     // Create nested structure based on style name
-    path.forEach((segment: string, index: number) => {
-      if (index === path.length - 1) {
+    for (let i = 0; i < path.length; i++) {
+      const segment = path[i];
+      if (i === path.length - 1) {
         // Last segment - add the actual token
         const shadowEffects = style.effects
           .filter(effect => effect.type === 'DROP_SHADOW' || effect.type === 'INNER_SHADOW')
@@ -197,19 +219,26 @@ export function processEffectStyles(): TokenCollection {
           }));
 
         if (shadowEffects.length > 0) {
-          current[segment] = {
+          // Create the base token object
+          const tokenData: TokenData = {
             $value: shadowEffects.length === 1 ? shadowEffects[0] : shadowEffects,
             $type: 'shadow',
-            $figmaId: style.id,
-            ...(style.description && { $description: style.description })
+            $figmaId: style.id
           };
+
+          // Add description if it exists
+          if (style.description) {
+            tokenData.$description = style.description;
+          }
+
+          current[segment] = tokenData;
         }
       } else {
         // Create nested object if it doesn't exist
         current[segment] = current[segment] || {};
         current = current[segment] as TokenCollection;
       }
-    });
+    }
   }
 
   return result;

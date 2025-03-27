@@ -44,61 +44,38 @@
 
     /// <reference types="@figma/plugin-typings" />
     /**
-     * Convert RGB color to hex
-     * @param color - The RGB color object to convert
-     * @returns Hex color string
+     * Converts an RGBA color object to a hex string with alpha channel
+     * @param color - The RGBA color object
+     * @returns A hex color string with alpha channel
      */
     function rgbaToHex(color) {
-        try {
-            // Ensure values are valid numbers
-            const r = Math.max(0, Math.min(1, color.r));
-            const g = Math.max(0, Math.min(1, color.g));
-            const b = Math.max(0, Math.min(1, color.b));
-            const a = ('a' in color && color.a !== undefined) ? Math.max(0, Math.min(1, color.a)) : 1;
-            const rHex = Math.round(r * 255).toString(16).padStart(2, '0');
-            const gHex = Math.round(g * 255).toString(16).padStart(2, '0');
-            const bHex = Math.round(b * 255).toString(16).padStart(2, '0');
-            if (a === 1) {
-                return `#${rHex}${gHex}${bHex}`;
-            }
-            const aHex = Math.round(a * 255).toString(16).padStart(2, '0');
-            return `#${rHex}${gHex}${bHex}${aHex}`;
-        }
-        catch (error) {
-            console.error('Error converting color to hex:', error, color);
-            return '#000000';
-        }
+        const r = Math.round(color.r * 255);
+        const g = Math.round(color.g * 255);
+        const b = Math.round(color.b * 255);
+        const a = Math.round(color.a * 255);
+        return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}${a.toString(16).padStart(2, '0')}`;
     }
     /**
-     * Finds a matching color in the core collection
-     * Used to convert direct color values to variable references
-     * @param color - The color to match
+     * Finds a matching core color variable based on RGBA values
+     * @param color - The RGBA color object to match
      * @param coreCollection - The core variable collection to search in
-     * @returns The name of the matching core color variable, or null if not found
+     * @returns The path of the matching core color variable, or null if no match found
      */
-    function findMatchingCoreColor(color, coreCollection) {
-        try {
-            for (const varId of coreCollection.variableIds) {
-                const coreVar = figma.variables.getVariableById(varId);
-                if (!coreVar || coreVar.resolvedType !== 'COLOR')
-                    continue;
-                const coreValue = coreVar.valuesByMode[Object.keys(coreVar.valuesByMode)[0]];
-                if (!coreValue || typeof coreValue !== 'object' || !('r' in coreValue))
-                    continue;
-                // Compare RGB values with small tolerance for floating point differences
-                const tolerance = 0.001;
-                if (Math.abs(coreValue.r - color.r) < tolerance &&
-                    Math.abs(coreValue.g - color.g) < tolerance &&
-                    Math.abs(coreValue.b - color.b) < tolerance) {
+    async function findMatchingCoreColor(color, coreCollection) {
+        for (const varId of coreCollection.variableIds) {
+            const coreVar = await figma.variables.getVariableByIdAsync(varId);
+            if (!coreVar || coreVar.resolvedType !== 'COLOR')
+                continue;
+            const coreValue = coreVar.valuesByMode[Object.keys(coreVar.valuesByMode)[0]];
+            if (typeof coreValue === 'object' && 'r' in coreValue) {
+                if (Math.abs(coreValue.r - color.r) < 0.01 &&
+                    Math.abs(coreValue.g - color.g) < 0.01 &&
+                    Math.abs(coreValue.b - color.b) < 0.01) {
                     return coreVar.name;
                 }
             }
-            return null;
         }
-        catch (error) {
-            console.error('Error finding matching core color:', error);
-            return null;
-        }
+        return null;
     }
 
     /// <reference types="@figma/plugin-typings" />
@@ -107,30 +84,35 @@
      * Used to convert direct number values to variable references
      * @param value - The number value to match
      * @param coreCollection - The core variable collection to search in
-     * @param pathPrefix - The prefix to match in variable names
+     * @param type - The type of the variable to match (e.g., lineheight, letterspacing)
      * @returns The name of the matching core number variable, or null if not found
      */
-    function findMatchingCoreNumber(value, coreCollection, pathPrefix) {
-        try {
-            // Round the value to the nearest integer if it's a percentage
-            const roundedValue = Math.round(value);
-            for (const varId of coreCollection.variableIds) {
-                const coreVar = figma.variables.getVariableById(varId);
-                if (!coreVar || !coreVar.name.toLowerCase().startsWith(pathPrefix))
-                    continue;
-                const coreValue = coreVar.valuesByMode[Object.keys(coreVar.valuesByMode)[0]];
-                if (typeof coreValue !== 'number')
-                    continue;
-                if (Math.round(coreValue) === roundedValue) {
-                    return coreVar.name;
+    async function findMatchingCoreNumber(value, coreCollection, type) {
+        // Collect all variable IDs from the core collection that match the type
+        const coreVarIds = [];
+        for (const varId of coreCollection.variableIds) {
+            const variable = await figma.variables.getVariableByIdAsync(varId);
+            if (variable === null || variable === void 0 ? void 0 : variable.name.toLowerCase().includes(type)) {
+                coreVarIds.push(varId);
+            }
+        }
+        // Find the closest matching value
+        let closestMatch = null;
+        let minDiff = Infinity;
+        for (const varId of coreVarIds) {
+            const variable = await figma.variables.getVariableByIdAsync(varId);
+            if (!variable)
+                continue;
+            const varValue = variable.valuesByMode[Object.keys(variable.valuesByMode)[0]];
+            if (typeof varValue === 'number') {
+                const diff = Math.abs(varValue - value);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestMatch = variable.name;
                 }
             }
-            return null;
         }
-        catch (error) {
-            console.error('Error finding matching core number:', error);
-            return null;
-        }
+        return closestMatch;
     }
     /**
      * Determines the appropriate token type based on the variable path and original type
@@ -223,7 +205,7 @@
      * @param specificModeId - Optional mode ID to use for the variable value
      * @returns A TokenData object representing the design token in W3C format
      */
-    function convertVariableToToken(variable, specificModeId) {
+    async function convertVariableToToken(variable, specificModeId) {
         const resolvedType = variable.resolvedType; // Keep original case for type matching
         const type = resolvedType.toLowerCase(); // Lowercase for our internal use
         const variablePath = variable.name.toLowerCase();
@@ -234,16 +216,32 @@
             // Handle undefined or invalid values
             if (value === undefined || value === null) {
                 console.error('Missing value for variable:', variable.name);
-                return Object.assign({ $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' }, $type: getTokenType(variable.name, resolvedType), $figmaId: variable.id }, (variable.description && { $description: variable.description }));
+                const tokenData = {
+                    $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' },
+                    $type: getTokenType(variable.name, resolvedType),
+                    $figmaId: variable.id
+                };
+                if (variable.description) {
+                    tokenData.$description = variable.description;
+                }
+                return tokenData;
             }
             // Special handling for core lineHeight and letterSpacing tokens
             if (type === 'float' &&
                 (variablePath.startsWith('lineheight') || variablePath.startsWith('letterspacing'))) {
-                return Object.assign({ $value: createDimensionValue$1(value, '%'), $type: 'dimension', $figmaId: variable.id }, (variable.description && { $description: variable.description }));
+                const tokenData = {
+                    $value: createDimensionValue$1(value, '%'),
+                    $type: 'dimension',
+                    $figmaId: variable.id
+                };
+                if (variable.description) {
+                    tokenData.$description = variable.description;
+                }
+                return tokenData;
             }
             // If the value is a variable reference, return it as is
             if (value && typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS') {
-                const referencedVariable = figma.variables.getVariableById(value.id);
+                const referencedVariable = await figma.variables.getVariableByIdAsync(value.id);
                 if (referencedVariable) {
                     // Convert the reference path to the expected format
                     const refPath = referencedVariable.name.split('/');
@@ -252,7 +250,15 @@
                     if (!validateTokenValue(tokenValue, tokenType)) {
                         console.warn(`Invalid reference value for type ${tokenType}:`, tokenValue);
                     }
-                    return Object.assign({ $value: tokenValue, $type: tokenType, $figmaId: variable.id }, (variable.description && { $description: variable.description }));
+                    const tokenData = {
+                        $value: tokenValue,
+                        $type: tokenType,
+                        $figmaId: variable.id
+                    };
+                    if (variable.description) {
+                        tokenData.$description = variable.description;
+                    }
+                    return tokenData;
                 }
             }
             // Handle direct values
@@ -260,22 +266,38 @@
                 // Validate color object structure
                 if (!value || typeof value !== 'object' || !('r' in value) || !('g' in value) || !('b' in value)) {
                     console.error('Invalid color value structure:', value, 'for variable:', variable.name);
-                    return Object.assign({ $value: '#000000', $type: 'color', $figmaId: variable.id }, (variable.description && { $description: variable.description }));
+                    const tokenData = {
+                        $value: '#000000',
+                        $type: 'color',
+                        $figmaId: variable.id
+                    };
+                    if (variable.description) {
+                        tokenData.$description = variable.description;
+                    }
+                    return tokenData;
                 }
                 // If the color has opacity, try to find a matching core color
                 if ('a' in value && value.a !== 1 && value.a !== undefined) {
                     // Get the core collection
-                    const coreCollection = figma.variables.getLocalVariableCollections()
-                        .find(c => c.name.toLowerCase().includes('.core'));
+                    const collections = await figma.variables.getLocalVariableCollectionsAsync();
+                    const coreCollection = collections.find(c => c.name.toLowerCase().includes('core'));
                     if (coreCollection) {
-                        const matchingCorePath = findMatchingCoreColor(value, coreCollection);
+                        const matchingCorePath = await findMatchingCoreColor(value, coreCollection);
                         if (matchingCorePath) {
                             // Format as rgba with the reference and opacity value
                             const tokenValue = `rgba({${matchingCorePath.split('/').join('.')}},${value.a.toFixed(3)})`;
                             if (!validateTokenValue(tokenValue, 'color')) {
                                 console.warn('Invalid rgba color value:', tokenValue);
                             }
-                            return Object.assign({ $value: tokenValue, $type: 'color', $figmaId: variable.id }, (variable.description && { $description: variable.description }));
+                            const tokenData = {
+                                $value: tokenValue,
+                                $type: 'color',
+                                $figmaId: variable.id
+                            };
+                            if (variable.description) {
+                                tokenData.$description = variable.description;
+                            }
+                            return tokenData;
                         }
                     }
                 }
@@ -283,7 +305,15 @@
                 if (!validateTokenValue(tokenValue, 'color')) {
                     console.warn('Invalid hex color value:', tokenValue);
                 }
-                return Object.assign({ $value: tokenValue, $type: 'color', $figmaId: variable.id }, (variable.description && { $description: variable.description }));
+                const tokenData = {
+                    $value: tokenValue,
+                    $type: 'color',
+                    $figmaId: variable.id
+                };
+                if (variable.description) {
+                    tokenData.$description = variable.description;
+                }
+                return tokenData;
             }
             // Convert number values to dimensions with rem units
             if (typeof value === 'number' && (remTypes.has(type) || type === 'float')) {
@@ -306,7 +336,15 @@
                     if (!validateTokenValue(tokenValue, tokenType)) {
                         console.warn('Invalid dimension value:', tokenValue);
                     }
-                    return Object.assign({ $value: tokenValue, $type: tokenType, $figmaId: variable.id }, (variable.description && { $description: variable.description }));
+                    const tokenData = {
+                        $value: tokenValue,
+                        $type: tokenType,
+                        $figmaId: variable.id
+                    };
+                    if (variable.description) {
+                        tokenData.$description = variable.description;
+                    }
+                    return tokenData;
                 }
             }
             // For all other values, return as is with appropriate type
@@ -314,24 +352,28 @@
             if (!validateTokenValue(value, tokenType)) {
                 console.warn(`Invalid value for type ${tokenType}:`, value);
             }
-            return Object.assign({ $value: value, $type: tokenType, $figmaId: variable.id }, (variable.description && { $description: variable.description }));
+            const tokenData = {
+                $value: value,
+                $type: tokenType,
+                $figmaId: variable.id
+            };
+            if (variable.description) {
+                tokenData.$description = variable.description;
+            }
+            return tokenData;
         }
         catch (error) {
             console.error('Error converting variable to token:', error, 'for variable:', variable.name);
-            return Object.assign({ $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' }, $type: getTokenType(variable.name, resolvedType), $figmaId: variable.id }, (variable.description && { $description: variable.description }));
+            const tokenData = {
+                $value: type === 'color' ? '#000000' : { value: 0, unit: 'px' },
+                $type: getTokenType(variable.name, resolvedType),
+                $figmaId: variable.id
+            };
+            if (variable.description) {
+                tokenData.$description = variable.description;
+            }
+            return tokenData;
         }
-    }
-    /**
-     * Sanitizes a name according to W3C Design Token Format Module specification
-     * Removes restricted characters and ensures valid token naming
-     * @param name - The name to sanitize
-     * @returns The sanitized name
-     */
-    function sanitizeTokenName(name) {
-        // Remove leading special characters (., $, etc.)
-        return name.replace(/^[.$]/, '')
-            // Replace other special characters with empty string
-            .replace(/[.$]/g, '');
     }
     /**
      * Processes a variable collection into a token structure
@@ -351,31 +393,27 @@
      * The resulting object maintains the original collection hierarchy with standardized
      * token formatting for all values.
      */
-    function processCollection(collection, modeId) {
+    async function processCollection(collection, modeId) {
         const result = {};
-        for (const variable of collection.variableIds.map((id) => figma.variables.getVariableById(id))) {
+        for (const varId of collection.variableIds) {
+            const variable = await figma.variables.getVariableByIdAsync(varId);
             if (!variable)
                 continue;
-            // Skip variables that don't have the specified mode (if provided)
-            if (modeId && !variable.valuesByMode[modeId]) {
-                console.warn(`Variable ${variable.name} does not have mode ${modeId}`);
-                continue;
-            }
-            // Split path and sanitize each segment
-            const path = variable.name.split('/').map(sanitizeTokenName);
+            const path = variable.name.split('/');
             let current = result;
             // Create nested structure based on variable name
-            path.forEach((segment, index) => {
-                if (index === path.length - 1) {
+            for (let i = 0; i < path.length; i++) {
+                const segment = path[i];
+                if (i === path.length - 1) {
                     // Last segment - add the actual token
-                    current[segment] = convertVariableToToken(variable, modeId);
+                    current[segment] = await convertVariableToToken(variable, modeId);
                 }
                 else {
                     // Create nested object if it doesn't exist
                     current[segment] = current[segment] || {};
                     current = current[segment];
                 }
-            });
+            }
         }
         return result;
     }
@@ -417,35 +455,50 @@
      *   }
      * }
      */
-    function processTextStyles() {
-        const textStyles = figma.getLocalTextStyles();
+    async function processTextStyles() {
+        var _a, _b, _c, _d, _e, _f;
+        const textStyles = await figma.getLocalTextStylesAsync();
         const result = {};
         // Get core collection for matching percentage values
-        const coreCollection = figma.variables.getLocalVariableCollections()
-            .find(c => c.name.toLowerCase().includes('core'));
+        const collections = await figma.variables.getLocalVariableCollectionsAsync();
+        const coreCollection = collections.find(c => c.name.toLowerCase().includes('core'));
         for (const style of textStyles) {
             const path = style.name.split('/');
             let current = result;
             // Create nested structure based on style name
-            path.forEach((segment, index) => {
-                var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
-                if (index === path.length - 1) {
+            for (let i = 0; i < path.length; i++) {
+                const segment = path[i];
+                if (i === path.length - 1) {
                     // Get variable references if they exist
-                    const value = {
-                        // Required properties according to W3C spec
-                        fontFamily: ((_a = style.boundVariables) === null || _a === void 0 ? void 0 : _a.fontFamily) ?
-                            `{${(_b = figma.variables.getVariableById(style.boundVariables.fontFamily.id)) === null || _b === void 0 ? void 0 : _b.name.split('/').join('.')}}` :
-                            style.fontName.family,
-                        fontSize: ((_c = style.boundVariables) === null || _c === void 0 ? void 0 : _c.fontSize) ?
-                            `{${(_d = figma.variables.getVariableById(style.boundVariables.fontSize.id)) === null || _d === void 0 ? void 0 : _d.name.split('/').join('.')}}` :
-                            createDimensionValue(style.fontSize, 'px'),
-                        fontWeight: ((_e = style.boundVariables) === null || _e === void 0 ? void 0 : _e.fontWeight) ?
-                            `{${(_f = figma.variables.getVariableById(style.boundVariables.fontWeight.id)) === null || _f === void 0 ? void 0 : _f.name.split('/').join('.')}}` :
-                            parseInt(style.fontName.style, 10) || style.fontName.style,
-                    };
+                    const value = {};
+                    // Handle font family
+                    if ((_a = style.boundVariables) === null || _a === void 0 ? void 0 : _a.fontFamily) {
+                        const fontVar = await figma.variables.getVariableByIdAsync(style.boundVariables.fontFamily.id);
+                        value.fontFamily = `{${fontVar === null || fontVar === void 0 ? void 0 : fontVar.name.split('/').join('.')}}`;
+                    }
+                    else {
+                        value.fontFamily = style.fontName.family;
+                    }
+                    // Handle font size
+                    if ((_b = style.boundVariables) === null || _b === void 0 ? void 0 : _b.fontSize) {
+                        const sizeVar = await figma.variables.getVariableByIdAsync(style.boundVariables.fontSize.id);
+                        value.fontSize = `{${sizeVar === null || sizeVar === void 0 ? void 0 : sizeVar.name.split('/').join('.')}}`;
+                    }
+                    else {
+                        value.fontSize = createDimensionValue(style.fontSize, 'px');
+                    }
+                    // Handle font weight
+                    if ((_c = style.boundVariables) === null || _c === void 0 ? void 0 : _c.fontWeight) {
+                        const weightVar = await figma.variables.getVariableByIdAsync(style.boundVariables.fontWeight.id);
+                        value.fontWeight = `{${weightVar === null || weightVar === void 0 ? void 0 : weightVar.name.split('/').join('.')}}`;
+                    }
+                    else {
+                        value.fontWeight = parseInt(style.fontName.style, 10) || style.fontName.style;
+                    }
                     // Handle lineHeight
-                    if ((_g = style.boundVariables) === null || _g === void 0 ? void 0 : _g.lineHeight) {
-                        value.lineHeight = `{${(_h = figma.variables.getVariableById(style.boundVariables.lineHeight.id)) === null || _h === void 0 ? void 0 : _h.name.split('/').join('.')}}`;
+                    if ((_d = style.boundVariables) === null || _d === void 0 ? void 0 : _d.lineHeight) {
+                        const lineHeightVar = await figma.variables.getVariableByIdAsync(style.boundVariables.lineHeight.id);
+                        value.lineHeight = `{${lineHeightVar === null || lineHeightVar === void 0 ? void 0 : lineHeightVar.name.split('/').join('.')}}`;
                     }
                     else {
                         // Try to match with core lineHeight token
@@ -460,7 +513,7 @@
                             lineHeightValue = 100; // Default
                         }
                         if (coreCollection) {
-                            const matchingCore = findMatchingCoreNumber(lineHeightValue, coreCollection, 'lineheight');
+                            const matchingCore = await findMatchingCoreNumber(lineHeightValue, coreCollection, 'lineheight');
                             if (matchingCore) {
                                 value.lineHeight = `{${matchingCore.split('/').join('.')}}`;
                             }
@@ -473,13 +526,14 @@
                         }
                     }
                     // Handle letterSpacing
-                    if ((_j = style.boundVariables) === null || _j === void 0 ? void 0 : _j.letterSpacing) {
-                        value.letterSpacing = `{${(_k = figma.variables.getVariableById(style.boundVariables.letterSpacing.id)) === null || _k === void 0 ? void 0 : _k.name.split('/').join('.')}}`;
+                    if ((_e = style.boundVariables) === null || _e === void 0 ? void 0 : _e.letterSpacing) {
+                        const letterSpacingVar = await figma.variables.getVariableByIdAsync(style.boundVariables.letterSpacing.id);
+                        value.letterSpacing = `{${letterSpacingVar === null || letterSpacingVar === void 0 ? void 0 : letterSpacingVar.name.split('/').join('.')}}`;
                     }
                     else if (style.letterSpacing && typeof style.letterSpacing === 'object') {
                         const letterSpacingValue = style.letterSpacing.value;
                         if (coreCollection) {
-                            const matchingCore = findMatchingCoreNumber(letterSpacingValue, coreCollection, 'letterspacing');
+                            const matchingCore = await findMatchingCoreNumber(letterSpacingValue, coreCollection, 'letterspacing');
                             if (matchingCore) {
                                 value.letterSpacing = `{${matchingCore.split('/').join('.')}}`;
                             }
@@ -492,8 +546,9 @@
                         }
                     }
                     // Handle paragraphSpacing
-                    if ((_l = style.boundVariables) === null || _l === void 0 ? void 0 : _l.paragraphSpacing) {
-                        value.paragraphSpacing = `{${(_m = figma.variables.getVariableById(style.boundVariables.paragraphSpacing.id)) === null || _m === void 0 ? void 0 : _m.name.split('/').join('.')}}`;
+                    if ((_f = style.boundVariables) === null || _f === void 0 ? void 0 : _f.paragraphSpacing) {
+                        const paragraphSpacingVar = await figma.variables.getVariableByIdAsync(style.boundVariables.paragraphSpacing.id);
+                        value.paragraphSpacing = `{${paragraphSpacingVar === null || paragraphSpacingVar === void 0 ? void 0 : paragraphSpacingVar.name.split('/').join('.')}}`;
                     }
                     else if (typeof style.paragraphSpacing === 'number') {
                         value.paragraphSpacing = createDimensionValue(style.paragraphSpacing, 'px');
@@ -507,15 +562,24 @@
                     }
                     // Remove undefined properties
                     Object.keys(value).forEach(key => value[key] === undefined && delete value[key]);
-                    // Last segment - add the actual token
-                    current[segment] = Object.assign({ $value: value, $type: 'typography', $figmaId: style.id }, (style.description && { $description: style.description }));
+                    // Create the base token object
+                    const tokenData = {
+                        $value: value,
+                        $type: 'typography',
+                        $figmaId: style.id
+                    };
+                    // Add description if it exists
+                    if (style.description) {
+                        tokenData.$description = style.description;
+                    }
+                    current[segment] = tokenData;
                 }
                 else {
                     // Create nested object if it doesn't exist
                     current[segment] = current[segment] || {};
                     current = current[segment];
                 }
-            });
+            }
         }
         return result;
     }
@@ -539,15 +603,16 @@
      *   }
      * }
      */
-    function processEffectStyles() {
-        const effectStyles = figma.getLocalEffectStyles();
+    async function processEffectStyles() {
+        const effectStyles = await figma.getLocalEffectStylesAsync();
         const result = {};
         for (const style of effectStyles) {
             const path = style.name.split('/');
             let current = result;
             // Create nested structure based on style name
-            path.forEach((segment, index) => {
-                if (index === path.length - 1) {
+            for (let i = 0; i < path.length; i++) {
+                const segment = path[i];
+                if (i === path.length - 1) {
                     // Last segment - add the actual token
                     const shadowEffects = style.effects
                         .filter(effect => effect.type === 'DROP_SHADOW' || effect.type === 'INNER_SHADOW')
@@ -561,7 +626,17 @@
                         type: effect.type === 'DROP_SHADOW' ? 'dropShadow' : 'innerShadow'
                     }));
                     if (shadowEffects.length > 0) {
-                        current[segment] = Object.assign({ $value: shadowEffects.length === 1 ? shadowEffects[0] : shadowEffects, $type: 'shadow', $figmaId: style.id }, (style.description && { $description: style.description }));
+                        // Create the base token object
+                        const tokenData = {
+                            $value: shadowEffects.length === 1 ? shadowEffects[0] : shadowEffects,
+                            $type: 'shadow',
+                            $figmaId: style.id
+                        };
+                        // Add description if it exists
+                        if (style.description) {
+                            tokenData.$description = style.description;
+                        }
+                        current[segment] = tokenData;
                     }
                 }
                 else {
@@ -569,7 +644,7 @@
                     current[segment] = current[segment] || {};
                     current = current[segment];
                 }
-            });
+            }
         }
         return result;
     }
@@ -598,10 +673,10 @@
      * Collects raw Figma API data for variables and styles
      * Used for debugging and verification purposes
      */
-    function collectRawFigmaData() {
-        const collections = figma.variables.getLocalVariableCollections();
-        const textStyles = figma.getLocalTextStyles();
-        const effectStyles = figma.getLocalEffectStyles();
+    async function collectRawFigmaData() {
+        const collections = await figma.variables.getLocalVariableCollectionsAsync();
+        const textStyles = await figma.getLocalTextStylesAsync();
+        const effectStyles = await figma.getLocalEffectStylesAsync();
         // Create simplified versions that can be serialized
         const rawData = {
             variables: {
@@ -696,14 +771,16 @@
         const variableValues = {};
         for (const collection of collections) {
             for (const varId of collection.variableIds) {
-                const variable = figma.variables.getVariableById(varId);
+                const variable = await figma.variables.getVariableByIdAsync(varId);
                 if (variable) {
                     const valuesByMode = {};
                     // Process each mode value
                     for (const [modeId, value] of Object.entries(variable.valuesByMode)) {
                         if (value && typeof value === 'object') {
+                            valuesByMode[modeId] = {};
+                            // Type checking to handle the object properly
                             if ('type' in value && value.type === 'VARIABLE_ALIAS') {
-                                // For variable aliases
+                                // For variable aliases, just assign directly
                                 valuesByMode[modeId] = { type: 'VARIABLE_ALIAS', id: value.id };
                             }
                             else if ('r' in value && 'g' in value && 'b' in value) {
@@ -717,8 +794,13 @@
                                 };
                             }
                             else {
-                                // For other object types
-                                valuesByMode[modeId] = Object.assign({}, value);
+                                // For other object types, copy properties manually
+                                valuesByMode[modeId] = {};
+                                // Use type assertion to treat value as a Record<string, any>
+                                const objValue = value;
+                                for (const key in objValue) {
+                                    valuesByMode[modeId][key] = objValue[key];
+                                }
                             }
                         }
                         else {
@@ -747,8 +829,13 @@
         if (msg.type === 'export-tokens-only') {
             try {
                 // Get all collections
-                const collections = figma.variables.getLocalVariableCollections();
+                const collections = await figma.variables.getLocalVariableCollectionsAsync();
                 const allTokens = {};
+                // Process styles once since they're shared across collections
+                const sharedStyles = {
+                    typography: await processTextStyles(),
+                    effects: await processEffectStyles()
+                };
                 for (const collection of collections) {
                     // Process collections with multiple modes
                     if (collection.modes.length > 1) {
@@ -759,10 +846,20 @@
                             const tokenName = `${collectionName}_${modeName}`;
                             // Include styles for non-base collections in all modes
                             if (!collection.name.startsWith('.')) {
-                                allTokens[tokenName] = Object.assign(Object.assign({}, processCollection(collection, mode.modeId)), { typography: processTextStyles(), effects: processEffectStyles() });
+                                // Create collection tokens object
+                                const collectionTokens = await processCollection(collection, mode.modeId);
+                                // Initialize result object
+                                allTokens[tokenName] = {};
+                                // Copy collection tokens
+                                for (const key in collectionTokens) {
+                                    allTokens[tokenName][key] = collectionTokens[key];
+                                }
+                                // Copy shared styles
+                                allTokens[tokenName]['typography'] = sharedStyles.typography;
+                                allTokens[tokenName]['effects'] = sharedStyles.effects;
                             }
                             else {
-                                allTokens[tokenName] = processCollection(collection, mode.modeId);
+                                allTokens[tokenName] = await processCollection(collection, mode.modeId);
                             }
                         }
                     }
@@ -771,10 +868,20 @@
                         const collectionName = sanitizeCollectionName(collection.name);
                         // Include styles for non-base collections
                         if (!collection.name.startsWith('.')) {
-                            allTokens[collectionName] = Object.assign(Object.assign({}, processCollection(collection)), { typography: processTextStyles(), effects: processEffectStyles() });
+                            // Create collection tokens object
+                            const collectionTokens = await processCollection(collection);
+                            // Initialize result object
+                            allTokens[collectionName] = {};
+                            // Copy collection tokens
+                            for (const key in collectionTokens) {
+                                allTokens[collectionName][key] = collectionTokens[key];
+                            }
+                            // Copy shared styles
+                            allTokens[collectionName]['typography'] = sharedStyles.typography;
+                            allTokens[collectionName]['effects'] = sharedStyles.effects;
                         }
                         else {
-                            allTokens[collectionName] = processCollection(collection);
+                            allTokens[collectionName] = await processCollection(collection);
                         }
                     }
                 }
@@ -794,7 +901,7 @@
         else if (msg.type === 'export-raw-only') {
             try {
                 // Get raw Figma data
-                const rawFigmaData = collectRawFigmaData();
+                const rawFigmaData = await collectRawFigmaData();
                 // Send only the raw data to the UI for download
                 figma.ui.postMessage({
                     type: 'download',

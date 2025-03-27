@@ -29,10 +29,10 @@ function sanitizeCollectionName(name: string): string {
  * Collects raw Figma API data for variables and styles
  * Used for debugging and verification purposes
  */
-function collectRawFigmaData(): Record<string, any> {
-  const collections = figma.variables.getLocalVariableCollections();
-  const textStyles = figma.getLocalTextStyles();
-  const effectStyles = figma.getLocalEffectStyles();
+async function collectRawFigmaData(): Promise<Record<string, any>> {
+  const collections = await figma.variables.getLocalVariableCollectionsAsync();
+  const textStyles = await figma.getLocalTextStylesAsync();
+  const effectStyles = await figma.getLocalEffectStylesAsync();
   
   // Create simplified versions that can be serialized
   const rawData: Record<string, any> = {
@@ -134,15 +134,17 @@ function collectRawFigmaData(): Record<string, any> {
   const variableValues: Record<string, any> = {};
   for (const collection of collections) {
     for (const varId of collection.variableIds) {
-      const variable = figma.variables.getVariableById(varId);
+      const variable = await figma.variables.getVariableByIdAsync(varId);
       if (variable) {
         const valuesByMode: Record<string, any> = {};
         
         // Process each mode value
         for (const [modeId, value] of Object.entries(variable.valuesByMode)) {
           if (value && typeof value === 'object') {
+            valuesByMode[modeId] = {};
+            // Type checking to handle the object properly
             if ('type' in value && value.type === 'VARIABLE_ALIAS') {
-              // For variable aliases
+              // For variable aliases, just assign directly
               valuesByMode[modeId] = { type: 'VARIABLE_ALIAS', id: (value as VariableAlias).id };
             } else if ('r' in value && 'g' in value && 'b' in value) {
               // For colors
@@ -154,8 +156,13 @@ function collectRawFigmaData(): Record<string, any> {
                 a: 'a' in colorValue ? colorValue.a : 1 
               };
             } else {
-              // For other object types
-              valuesByMode[modeId] = { ...value };
+              // For other object types, copy properties manually
+              valuesByMode[modeId] = {};
+              // Use type assertion to treat value as a Record<string, any>
+              const objValue = value as Record<string, any>;
+              for (const key in objValue) {
+                (valuesByMode[modeId] as Record<string, any>)[key] = objValue[key];
+              }
             }
           } else {
             // For primitive values
@@ -186,8 +193,14 @@ figma.ui.onmessage = async (msg: Message) => {
   if (msg.type === 'export-tokens-only') {
     try {
       // Get all collections
-      const collections = figma.variables.getLocalVariableCollections();
+      const collections = await figma.variables.getLocalVariableCollectionsAsync();
       const allTokens: { [key: string]: any } = {};
+      
+      // Process styles once since they're shared across collections
+      const sharedStyles = {
+        typography: await processTextStyles(),
+        effects: await processEffectStyles()
+      };
       
       for (const collection of collections) {
         // Process collections with multiple modes
@@ -200,13 +213,22 @@ figma.ui.onmessage = async (msg: Message) => {
             
             // Include styles for non-base collections in all modes
             if (!collection.name.startsWith('.')) {
-              allTokens[tokenName] = {
-                ...processCollection(collection, mode.modeId),
-                typography: processTextStyles(),
-                effects: processEffectStyles()
-              };
+              // Create collection tokens object
+              const collectionTokens = await processCollection(collection, mode.modeId);
+              
+              // Initialize result object
+              allTokens[tokenName] = {};
+              
+              // Copy collection tokens
+              for (const key in collectionTokens) {
+                allTokens[tokenName][key] = collectionTokens[key];
+              }
+              
+              // Copy shared styles
+              allTokens[tokenName]['typography'] = sharedStyles.typography;
+              allTokens[tokenName]['effects'] = sharedStyles.effects;
             } else {
-              allTokens[tokenName] = processCollection(collection, mode.modeId);
+              allTokens[tokenName] = await processCollection(collection, mode.modeId);
             }
           }
         } else {
@@ -215,13 +237,22 @@ figma.ui.onmessage = async (msg: Message) => {
           
           // Include styles for non-base collections
           if (!collection.name.startsWith('.')) {
-            allTokens[collectionName] = {
-              ...processCollection(collection),
-              typography: processTextStyles(),
-              effects: processEffectStyles()
-            };
+            // Create collection tokens object
+            const collectionTokens = await processCollection(collection);
+            
+            // Initialize result object
+            allTokens[collectionName] = {};
+            
+            // Copy collection tokens
+            for (const key in collectionTokens) {
+              allTokens[collectionName][key] = collectionTokens[key];
+            }
+            
+            // Copy shared styles
+            allTokens[collectionName]['typography'] = sharedStyles.typography;
+            allTokens[collectionName]['effects'] = sharedStyles.effects;
           } else {
-            allTokens[collectionName] = processCollection(collection);
+            allTokens[collectionName] = await processCollection(collection);
           }
         }
       }
@@ -241,7 +272,7 @@ figma.ui.onmessage = async (msg: Message) => {
   } else if (msg.type === 'export-raw-only') {
     try {
       // Get raw Figma data
-      const rawFigmaData = collectRawFigmaData();
+      const rawFigmaData = await collectRawFigmaData();
 
       // Send only the raw data to the UI for download
       figma.ui.postMessage({
