@@ -1,2797 +1,4 @@
 {
-  "core": {
-    "color": {
-      "black": {
-        "$value": "#13191e",
-        "$type": "color",
-        "$figmaId": "VariableID:7967:11373"
-      },
-      "pure-white": {
-        "$value": "#ffffff",
-        "$type": "color",
-        "$figmaId": "VariableID:7967:11374"
-      },
-      "pure-black": {
-        "$value": "#000000",
-        "$type": "color",
-        "$figmaId": "VariableID:7967:11375"
-      },
-      "focus": {
-        "$value": "#0f62fe",
-        "$type": "color",
-        "$figmaId": "VariableID:7967:11376"
-      },
-      "gold": {
-        "0": {
-          "$value": "#fcfafa",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11377"
-        },
-        "3": {
-          "$value": "#f5f2f1",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11378"
-        },
-        "7": {
-          "$value": "#eeeae5",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11379"
-        },
-        "10": {
-          "$value": "#eae3da",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11380"
-        },
-        "15": {
-          "$value": "#e3d0b8",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11381"
-        },
-        "20": {
-          "$value": "#dfc39e",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11382"
-        },
-        "25": {
-          "$value": "#dcb480",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11383"
-        },
-        "30": {
-          "$value": "#d8a45f",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11384"
-        },
-        "35": {
-          "$value": "#da9a45",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11385"
-        },
-        "40": {
-          "$value": "#d29137",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11386"
-        },
-        "45": {
-          "$value": "#c5832a",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11387"
-        },
-        "50": {
-          "$value": "#ba7920",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11388"
-        },
-        "55": {
-          "$value": "#a66915",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11389"
-        },
-        "60": {
-          "$value": "#9a6014",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11390"
-        },
-        "65": {
-          "$value": "#8c5407",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11391"
-        },
-        "70": {
-          "$value": "#7a4909",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11392"
-        },
-        "73": {
-          "$value": "#6d4108",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11393"
-        },
-        "75": {
-          "$value": "#633a0a",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11394"
-        },
-        "78": {
-          "$value": "#583409",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11395"
-        },
-        "80": {
-          "$value": "#522e03",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11396"
-        },
-        "83": {
-          "$value": "#4a2903",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11397"
-        },
-        "85": {
-          "$value": "#3f2300",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11398"
-        },
-        "88": {
-          "$value": "#331c00",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11399"
-        },
-        "90": {
-          "$value": "#2d1803",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11400"
-        },
-        "93": {
-          "$value": "#211202",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11401"
-        },
-        "95": {
-          "$value": "#1a0e04",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11402"
-        },
-        "100": {
-          "$value": "#0f0000",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11403"
-        }
-      },
-      "gray": {
-        "0": {
-          "$value": "#fbfbfb",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11404"
-        },
-        "3": {
-          "$value": "#f4f3f2",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11405"
-        },
-        "7": {
-          "$value": "#ebe9e8",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11406"
-        },
-        "10": {
-          "$value": "#e3e0df",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11407"
-        },
-        "15": {
-          "$value": "#d7d4d3",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11408"
-        },
-        "20": {
-          "$value": "#cbc7c6",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11409"
-        },
-        "25": {
-          "$value": "#bfbcbb",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11410"
-        },
-        "30": {
-          "$value": "#b3afae",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11411"
-        },
-        "35": {
-          "$value": "#a7a4a3",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11412"
-        },
-        "40": {
-          "$value": "#9b9796",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11413"
-        },
-        "45": {
-          "$value": "#8f8c8b",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11414"
-        },
-        "50": {
-          "$value": "#827f7e",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11415"
-        },
-        "55": {
-          "$value": "#767372",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11416"
-        },
-        "60": {
-          "$value": "#6a6766",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11417"
-        },
-        "65": {
-          "$value": "#5e5b5a",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11418"
-        },
-        "70": {
-          "$value": "#514e4d",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11419"
-        },
-        "73": {
-          "$value": "#4c4948",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11420"
-        },
-        "75": {
-          "$value": "#444140",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11421"
-        },
-        "78": {
-          "$value": "#3f3c3b",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11422"
-        },
-        "80": {
-          "$value": "#383635",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11423"
-        },
-        "83": {
-          "$value": "#32302f",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11424"
-        },
-        "85": {
-          "$value": "#2c2a29",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11425"
-        },
-        "88": {
-          "$value": "#282625",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11426"
-        },
-        "90": {
-          "$value": "#201e1d",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11427"
-        },
-        "93": {
-          "$value": "#1b1918",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11428"
-        },
-        "95": {
-          "$value": "#141110",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11429"
-        },
-        "100": {
-          "$value": "#080402",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11430"
-        }
-      },
-      "green": {
-        "0": {
-          "$value": "#f5fbf7",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11431"
-        },
-        "3": {
-          "$value": "#e9f6ee",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11432"
-        },
-        "7": {
-          "$value": "#d7efdf",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11433"
-        },
-        "10": {
-          "$value": "#c6ead0",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11434"
-        },
-        "15": {
-          "$value": "#aae1b7",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11435"
-        },
-        "20": {
-          "$value": "#89daa0",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11436"
-        },
-        "25": {
-          "$value": "#6dd18b",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11437"
-        },
-        "30": {
-          "$value": "#4dc679",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11438"
-        },
-        "35": {
-          "$value": "#40ba6f",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11439"
-        },
-        "40": {
-          "$value": "#30ac63",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11440"
-        },
-        "45": {
-          "$value": "#1da158",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11441"
-        },
-        "50": {
-          "$value": "#01944d",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11442"
-        },
-        "55": {
-          "$value": "#008840",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11443"
-        },
-        "60": {
-          "$value": "#007934",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11444"
-        },
-        "65": {
-          "$value": "#006d29",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11445"
-        },
-        "70": {
-          "$value": "#00611e",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11446"
-        },
-        "73": {
-          "$value": "#005710",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11447"
-        },
-        "75": {
-          "$value": "#00510f",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11448"
-        },
-        "78": {
-          "$value": "#004c03",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11449"
-        },
-        "80": {
-          "$value": "#004502",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11450"
-        },
-        "83": {
-          "$value": "#003d00",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11451"
-        },
-        "85": {
-          "$value": "#003700",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11452"
-        },
-        "88": {
-          "$value": "#013300",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11453"
-        },
-        "90": {
-          "$value": "#012c00",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11454"
-        },
-        "93": {
-          "$value": "#012400",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11455"
-        },
-        "95": {
-          "$value": "#011b00",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11456"
-        },
-        "100": {
-          "$value": "#010800",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11457"
-        }
-      },
-      "blue": {
-        "0": {
-          "$value": "#fafbff",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11458"
-        },
-        "3": {
-          "$value": "#ecf4f8",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11459"
-        },
-        "7": {
-          "$value": "#ddebf3",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11460"
-        },
-        "10": {
-          "$value": "#cde6eb",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11461"
-        },
-        "15": {
-          "$value": "#b2dde6",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11462"
-        },
-        "20": {
-          "$value": "#94d4de",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11463"
-        },
-        "25": {
-          "$value": "#77cad8",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11464"
-        },
-        "30": {
-          "$value": "#54c0cd",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11465"
-        },
-        "35": {
-          "$value": "#30b5c4",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11466"
-        },
-        "40": {
-          "$value": "#19a8b8",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11467"
-        },
-        "45": {
-          "$value": "#009bad",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11468"
-        },
-        "50": {
-          "$value": "#0190a0",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11469"
-        },
-        "55": {
-          "$value": "#008292",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11470"
-        },
-        "60": {
-          "$value": "#007586",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11471"
-        },
-        "65": {
-          "$value": "#006979",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11472"
-        },
-        "70": {
-          "$value": "#005b6d",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11473"
-        },
-        "73": {
-          "$value": "#005366",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11474"
-        },
-        "75": {
-          "$value": "#004d5f",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11475"
-        },
-        "78": {
-          "$value": "#004657",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11476"
-        },
-        "80": {
-          "$value": "#004252",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11477"
-        },
-        "83": {
-          "$value": "#00394d",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11478"
-        },
-        "85": {
-          "$value": "#003344",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11479"
-        },
-        "88": {
-          "$value": "#012e41",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11480"
-        },
-        "90": {
-          "$value": "#012839",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11481"
-        },
-        "93": {
-          "$value": "#002233",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11482"
-        },
-        "95": {
-          "$value": "#001c2a",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11483"
-        },
-        "100": {
-          "$value": "#000a23",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11484"
-        }
-      },
-      "pink": {
-        "0": {
-          "$value": "#fff8f6",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11485"
-        },
-        "3": {
-          "$value": "#fff1f0",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11486"
-        },
-        "7": {
-          "$value": "#ffdedb",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11487"
-        },
-        "10": {
-          "$value": "#ffd6d2",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11488"
-        },
-        "15": {
-          "$value": "#ffc5c1",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11489"
-        },
-        "20": {
-          "$value": "#fbb7b4",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11490"
-        },
-        "25": {
-          "$value": "#efaba8",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11491"
-        },
-        "30": {
-          "$value": "#e29e9d",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11492"
-        },
-        "35": {
-          "$value": "#d49294",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11493"
-        },
-        "40": {
-          "$value": "#ca8588",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11494"
-        },
-        "45": {
-          "$value": "#bc7a7e",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11495"
-        },
-        "50": {
-          "$value": "#b06d74",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11496"
-        },
-        "55": {
-          "$value": "#a35f6a",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11497"
-        },
-        "60": {
-          "$value": "#95535d",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11498"
-        },
-        "65": {
-          "$value": "#894755",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11499"
-        },
-        "70": {
-          "$value": "#7c394a",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11500"
-        },
-        "73": {
-          "$value": "#763247",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11501"
-        },
-        "75": {
-          "$value": "#6d293e",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11502"
-        },
-        "78": {
-          "$value": "#66243a",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11503"
-        },
-        "80": {
-          "$value": "#5f1e34",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11504"
-        },
-        "83": {
-          "$value": "#5a1633",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11505"
-        },
-        "85": {
-          "$value": "#530e2b",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11506"
-        },
-        "88": {
-          "$value": "#4a0825",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11507"
-        },
-        "90": {
-          "$value": "#45001f",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11508"
-        },
-        "93": {
-          "$value": "#3d0015",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11509"
-        },
-        "95": {
-          "$value": "#350012",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11510"
-        },
-        "100": {
-          "$value": "#2e0003",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11511"
-        }
-      },
-      "salmon": {
-        "0": {
-          "$value": "#fef8f8",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11512"
-        },
-        "3": {
-          "$value": "#feefeb",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11513"
-        },
-        "7": {
-          "$value": "#fedfd8",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11514"
-        },
-        "10": {
-          "$value": "#fed6ce",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11515"
-        },
-        "15": {
-          "$value": "#fec3b1",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11516"
-        },
-        "20": {
-          "$value": "#ffb296",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11517"
-        },
-        "25": {
-          "$value": "#ffa378",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11518"
-        },
-        "30": {
-          "$value": "#f9945e",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11519"
-        },
-        "35": {
-          "$value": "#ed8955",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11520"
-        },
-        "40": {
-          "$value": "#e07b4d",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11521"
-        },
-        "45": {
-          "$value": "#d27146",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11522"
-        },
-        "50": {
-          "$value": "#c5653f",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11523"
-        },
-        "55": {
-          "$value": "#b55638",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11524"
-        },
-        "60": {
-          "$value": "#a74930",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11525"
-        },
-        "65": {
-          "$value": "#993c2b",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11526"
-        },
-        "70": {
-          "$value": "#892f26",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11527"
-        },
-        "73": {
-          "$value": "#842724",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11528"
-        },
-        "75": {
-          "$value": "#7c1e1e",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11529"
-        },
-        "78": {
-          "$value": "#751515",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11530"
-        },
-        "80": {
-          "$value": "#6c0f17",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11531"
-        },
-        "83": {
-          "$value": "#630814",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11532"
-        },
-        "85": {
-          "$value": "#5e0010",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11533"
-        },
-        "88": {
-          "$value": "#570007",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11534"
-        },
-        "90": {
-          "$value": "#4e0000",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11535"
-        },
-        "93": {
-          "$value": "#420002",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11536"
-        },
-        "95": {
-          "$value": "#3e0001",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11537"
-        },
-        "100": {
-          "$value": "#340002",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11538"
-        }
-      },
-      "orange": {
-        "0": {
-          "$value": "#fff9f1",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11539"
-        },
-        "3": {
-          "$value": "#ffefe5",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11540"
-        },
-        "7": {
-          "$value": "#ffe0cc",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11541"
-        },
-        "10": {
-          "$value": "#ffd7bd",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11542"
-        },
-        "15": {
-          "$value": "#ffc39f",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11543"
-        },
-        "20": {
-          "$value": "#ffb27e",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11544"
-        },
-        "25": {
-          "$value": "#fe9f5f",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11545"
-        },
-        "30": {
-          "$value": "#ff8b40",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11546"
-        },
-        "35": {
-          "$value": "#ff7b28",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11547"
-        },
-        "40": {
-          "$value": "#f46e15",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11548"
-        },
-        "45": {
-          "$value": "#e76205",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11549"
-        },
-        "50": {
-          "$value": "#d75001",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11550"
-        },
-        "55": {
-          "$value": "#c54900",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11551"
-        },
-        "60": {
-          "$value": "#b43c00",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11552"
-        },
-        "65": {
-          "$value": "#a53100",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11553"
-        },
-        "70": {
-          "$value": "#942601",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11554"
-        },
-        "73": {
-          "$value": "#831b01",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11555"
-        },
-        "75": {
-          "$value": "#811701",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11556"
-        },
-        "78": {
-          "$value": "#740e01",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11557"
-        },
-        "80": {
-          "$value": "#6f0801",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11558"
-        },
-        "83": {
-          "$value": "#650401",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11559"
-        },
-        "85": {
-          "$value": "#5f0000",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11560"
-        },
-        "88": {
-          "$value": "#520000",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11561"
-        },
-        "90": {
-          "$value": "#4e0000",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11562"
-        },
-        "93": {
-          "$value": "#420000",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11563"
-        },
-        "95": {
-          "$value": "#3c0000",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11564"
-        },
-        "100": {
-          "$value": "#320003",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11565"
-        }
-      },
-      "yellow": {
-        "0": {
-          "$value": "#fff9f1",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11566"
-        },
-        "3": {
-          "$value": "#fff0e0",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11567"
-        },
-        "7": {
-          "$value": "#ffe2c2",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11568"
-        },
-        "10": {
-          "$value": "#ffd8a5",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11569"
-        },
-        "15": {
-          "$value": "#ffc876",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11570"
-        },
-        "20": {
-          "$value": "#ffb84a",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11571"
-        },
-        "25": {
-          "$value": "#ffa920",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11572"
-        },
-        "30": {
-          "$value": "#f09d01",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11573"
-        },
-        "35": {
-          "$value": "#e29101",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11574"
-        },
-        "40": {
-          "$value": "#d38500",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11575"
-        },
-        "45": {
-          "$value": "#c67a00",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11576"
-        },
-        "50": {
-          "$value": "#b86e01",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11577"
-        },
-        "55": {
-          "$value": "#a96100",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11578"
-        },
-        "60": {
-          "$value": "#985600",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11579"
-        },
-        "65": {
-          "$value": "#894b00",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11580"
-        },
-        "70": {
-          "$value": "#7b3f01",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11581"
-        },
-        "73": {
-          "$value": "#743901",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11582"
-        },
-        "75": {
-          "$value": "#683301",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11583"
-        },
-        "78": {
-          "$value": "#602d00",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11584"
-        },
-        "80": {
-          "$value": "#592800",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11585"
-        },
-        "83": {
-          "$value": "#522300",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11586"
-        },
-        "85": {
-          "$value": "#491d00",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11587"
-        },
-        "88": {
-          "$value": "#421700",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11588"
-        },
-        "90": {
-          "$value": "#3b1200",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11589"
-        },
-        "93": {
-          "$value": "#330a00",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11590"
-        },
-        "95": {
-          "$value": "#2b0400",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11591"
-        },
-        "100": {
-          "$value": "#230000",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11592"
-        }
-      },
-      "red": {
-        "0": {
-          "$value": "#fff6f9",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11593"
-        },
-        "3": {
-          "$value": "#ffeceb",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11594"
-        },
-        "7": {
-          "$value": "#ffdedb",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11595"
-        },
-        "10": {
-          "$value": "#ffd5ce",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11596"
-        },
-        "15": {
-          "$value": "#ffc3b9",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11597"
-        },
-        "20": {
-          "$value": "#ffb0a1",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11598"
-        },
-        "25": {
-          "$value": "#fe9d8c",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11599"
-        },
-        "30": {
-          "$value": "#ff8872",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11600"
-        },
-        "35": {
-          "$value": "#ff745f",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11601"
-        },
-        "40": {
-          "$value": "#ff5f4d",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11602"
-        },
-        "45": {
-          "$value": "#f84d3c",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11603"
-        },
-        "50": {
-          "$value": "#e74135",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11604"
-        },
-        "55": {
-          "$value": "#d3372b",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11605"
-        },
-        "60": {
-          "$value": "#bf2a23",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11606"
-        },
-        "65": {
-          "$value": "#ad221f",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11607"
-        },
-        "70": {
-          "$value": "#9a1a19",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11608"
-        },
-        "73": {
-          "$value": "#8d1119",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11609"
-        },
-        "75": {
-          "$value": "#840b10",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11610"
-        },
-        "78": {
-          "$value": "#770d12",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11611"
-        },
-        "80": {
-          "$value": "#710208",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11612"
-        },
-        "83": {
-          "$value": "#6a0101",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11613"
-        },
-        "85": {
-          "$value": "#5e0000",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11614"
-        },
-        "88": {
-          "$value": "#570000",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11615"
-        },
-        "90": {
-          "$value": "#4a0001",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11616"
-        },
-        "93": {
-          "$value": "#420001",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11617"
-        },
-        "95": {
-          "$value": "#380001",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11618"
-        },
-        "100": {
-          "$value": "#2e0002",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11619"
-        }
-      },
-      "purple": {
-        "0": {
-          "$value": "#faf5ff",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81730"
-        },
-        "3": {
-          "$value": "#f1e0ff",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81731"
-        },
-        "7": {
-          "$value": "#e8ccff",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81732"
-        },
-        "10": {
-          "$value": "#dfb8ff",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81733"
-        },
-        "15": {
-          "$value": "#d5a3ff",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81734"
-        },
-        "20": {
-          "$value": "#cc8fff",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81735"
-        },
-        "25": {
-          "$value": "#c37aff",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81736"
-        },
-        "30": {
-          "$value": "#ba66ff",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81737"
-        },
-        "35": {
-          "$value": "#b052ff",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81738"
-        },
-        "40": {
-          "$value": "#a73dff",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81739"
-        },
-        "45": {
-          "$value": "#9e29ff",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81740"
-        },
-        "50": {
-          "$value": "#9514ff",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81741"
-        },
-        "55": {
-          "$value": "#8c00ff",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81742"
-        },
-        "60": {
-          "$value": "#8000eb",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81743"
-        },
-        "65": {
-          "$value": "#7500d6",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81744"
-        },
-        "70": {
-          "$value": "#6a00c2",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81745"
-        },
-        "73": {
-          "$value": "#5f00ad",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81746"
-        },
-        "75": {
-          "$value": "#540099",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81747"
-        },
-        "78": {
-          "$value": "#490085",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81748"
-        },
-        "80": {
-          "$value": "#3d0070",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81749"
-        },
-        "83": {
-          "$value": "#32005c",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81750"
-        },
-        "85": {
-          "$value": "#270047",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81751"
-        },
-        "88": {
-          "$value": "#1c0033",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81752"
-        },
-        "90": {
-          "$value": "#11001f",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81753"
-        },
-        "93": {
-          "$value": "#06000a",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81754"
-        },
-        "95": {
-          "$value": "#050008",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81755"
-        },
-        "100": {
-          "$value": "#050008",
-          "$type": "color",
-          "$figmaId": "VariableID:10139:81756"
-        }
-      },
-      "gradient": {
-        "neutral-light-3": {
-          "$value": "#ffffff",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11620"
-        },
-        "neutral-light-4": {
-          "$value": "#ffffff",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11621"
-        }
-      },
-      "parsely-green": {
-        "0": {
-          "$value": "#f3feed",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11622"
-        },
-        "3": {
-          "$value": "#e9fbdf",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11623"
-        },
-        "7": {
-          "$value": "#dbf5cc",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11624"
-        },
-        "10": {
-          "$value": "#c6ecb0",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11625"
-        },
-        "15": {
-          "$value": "#afe393",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11626"
-        },
-        "20": {
-          "$value": "#a0d782",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11627"
-        },
-        "25": {
-          "$value": "#94cb77",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11628"
-        },
-        "30": {
-          "$value": "#87be6b",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11629"
-        },
-        "35": {
-          "$value": "#7cb260",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11630"
-        },
-        "40": {
-          "$value": "#6fa654",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11631"
-        },
-        "45": {
-          "$value": "#649a49",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11632"
-        },
-        "50": {
-          "$value": "#588e3e",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11633"
-        },
-        "55": {
-          "$value": "#488131",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11634"
-        },
-        "60": {
-          "$value": "#3b7425",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11635"
-        },
-        "65": {
-          "$value": "#29681b",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11636"
-        },
-        "70": {
-          "$value": "#165c0d",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11637"
-        },
-        "73": {
-          "$value": "#0b5706",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11638"
-        },
-        "75": {
-          "$value": "#004e00",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11639"
-        },
-        "78": {
-          "$value": "#004700",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11640"
-        },
-        "80": {
-          "$value": "#004200",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11641"
-        },
-        "83": {
-          "$value": "#003b00",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11642"
-        },
-        "85": {
-          "$value": "#003500",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11643"
-        },
-        "88": {
-          "$value": "#003000",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11644"
-        },
-        "90": {
-          "$value": "#002900",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11645"
-        },
-        "93": {
-          "$value": "#002400",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11646"
-        },
-        "95": {
-          "$value": "#001b00",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11647"
-        },
-        "100": {
-          "$value": "#000800",
-          "$type": "color",
-          "$figmaId": "VariableID:7967:11648"
-        }
-      }
-    },
-    "fontSize": {
-      "static": {
-        "0": {
-          "$value": {
-            "value": 0.688,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:10650:45471"
-        },
-        "1": {
-          "$value": {
-            "value": 0.75,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:10650:85860"
-        },
-        "2": {
-          "$value": {
-            "value": 0.875,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:10650:85861"
-        },
-        "3": {
-          "$value": {
-            "value": 1,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:10650:85862"
-        },
-        "4": {
-          "$value": {
-            "value": 1.125,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:10650:85863"
-        },
-        "5": {
-          "$value": {
-            "value": 1.25,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:10650:85864"
-        },
-        "6": {
-          "$value": {
-            "value": 2,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:10650:85865"
-        },
-        "7": {
-          "$value": {
-            "value": 2.5,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:10650:85866"
-        }
-      },
-      "figma": {
-        "1": {
-          "S": {
-            "$value": {
-              "value": 0.768,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11649"
-          },
-          "M": {
-            "$value": {
-              "value": 0.703,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11650"
-          },
-          "L": {
-            "$value": {
-              "value": 0.627,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11651"
-          },
-          "XL": {
-            "$value": {
-              "value": 0.576,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11652"
-          },
-          "XXL": {
-            "$value": {
-              "value": 0.533,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11653"
-          },
-          "MAX": {
-            "$value": {
-              "value": 0.511,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11654"
-          }
-        },
-        "2": {
-          "S": {
-            "$value": {
-              "value": 0.82,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11655"
-          },
-          "M": {
-            "$value": {
-              "value": 0.767,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11656"
-          },
-          "L": {
-            "$value": {
-              "value": 0.706,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11657"
-          },
-          "XL": {
-            "$value": {
-              "value": 0.665,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11658"
-          },
-          "XXL": {
-            "$value": {
-              "value": 0.63,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11659"
-          },
-          "MAX": {
-            "$value": {
-              "value": 0.62,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11660"
-          }
-        },
-        "3": {
-          "S": {
-            "$value": {
-              "value": 0.876,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11661"
-          },
-          "M": {
-            "$value": {
-              "value": 0.84,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11662"
-          },
-          "L": {
-            "$value": {
-              "value": 0.799,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11663"
-          },
-          "XL": {
-            "$value": {
-              "value": 0.771,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11664"
-          },
-          "XXL": {
-            "$value": {
-              "value": 0.747,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11665"
-          },
-          "MAX": {
-            "$value": {
-              "value": 0.74,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11666"
-          }
-        },
-        "4": {
-          "S": {
-            "$value": {
-              "value": 0.938,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11667"
-          },
-          "M": {
-            "$value": {
-              "value": 0.926,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11668"
-          },
-          "L": {
-            "$value": {
-              "value": 0.911,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11669"
-          },
-          "XL": {
-            "$value": {
-              "value": 0.901,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11670"
-          },
-          "XXL": {
-            "$value": {
-              "value": 0.892,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11671"
-          },
-          "MAX": {
-            "$value": {
-              "value": 0.89,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11672"
-          }
-        },
-        "5": {
-          "S": {
-            "$value": {
-              "value": 1,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11673"
-          },
-          "M": {
-            "$value": {
-              "value": 1.013,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11674"
-          },
-          "L": {
-            "$value": {
-              "value": 1.033,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11675"
-          },
-          "XL": {
-            "$value": {
-              "value": 1.046,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11676"
-          },
-          "XXL": {
-            "$value": {
-              "value": 1.057,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11677"
-          },
-          "MAX": {
-            "$value": {
-              "value": 1.06,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11678"
-          }
-        },
-        "6": {
-          "S": {
-            "$value": {
-              "value": 1.07,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11679"
-          },
-          "M": {
-            "$value": {
-              "value": 1.122,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11680"
-          },
-          "L": {
-            "$value": {
-              "value": 1.184,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11681"
-          },
-          "XL": {
-            "$value": {
-              "value": 1.225,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11682"
-          },
-          "XXL": {
-            "$value": {
-              "value": 1.26,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11683"
-          },
-          "MAX": {
-            "$value": {
-              "value": 1.278,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11684"
-          }
-        },
-        "7": {
-          "S": {
-            "$value": {
-              "value": 1.14,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11685"
-          },
-          "M": {
-            "$value": {
-              "value": 1.232,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11686"
-          },
-          "L": {
-            "$value": {
-              "value": 1.348,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11687"
-          },
-          "XL": {
-            "$value": {
-              "value": 1.426,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11688"
-          },
-          "XXL": {
-            "$value": {
-              "value": 1.491,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11689"
-          },
-          "MAX": {
-            "$value": {
-              "value": 1.524,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11690"
-          }
-        },
-        "8": {
-          "S": {
-            "$value": {
-              "value": 1.22,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11691"
-          },
-          "M": {
-            "$value": {
-              "value": 1.378,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11692"
-          },
-          "L": {
-            "$value": {
-              "value": 1.561,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11693"
-          },
-          "XL": {
-            "$value": {
-              "value": 1.685,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11694"
-          },
-          "XXL": {
-            "$value": {
-              "value": 1.79,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11695"
-          },
-          "MAX": {
-            "$value": {
-              "value": 1.84,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11696"
-          }
-        },
-        "9": {
-          "S": {
-            "$value": {
-              "value": 1.3,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11697"
-          },
-          "M": {
-            "$value": {
-              "value": 1.527,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11698"
-          },
-          "L": {
-            "$value": {
-              "value": 1.794,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11699"
-          },
-          "XL": {
-            "$value": {
-              "value": 1.974,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11700"
-          },
-          "XXL": {
-            "$value": {
-              "value": 2.126,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11701"
-          },
-          "MAX": {
-            "$value": {
-              "value": 2.2,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11702"
-          }
-        },
-        "10": {
-          "S": {
-            "$value": {
-              "value": 1.384,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11703"
-          },
-          "M": {
-            "$value": {
-              "value": 1.703,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11704"
-          },
-          "L": {
-            "$value": {
-              "value": 2.076,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11705"
-          },
-          "XL": {
-            "$value": {
-              "value": 2.326,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11706"
-          },
-          "XXL": {
-            "$value": {
-              "value": 2.539,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11707"
-          },
-          "MAX": {
-            "$value": {
-              "value": 2.64,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11708"
-          }
-        },
-        "11": {
-          "S": {
-            "$value": {
-              "value": 1.48,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11709"
-          },
-          "M": {
-            "$value": {
-              "value": 1.906,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11710"
-          },
-          "L": {
-            "$value": {
-              "value": 2.406,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11711"
-          },
-          "XL": {
-            "$value": {
-              "value": 2.743,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11712"
-          },
-          "XXL": {
-            "$value": {
-              "value": 3.028,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11713"
-          },
-          "MAX": {
-            "$value": {
-              "value": 3.17,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11714"
-          }
-        },
-        "12": {
-          "S": {
-            "$value": {
-              "value": 1.578,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11715"
-          },
-          "M": {
-            "$value": {
-              "value": 2.143,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11716"
-          },
-          "L": {
-            "$value": {
-              "value": 2.802,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11717"
-          },
-          "XL": {
-            "$value": {
-              "value": 3.246,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11718"
-          },
-          "XXL": {
-            "$value": {
-              "value": 3.622,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11719"
-          },
-          "MAX": {
-            "$value": {
-              "value": 3.81,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11720"
-          }
-        },
-        "13": {
-          "S": {
-            "$value": {
-              "value": 1.68,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11721"
-          },
-          "M": {
-            "$value": {
-              "value": 2.407,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11722"
-          },
-          "L": {
-            "$value": {
-              "value": 3.259,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11723"
-          },
-          "XL": {
-            "$value": {
-              "value": 3.834,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11724"
-          },
-          "XXL": {
-            "$value": {
-              "value": 4.321,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11725"
-          },
-          "MAX": {
-            "$value": {
-              "value": 4.564,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11726"
-          }
-        },
-        "14": {
-          "S": {
-            "$value": {
-              "value": 1.79,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11727"
-          },
-          "M": {
-            "$value": {
-              "value": 2.724,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11728"
-          },
-          "L": {
-            "$value": {
-              "value": 3.815,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11729"
-          },
-          "XL": {
-            "$value": {
-              "value": 4.549,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11730"
-          },
-          "XXL": {
-            "$value": {
-              "value": 5.172,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11731"
-          },
-          "MAX": {
-            "$value": {
-              "value": 5.48,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11732"
-          }
-        },
-        "15": {
-          "S": {
-            "$value": {
-              "value": 1.914,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11733"
-          },
-          "M": {
-            "$value": {
-              "value": 3.094,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11734"
-          },
-          "L": {
-            "$value": {
-              "value": 4.471,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11735"
-          },
-          "XL": {
-            "$value": {
-              "value": 5.398,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11736"
-          },
-          "XXL": {
-            "$value": {
-              "value": 6.185,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11737"
-          },
-          "MAX": {
-            "$value": {
-              "value": 6.579,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11738"
-          }
-        },
-        "12b": {
-          "S": {
-            "$value": {
-              "value": 3,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11739"
-          },
-          "M": {
-            "$value": {
-              "value": 3.189,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11740"
-          },
-          "L": {
-            "$value": {
-              "value": 3.409,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11741"
-          },
-          "XL": {
-            "$value": {
-              "value": 3.558,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11742"
-          },
-          "XXL": {
-            "$value": {
-              "value": 3.684,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11743"
-          },
-          "MAX": {
-            "$value": {
-              "value": 3.747,
-              "unit": "rem"
-            },
-            "$type": "dimension",
-            "$figmaId": "VariableID:7967:11744"
-          }
-        }
-      }
-    },
-    "borderRadius": {
-      "static": {
-        "0": {
-          "$value": {
-            "value": 0.13,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11745"
-        },
-        "1": {
-          "$value": {
-            "value": 0.25,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11746"
-        },
-        "2": {
-          "$value": {
-            "value": 0.5,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11747"
-        },
-        "3": {
-          "$value": {
-            "value": 1,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11748"
-        },
-        "4": {
-          "$value": {
-            "value": 2,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11749"
-        },
-        "5": {
-          "$value": {
-            "value": 2.5,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11750"
-        },
-        "6": {
-          "$value": {
-            "value": 3.5,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11751"
-        }
-      }
-    },
-    "space": {
-      "static": {
-        "0": {
-          "$value": {
-            "value": 0.13,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11752"
-        },
-        "1": {
-          "$value": {
-            "value": 0.25,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11753"
-        },
-        "2": {
-          "$value": {
-            "value": 0.5,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11754"
-        },
-        "3": {
-          "$value": {
-            "value": 0.75,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11755"
-        },
-        "4": {
-          "$value": {
-            "value": 1,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11756"
-        },
-        "5": {
-          "$value": {
-            "value": 1.5,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11757"
-        },
-        "6": {
-          "$value": {
-            "value": 2,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11758"
-        },
-        "7": {
-          "$value": {
-            "value": 3.5,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11759"
-        },
-        "8": {
-          "$value": {
-            "value": 5,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11760"
-        },
-        "9": {
-          "$value": {
-            "value": 7,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11761"
-        },
-        "10": {
-          "$value": {
-            "value": 10,
-            "unit": "rem"
-          },
-          "$type": "dimension",
-          "$figmaId": "VariableID:7967:11762"
-        }
-      }
-    },
-    "breakpoint": {
-      "S": {
-        "$value": {
-          "value": 20,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:7967:11763",
-        "$description": "< 655px"
-      },
-      "M": {
-        "$value": {
-          "value": 41,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:7967:11764",
-        "$description": "656–1047px"
-      },
-      "L": {
-        "$value": {
-          "value": 65.5,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:7967:11765",
-        "$description": "1048-1311px"
-      },
-      "XL": {
-        "$value": {
-          "value": 82,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:7967:11766",
-        "$description": "1312–1535px"
-      },
-      "XXL": {
-        "$value": {
-          "value": 96,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:7967:11767",
-        "$description": "1536–1647px"
-      },
-      "MAX": {
-        "$value": {
-          "value": 103,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:7967:11768",
-        "$description": "1648px +"
-      }
-    },
-    "alignment": {
-      "center": {
-        "$value": {
-          "value": 46.5,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:7967:11769",
-        "$description": "min-width: 744px"
-      },
-      "wide": {
-        "$value": {
-          "value": 63,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:7967:11770",
-        "$description": "min-width: 1008px"
-      },
-      "full": {
-        "$value": {
-          "value": 96,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:7967:11771",
-        "$description": "max-width: 1536px"
-      }
-    },
-    "lineHeight": {
-      "1": {
-        "$value": {
-          "value": 110,
-          "unit": "%"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10645:86646"
-      },
-      "2": {
-        "$value": {
-          "value": 120,
-          "unit": "%"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10645:86647"
-      },
-      "3": {
-        "$value": {
-          "value": 135,
-          "unit": "%"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10645:86648"
-      },
-      "4": {
-        "$value": {
-          "value": 140,
-          "unit": "%"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10645:86649"
-      },
-      "5": {
-        "$value": {
-          "value": 150,
-          "unit": "%"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10645:86650"
-      },
-      "6": {
-        "$value": {
-          "value": 160,
-          "unit": "%"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10650:85885"
-      }
-    },
-    "fontWeight": {
-      "light": {
-        "$value": {
-          "value": 12.5,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10645:86655"
-      },
-      "regular": {
-        "$value": {
-          "value": 25,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10645:86652"
-      },
-      "medium": {
-        "$value": {
-          "value": 31.25,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10645:86653"
-      },
-      "semiBold": {
-        "$value": {
-          "value": 37.5,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10647:15338"
-      },
-      "bold": {
-        "$value": {
-          "value": 43.75,
-          "unit": "rem"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10645:86654"
-      }
-    },
-    "letterSpacing": {
-      "none": {
-        "$value": {
-          "value": 0,
-          "unit": "%"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10645:86656"
-      },
-      "tight": {
-        "$value": {
-          "value": -1,
-          "unit": "%"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10645:86657"
-      },
-      "loose": {
-        "$value": {
-          "value": 3,
-          "unit": "%"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10645:86658"
-      },
-      "x-loose": {
-        "$value": {
-          "value": 5,
-          "unit": "%"
-        },
-        "$type": "dimension",
-        "$figmaId": "VariableID:10650:85886"
-      }
-    },
-    "fontFamily": {
-      "body": {
-        "$value": "Aktiv Grotesk VF",
-        "$type": "string",
-        "$figmaId": "VariableID:10647:54"
-      },
-      "heading": {
-        "$value": "Aktiv Grotesk VF",
-        "$type": "string",
-        "$figmaId": "VariableID:10647:55"
-      },
-      "mono": {
-        "$value": "SF Mono",
-        "$type": "string",
-        "$figmaId": "VariableID:10647:56"
-      }
-    }
-  },
   "wpvip product_light": {
     "background": {
       "primary": {
@@ -2902,7 +109,7 @@
       "radio-box": {
         "background": {
           "default": {
-            "$value": "rgba({color.gray.0},0.000)",
+            "$value": "rgba({color.gold.0},0.000)",
             "$type": "color",
             "$figmaId": "VariableID:7973:13178"
           },
@@ -2912,12 +119,12 @@
             "$figmaId": "VariableID:7973:13179"
           },
           "active": {
-            "$value": "rgba({color.gray.0},0.000)",
+            "$value": "rgba({color.gold.0},0.000)",
             "$type": "color",
             "$figmaId": "VariableID:7973:13180"
           },
           "disabled": {
-            "$value": "rgba({color.gray.0},0.000)",
+            "$value": "rgba({color.gold.0},0.000)",
             "$type": "color",
             "$figmaId": "VariableID:7973:13181"
           }
@@ -2993,7 +200,7 @@
       },
       "background": {
         "default": {
-          "$value": "rgba({color.gray.0},0.000)",
+          "$value": "rgba({color.gold.0},0.000)",
           "$type": "color",
           "$figmaId": "VariableID:7986:11541",
           "$description": "Use for input backgrounds"
@@ -3269,7 +476,7 @@
       "tertiary": {
         "background": {
           "default": {
-            "$value": "rgba({color.gray.0},0.000)",
+            "$value": "rgba({color.gold.0},0.000)",
             "$type": "color",
             "$figmaId": "VariableID:7973:13230"
           },
@@ -3279,7 +486,7 @@
             "$figmaId": "VariableID:7973:13231"
           },
           "disabled": {
-            "$value": "rgba({color.gray.0},0.000)",
+            "$value": "rgba({color.gold.0},0.000)",
             "$type": "color",
             "$figmaId": "VariableID:7973:13232"
           }
@@ -3322,7 +529,7 @@
       "ghost": {
         "background": {
           "default": {
-            "$value": "rgba({color.gray.0},0.000)",
+            "$value": "rgba({color.gold.0},0.000)",
             "$type": "color",
             "$figmaId": "VariableID:7973:13239"
           },
@@ -3332,7 +539,7 @@
             "$figmaId": "VariableID:7973:13240"
           },
           "disabled": {
-            "$value": "rgba({color.gray.0},0.000)",
+            "$value": "rgba({color.gold.0},0.000)",
             "$type": "color",
             "$figmaId": "VariableID:7973:13241"
           }
@@ -3431,7 +638,7 @@
         "secondary": {
           "background": {
             "default": {
-              "$value": "rgba({color.gray.0},0.000)",
+              "$value": "rgba({color.gold.0},0.000)",
               "$type": "color",
               "$figmaId": "VariableID:7973:13257"
             },
@@ -3441,7 +648,7 @@
               "$figmaId": "VariableID:7973:13258"
             },
             "disabled": {
-              "$value": "rgba({color.gray.0},0.000)",
+              "$value": "rgba({color.gold.0},0.000)",
               "$type": "color",
               "$figmaId": "VariableID:7973:13259"
             }
@@ -3484,7 +691,7 @@
         "ghost": {
           "background": {
             "default": {
-              "$value": "rgba({color.gray.0},0.000)",
+              "$value": "rgba({color.gold.0},0.000)",
               "$type": "color",
               "$figmaId": "VariableID:7973:13266"
             },
@@ -3494,7 +701,7 @@
               "$figmaId": "VariableID:7973:13267"
             },
             "disabled": {
-              "$value": "rgba({color.gray.0},0.000)",
+              "$value": "rgba({color.gold.0},0.000)",
               "$type": "color",
               "$figmaId": "VariableID:7973:13268"
             }
@@ -4434,6 +1641,14 @@
       }
     },
     "space": {
+      "0": {
+        "$value": {
+          "value": 0,
+          "unit": "rem"
+        },
+        "$type": "dimension",
+        "$figmaId": "VariableID:7973:13425"
+      },
       "1": {
         "$value": "{space.static.1}",
         "$type": "number",
@@ -4481,6 +1696,14 @@
       }
     },
     "borderRadius": {
+      "0": {
+        "$value": {
+          "value": 0,
+          "unit": "rem"
+        },
+        "$type": "dimension",
+        "$figmaId": "VariableID:8411:593757"
+      },
       "1": {
         "$value": "{borderRadius.static.0}",
         "$type": "number",
@@ -4525,10 +1748,7 @@
             "fontSize": "{fontSize.static.1}",
             "fontWeight": "{fontWeight.regular}",
             "lineHeight": "{lineHeight.5}",
-            "letterSpacing": {
-              "value": 1,
-              "unit": "%"
-            },
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 0,
               "unit": "px"
@@ -4542,14 +1762,8 @@
             "fontFamily": "{fontFamily.body}",
             "fontSize": "{fontSize.static.0}",
             "fontWeight": "{fontWeight.regular}",
-            "lineHeight": {
-              "value": 100,
-              "unit": "%"
-            },
-            "letterSpacing": {
-              "value": 2,
-              "unit": "%"
-            },
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.loose}",
             "paragraphSpacing": {
               "value": 0,
               "unit": "px"
@@ -4563,14 +1777,8 @@
             "fontFamily": "{fontFamily.body}",
             "fontSize": "{fontSize.static.1}",
             "fontWeight": "{fontWeight.regular}",
-            "lineHeight": {
-              "value": 100,
-              "unit": "%"
-            },
-            "letterSpacing": {
-              "value": 0.5,
-              "unit": "%"
-            },
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 0,
               "unit": "px"
@@ -4584,14 +1792,8 @@
             "fontFamily": "{fontFamily.body}",
             "fontSize": "{fontSize.static.2}",
             "fontWeight": "{fontWeight.semiBold}",
-            "lineHeight": {
-              "value": 100,
-              "unit": "%"
-            },
-            "letterSpacing": {
-              "value": 0.5,
-              "unit": "%"
-            },
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 0,
               "unit": "px"
@@ -4605,14 +1807,8 @@
             "fontFamily": "{fontFamily.body}",
             "fontSize": "{fontSize.static.2}",
             "fontWeight": "{fontWeight.regular}",
-            "lineHeight": {
-              "value": 100,
-              "unit": "%"
-            },
-            "letterSpacing": {
-              "value": 0.5,
-              "unit": "%"
-            },
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 0,
               "unit": "px"
@@ -4626,14 +1822,8 @@
             "fontFamily": "{fontFamily.body}",
             "fontSize": "{fontSize.static.2}",
             "fontWeight": "{fontWeight.bold}",
-            "lineHeight": {
-              "value": 100,
-              "unit": "%"
-            },
-            "letterSpacing": {
-              "value": 0.5,
-              "unit": "%"
-            },
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 0,
               "unit": "px"
@@ -4647,10 +1837,7 @@
             "fontFamily": "{fontFamily.body}",
             "fontSize": "{fontSize.static.1}",
             "fontWeight": "{fontWeight.semiBold}",
-            "lineHeight": {
-              "value": 100,
-              "unit": "%"
-            },
+            "lineHeight": "{lineHeight.1}",
             "letterSpacing": "{letterSpacing.x-loose}",
             "paragraphSpacing": {
               "value": 0,
@@ -4762,10 +1949,7 @@
             "fontSize": "{fontSize.static.1}",
             "fontWeight": "{fontWeight.regular}",
             "lineHeight": "{lineHeight.5}",
-            "letterSpacing": {
-              "value": 1,
-              "unit": "%"
-            },
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 12,
               "unit": "px"
@@ -4780,10 +1964,7 @@
             "fontSize": "{fontSize.static.2}",
             "fontWeight": "{fontWeight.regular}",
             "lineHeight": "{lineHeight.5}",
-            "letterSpacing": {
-              "value": 1,
-              "unit": "%"
-            },
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 14,
               "unit": "px"
@@ -4798,10 +1979,7 @@
             "fontSize": "{fontSize.static.5}",
             "fontWeight": "{fontWeight.regular}",
             "lineHeight": "{lineHeight.5}",
-            "letterSpacing": {
-              "value": 1,
-              "unit": "%"
-            },
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 19,
               "unit": "px"
@@ -4840,138 +2018,6 @@
           "$type": "typography",
           "$figmaId": "S:bc5fa086ca21bdac62ec85a5a46765de34a446b9,"
         }
-      }
-    },
-    "effects": {
-      "High": {
-        "$value": [
-          {
-            "color": "#00000005",
-            "offsetX": "0px",
-            "offsetY": "2.767256498336792px",
-            "blur": "2.2138051986694336px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000007",
-            "offsetX": "0px",
-            "offsetY": "6.650102138519287px",
-            "blur": "5.32008171081543px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000009",
-            "offsetX": "0px",
-            "offsetY": "12.521552085876465px",
-            "blur": "10.017241477966309px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#0000000b",
-            "offsetX": "0px",
-            "offsetY": "22.3363094329834px",
-            "blur": "17.869047164916992px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#0000000d",
-            "offsetX": "0px",
-            "offsetY": "41.777610778808594px",
-            "blur": "33.422088623046875px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000012",
-            "offsetX": "0px",
-            "offsetY": "100px",
-            "blur": "80px",
-            "spread": "0px",
-            "type": "dropShadow"
-          }
-        ],
-        "$type": "shadow",
-        "$figmaId": "S:10423adf28fcbc450f7bb07b5463f39b24949b54,"
-      },
-      "Medium": {
-        "$value": [
-          {
-            "color": "#00000003",
-            "offsetX": "0px",
-            "offsetY": "0.11069025844335556px",
-            "blur": "1.0515574216842651px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000003",
-            "offsetX": "0px",
-            "offsetY": "0.2660040855407715px",
-            "blur": "2.527038812637329px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000005",
-            "offsetX": "0px",
-            "offsetY": "0.5008620619773865px",
-            "blur": "4.758189678192139px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000005",
-            "offsetX": "0px",
-            "offsetY": "0.8934523463249207px",
-            "blur": "8.487797737121582px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000006",
-            "offsetX": "0px",
-            "offsetY": "1.6711044311523438px",
-            "blur": "15.87549114227295px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#0000000a",
-            "offsetX": "0px",
-            "offsetY": "14px",
-            "blur": "38px",
-            "spread": "0px",
-            "type": "dropShadow"
-          }
-        ],
-        "$type": "shadow",
-        "$figmaId": "S:5d713be8691854c7e04a78b591ee60a94cab5a88,"
-      },
-      "Low": {
-        "$value": [
-          {
-            "color": "#00000026",
-            "offsetX": "0px",
-            "offsetY": "1px",
-            "blur": "1px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#0000000d",
-            "offsetX": "0px",
-            "offsetY": "1px",
-            "blur": "5px",
-            "spread": "0px",
-            "type": "dropShadow"
-          }
-        ],
-        "$type": "shadow",
-        "$figmaId": "S:7ba42f11d53aba9c8f0bc813be67c154292422fb,"
       }
     }
   },
@@ -5725,12 +2771,12 @@
           "$figmaId": "VariableID:7973:13275"
         },
         "neutral": {
-          "$value": "#ffffff",
+          "$value": "#ffffffff",
           "$type": "color",
           "$figmaId": "VariableID:10139:59082"
         },
         "feature": {
-          "$value": "#ffffff",
+          "$value": "#ffffffff",
           "$type": "color",
           "$figmaId": "VariableID:10139:81757"
         }
@@ -5762,7 +2808,7 @@
           "$figmaId": "VariableID:7973:13279"
         },
         "feature": {
-          "$value": "#ffffff",
+          "$value": "#ffffffff",
           "$type": "color",
           "$figmaId": "VariableID:10139:81759"
         }
@@ -6617,6 +3663,14 @@
       }
     },
     "space": {
+      "0": {
+        "$value": {
+          "value": 0,
+          "unit": "rem"
+        },
+        "$type": "dimension",
+        "$figmaId": "VariableID:7973:13425"
+      },
       "1": {
         "$value": "{space.static.1}",
         "$type": "number",
@@ -6664,6 +3718,14 @@
       }
     },
     "borderRadius": {
+      "0": {
+        "$value": {
+          "value": 0,
+          "unit": "rem"
+        },
+        "$type": "dimension",
+        "$figmaId": "VariableID:8411:593757"
+      },
       "1": {
         "$value": "{borderRadius.static.0}",
         "$type": "number",
@@ -6708,10 +3770,7 @@
             "fontSize": "{fontSize.static.1}",
             "fontWeight": "{fontWeight.regular}",
             "lineHeight": "{lineHeight.5}",
-            "letterSpacing": {
-              "value": 1,
-              "unit": "%"
-            },
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 0,
               "unit": "px"
@@ -6725,14 +3784,8 @@
             "fontFamily": "{fontFamily.body}",
             "fontSize": "{fontSize.static.0}",
             "fontWeight": "{fontWeight.regular}",
-            "lineHeight": {
-              "value": 100,
-              "unit": "%"
-            },
-            "letterSpacing": {
-              "value": 2,
-              "unit": "%"
-            },
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.loose}",
             "paragraphSpacing": {
               "value": 0,
               "unit": "px"
@@ -6746,14 +3799,8 @@
             "fontFamily": "{fontFamily.body}",
             "fontSize": "{fontSize.static.1}",
             "fontWeight": "{fontWeight.regular}",
-            "lineHeight": {
-              "value": 100,
-              "unit": "%"
-            },
-            "letterSpacing": {
-              "value": 0.5,
-              "unit": "%"
-            },
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 0,
               "unit": "px"
@@ -6767,14 +3814,8 @@
             "fontFamily": "{fontFamily.body}",
             "fontSize": "{fontSize.static.2}",
             "fontWeight": "{fontWeight.semiBold}",
-            "lineHeight": {
-              "value": 100,
-              "unit": "%"
-            },
-            "letterSpacing": {
-              "value": 0.5,
-              "unit": "%"
-            },
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 0,
               "unit": "px"
@@ -6788,14 +3829,8 @@
             "fontFamily": "{fontFamily.body}",
             "fontSize": "{fontSize.static.2}",
             "fontWeight": "{fontWeight.regular}",
-            "lineHeight": {
-              "value": 100,
-              "unit": "%"
-            },
-            "letterSpacing": {
-              "value": 0.5,
-              "unit": "%"
-            },
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 0,
               "unit": "px"
@@ -6809,14 +3844,8 @@
             "fontFamily": "{fontFamily.body}",
             "fontSize": "{fontSize.static.2}",
             "fontWeight": "{fontWeight.bold}",
-            "lineHeight": {
-              "value": 100,
-              "unit": "%"
-            },
-            "letterSpacing": {
-              "value": 0.5,
-              "unit": "%"
-            },
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 0,
               "unit": "px"
@@ -6830,10 +3859,7 @@
             "fontFamily": "{fontFamily.body}",
             "fontSize": "{fontSize.static.1}",
             "fontWeight": "{fontWeight.semiBold}",
-            "lineHeight": {
-              "value": 100,
-              "unit": "%"
-            },
+            "lineHeight": "{lineHeight.1}",
             "letterSpacing": "{letterSpacing.x-loose}",
             "paragraphSpacing": {
               "value": 0,
@@ -6945,10 +3971,7 @@
             "fontSize": "{fontSize.static.1}",
             "fontWeight": "{fontWeight.regular}",
             "lineHeight": "{lineHeight.5}",
-            "letterSpacing": {
-              "value": 1,
-              "unit": "%"
-            },
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 12,
               "unit": "px"
@@ -6963,10 +3986,7 @@
             "fontSize": "{fontSize.static.2}",
             "fontWeight": "{fontWeight.regular}",
             "lineHeight": "{lineHeight.5}",
-            "letterSpacing": {
-              "value": 1,
-              "unit": "%"
-            },
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 14,
               "unit": "px"
@@ -6981,10 +4001,7 @@
             "fontSize": "{fontSize.static.5}",
             "fontWeight": "{fontWeight.regular}",
             "lineHeight": "{lineHeight.5}",
-            "letterSpacing": {
-              "value": 1,
-              "unit": "%"
-            },
+            "letterSpacing": "{letterSpacing.none}",
             "paragraphSpacing": {
               "value": 19,
               "unit": "px"
@@ -7023,138 +4040,6 @@
           "$type": "typography",
           "$figmaId": "S:bc5fa086ca21bdac62ec85a5a46765de34a446b9,"
         }
-      }
-    },
-    "effects": {
-      "High": {
-        "$value": [
-          {
-            "color": "#00000005",
-            "offsetX": "0px",
-            "offsetY": "2.767256498336792px",
-            "blur": "2.2138051986694336px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000007",
-            "offsetX": "0px",
-            "offsetY": "6.650102138519287px",
-            "blur": "5.32008171081543px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000009",
-            "offsetX": "0px",
-            "offsetY": "12.521552085876465px",
-            "blur": "10.017241477966309px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#0000000b",
-            "offsetX": "0px",
-            "offsetY": "22.3363094329834px",
-            "blur": "17.869047164916992px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#0000000d",
-            "offsetX": "0px",
-            "offsetY": "41.777610778808594px",
-            "blur": "33.422088623046875px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000012",
-            "offsetX": "0px",
-            "offsetY": "100px",
-            "blur": "80px",
-            "spread": "0px",
-            "type": "dropShadow"
-          }
-        ],
-        "$type": "shadow",
-        "$figmaId": "S:10423adf28fcbc450f7bb07b5463f39b24949b54,"
-      },
-      "Medium": {
-        "$value": [
-          {
-            "color": "#00000003",
-            "offsetX": "0px",
-            "offsetY": "0.11069025844335556px",
-            "blur": "1.0515574216842651px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000003",
-            "offsetX": "0px",
-            "offsetY": "0.2660040855407715px",
-            "blur": "2.527038812637329px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000005",
-            "offsetX": "0px",
-            "offsetY": "0.5008620619773865px",
-            "blur": "4.758189678192139px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000005",
-            "offsetX": "0px",
-            "offsetY": "0.8934523463249207px",
-            "blur": "8.487797737121582px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#00000006",
-            "offsetX": "0px",
-            "offsetY": "1.6711044311523438px",
-            "blur": "15.87549114227295px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#0000000a",
-            "offsetX": "0px",
-            "offsetY": "14px",
-            "blur": "38px",
-            "spread": "0px",
-            "type": "dropShadow"
-          }
-        ],
-        "$type": "shadow",
-        "$figmaId": "S:5d713be8691854c7e04a78b591ee60a94cab5a88,"
-      },
-      "Low": {
-        "$value": [
-          {
-            "color": "#00000026",
-            "offsetX": "0px",
-            "offsetY": "1px",
-            "blur": "1px",
-            "spread": "0px",
-            "type": "dropShadow"
-          },
-          {
-            "color": "#0000000d",
-            "offsetX": "0px",
-            "offsetY": "1px",
-            "blur": "5px",
-            "spread": "0px",
-            "type": "dropShadow"
-          }
-        ],
-        "$type": "shadow",
-        "$figmaId": "S:7ba42f11d53aba9c8f0bc813be67c154292422fb,"
       }
     }
   }

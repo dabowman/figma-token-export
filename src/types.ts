@@ -1,10 +1,32 @@
 /// <reference types="@figma/plugin-typings" />
 
 /**
+ * Collection information for the UI display
+ */
+export interface CollectionInfo {
+  id: string;
+  name: string;
+}
+
+/**
+ * Export options to control what gets exported
+ */
+export interface ExportOptions {
+  includeVariables: true; // Always true - variables are always exported
+  includeTypography: boolean;
+  includeEffects: boolean;
+  collections: string[]; // Array of collection IDs to include
+}
+
+/**
  * Message interface for communication between the plugin and UI
  */
 export interface Message {
   type: string;
+  options?: ExportOptions;
+  collections?: CollectionInfo[];
+  content?: any;
+  filename?: string;
 }
 
 /**

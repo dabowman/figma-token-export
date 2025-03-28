@@ -651,7 +651,7 @@
 
     /// <reference types="@figma/plugin-typings" />
     // Initialize the plugin UI
-    figma.showUI(__html__, { themeColors: true, width: 300, height: 200 });
+    figma.showUI(__html__, { themeColors: true, width: 500, height: 400 });
     /**
      * Sanitizes a collection name according to W3C Design Token Format Module specification
      * @param name - The collection name to sanitize
@@ -668,6 +668,17 @@
             .toLowerCase()
             // Remove leading dash
             .replace(/^-/, '');
+    }
+    /**
+     * Gets information about available collections for the UI
+     * @returns Array of collection info objects
+     */
+    async function getCollectionsInfo() {
+        const collections = await figma.variables.getLocalVariableCollectionsAsync();
+        return collections.map(collection => ({
+            id: collection.id,
+            name: collection.name
+        }));
     }
     /**
      * Collects raw Figma API data for variables and styles
@@ -822,70 +833,110 @@
         return rawData;
     }
     /**
+     * Process tokens based on the provided export options
+     * @param options - The export options from the UI
+     * @returns The processed tokens
+     */
+    async function processTokensWithOptions(options) {
+        const collections = await figma.variables.getLocalVariableCollectionsAsync();
+        const allTokens = {};
+        // Only process styles if they're included in the options
+        const sharedStyles = {};
+        if (options.includeTypography) {
+            sharedStyles.typography = await processTextStyles();
+        }
+        if (options.includeEffects) {
+            sharedStyles.effects = await processEffectStyles();
+        }
+        // Only process selected collections
+        if (options.includeVariables) {
+            const selectedCollections = collections.filter(collection => options.collections.includes(collection.id));
+            for (const collection of selectedCollections) {
+                // Process collections with multiple modes
+                if (collection.modes.length > 1) {
+                    for (const mode of collection.modes) {
+                        // Format and sanitize collection name
+                        const collectionName = sanitizeCollectionName(collection.name);
+                        const modeName = mode.name.toLowerCase();
+                        const tokenName = `${collectionName}_${modeName}`;
+                        // Initialize result object
+                        allTokens[tokenName] = {};
+                        // Add collection tokens
+                        const collectionTokens = await processCollection(collection, mode.modeId);
+                        for (const key in collectionTokens) {
+                            allTokens[tokenName][key] = collectionTokens[key];
+                        }
+                        // Include styles for non-base collections in all modes
+                        if (!collection.name.startsWith('.')) {
+                            // Copy shared styles
+                            if (options.includeTypography) {
+                                allTokens[tokenName]['typography'] = sharedStyles.typography;
+                            }
+                            if (options.includeEffects) {
+                                allTokens[tokenName]['effects'] = sharedStyles.effects;
+                            }
+                        }
+                    }
+                }
+                else {
+                    // Format and sanitize collection name
+                    const collectionName = sanitizeCollectionName(collection.name);
+                    // Initialize result object
+                    allTokens[collectionName] = {};
+                    // Add collection tokens
+                    const collectionTokens = await processCollection(collection);
+                    for (const key in collectionTokens) {
+                        allTokens[collectionName][key] = collectionTokens[key];
+                    }
+                    // Include styles for non-base collections
+                    if (!collection.name.startsWith('.')) {
+                        // Copy shared styles
+                        if (options.includeTypography) {
+                            allTokens[collectionName]['typography'] = sharedStyles.typography;
+                        }
+                        if (options.includeEffects) {
+                            allTokens[collectionName]['effects'] = sharedStyles.effects;
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            // If variables aren't included but styles are, create a basic styles-only structure
+            if (Object.keys(sharedStyles).length > 0) {
+                allTokens.styles = sharedStyles;
+            }
+        }
+        return allTokens;
+    }
+    /**
      * Main message handler for the plugin
      * Processes export requests and generates the token output
      */
     figma.ui.onmessage = async (msg) => {
-        if (msg.type === 'export-tokens-only') {
+        if (msg.type === 'get-collections-data') {
+            // Send collection data to the UI
+            const collectionsInfo = await getCollectionsInfo();
+            figma.ui.postMessage({
+                type: 'collections-data',
+                collections: collectionsInfo
+            });
+        }
+        else if (msg.type === 'export-tokens-only') {
             try {
-                // Get all collections
-                const collections = await figma.variables.getLocalVariableCollectionsAsync();
-                const allTokens = {};
-                // Process styles once since they're shared across collections
-                const sharedStyles = {
-                    typography: await processTextStyles(),
-                    effects: await processEffectStyles()
+                // Get tokens based on options
+                const options = msg.options || {
+                    includeVariables: true,
+                    includeTypography: true,
+                    includeEffects: true,
+                    collections: (await getCollectionsInfo()).map(c => c.id)
                 };
-                for (const collection of collections) {
-                    // Process collections with multiple modes
-                    if (collection.modes.length > 1) {
-                        for (const mode of collection.modes) {
-                            // Format and sanitize collection name
-                            const collectionName = sanitizeCollectionName(collection.name);
-                            const modeName = mode.name.toLowerCase();
-                            const tokenName = `${collectionName}_${modeName}`;
-                            // Include styles for non-base collections in all modes
-                            if (!collection.name.startsWith('.')) {
-                                // Create collection tokens object
-                                const collectionTokens = await processCollection(collection, mode.modeId);
-                                // Initialize result object
-                                allTokens[tokenName] = {};
-                                // Copy collection tokens
-                                for (const key in collectionTokens) {
-                                    allTokens[tokenName][key] = collectionTokens[key];
-                                }
-                                // Copy shared styles
-                                allTokens[tokenName]['typography'] = sharedStyles.typography;
-                                allTokens[tokenName]['effects'] = sharedStyles.effects;
-                            }
-                            else {
-                                allTokens[tokenName] = await processCollection(collection, mode.modeId);
-                            }
-                        }
-                    }
-                    else {
-                        // Format and sanitize collection name
-                        const collectionName = sanitizeCollectionName(collection.name);
-                        // Include styles for non-base collections
-                        if (!collection.name.startsWith('.')) {
-                            // Create collection tokens object
-                            const collectionTokens = await processCollection(collection);
-                            // Initialize result object
-                            allTokens[collectionName] = {};
-                            // Copy collection tokens
-                            for (const key in collectionTokens) {
-                                allTokens[collectionName][key] = collectionTokens[key];
-                            }
-                            // Copy shared styles
-                            allTokens[collectionName]['typography'] = sharedStyles.typography;
-                            allTokens[collectionName]['effects'] = sharedStyles.effects;
-                        }
-                        else {
-                            allTokens[collectionName] = await processCollection(collection);
-                        }
-                    }
+                // Ensure we have at least one collection selected
+                if (!options.collections || options.collections.length === 0) {
+                    throw new Error('At least one variable collection must be selected');
                 }
-                // Send only the tokens data to the UI for download
+                const allTokens = await processTokensWithOptions(options);
+                // Send tokens to the UI for download
                 figma.ui.postMessage({
                     type: 'download',
                     content: allTokens,
