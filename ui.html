@@ -66,8 +66,16 @@
 
     .switch__label:before {
       background-color: var(--figma-color-bg-tertiary);
-      border-color: var(--figma-color-bg-tertiary);
-      height: var(--size-medium);
+      border: 1px solid var(--figma-color-bg-tertiary);
+      border-radius: 6px;
+      content: '';
+      display: block;
+      height: 10px;
+      left: 8px;
+      position: absolute;
+      top: 10px;
+      transition: background-color 0 0.2s;
+      width: 22px;
     }
 
     .switch__label:after {
