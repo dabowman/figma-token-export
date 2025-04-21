@@ -243,10 +243,28 @@
             if (value && typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS') {
                 const referencedVariable = await figma.variables.getVariableByIdAsync(value.id);
                 if (referencedVariable) {
-                    // Convert the reference path to the expected format
-                    const refPath = referencedVariable.name.split('/');
-                    const tokenType = getTokenType(variable.name, resolvedType); // Pass original resolvedType
-                    const tokenValue = `{${refPath.join('.')}}`;
+                    // Get the referenced variable's collection to build the full path
+                    const referencedCollection = await figma.variables.getVariableCollectionByIdAsync(referencedVariable.variableCollectionId);
+                    let fullPathArray = [];
+                    let sanitizedCollectionName = 'unknown_collection'; // Fallback
+                    if (referencedCollection) {
+                        // Sanitize collection name (e.g., "WPVIP Product Light" -> "wpvip-product-light")
+                        // This uses the sanitizeCollectionName function from main.ts (we might need to import it or duplicate it)
+                        // Let's assume sanitizeCollectionName is available or defined here for now.
+                        // If not, we need to import it from where it's defined (likely main.ts or another util).
+                        // TEMPORARY: Inline basic sanitization - replace with proper import/shared function later
+                        sanitizedCollectionName = referencedCollection.name
+                            .replace(/[.$]/g, '') // Remove restricted chars first
+                            .replace(/[\/\s_]+/g, '-') // Replace separators with dash
+                            .toLowerCase();
+                        fullPathArray.push(sanitizedCollectionName);
+                    }
+                    else {
+                        console.warn(`⚠️ Could not find collection for referenced variable: ${referencedVariable.name} (ID: ${referencedVariable.id})`);
+                    }
+                    fullPathArray = fullPathArray.concat(referencedVariable.name.split('/'));
+                    const tokenType = getTokenType(variable.name, resolvedType);
+                    const tokenValue = `{${fullPathArray.join('.')}}`;
                     if (!validateTokenValue(tokenValue, tokenType)) {
                         console.warn(`Invalid reference value for type ${tokenType}:`, tokenValue);
                     }
@@ -418,6 +436,32 @@
         return result;
     }
 
+    /**
+     * Sanitizes a collection name for use as a top-level key or prefix.
+     * Removes restricted characters and converts separators to dashes.
+     * @param name - The collection name to sanitize
+     * @returns The sanitized collection name (e.g., "WPVIP Product_Light" -> "wpvip-product-light")
+     */
+    function sanitizeCollectionName(name) {
+        return name
+            .replace(/[.$]/g, '') // Remove restricted chars first
+            .replace(/[\/\s_]+/g, '-') // Replace separators with dash
+            .toLowerCase();
+    }
+    /**
+     * Sanitizes a mode name or other segment for use in a filename.
+     * Removes restricted characters and converts separators to dashes.
+     * @param name - The name to sanitize
+     * @returns The sanitized name (e.g., "Light Mode" -> "light-mode")
+     */
+    function sanitizeFileName(name) {
+        // Similar to collection name, but potentially allows more chars if needed
+        return name
+            .replace(/[.$]/g, '')
+            .replace(/[\/\s_]+/g, '-')
+            .toLowerCase();
+    }
+
     /// <reference types="@figma/plugin-typings" />
     /**
      * Creates a dimension value object following W3C Design Token Format Module specification
@@ -430,6 +474,19 @@
             value: Number(value.toFixed(3)),
             unit
         };
+    }
+    /** Helper function to get the fully qualified alias path */
+    async function getAliasPath(variableId) {
+        const variable = await figma.variables.getVariableByIdAsync(variableId);
+        if (!variable)
+            return null;
+        const collection = await figma.variables.getVariableCollectionByIdAsync(variable.variableCollectionId);
+        if (!collection)
+            return null;
+        // Use the sanitizeCollectionName function (needs to be imported or defined)
+        const sanitizedCollectionName = sanitizeCollectionName(collection.name);
+        const pathSegments = variable.name.split('/');
+        return `{${sanitizedCollectionName}.${pathSegments.join('.')}}`;
     }
     /**
      * Processes text styles into a token structure following W3C Design Token Format Module
@@ -456,7 +513,7 @@
      * }
      */
     async function processTextStyles() {
-        var _a, _b, _c, _d, _e, _f;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         const textStyles = await figma.getLocalTextStylesAsync();
         const result = {};
         // Get core collection for matching percentage values
@@ -473,35 +530,30 @@
                     const value = {};
                     // Handle font family
                     if ((_a = style.boundVariables) === null || _a === void 0 ? void 0 : _a.fontFamily) {
-                        const fontVar = await figma.variables.getVariableByIdAsync(style.boundVariables.fontFamily.id);
-                        value.fontFamily = `{${fontVar === null || fontVar === void 0 ? void 0 : fontVar.name.split('/').join('.')}}`;
+                        value.fontFamily = (_b = await getAliasPath(style.boundVariables.fontFamily.id)) !== null && _b !== void 0 ? _b : style.fontName.family;
                     }
                     else {
                         value.fontFamily = style.fontName.family;
                     }
                     // Handle font size
-                    if ((_b = style.boundVariables) === null || _b === void 0 ? void 0 : _b.fontSize) {
-                        const sizeVar = await figma.variables.getVariableByIdAsync(style.boundVariables.fontSize.id);
-                        value.fontSize = `{${sizeVar === null || sizeVar === void 0 ? void 0 : sizeVar.name.split('/').join('.')}}`;
+                    if ((_c = style.boundVariables) === null || _c === void 0 ? void 0 : _c.fontSize) {
+                        value.fontSize = (_d = await getAliasPath(style.boundVariables.fontSize.id)) !== null && _d !== void 0 ? _d : createDimensionValue(style.fontSize, 'px');
                     }
                     else {
                         value.fontSize = createDimensionValue(style.fontSize, 'px');
                     }
                     // Handle font weight
-                    if ((_c = style.boundVariables) === null || _c === void 0 ? void 0 : _c.fontWeight) {
-                        const weightVar = await figma.variables.getVariableByIdAsync(style.boundVariables.fontWeight.id);
-                        value.fontWeight = `{${weightVar === null || weightVar === void 0 ? void 0 : weightVar.name.split('/').join('.')}}`;
+                    if ((_e = style.boundVariables) === null || _e === void 0 ? void 0 : _e.fontWeight) {
+                        value.fontWeight = (_f = await getAliasPath(style.boundVariables.fontWeight.id)) !== null && _f !== void 0 ? _f : (parseInt(style.fontName.style, 10) || style.fontName.style);
                     }
                     else {
                         value.fontWeight = parseInt(style.fontName.style, 10) || style.fontName.style;
                     }
                     // Handle lineHeight
-                    if ((_d = style.boundVariables) === null || _d === void 0 ? void 0 : _d.lineHeight) {
-                        const lineHeightVar = await figma.variables.getVariableByIdAsync(style.boundVariables.lineHeight.id);
-                        value.lineHeight = `{${lineHeightVar === null || lineHeightVar === void 0 ? void 0 : lineHeightVar.name.split('/').join('.')}}`;
+                    if ((_g = style.boundVariables) === null || _g === void 0 ? void 0 : _g.lineHeight) {
+                        value.lineHeight = await getAliasPath(style.boundVariables.lineHeight.id);
                     }
-                    else {
-                        // Try to match with core lineHeight token
+                    if (value.lineHeight === undefined) {
                         let lineHeightValue;
                         if (typeof style.lineHeight === 'number') {
                             lineHeightValue = style.lineHeight * 100; // Convert multiplier to percentage
@@ -515,7 +567,7 @@
                         if (coreCollection) {
                             const matchingCore = await findMatchingCoreNumber(lineHeightValue, coreCollection, 'lineheight');
                             if (matchingCore) {
-                                value.lineHeight = `{${matchingCore.split('/').join('.')}}`;
+                                value.lineHeight = `{core.${matchingCore.split('/').join('.')}}`;
                             }
                             else {
                                 value.lineHeight = createDimensionValue(lineHeightValue, '%');
@@ -526,16 +578,15 @@
                         }
                     }
                     // Handle letterSpacing
-                    if ((_e = style.boundVariables) === null || _e === void 0 ? void 0 : _e.letterSpacing) {
-                        const letterSpacingVar = await figma.variables.getVariableByIdAsync(style.boundVariables.letterSpacing.id);
-                        value.letterSpacing = `{${letterSpacingVar === null || letterSpacingVar === void 0 ? void 0 : letterSpacingVar.name.split('/').join('.')}}`;
+                    if ((_h = style.boundVariables) === null || _h === void 0 ? void 0 : _h.letterSpacing) {
+                        value.letterSpacing = await getAliasPath(style.boundVariables.letterSpacing.id);
                     }
-                    else if (style.letterSpacing && typeof style.letterSpacing === 'object') {
+                    if (value.letterSpacing === undefined && style.letterSpacing && typeof style.letterSpacing === 'object') {
                         const letterSpacingValue = style.letterSpacing.value;
                         if (coreCollection) {
                             const matchingCore = await findMatchingCoreNumber(letterSpacingValue, coreCollection, 'letterspacing');
                             if (matchingCore) {
-                                value.letterSpacing = `{${matchingCore.split('/').join('.')}}`;
+                                value.letterSpacing = `{core.${matchingCore.split('/').join('.')}}`;
                             }
                             else {
                                 value.letterSpacing = createDimensionValue(letterSpacingValue, style.letterSpacing.unit === 'PIXELS' ? 'px' : '%');
@@ -546,9 +597,8 @@
                         }
                     }
                     // Handle paragraphSpacing
-                    if ((_f = style.boundVariables) === null || _f === void 0 ? void 0 : _f.paragraphSpacing) {
-                        const paragraphSpacingVar = await figma.variables.getVariableByIdAsync(style.boundVariables.paragraphSpacing.id);
-                        value.paragraphSpacing = `{${paragraphSpacingVar === null || paragraphSpacingVar === void 0 ? void 0 : paragraphSpacingVar.name.split('/').join('.')}}`;
+                    if ((_j = style.boundVariables) === null || _j === void 0 ? void 0 : _j.paragraphSpacing) {
+                        value.paragraphSpacing = await getAliasPath(style.boundVariables.paragraphSpacing.id);
                     }
                     else if (typeof style.paragraphSpacing === 'number') {
                         value.paragraphSpacing = createDimensionValue(style.paragraphSpacing, 'px');
@@ -652,23 +702,6 @@
     /// <reference types="@figma/plugin-typings" />
     // Initialize the plugin UI
     figma.showUI(__html__, { themeColors: true, width: 500, height: 400 });
-    /**
-     * Sanitizes a collection name according to W3C Design Token Format Module specification
-     * @param name - The collection name to sanitize
-     * @returns The sanitized collection name
-     */
-    function sanitizeCollectionName(name) {
-        return name
-            // Remove leading special characters
-            .replace(/^[.$]/, '')
-            // Replace other special characters with dash
-            .replace(/[.$]/g, '')
-            // Convert to kebab-case
-            .replace(/[\/\.]/g, '-')
-            .toLowerCase()
-            // Remove leading dash
-            .replace(/^-/, '');
-    }
     /**
      * Gets information about available collections for the UI
      * @returns Array of collection info objects
@@ -834,86 +867,98 @@
     }
     /**
      * Process tokens based on the provided export options
+     * Generates an array of file objects to be downloaded.
      * @param options - The export options from the UI
-     * @returns The processed tokens
+     * @returns Array of objects with filename and content
      */
     async function processTokensWithOptions(options) {
         const collections = await figma.variables.getLocalVariableCollectionsAsync();
-        const allTokens = {};
-        // Only process styles if they're included in the options
+        const filesToExport = [];
+        // Process styles first if included
         const sharedStyles = {};
         if (options.includeTypography) {
-            sharedStyles.typography = await processTextStyles();
+            try {
+                sharedStyles.typography = await processTextStyles();
+            }
+            catch (e) {
+                console.error("Error processing text styles:", e);
+            }
         }
         if (options.includeEffects) {
-            sharedStyles.effects = await processEffectStyles();
+            try {
+                sharedStyles.effects = await processEffectStyles();
+            }
+            catch (e) {
+                console.error("Error processing effect styles:", e);
+            }
         }
-        // Only process selected collections
+        // Process selected variable collections
         if (options.includeVariables) {
             const selectedCollections = collections.filter(collection => options.collections.includes(collection.id));
             for (const collection of selectedCollections) {
-                // Process collections with multiple modes
-                if (collection.modes.length > 1) {
-                    for (const mode of collection.modes) {
-                        // Format and sanitize collection name
-                        const collectionName = sanitizeCollectionName(collection.name);
-                        const modeName = mode.name.toLowerCase();
-                        const tokenName = `${collectionName}_${modeName}`;
-                        // Initialize result object
-                        allTokens[tokenName] = {};
-                        // Add collection tokens
-                        const collectionTokens = await processCollection(collection, mode.modeId);
-                        for (const key in collectionTokens) {
-                            allTokens[tokenName][key] = collectionTokens[key];
-                        }
-                        // Include styles for non-base collections in all modes
-                        if (!collection.name.startsWith('.')) {
-                            // Copy shared styles
-                            if (options.includeTypography) {
-                                allTokens[tokenName]['typography'] = sharedStyles.typography;
-                            }
-                            if (options.includeEffects) {
-                                allTokens[tokenName]['effects'] = sharedStyles.effects;
-                            }
-                        }
+                const isCoreCollection = collection.name.toLowerCase().includes('core');
+                const baseCollectionName = sanitizeCollectionName(collection.name);
+                // Core collection is processed once (using first mode)
+                if (isCoreCollection) {
+                    console.log(`Processing core collection: ${collection.name}`);
+                    try {
+                        const coreTokens = await processCollection(collection, collection.modes[0].modeId);
+                        // Add styles to core only if ONLY core is exported?
+                        // Or should core never include styles? Let's assume never for now.
+                        filesToExport.push({ filename: 'core.json', content: { core: coreTokens } });
                     }
+                    catch (e) {
+                        console.error(`Error processing core collection ${collection.name}:`, e);
+                        figma.notify(`Error processing core collection: ${e.message}`, { error: true });
+                    }
+                    continue; // Move to next collection
                 }
-                else {
-                    // Format and sanitize collection name
-                    const collectionName = sanitizeCollectionName(collection.name);
-                    // Initialize result object
-                    allTokens[collectionName] = {};
-                    // Add collection tokens
-                    const collectionTokens = await processCollection(collection);
-                    for (const key in collectionTokens) {
-                        allTokens[collectionName][key] = collectionTokens[key];
+                // Process each mode of a theme collection as a separate file
+                for (const mode of collection.modes) {
+                    const modeName = sanitizeFileName(mode.name);
+                    // Combine collection name and mode name for the filename
+                    const filename = `${baseCollectionName}-${modeName}.json`;
+                    console.log(`Processing theme collection mode: ${collection.name} - ${mode.name} -> ${filename}`);
+                    try {
+                        const modeTokens = await processCollection(collection, mode.modeId);
+                        // Construct the final content for this theme file using Object.assign
+                        const themeFileContent = {};
+                        themeFileContent[baseCollectionName] = {}; // Initialize inner object
+                        Object.assign(themeFileContent[baseCollectionName], modeTokens); // Merge modeTokens
+                        // Add shared styles if they exist
+                        if (Object.keys(sharedStyles).length > 0) {
+                            // Ensure the inner object exists before assigning styles
+                            if (!themeFileContent[baseCollectionName]) {
+                                themeFileContent[baseCollectionName] = {};
+                            }
+                            themeFileContent[baseCollectionName].styles = sharedStyles;
+                        }
+                        filesToExport.push({ filename, content: themeFileContent });
                     }
-                    // Include styles for non-base collections
-                    if (!collection.name.startsWith('.')) {
-                        // Copy shared styles
-                        if (options.includeTypography) {
-                            allTokens[collectionName]['typography'] = sharedStyles.typography;
-                        }
-                        if (options.includeEffects) {
-                            allTokens[collectionName]['effects'] = sharedStyles.effects;
-                        }
+                    catch (e) {
+                        console.error(`Error processing mode ${mode.name} for collection ${collection.name}:`, e);
+                        figma.notify(`Error processing mode ${mode.name}: ${e.message}`, { error: true });
                     }
                 }
             }
         }
         else {
-            // If variables aren't included but styles are, create a basic styles-only structure
+            // If only styles are exported, create a single styles.json
             if (Object.keys(sharedStyles).length > 0) {
-                allTokens.styles = sharedStyles;
+                filesToExport.push({ filename: 'styles.json', content: sharedStyles });
             }
         }
-        return allTokens;
+        if (filesToExport.length === 0) {
+            throw new Error("No tokens or styles were generated based on selection.");
+        }
+        return filesToExport;
     }
     /**
      * Main message handler for the plugin
      * Processes export requests and generates the token output
      */
     figma.ui.onmessage = async (msg) => {
+        var _a;
         if (msg.type === 'get-collections-data') {
             // Send collection data to the UI
             const collectionsInfo = await getCollectionsInfo();
@@ -935,18 +980,17 @@
                 if (!options.collections || options.collections.length === 0) {
                     throw new Error('At least one variable collection must be selected');
                 }
-                const allTokens = await processTokensWithOptions(options);
-                // Send tokens to the UI for download
+                const filesToExport = await processTokensWithOptions(options);
+                // Send array of files to UI for individual download
                 figma.ui.postMessage({
-                    type: 'download',
-                    content: allTokens,
-                    filename: 'design-tokens.json'
+                    type: 'download-multiple',
+                    payload: filesToExport
                 });
                 figma.notify('Successfully exported design tokens!');
             }
             catch (error) {
                 console.error('Error exporting tokens:', error);
-                figma.notify('Error exporting tokens: ' + (error instanceof Error ? error.message : String(error)), { error: true });
+                figma.notify('Error exporting tokens: ' + ((_a = error === null || error === void 0 ? void 0 : error.message) !== null && _a !== void 0 ? _a : String(error)), { error: true });
             }
         }
         else if (msg.type === 'export-raw-only') {

@@ -17,52 +17,7 @@ const lodash = require('lodash');
 const BASE_FONT_SIZE_PX = 16;
 const CORE_FILENAME = 'core.json'; // Expected filename for core tokens
 
-// Set of known core categories (used for alias preprocessing)
-const CORE_CATEGORIES = new Set([
-  'color', 'fontSize', 'borderRadius', 'space', 'breakpoint', 
-  'alignment', 'lineHeight', 'fontWeight', 'letterSpacing', 'fontFamily'
-]);
-
 // --- Utility Functions --- 
-
-/**
- * Recursively traverses an object, finds alias strings, and prepends 
- * necessary prefixes ('core.' or themeName.) before Style Dictionary processing.
- * @param {*} node - The current node (object, array, or primitive).
- * @param {string} themeName - The name of the current theme being processed.
- * @param {Set<string>} coreCategories - Set of top-level core category names.
- * @returns {*} The node with modified alias strings.
- */
-function preprocessAliases(node, themeName, coreCategories) {
-  if (typeof node === 'string' && node.startsWith('{') && node.endsWith('}')) {
-    const alias = node.slice(1, -1);
-    const pathParts = alias.split('.');
-
-    if (pathParts.length > 0) {
-      if (coreCategories.has(pathParts[0])) {
-        // Prepend 'core.' if it's a core category alias
-        const newAlias = `core.${alias}`;
-        // console.log(`  🔧 Prepending core prefix: {${alias}} -> {${newAlias}}`);
-        return `{${newAlias}}`;
-      } else {
-        // Assume it's an intra-theme alias, prepend theme name
-        const newAlias = `${themeName}.${alias}`;
-        // console.log(`  🔧 Prepending theme prefix: {${alias}} -> {${newAlias}}`);
-        return `{${newAlias}}`;
-      }
-    }
-    return node; // Return original if path is empty?
-  } else if (Array.isArray(node)) {
-    return node.map(item => preprocessAliases(item, themeName, coreCategories));
-  } else if (typeof node === 'object' && node !== null) {
-    const newNode = {};
-    for (const key in node) {
-      newNode[key] = preprocessAliases(node[key], themeName, coreCategories);
-    }
-    return newNode;
-  }
-  return node; // Return primitives
-}
 
 /**
  * Recursively processes the token object to apply final transformations 
@@ -117,27 +72,39 @@ function cleanAndTransformNode(node) {
 StyleDictionary.registerFormat({
   name: 'json/nested-themed',
   formatter: function({ dictionary, file, options }) {
-    // The dictionary passed here contains the results AFTER the platform's filter ran.
-    // It should ONLY contain tokens belonging to the theme (e.g., path starting with themeName).
+    // Dictionary contains the fully resolved tokens for the theme specified in platform 'source'.
     console.log(`Formatting ${dictionary.allProperties.length} tokens for file: ${file.destination}`);
 
-    // The formatter now receives only the theme-specific, resolved & transformed tokens.
-    // We need to rebuild the object structure, removing the theme prefix from paths.
+    if (dictionary.allProperties.length === 0) {
+        console.warn(`⚠️ No properties found for ${file.destination}. Check source/include and token paths.`);
+        return "{}";
+    }
+
+    // Determine the theme name prefix from the path of the first token
+    // Assumes all tokens passed will belong to the same theme root.
+    const themeNamePrefix = dictionary.allProperties[0].path[0]; 
+    // console.log(`  [Debug format] Detected theme prefix: ${themeNamePrefix}`);
+
     let output = {};
     dictionary.allProperties.forEach(prop => {
-      // Remove the theme name prefix from the path
-      const outputPath = prop.path.slice(1);
-      if (outputPath.length > 0) {
-          lodash.set(output, outputPath, prop.value); 
+      // Ensure the token path actually starts with the detected prefix (sanity check)
+      if (prop.path && prop.path.length > 0 && prop.path[0] === themeNamePrefix) {
+          // Remove the theme name prefix from the path
+          const outputPath = prop.path.slice(1);
+          if (outputPath.length > 0) {
+              // Set the already transformed value
+              lodash.set(output, outputPath, prop.value); 
+          }
+      } else {
+         console.warn(`⚠️ Token path ${JSON.stringify(prop.path)} does not match expected prefix ${themeNamePrefix} in formatter for ${file.destination}`);
       }
     });
     
     // Clean the final nested object structure recursively
-    // (Removes SD metadata, returns final primitive/object value)
     const cleanedOutput = cleanAndTransformNode(output);
 
     if (cleanedOutput === undefined || Object.keys(cleanedOutput).length === 0) {
-        console.warn(`⚠️ No tokens found or retained for output file: ${file.destination}`);
+        console.warn(`⚠️ No tokens found or retained after cleaning for output file: ${file.destination}`);
         return "{}";
     }
 
@@ -314,34 +281,29 @@ function runTransform() {
     process.exit(1);
   }
 
-  // Discover core and theme files
+  // --- File Discovery ---
   const coreFilePath = path.join(inputDir, CORE_FILENAME);
   if (!fs.existsSync(coreFilePath)) {
     console.error(`❌ Error: Core token file not found: ${coreFilePath}`);
     process.exit(1);
   }
+  console.log(`🔍 Found core file: ${CORE_FILENAME}`);
 
-  let themeFiles = [];
-  try {
-    themeFiles = fs.readdirSync(inputDir)
+  // Find theme files (e.g., wpvip-product-light.json)
+  const themeFiles = fs.readdirSync(inputDir)
       .filter(file => file.endsWith('.json') && file !== CORE_FILENAME)
       .map(file => ({ 
-        name: path.basename(file, '.json'), // e.g., 'wpvip-product_light'
+        name: path.basename(file, '.json'), // e.g., 'wpvip-product-light'
         path: path.join(inputDir, file) 
       }));
-      
-    if (themeFiles.length === 0) {
+
+  if (themeFiles.length === 0) {
       console.error(`❌ Error: No theme JSON files found in ${inputDir} (excluding ${CORE_FILENAME}).`);
       process.exit(1);
-    }
-    console.log(`🔍 Found core file: ${CORE_FILENAME}`);
-    console.log(`🔍 Found theme files: ${themeFiles.map(f => path.basename(f.path)).join(', ')}`);
-
-  } catch (err) {
-    console.error(`❌ Error reading input directory ${inputDir}: ${err.message}`);
-    process.exit(1);
   }
+  console.log(`🔍 Found theme files: ${themeFiles.map(f => path.basename(f.path)).join(', ')}`);
 
+  // --- Clean Output Dir ---
   if (options.clean && fs.existsSync(outputDir)) {
     console.log(`🧹 Cleaning output directory: ${outputDir}`);
     fs.rmSync(outputDir, { recursive: true, force: true });
@@ -362,84 +324,58 @@ function runTransform() {
       process.exit(1);
   }
 
-  // Process each theme
+  // --- Build Style Dictionary Config ---
+  // Config object now just defines platforms
+  const sdConfig = {
+    logLevel: options.verbose ? 'verbose' : 'info',
+    // No global source/parsers needed here, defined per platform
+    platforms: {}
+  };
+
+  // Create a platform for each theme FILE found
   themeFiles.forEach(themeFile => {
-    const themeName = themeFile.name;
+    const themeName = themeFile.name; // e.g., wpvip-product-light
+    // Use themeName to generate output filename
     const outputFilename = `valet-${themeName.replace(/[ _]+/g, '-').toLowerCase()}.json`;
-    console.log(`\nProcessing theme: ${themeName} -> ${outputFilename}`);
-
-    let themeData;
-    try {
-        const rawThemeData = JSON.parse(fs.readFileSync(themeFile.path, 'utf8'));
-        // Pre-process aliases within the theme data
-        console.log(`  🔧 Pre-processing aliases for ${themeName}...`);
-        themeData = preprocessAliases(rawThemeData, themeName, CORE_CATEGORIES);
-    } catch (err) {
-        console.error(`❌ Error reading, parsing, or pre-processing theme file ${themeFile.path}: ${err.message}`);
-        return; // Skip this theme
-    }
-
-    // Combine pre-processed theme data with core data
-    // We structure it like the original single file input for SD
-    const combinedDictionaryData = {
-        core: coreData,
-        [themeName]: themeData
-    };
+    console.log(`\nProcessing theme file: ${path.basename(themeFile.path)} -> ${outputFilename}`);
     
-    // Build configuration specifically for this theme
-    const sdConfig = {
-      logLevel: options.verbose ? 'verbose' : 'info',
-      // Use the combined, pre-processed dictionary directly
-      dictionary: combinedDictionaryData, 
-      platforms: {
-        [themeName]: { // Platform name matches the theme key in the dictionary
-            transforms: [
-              'attribute/cti', 
-              'vip/dimension/px-unitless',
-              'vip/typography/flat-css',
-              'vip/shadow/css-string',
-              'color/hex' 
-            ],
-            buildPath: outputDir + '/',
-            files: [{
-              destination: outputFilename,
-              format: 'json/nested-themed',
-              // Filter properties passed to the formatter 
-              filter: (token) => {
-                  // --- DEBUG LOG --- 
-                  // Log the path of the first few tokens being checked by the filter
-                  if (!token.filterLoggedCount) token.filterLoggedCount = 0;
-                  if (token.filterLoggedCount < 10) { // Limit logging
-                      console.log(`  [Filter Debug] Checking token: ${token.name}, Path: ${JSON.stringify(token.path)}`);
-                      token.filterLoggedCount++;
-                  }
-                  // --- END DEBUG LOG ---
-                  const match = token.path && token.path.length > 0 && token.path[0] === themeName;
-                  return match;
-              },
-              options: {
-                  // Still pass themeName just in case formatter needs it, though filter should handle scope
-                  themeName: themeName 
-              }
-            }]
-          }
-      }
+    sdConfig.platforms[themeName] = {
+      source: [themeFile.path], // Source is the specific theme file
+      include: [coreFilePath], // Include core tokens for alias resolution
+      transforms: [
+        'attribute/cti', 
+        'vip/dimension/px-unitless',
+        'vip/typography/flat-css',
+        'vip/shadow/css-string',
+        'color/hex' 
+      ],
+      buildPath: outputDir + '/',
+      files: [{
+        destination: outputFilename,
+        format: 'json/nested-themed',
+        // No filter needed, source/include handles scoping
+        options: {
+           // No options needed by formatter anymore
+        }
+      }]
     };
-
-    // Extend Style Dictionary and build this platform
-    try {
-      console.log(`  ⚙️ Building platform ${themeName}...`);
-      const sd = StyleDictionary.extend(sdConfig);
-      sd.buildPlatform(themeName);
-      console.log(`  ✅ Platform ${themeName} built successfully.`);
-    } catch (error) {
-      console.error(`\n❌ Error during token transformation for theme ${themeName}:`);
-      console.error(error);
-      // Continue to next theme if one fails? Or exit? Let's continue for now.
-    }
   });
 
-  console.log(`\n✨ Token transformation process complete.`);
+  if (options.verbose) {
+     console.log('\n⚙️ Final Style Dictionary Configuration:');
+     console.log(JSON.stringify(sdConfig, null, 2));
+  }
+
+  // --- Build Platforms --- 
+  try {
+    const sd = StyleDictionary.extend(sdConfig);
+    // Build all defined platforms (one for each theme file)
+    sd.buildAllPlatforms(); 
+    console.log(`\n✅ Tokens transformed successfully to ${outputDir}`);
+  } catch (error) {
+    console.error(`\n❌ Error during token transformation: ${error.message}`);
+    process.exit(1);
+  }
 }
 
 // Run the transformation

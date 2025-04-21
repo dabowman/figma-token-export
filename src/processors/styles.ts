@@ -3,6 +3,7 @@
 import { TokenCollection, TokenData } from '../types';
 import { rgbaToHex } from '../utils/colors';
 import { findMatchingCoreNumber } from '../utils/variables';
+import { sanitizeCollectionName } from '../utils/sanitize';
 
 /**
  * Creates a dimension value object following W3C Design Token Format Module specification
@@ -15,6 +16,20 @@ function createDimensionValue(value: number, unit: string): { value: number; uni
     value: Number(value.toFixed(3)),
     unit
   };
+}
+
+/** Helper function to get the fully qualified alias path */
+async function getAliasPath(variableId: string): Promise<string | null> {
+  const variable = await figma.variables.getVariableByIdAsync(variableId);
+  if (!variable) return null;
+
+  const collection = await figma.variables.getVariableCollectionByIdAsync(variable.variableCollectionId);
+  if (!collection) return null;
+
+  // Use the sanitizeCollectionName function (needs to be imported or defined)
+  const sanitizedCollectionName = sanitizeCollectionName(collection.name); 
+  const pathSegments = variable.name.split('/');
+  return `{${sanitizedCollectionName}.${pathSegments.join('.')}}`;
 }
 
 /**
@@ -62,34 +77,30 @@ export async function processTextStyles(): Promise<TokenCollection> {
         
         // Handle font family
         if (style.boundVariables?.fontFamily) {
-          const fontVar = await figma.variables.getVariableByIdAsync(style.boundVariables.fontFamily.id);
-          value.fontFamily = `{${fontVar?.name.split('/').join('.')}}`;
+          value.fontFamily = await getAliasPath(style.boundVariables.fontFamily.id) ?? style.fontName.family;
         } else {
           value.fontFamily = style.fontName.family;
         }
         
         // Handle font size
         if (style.boundVariables?.fontSize) {
-          const sizeVar = await figma.variables.getVariableByIdAsync(style.boundVariables.fontSize.id);
-          value.fontSize = `{${sizeVar?.name.split('/').join('.')}}`;
+          value.fontSize = await getAliasPath(style.boundVariables.fontSize.id) ?? createDimensionValue(style.fontSize, 'px');
         } else {
           value.fontSize = createDimensionValue(style.fontSize, 'px');
         }
         
         // Handle font weight
         if (style.boundVariables?.fontWeight) {
-          const weightVar = await figma.variables.getVariableByIdAsync(style.boundVariables.fontWeight.id);
-          value.fontWeight = `{${weightVar?.name.split('/').join('.')}}`;
+          value.fontWeight = await getAliasPath(style.boundVariables.fontWeight.id) ?? (parseInt(style.fontName.style, 10) || style.fontName.style);
         } else {
           value.fontWeight = parseInt(style.fontName.style, 10) || style.fontName.style;
         }
 
         // Handle lineHeight
         if (style.boundVariables?.lineHeight) {
-          const lineHeightVar = await figma.variables.getVariableByIdAsync(style.boundVariables.lineHeight.id);
-          value.lineHeight = `{${lineHeightVar?.name.split('/').join('.')}}`;
-        } else {
-          // Try to match with core lineHeight token
+          value.lineHeight = await getAliasPath(style.boundVariables.lineHeight.id);
+        }
+        if (value.lineHeight === undefined) {
           let lineHeightValue: number;
           if (typeof style.lineHeight === 'number') {
             lineHeightValue = style.lineHeight * 100; // Convert multiplier to percentage
@@ -102,7 +113,7 @@ export async function processTextStyles(): Promise<TokenCollection> {
           if (coreCollection) {
             const matchingCore = await findMatchingCoreNumber(lineHeightValue, coreCollection, 'lineheight');
             if (matchingCore) {
-              value.lineHeight = `{${matchingCore.split('/').join('.')}}`;
+              value.lineHeight = `{core.${matchingCore.split('/').join('.')}}`;
             } else {
               value.lineHeight = createDimensionValue(lineHeightValue, '%');
             }
@@ -113,14 +124,14 @@ export async function processTextStyles(): Promise<TokenCollection> {
 
         // Handle letterSpacing
         if (style.boundVariables?.letterSpacing) {
-          const letterSpacingVar = await figma.variables.getVariableByIdAsync(style.boundVariables.letterSpacing.id);
-          value.letterSpacing = `{${letterSpacingVar?.name.split('/').join('.')}}`;
-        } else if (style.letterSpacing && typeof style.letterSpacing === 'object') {
+          value.letterSpacing = await getAliasPath(style.boundVariables.letterSpacing.id);
+        }
+        if (value.letterSpacing === undefined && style.letterSpacing && typeof style.letterSpacing === 'object') {
           const letterSpacingValue = style.letterSpacing.value;
           if (coreCollection) {
             const matchingCore = await findMatchingCoreNumber(letterSpacingValue, coreCollection, 'letterspacing');
             if (matchingCore) {
-              value.letterSpacing = `{${matchingCore.split('/').join('.')}}`;
+              value.letterSpacing = `{core.${matchingCore.split('/').join('.')}}`;
             } else {
               value.letterSpacing = createDimensionValue(letterSpacingValue, style.letterSpacing.unit === 'PIXELS' ? 'px' : '%');
             }
@@ -131,8 +142,7 @@ export async function processTextStyles(): Promise<TokenCollection> {
 
         // Handle paragraphSpacing
         if (style.boundVariables?.paragraphSpacing) {
-          const paragraphSpacingVar = await figma.variables.getVariableByIdAsync(style.boundVariables.paragraphSpacing.id);
-          value.paragraphSpacing = `{${paragraphSpacingVar?.name.split('/').join('.')}}`;
+          value.paragraphSpacing = await getAliasPath(style.boundVariables.paragraphSpacing.id);
         } else if (typeof style.paragraphSpacing === 'number') {
           value.paragraphSpacing = createDimensionValue(style.paragraphSpacing, 'px');
         }

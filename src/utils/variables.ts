@@ -201,11 +201,30 @@ export async function convertVariableToToken(variable: Variable, specificModeId?
     if (value && typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS') {
       const referencedVariable = await figma.variables.getVariableByIdAsync(value.id);
       if (referencedVariable) {
-        // Convert the reference path to the expected format
-        const refPath = referencedVariable.name.split('/');
-        const tokenType = getTokenType(variable.name, resolvedType);  // Pass original resolvedType
-        const tokenValue = `{${refPath.join('.')}}`;
+        // Get the referenced variable's collection to build the full path
+        const referencedCollection = await figma.variables.getVariableCollectionByIdAsync(referencedVariable.variableCollectionId);
+        let fullPathArray = [];
+        let sanitizedCollectionName = 'unknown_collection'; // Fallback
+
+        if (referencedCollection) {
+          // Sanitize collection name (e.g., "WPVIP Product Light" -> "wpvip-product-light")
+          // This uses the sanitizeCollectionName function from main.ts (we might need to import it or duplicate it)
+          // Let's assume sanitizeCollectionName is available or defined here for now.
+          // If not, we need to import it from where it's defined (likely main.ts or another util).
+          // TEMPORARY: Inline basic sanitization - replace with proper import/shared function later
+          sanitizedCollectionName = referencedCollection.name
+                .replace(/[.$]/g, '') // Remove restricted chars first
+                .replace(/[\/\s_]+/g, '-') // Replace separators with dash
+                .toLowerCase();
+          fullPathArray.push(sanitizedCollectionName);
+        } else {
+          console.warn(`⚠️ Could not find collection for referenced variable: ${referencedVariable.name} (ID: ${referencedVariable.id})`);
+        }
+        fullPathArray = fullPathArray.concat(referencedVariable.name.split('/'));
         
+        const tokenType = getTokenType(variable.name, resolvedType);
+        const tokenValue = `{${fullPathArray.join('.')}}`;
+
         if (!validateTokenValue(tokenValue, tokenType)) {
           console.warn(`Invalid reference value for type ${tokenType}:`, tokenValue);
         }

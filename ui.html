@@ -245,7 +245,7 @@
     };
 
     // Listen for messages from the plugin code
-    onmessage = (event) => {
+    window.onmessage = event => {
       const message = event.data.pluginMessage;
 
       if (message.type === 'collections-data') {
@@ -280,23 +280,54 @@
 
         // Initialize button state
         validateCollectionSelection();
+      } else if (message.type === 'download') {
+        // --- Keep old logic for single file download (e.g., raw export) ---
+        const { content, filename } = message;
+        const blob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
+        triggerDownload(blob, filename);
+        // Optionally re-enable button
+        exportTokensBtn.disabled = false;
+        exportTokensBtn.textContent = 'Export Selected';
+        document.getElementById('export-raw').disabled = false;
+        document.getElementById('export-raw').textContent = 'Export Raw Data';
+      } else if (message.type === 'download-multiple') {
+        // --- NEW: Handle multiple files --- 
+        const files = message.payload; // Payload is the array [{ filename, content }, ...]
+        if (files && Array.isArray(files)) {
+          console.log(`Received ${files.length} files to download.`);
+          files.forEach((fileInfo, index) => {
+            console.log(`Preparing download ${index + 1}: ${fileInfo.filename}`);
+            try {
+              const blob = new Blob([JSON.stringify(fileInfo.content, null, 2)], { type: 'application/json' });
+              // Use a small delay between downloads if needed, though often not required
+              setTimeout(() => triggerDownload(blob, fileInfo.filename), index * 100); 
+            } catch (e) {
+              console.error(`Error creating blob for ${fileInfo.filename}:`, e);
+              // Optionally notify the user via UI element
+            }
+          });
+        } else {
+           console.error('Received invalid payload for download-multiple', message.payload);
+        }
+        // Re-enable button after attempting all downloads
+        exportTokensBtn.disabled = false;
+        exportTokensBtn.textContent = 'Export Selected';
+        document.getElementById('export-raw').disabled = false;
+        document.getElementById('export-raw').textContent = 'Export Raw Data';
       }
-      else if (message.type === 'download') {
-        // Create and trigger download
-        const blob = new Blob([JSON.stringify(message.content, null, 2)], { type: 'application/json' });
+    };
+
+    // Function to trigger the download
+    function triggerDownload(blob, filename) {
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
-        link.download = message.filename;
-        document.body.appendChild(link);
+        link.download = filename;
+        document.body.appendChild(link); // Required for Firefox
         link.click();
         document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-
-        // Update status message
-        statusEl.textContent = `✅ ${message.filename} downloaded.`;
-      }
-    };
+        URL.revokeObjectURL(url); // Clean up
+    }
   </script>
 </body>
 

@@ -3,27 +3,10 @@
 import { Message, CollectionInfo, ExportOptions } from './types';
 import { processCollection } from './utils/variables';
 import { processTextStyles, processEffectStyles } from './processors/styles';
+import { sanitizeCollectionName, sanitizeFileName } from './utils/sanitize';
 
 // Initialize the plugin UI
 figma.showUI(__html__, { themeColors: true, width: 500, height: 400 });
-
-/**
- * Sanitizes a collection name according to W3C Design Token Format Module specification
- * @param name - The collection name to sanitize
- * @returns The sanitized collection name
- */
-function sanitizeCollectionName(name: string): string {
-  return name
-    // Remove leading special characters
-    .replace(/^[.$]/, '')
-    // Replace other special characters with dash
-    .replace(/[.$]/g, '')
-    // Convert to kebab-case
-    .replace(/[\/\.]/g, '-')
-    .toLowerCase()
-    // Remove leading dash
-    .replace(/^-/, '');
-}
 
 /**
  * Gets information about available collections for the UI
@@ -199,90 +182,94 @@ async function collectRawFigmaData(): Promise<Record<string, any>> {
 
 /**
  * Process tokens based on the provided export options
+ * Generates an array of file objects to be downloaded.
  * @param options - The export options from the UI
- * @returns The processed tokens
+ * @returns Array of objects with filename and content
  */
-async function processTokensWithOptions(options: ExportOptions): Promise<{ [key: string]: any }> {
+async function processTokensWithOptions(options: ExportOptions): Promise<{ filename: string, content: object }[]> {
   const collections = await figma.variables.getLocalVariableCollectionsAsync();
-  const allTokens: { [key: string]: any } = {};
+  const filesToExport: { filename: string, content: object }[] = [];
   
-  // Only process styles if they're included in the options
+  // Process styles first if included
   const sharedStyles: { [key: string]: any } = {};
   if (options.includeTypography) {
-    sharedStyles.typography = await processTextStyles();
+    try {
+      sharedStyles.typography = await processTextStyles();
+    } catch (e) { console.error("Error processing text styles:", e); }
   }
   if (options.includeEffects) {
-    sharedStyles.effects = await processEffectStyles();
+     try {
+      sharedStyles.effects = await processEffectStyles();
+    } catch (e) { console.error("Error processing effect styles:", e); }
   }
   
-  // Only process selected collections
+  // Process selected variable collections
   if (options.includeVariables) {
     const selectedCollections = collections.filter(collection => 
       options.collections.includes(collection.id)
     );
     
     for (const collection of selectedCollections) {
-      // Process collections with multiple modes
-      if (collection.modes.length > 1) {
-        for (const mode of collection.modes) {
-          // Format and sanitize collection name
-          const collectionName = sanitizeCollectionName(collection.name);
-          const modeName = mode.name.toLowerCase();
-          const tokenName = `${collectionName}_${modeName}`;
-          
-          // Initialize result object
-          allTokens[tokenName] = {};
-          
-          // Add collection tokens
-          const collectionTokens = await processCollection(collection, mode.modeId);
-          for (const key in collectionTokens) {
-            allTokens[tokenName][key] = collectionTokens[key];
+      const isCoreCollection = collection.name.toLowerCase().includes('core');
+      const baseCollectionName = sanitizeCollectionName(collection.name);
+
+      // Core collection is processed once (using first mode)
+      if (isCoreCollection) {
+          console.log(`Processing core collection: ${collection.name}`);
+          try {
+            const coreTokens = await processCollection(collection, collection.modes[0].modeId);
+            // Add styles to core only if ONLY core is exported?
+            // Or should core never include styles? Let's assume never for now.
+            filesToExport.push({ filename: 'core.json', content: { core: coreTokens } }); 
+          } catch (e: any) {
+            console.error(`Error processing core collection ${collection.name}:`, e);
+            figma.notify(`Error processing core collection: ${e.message}`, { error: true });
           }
-          
-          // Include styles for non-base collections in all modes
-          if (!collection.name.startsWith('.')) {
-            // Copy shared styles
-            if (options.includeTypography) {
-              allTokens[tokenName]['typography'] = sharedStyles.typography;
-            }
-            if (options.includeEffects) {
-              allTokens[tokenName]['effects'] = sharedStyles.effects;
-            }
-          }
-        }
-      } else {
-        // Format and sanitize collection name
-        const collectionName = sanitizeCollectionName(collection.name);
+          continue; // Move to next collection
+      }
+
+      // Process each mode of a theme collection as a separate file
+      for (const mode of collection.modes) {
+        const modeName = sanitizeFileName(mode.name);
+        // Combine collection name and mode name for the filename
+        const filename = `${baseCollectionName}-${modeName}.json`; 
+        console.log(`Processing theme collection mode: ${collection.name} - ${mode.name} -> ${filename}`);
         
-        // Initialize result object
-        allTokens[collectionName] = {};
-        
-        // Add collection tokens
-        const collectionTokens = await processCollection(collection);
-        for (const key in collectionTokens) {
-          allTokens[collectionName][key] = collectionTokens[key];
-        }
-        
-        // Include styles for non-base collections
-        if (!collection.name.startsWith('.')) {
-          // Copy shared styles
-          if (options.includeTypography) {
-            allTokens[collectionName]['typography'] = sharedStyles.typography;
+        try {
+          const modeTokens = await processCollection(collection, mode.modeId);
+          // Construct the final content for this theme file using Object.assign
+          const themeFileContent: { [key: string]: any } = {}; 
+          themeFileContent[baseCollectionName] = {}; // Initialize inner object
+          Object.assign(themeFileContent[baseCollectionName], modeTokens); // Merge modeTokens
+          
+          // Add shared styles if they exist
+          if (Object.keys(sharedStyles).length > 0) {
+             // Ensure the inner object exists before assigning styles
+             if (!themeFileContent[baseCollectionName]) {
+                 themeFileContent[baseCollectionName] = {};
+             }
+             (themeFileContent[baseCollectionName] as any).styles = sharedStyles;
           }
-          if (options.includeEffects) {
-            allTokens[collectionName]['effects'] = sharedStyles.effects;
-          }
+
+          filesToExport.push({ filename, content: themeFileContent });
+        } catch (e: any) {
+           console.error(`Error processing mode ${mode.name} for collection ${collection.name}:`, e);
+           figma.notify(`Error processing mode ${mode.name}: ${e.message}`, { error: true });
         }
       }
     }
   } else {
-    // If variables aren't included but styles are, create a basic styles-only structure
+    // If only styles are exported, create a single styles.json
     if (Object.keys(sharedStyles).length > 0) {
-      allTokens.styles = sharedStyles;
+      filesToExport.push({ filename: 'styles.json', content: sharedStyles });
     }
   }
   
-  return allTokens;
+  if (filesToExport.length === 0) {
+      throw new Error("No tokens or styles were generated based on selection.");
+  }
+
+  return filesToExport;
 }
 
 /**
@@ -313,19 +300,18 @@ figma.ui.onmessage = async (msg: Message) => {
         throw new Error('At least one variable collection must be selected');
       }
       
-      const allTokens = await processTokensWithOptions(options);
+      const filesToExport = await processTokensWithOptions(options);
 
-      // Send tokens to the UI for download
+      // Send array of files to UI for individual download
       figma.ui.postMessage({
-        type: 'download',
-        content: allTokens,
-        filename: 'design-tokens.json'
+        type: 'download-multiple',
+        payload: filesToExport
       });
 
       figma.notify('Successfully exported design tokens!');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error exporting tokens:', error);
-      figma.notify('Error exporting tokens: ' + (error instanceof Error ? error.message : String(error)), { error: true });
+      figma.notify('Error exporting tokens: ' + (error?.message ?? String(error)), { error: true });
     }
   } else if (msg.type === 'export-raw-only') {
     try {

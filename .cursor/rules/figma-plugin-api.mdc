@@ -1,7 +1,7 @@
 ---
-description: Figma plugin development best practices and guidelines.
+description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
  # Figma Plugin API
 
