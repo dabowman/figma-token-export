@@ -1,0 +1,2154 @@
+{
+    "background": {
+      "primary": {
+        "$value": "{color.gray.0}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13161",
+        "$description": "Use as main application background"
+      },
+      "overlay": {
+        "$value": "rgba({color.black},0.700)",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13162",
+        "$description": "Use as modal UI overlay"
+      }
+    },
+    "layer": {
+      "1": {
+        "$value": "{color.gray.3}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13163"
+      },
+      "2": {
+        "$value": "{color.pure-white}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13164"
+      },
+      "3": {
+        "$value": "{color.gray.7}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13165"
+      },
+      "4": {
+        "$value": "{color.pure-white}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13166"
+      },
+      "inverse": {
+        "$value": "{color.black}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13167",
+        "$description": "Use as component background in high-contrast situations."
+      },
+      "accent": {
+        "$value": "{color.gold.40}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13168"
+      }
+    },
+    "input": {
+      "label": {
+        "default": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13170"
+        }
+      },
+      "text": {
+        "default": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13171",
+          "$description": "Use for default text color in inputs"
+        },
+        "placeholder": {
+          "$value": "{color.gray.55}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13172",
+          "$description": "Use for placeholder text in fields"
+        }
+      },
+      "border": {
+        "default": {
+          "$value": "{color.gray.45}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13173",
+          "$description": "Use for input borders (AA contrast compliant on app bg)"
+        },
+        "disabled": {
+          "$value": "{color.gray.25}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13174"
+        },
+        "error": {
+          "$value": "{color.red.55}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13175"
+        },
+        "read-only": {
+          "$value": "{border.2}",
+          "$type": "color",
+          "$figmaId": "VariableID:8366:28051"
+        }
+      },
+      "switcher": {
+        "background": {
+          "primary": {
+            "$value": "{color.green.60}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13176"
+          },
+          "secondary": {
+            "$value": "{color.blue.60}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13177"
+          }
+        }
+      },
+      "radio-box": {
+        "background": {
+          "default": {
+            "$value": "rgba({color.gold.0},0.000)",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13178"
+          },
+          "hover": {
+            "$value": "{color.gray.3}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13179"
+          },
+          "active": {
+            "$value": "rgba({color.gold.0},0.000)",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13180"
+          },
+          "disabled": {
+            "$value": "rgba({color.gold.0},0.000)",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13181"
+          }
+        },
+        "label": {
+          "primary": {
+            "default": {
+              "$value": "{text.primary}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13182"
+            },
+            "hover": {
+              "$value": "{text.primary}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13183"
+            },
+            "active": {
+              "$value": "{text.primary}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13184"
+            },
+            "disabled": {
+              "$value": "{text.disabled}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13185"
+            }
+          },
+          "secondary": {
+            "default": {
+              "$value": "{text.secondary}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13186"
+            },
+            "hover": {
+              "$value": "{text.secondary}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13187"
+            },
+            "active": {
+              "$value": "{text.secondary}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13188"
+            },
+            "disabled": {
+              "$value": "{text.disabled}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13189"
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "$value": "{color.gray.45}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13190"
+          },
+          "hover": {
+            "$value": "{color.gray.45}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13191"
+          },
+          "active": {
+            "$value": "{color.gold.60}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13192"
+          },
+          "disabled": {
+            "$value": "{color.gray.25}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13193"
+          }
+        }
+      },
+      "background": {
+        "default": {
+          "$value": "rgba({color.gold.0},0.000)",
+          "$type": "color",
+          "$figmaId": "VariableID:7986:11541",
+          "$description": "Use for input backgrounds"
+        },
+        "primary": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7986:11542"
+        },
+        "success": {
+          "$value": "{color.green.60}",
+          "$type": "color",
+          "$figmaId": "VariableID:7986:11543"
+        },
+        "brand": {
+          "$value": "{color.gold.60}",
+          "$type": "color",
+          "$figmaId": "VariableID:7986:11544"
+        },
+        "inactive": {
+          "$value": "{color.gray.50}",
+          "$type": "color",
+          "$figmaId": "VariableID:7986:11545"
+        },
+        "disabled": {
+          "$value": "{color.gray.20}",
+          "$type": "color",
+          "$figmaId": "VariableID:8029:16990"
+        },
+        "read-only": {
+          "$value": "{layer.1}",
+          "$type": "color",
+          "$figmaId": "VariableID:8366:28050"
+        }
+      },
+      "toggle": {
+        "switch": {
+          "default": {
+            "$value": "{color.pure-white}",
+            "$type": "color",
+            "$figmaId": "VariableID:8029:16992"
+          },
+          "disabled": {
+            "$value": "{color.gray.7}",
+            "$type": "color",
+            "$figmaId": "VariableID:8029:16993"
+          }
+        }
+      }
+    },
+    "border": {
+      "1": {
+        "$value": "{color.gray.25}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13194",
+        "$description": "Use for separator lines on layer 1 (no contrast requriements)"
+      },
+      "2": {
+        "$value": "{color.gray.10}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13195",
+        "$description": "Use for soft borders on default page bg"
+      },
+      "3": {
+        "$value": "{color.gray.30}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13196"
+      },
+      "4": {
+        "$value": "{color.gray.10}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13197",
+        "$description": "Use for table spearator lines"
+      },
+      "inverse": {
+        "$value": "{color.gray.50}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13198"
+      },
+      "accent": {
+        "$value": "{color.gold.50}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13199"
+      }
+    },
+    "text": {
+      "primary": {
+        "$value": "{color.black}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13200",
+        "$description": "Use for headings"
+      },
+      "secondary": {
+        "$value": "{color.gray.70}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13201",
+        "$description": "Use for body text"
+      },
+      "helper": {
+        "$value": "{color.gray.60}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13202",
+        "$description": "Use for helper text"
+      },
+      "disabled": {
+        "$value": "{color.gray.40}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13203"
+      },
+      "inverse": {
+        "$value": "{color.gray.0}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13204",
+        "$description": "Use for primary text on an inverse layer"
+      },
+      "inverse-secondary": {
+        "$value": "{color.gray.30}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13205",
+        "$description": "Use for secondary text on an inverse layer."
+      },
+      "accent": {
+        "$value": "{color.gold.60}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13206"
+      },
+      "error": {
+        "$value": "{color.red.60}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13207",
+        "$description": "Use for error text/icons outside of notices."
+      },
+      "success": {
+        "$value": "{color.green.60}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13208",
+        "$description": "Use for success text/icons outisde of notices."
+      }
+    },
+    "link": {
+      "default": {
+        "$value": "{color.gold.60}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13209",
+        "$description": "Use for text links"
+      },
+      "hover": {
+        "$value": "{color.gold.70}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13210"
+      },
+      "active": {
+        "$value": "{color.gold.80}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13211"
+      },
+      "visited": {
+        "$value": "{color.gold.70}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13212"
+      }
+    },
+    "icon": {
+      "primary": {
+        "$value": "{color.gray.85}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13213"
+      },
+      "secondary": {
+        "$value": "{color.gray.50}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13214"
+      },
+      "helper": {
+        "$value": "{color.gray.40}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13215"
+      },
+      "inverse": {
+        "$value": "{color.pure-white}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13216"
+      },
+      "disabled": {
+        "$value": "{color.gray.45}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13217"
+      },
+      "brand": {
+        "$value": "{color.gold.60}",
+        "$type": "color",
+        "$figmaId": "VariableID:7986:11546"
+      },
+      "inverse-disabled": {
+        "$value": "{color.gray.10}",
+        "$type": "color",
+        "$figmaId": "VariableID:8029:16991"
+      }
+    },
+    "button": {
+      "primary": {
+        "background": {
+          "default": {
+            "$value": "{color.black}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13218"
+          },
+          "hover": {
+            "$value": "{color.gold.30}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13219"
+          },
+          "disabled": {
+            "$value": "{color.gray.25}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13220"
+          }
+        },
+        "label": {
+          "default": {
+            "$value": "{text.inverse}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13221"
+          },
+          "hover": {
+            "$value": "{text.primary}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13222"
+          },
+          "disabled": {
+            "$value": "{text.disabled}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13223"
+          }
+        }
+      },
+      "secondary": {
+        "background": {
+          "default": {
+            "$value": "{color.gray.10}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13224"
+          },
+          "hover": {
+            "$value": "{color.gold.30}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13225"
+          },
+          "disabled": {
+            "$value": "{color.gray.25}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13226"
+          }
+        },
+        "label": {
+          "default": {
+            "$value": "{text.primary}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13227"
+          },
+          "hover": {
+            "$value": "{text.primary}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13228"
+          },
+          "disabled": {
+            "$value": "{text.disabled}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13229"
+          }
+        }
+      },
+      "tertiary": {
+        "background": {
+          "default": {
+            "$value": "rgba({color.gold.0},0.000)",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13230"
+          },
+          "hover": {
+            "$value": "{color.gray.10}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13231"
+          },
+          "disabled": {
+            "$value": "rgba({color.gold.0},0.000)",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13232"
+          }
+        },
+        "border": {
+          "default": {
+            "$value": "{color.gray.45}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13233"
+          },
+          "hover": {
+            "$value": "{color.gray.10}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13234"
+          },
+          "disabled": {
+            "$value": "{color.gray.25}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13235"
+          }
+        },
+        "label": {
+          "default": {
+            "$value": "{text.primary}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13236"
+          },
+          "hover": {
+            "$value": "{text.primary}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13237"
+          },
+          "disabled": {
+            "$value": "{text.disabled}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13238"
+          }
+        }
+      },
+      "ghost": {
+        "background": {
+          "default": {
+            "$value": "rgba({color.gold.0},0.000)",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13239"
+          },
+          "hover": {
+            "$value": "{color.gray.10}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13240"
+          },
+          "disabled": {
+            "$value": "rgba({color.gold.0},0.000)",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13241"
+          }
+        },
+        "label": {
+          "default": {
+            "$value": "{text.accent}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13242"
+          },
+          "hover": {
+            "$value": "{text.primary}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13243"
+          },
+          "disabled": {
+            "$value": "{text.disabled}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13244"
+          }
+        }
+      },
+      "display": {
+        "background": {
+          "default": {
+            "$value": "{color.gold.30}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13245"
+          },
+          "hover": {
+            "$value": "{color.gold.60}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13246"
+          },
+          "disabled": {
+            "$value": "{color.gray.25}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13247"
+          }
+        },
+        "label": {
+          "default": {
+            "$value": "{text.primary}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13248"
+          },
+          "hover": {
+            "$value": "{text.inverse}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13249"
+          },
+          "disabled": {
+            "$value": "{text.disabled}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13250"
+          }
+        }
+      },
+      "danger": {
+        "primary": {
+          "background": {
+            "default": {
+              "$value": "{color.red.55}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13251"
+            },
+            "hover": {
+              "$value": "{color.red.70}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13252"
+            },
+            "disabled": {
+              "$value": "{color.gray.25}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13253"
+            }
+          },
+          "label": {
+            "default": {
+              "$value": "{text.inverse}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13254"
+            },
+            "hover": {
+              "$value": "{text.inverse}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13255"
+            },
+            "disabled": {
+              "$value": "{text.disabled}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13256"
+            }
+          }
+        },
+        "secondary": {
+          "background": {
+            "default": {
+              "$value": "rgba({color.gold.0},0.000)",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13257"
+            },
+            "hover": {
+              "$value": "{color.red.70}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13258"
+            },
+            "disabled": {
+              "$value": "rgba({color.gold.0},0.000)",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13259"
+            }
+          },
+          "label": {
+            "default": {
+              "$value": "{color.red.55}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13260"
+            },
+            "hover": {
+              "$value": "{text.inverse}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13261"
+            },
+            "disabled": {
+              "$value": "{text.disabled}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13262"
+            }
+          },
+          "border": {
+            "default": {
+              "$value": "{color.red.55}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13263"
+            },
+            "hover": {
+              "$value": "{color.red.70}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13264"
+            },
+            "disabled": {
+              "$value": "{color.gray.25}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13265"
+            }
+          }
+        },
+        "ghost": {
+          "background": {
+            "default": {
+              "$value": "rgba({color.gold.0},0.000)",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13266"
+            },
+            "hover": {
+              "$value": "{color.red.70}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13267"
+            },
+            "disabled": {
+              "$value": "rgba({color.gold.0},0.000)",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13268"
+            }
+          },
+          "label": {
+            "default": {
+              "$value": "{color.red.55}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13269"
+            },
+            "hover": {
+              "$value": "{text.inverse}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13270"
+            },
+            "disabled": {
+              "$value": "{text.disabled}",
+              "$type": "color",
+              "$figmaId": "VariableID:7973:13271"
+            }
+          }
+        }
+      }
+    },
+    "support": {
+      "background": {
+        "error": {
+          "$value": "{color.red.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13272"
+        },
+        "warning": {
+          "$value": "{color.yellow.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13273"
+        },
+        "info": {
+          "$value": "{color.blue.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13274"
+        },
+        "success": {
+          "$value": "{color.green.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13275"
+        },
+        "neutral": {
+          "$value": "{color.gray.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:10139:59082"
+        },
+        "feature": {
+          "$value": "{color.purple.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:10139:81757"
+        }
+      },
+      "text": {
+        "neutral": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:10139:81758"
+        },
+        "error": {
+          "$value": "{color.red.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13276"
+        },
+        "warning": {
+          "$value": "{color.yellow.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13277"
+        },
+        "info": {
+          "$value": "{color.blue.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13278"
+        },
+        "success": {
+          "$value": "{color.green.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13279"
+        },
+        "feature": {
+          "$value": "{color.purple.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:10139:81759"
+        }
+      },
+      "icon": {
+        "neutral": {
+          "$value": "{color.gray.40}",
+          "$type": "color",
+          "$figmaId": "VariableID:10139:81760"
+        },
+        "error": {
+          "$value": "{color.red.50}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13280"
+        },
+        "warning": {
+          "$value": "{color.yellow.40}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13281"
+        },
+        "info": {
+          "$value": "{color.blue.40}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13282"
+        },
+        "success": {
+          "$value": "{color.green.40}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13283"
+        },
+        "feature": {
+          "$value": "{color.purple.40}",
+          "$type": "color",
+          "$figmaId": "VariableID:10139:81761"
+        }
+      },
+      "accent": {
+        "error": {
+          "$value": "{color.red.50}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13284"
+        },
+        "warning": {
+          "$value": "{color.yellow.50}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13285"
+        },
+        "info": {
+          "$value": "{color.blue.35}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13286"
+        },
+        "success": {
+          "$value": "{color.green.60}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13287"
+        },
+        "neutral": {
+          "$value": "{color.gray.50}",
+          "$type": "color",
+          "$figmaId": "VariableID:10139:81728"
+        },
+        "feature": {
+          "$value": "{color.purple.60}",
+          "$type": "color",
+          "$figmaId": "VariableID:10139:81762"
+        }
+      },
+      "link": {
+        "neutral": {
+          "default": {
+            "$value": "{color.black}",
+            "$type": "color",
+            "$figmaId": "VariableID:10376:87747",
+            "$description": "Use for text links"
+          },
+          "hover": {
+            "$value": "{color.gray.70}",
+            "$type": "color",
+            "$figmaId": "VariableID:10376:87748"
+          },
+          "active": {
+            "$value": "{color.gray.70}",
+            "$type": "color",
+            "$figmaId": "VariableID:10376:87749"
+          },
+          "visited": {
+            "$value": "{color.gray.80}",
+            "$type": "color",
+            "$figmaId": "VariableID:10376:87750"
+          }
+        },
+        "error": {
+          "default": {
+            "$value": "{color.red.60}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13288",
+            "$description": "Use for text links"
+          },
+          "hover": {
+            "$value": "{color.red.70}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13289"
+          },
+          "active": {
+            "$value": "{color.red.80}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13290"
+          },
+          "visited": {
+            "$value": "{color.red.80}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13291"
+          }
+        },
+        "warning": {
+          "default": {
+            "$value": "{color.yellow.60}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13292",
+            "$description": "Use for text links"
+          },
+          "hover": {
+            "$value": "{color.yellow.70}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13293"
+          },
+          "active": {
+            "$value": "{color.yellow.80}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13294"
+          },
+          "visited": {
+            "$value": "{color.yellow.70}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13295"
+          }
+        },
+        "info": {
+          "default": {
+            "$value": "{color.blue.65}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13296",
+            "$description": "Use for text links"
+          },
+          "hover": {
+            "$value": "{color.blue.70}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13297"
+          },
+          "active": {
+            "$value": "{color.blue.80}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13298"
+          },
+          "visited": {
+            "$value": "{color.blue.70}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13299"
+          }
+        },
+        "success": {
+          "default": {
+            "$value": "{color.green.60}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13300",
+            "$description": "Use for text links"
+          },
+          "hover": {
+            "$value": "{color.green.70}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13301"
+          },
+          "active": {
+            "$value": "{color.green.80}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13302"
+          },
+          "visited": {
+            "$value": "{color.green.70}",
+            "$type": "color",
+            "$figmaId": "VariableID:7973:13303"
+          }
+        }
+      }
+    },
+    "focus": {
+      "default": {
+        "$value": "{color.focus}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13304"
+      },
+      "inset": {
+        "$value": "{color.pure-white}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13305"
+      }
+    },
+    "tag": {
+      "gray": {
+        "background": {
+          "$value": "{color.gray.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13306"
+        },
+        "text": {
+          "$value": "{color.gray.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13307"
+        },
+        "icon": {
+          "$value": "{color.gray.65}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13308"
+        },
+        "hover": {
+          "$value": "{color.gray.15}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13309"
+        },
+        "active": {
+          "$value": "{color.gray.20}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13310"
+        }
+      },
+      "blue": {
+        "background": {
+          "$value": "{color.blue.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13311"
+        },
+        "text": {
+          "$value": "{color.blue.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13312"
+        },
+        "icon": {
+          "$value": "{color.blue.65}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13313"
+        },
+        "hover": {
+          "$value": "{color.blue.15}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13314"
+        },
+        "active": {
+          "$value": "{color.blue.20}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13315"
+        }
+      },
+      "green": {
+        "background": {
+          "$value": "{color.green.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13316"
+        },
+        "text": {
+          "$value": "{color.green.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13317"
+        },
+        "icon": {
+          "$value": "{color.green.65}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13318"
+        },
+        "hover": {
+          "$value": "{color.green.15}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13319"
+        },
+        "active": {
+          "$value": "{color.green.20}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13320"
+        }
+      },
+      "red": {
+        "background": {
+          "$value": "{color.red.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13321"
+        },
+        "text": {
+          "$value": "{color.red.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13322"
+        },
+        "icon": {
+          "$value": "{color.red.65}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13323"
+        },
+        "hover": {
+          "$value": "{color.red.15}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13324"
+        },
+        "active": {
+          "$value": "{color.red.20}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13325"
+        }
+      },
+      "gold": {
+        "background": {
+          "$value": "{color.gold.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13326"
+        },
+        "text": {
+          "$value": "{color.gold.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13327"
+        },
+        "icon": {
+          "$value": "{color.gold.65}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13328"
+        },
+        "hover": {
+          "$value": "{color.gold.15}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13329"
+        },
+        "active": {
+          "$value": "{color.gold.20}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13330"
+        }
+      },
+      "yellow": {
+        "background": {
+          "$value": "{color.yellow.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13331"
+        },
+        "text": {
+          "$value": "{color.yellow.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13332"
+        },
+        "icon": {
+          "$value": "{color.yellow.65}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13333"
+        },
+        "hover": {
+          "$value": "{color.yellow.15}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13334"
+        },
+        "active": {
+          "$value": "{color.yellow.20}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13335"
+        }
+      },
+      "orange": {
+        "background": {
+          "$value": "{color.orange.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13336"
+        },
+        "text": {
+          "$value": "{color.orange.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13337"
+        },
+        "icon": {
+          "$value": "{color.orange.65}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13338"
+        },
+        "hover": {
+          "$value": "{color.orange.15}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13339"
+        },
+        "active": {
+          "$value": "{color.orange.20}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13340"
+        }
+      },
+      "salmon": {
+        "background": {
+          "$value": "{color.salmon.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13341"
+        },
+        "text": {
+          "$value": "{color.salmon.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13342"
+        },
+        "icon": {
+          "$value": "{color.salmon.65}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13343"
+        },
+        "hover": {
+          "$value": "{color.salmon.15}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13344"
+        },
+        "active": {
+          "$value": "{color.salmon.20}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13345"
+        }
+      },
+      "pink": {
+        "background": {
+          "$value": "{color.pink.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13346"
+        },
+        "text": {
+          "$value": "{color.pink.85}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13347"
+        },
+        "icon": {
+          "$value": "{color.pink.65}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13348"
+        },
+        "hover": {
+          "$value": "{color.pink.15}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13349"
+        },
+        "active": {
+          "$value": "{color.pink.20}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13350"
+        }
+      }
+    },
+    "sticker": {
+      "gray": {
+        "background": {
+          "$value": "{color.gray.90}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13351"
+        },
+        "background-secondary": {
+          "$value": "{color.gray.20}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13352"
+        },
+        "text": {
+          "$value": "{color.pure-white}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13353"
+        },
+        "text-secondary": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13354"
+        },
+        "icon": {
+          "$value": "{color.pure-white}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13355"
+        },
+        "hover": {
+          "$value": "{color.gray.80}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13356"
+        },
+        "active": {
+          "$value": "{color.gray.75}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13357"
+        }
+      },
+      "blue": {
+        "background": {
+          "$value": "{color.blue.30}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13358"
+        },
+        "background-secondary": {
+          "$value": "{color.blue.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13359"
+        },
+        "text": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13360"
+        },
+        "text-secondary": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13361"
+        },
+        "icon": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13362"
+        },
+        "hover": {
+          "$value": "{color.blue.40}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13363"
+        },
+        "active": {
+          "$value": "{color.blue.45}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13364"
+        }
+      },
+      "green": {
+        "background": {
+          "$value": "{color.green.30}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13365"
+        },
+        "background-secondary": {
+          "$value": "{color.green.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13366"
+        },
+        "text": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13367"
+        },
+        "text-secondary": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13368"
+        },
+        "icon": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13369"
+        },
+        "hover": {
+          "$value": "{color.green.40}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13370"
+        },
+        "active": {
+          "$value": "{color.green.45}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13371"
+        }
+      },
+      "red": {
+        "background": {
+          "$value": "{color.red.60}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13372"
+        },
+        "background-secondary": {
+          "$value": "{color.red.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13373"
+        },
+        "text": {
+          "$value": "{color.pure-white}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13374"
+        },
+        "text-secondary": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13375"
+        },
+        "icon": {
+          "$value": "{color.pure-white}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13376"
+        },
+        "hover": {
+          "$value": "{color.red.70}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13377"
+        },
+        "active": {
+          "$value": "{color.red.75}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13378"
+        }
+      },
+      "gold": {
+        "background": {
+          "$value": "{color.gold.30}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13379"
+        },
+        "background-secondary": {
+          "$value": "{color.gold.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13380"
+        },
+        "text": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13381"
+        },
+        "text-secondary": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13382"
+        },
+        "icon": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13383"
+        },
+        "hover": {
+          "$value": "{color.gold.40}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13384"
+        },
+        "active": {
+          "$value": "{color.gold.45}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13385"
+        }
+      },
+      "yellow": {
+        "background": {
+          "$value": "{color.yellow.30}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13386"
+        },
+        "background-secondary": {
+          "$value": "{color.yellow.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13387"
+        },
+        "text": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13388"
+        },
+        "text-secondary": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13389"
+        },
+        "icon": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13390"
+        },
+        "hover": {
+          "$value": "{color.yellow.40}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13391"
+        },
+        "active": {
+          "$value": "{color.yellow.45}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13392"
+        }
+      },
+      "orange": {
+        "background": {
+          "$value": "{color.orange.35}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13393"
+        },
+        "background-secondary": {
+          "$value": "{color.orange.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13394"
+        },
+        "text": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13395"
+        },
+        "text-secondary": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13396"
+        },
+        "icon": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13397"
+        },
+        "hover": {
+          "$value": "{color.orange.45}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13398"
+        },
+        "active": {
+          "$value": "{color.orange.50}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13399"
+        }
+      },
+      "salmon": {
+        "background": {
+          "$value": "{color.salmon.30}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13400"
+        },
+        "background-secondary": {
+          "$value": "{color.salmon.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13401"
+        },
+        "text": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13402"
+        },
+        "text-secondary": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13403"
+        },
+        "icon": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13404"
+        },
+        "hover": {
+          "$value": "{color.salmon.40}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13405"
+        },
+        "active": {
+          "$value": "{color.salmon.45}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13406"
+        }
+      },
+      "pink": {
+        "background": {
+          "$value": "{color.pink.30}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13407"
+        },
+        "background-secondary": {
+          "$value": "{color.pink.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13408"
+        },
+        "text": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13409"
+        },
+        "text-secondary": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13410"
+        },
+        "icon": {
+          "$value": "{color.black}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13411"
+        },
+        "hover": {
+          "$value": "{color.pink.40}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13412"
+        },
+        "active": {
+          "$value": "{color.pink.45}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13413"
+        }
+      }
+    },
+    "toolbar": {
+      "background": {
+        "$value": "{color.black}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13414",
+        "$description": "The background color for the top toolbar"
+      },
+      "text": {
+        "default": {
+          "$value": "{color.gray.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13415",
+          "$description": "Default text color for the top toolbar's contents"
+        },
+        "hover": {
+          "$value": "{color.gray.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13416"
+        }
+      },
+      "brand": {
+        "$value": "{color.pure-white}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13417",
+        "$description": "Use for the logo"
+      }
+    },
+    "logs": {
+      "text": {
+        "primary": {
+          "$value": "{color.gray.7}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13418",
+          "$description": "Use for monotype output in an invere layer."
+        },
+        "secondary": {
+          "$value": "{color.gray.30}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13419",
+          "$description": "Use for timestamp or secondary monotype output in an inverse layer."
+        }
+      },
+      "background": {
+        "$value": "{color.black}",
+        "$type": "color",
+        "$figmaId": "VariableID:7973:13420",
+        "$description": "Use for the pseudo terminal window background color."
+      }
+    },
+    "option-row": {
+      "default": {
+        "background": {
+          "$value": "{color.gold.40}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13421"
+        },
+        "icon": {
+          "$value": "{color.gray.93}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13422"
+        }
+      },
+      "alt": {
+        "background": {
+          "$value": "{layer.inverse}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13423"
+        },
+        "icon": {
+          "$value": "{icon.inverse}",
+          "$type": "color",
+          "$figmaId": "VariableID:7973:13424"
+        }
+      }
+    },
+    "space": {
+      "0": {
+        "$value": {
+          "value": 0,
+          "unit": "rem"
+        },
+        "$type": "dimension",
+        "$figmaId": "VariableID:7973:13425"
+      },
+      "1": {
+        "$value": "{space.static.1}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13426"
+      },
+      "2": {
+        "$value": "{space.static.2}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13427"
+      },
+      "3": {
+        "$value": "{space.static.3}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13428"
+      },
+      "4": {
+        "$value": "{space.static.4}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13429"
+      },
+      "5": {
+        "$value": "{space.static.5}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13430"
+      },
+      "6": {
+        "$value": "{space.static.6}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13431"
+      },
+      "7": {
+        "$value": "{space.static.7}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13432"
+      },
+      "8": {
+        "$value": "{space.static.8}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13433"
+      },
+      "9": {
+        "$value": "{space.static.10}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13434"
+      }
+    },
+    "borderRadius": {
+      "0": {
+        "$value": {
+          "value": 0,
+          "unit": "rem"
+        },
+        "$type": "dimension",
+        "$figmaId": "VariableID:8411:593757"
+      },
+      "1": {
+        "$value": "{borderRadius.static.0}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13435"
+      },
+      "2": {
+        "$value": "{borderRadius.static.1}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13436"
+      },
+      "3": {
+        "$value": "{borderRadius.static.2}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13437"
+      },
+      "4": {
+        "$value": "{borderRadius.static.3}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13438"
+      },
+      "5": {
+        "$value": "{borderRadius.static.4}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13439"
+      },
+      "6": {
+        "$value": "{borderRadius.static.5}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13440"
+      },
+      "7": {
+        "$value": "{borderRadius.static.6}",
+        "$type": "number",
+        "$figmaId": "VariableID:7973:13441"
+      }
+    },
+    "typography": {
+      "support": {
+        "helper-text": {
+          "$value": {
+            "fontFamily": "{fontFamily.body}",
+            "fontSize": "{fontSize.static.1}",
+            "fontWeight": "{fontWeight.regular}",
+            "lineHeight": "{lineHeight.5}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:2ffd324aff338a6dd8cd7c4cc78011e5a1b4c4af,"
+        },
+        "label-xs": {
+          "$value": {
+            "fontFamily": "{fontFamily.body}",
+            "fontSize": "{fontSize.static.0}",
+            "fontWeight": "{fontWeight.regular}",
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.loose}",
+            "paragraphSpacing": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:72cd491e1ff725611279ddc6d1110865ff7bfe17,"
+        },
+        "label-small": {
+          "$value": {
+            "fontFamily": "{fontFamily.body}",
+            "fontSize": "{fontSize.static.1}",
+            "fontWeight": "{fontWeight.regular}",
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:b43350f14fc2b6f02d947161c5eb95b64ccfb4b2,"
+        },
+        "label-default": {
+          "$value": {
+            "fontFamily": "{fontFamily.body}",
+            "fontSize": "{fontSize.static.2}",
+            "fontWeight": "{fontWeight.semiBold}",
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:b91dafb14448c14894993730b19020fd09b4e4e9,"
+        },
+        "label-default-quiet": {
+          "$value": {
+            "fontFamily": "{fontFamily.body}",
+            "fontSize": "{fontSize.static.2}",
+            "fontWeight": "{fontWeight.regular}",
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:6086212bf26b40bd3dc1c9e694ca9f675882b896,"
+        },
+        "label-default-loud": {
+          "$value": {
+            "fontFamily": "{fontFamily.body}",
+            "fontSize": "{fontSize.static.2}",
+            "fontWeight": "{fontWeight.bold}",
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:47ab3b323a4a1b918655442890d3f16dafdff081,"
+        },
+        "label-caps": {
+          "$value": {
+            "fontFamily": "{fontFamily.body}",
+            "fontSize": "{fontSize.static.1}",
+            "fontWeight": "{fontWeight.semiBold}",
+            "lineHeight": "{lineHeight.1}",
+            "letterSpacing": "{letterSpacing.x-loose}",
+            "paragraphSpacing": {
+              "value": 0,
+              "unit": "px"
+            },
+            "textCase": "upper"
+          },
+          "$type": "typography",
+          "$figmaId": "S:5631cc676d769e806f854e60a0eadd68cbbec62a,"
+        }
+      },
+      "heading": {
+        "1": {
+          "$value": {
+            "fontFamily": "{fontFamily.heading}",
+            "fontSize": "{fontSize.static.7}",
+            "fontWeight": "{fontWeight.bold}",
+            "lineHeight": "{lineHeight.3}",
+            "letterSpacing": "{letterSpacing.tight}",
+            "paragraphSpacing": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:bb72b147d2fc7d278fdd7cac253e33603a63176a,"
+        },
+        "2": {
+          "$value": {
+            "fontFamily": "{fontFamily.heading}",
+            "fontSize": "{fontSize.static.6}",
+            "fontWeight": "{fontWeight.semiBold}",
+            "lineHeight": "{lineHeight.2}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:642cb11b7d3b027dfca7d62e623149787743b826,"
+        },
+        "3": {
+          "$value": {
+            "fontFamily": "{fontFamily.heading}",
+            "fontSize": "{fontSize.static.4}",
+            "fontWeight": "{fontWeight.semiBold}",
+            "lineHeight": "{lineHeight.5}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:c1da6743e33c4128b8bf5758a7f910a99b6f9518,"
+        },
+        "4": {
+          "$value": {
+            "fontFamily": "{fontFamily.heading}",
+            "fontSize": "{fontSize.static.2}",
+            "fontWeight": "{fontWeight.bold}",
+            "lineHeight": "{lineHeight.6}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:7d188139e10392856be7afa936d9d69d9d6c1b0a,"
+        },
+        "5": {
+          "$value": {
+            "fontFamily": "{fontFamily.heading}",
+            "fontSize": "{fontSize.static.1}",
+            "fontWeight": "{fontWeight.bold}",
+            "lineHeight": "{lineHeight.5}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:a5d346be1097d4b8c549ba3481daf4448a38aabc,"
+        },
+        "caps": {
+          "$value": {
+            "fontFamily": "{fontFamily.heading}",
+            "fontSize": "{fontSize.static.1}",
+            "fontWeight": "{fontWeight.semiBold}",
+            "lineHeight": "{lineHeight.5}",
+            "letterSpacing": "{letterSpacing.x-loose}",
+            "paragraphSpacing": {
+              "value": 0,
+              "unit": "px"
+            },
+            "textCase": "upper"
+          },
+          "$type": "typography",
+          "$figmaId": "S:9917cc916435fb8d3d7008d64ee7aef7c378f9d9,"
+        }
+      },
+      "text": {
+        "small": {
+          "$value": {
+            "fontFamily": "{fontFamily.body}",
+            "fontSize": "{fontSize.static.1}",
+            "fontWeight": "{fontWeight.regular}",
+            "lineHeight": "{lineHeight.5}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 12,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:7828f455ace6d3a8be8e61f51215242a34e38635,"
+        },
+        "default": {
+          "$value": {
+            "fontFamily": "{fontFamily.body}",
+            "fontSize": "{fontSize.static.2}",
+            "fontWeight": "{fontWeight.regular}",
+            "lineHeight": "{lineHeight.5}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:93d3170f10ae1b76c5ed804f0ec5e05e7f4ec71b,"
+        },
+        "large": {
+          "$value": {
+            "fontFamily": "{fontFamily.body}",
+            "fontSize": "{fontSize.static.5}",
+            "fontWeight": "{fontWeight.regular}",
+            "lineHeight": "{lineHeight.5}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 19,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:3ac840cbbeddb910784b575c743df86a06f20e91,"
+        },
+        "mono": {
+          "$value": {
+            "fontFamily": "{fontFamily.mono}",
+            "fontSize": "{fontSize.static.2}",
+            "fontWeight": "{fontWeight.regular}",
+            "lineHeight": "{lineHeight.5}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:5e42a9844f90d2c5ff6a0af5fdc97e844573b627,"
+        },
+        "mono-bold": {
+          "$value": {
+            "fontFamily": "{fontFamily.mono}",
+            "fontSize": "{fontSize.static.2}",
+            "fontWeight": "{fontWeight.bold}",
+            "lineHeight": "{lineHeight.5}",
+            "letterSpacing": "{letterSpacing.none}",
+            "paragraphSpacing": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "$type": "typography",
+          "$figmaId": "S:bc5fa086ca21bdac62ec85a5a46765de34a446b9,"
+        }
+      }
+    },
+    "effects": {
+      "High": {
+        "$value": [
+          {
+            "color": "#00000005",
+            "offsetX": "0px",
+            "offsetY": "2.767256498336792px",
+            "blur": "2.2138051986694336px",
+            "spread": "0px",
+            "type": "dropShadow"
+          },
+          {
+            "color": "#00000007",
+            "offsetX": "0px",
+            "offsetY": "6.650102138519287px",
+            "blur": "5.32008171081543px",
+            "spread": "0px",
+            "type": "dropShadow"
+          },
+          {
+            "color": "#00000009",
+            "offsetX": "0px",
+            "offsetY": "12.521552085876465px",
+            "blur": "10.017241477966309px",
+            "spread": "0px",
+            "type": "dropShadow"
+          },
+          {
+            "color": "#0000000b",
+            "offsetX": "0px",
+            "offsetY": "22.3363094329834px",
+            "blur": "17.869047164916992px",
+            "spread": "0px",
+            "type": "dropShadow"
+          },
+          {
+            "color": "#0000000d",
+            "offsetX": "0px",
+            "offsetY": "41.777610778808594px",
+            "blur": "33.422088623046875px",
+            "spread": "0px",
+            "type": "dropShadow"
+          },
+          {
+            "color": "#00000012",
+            "offsetX": "0px",
+            "offsetY": "100px",
+            "blur": "80px",
+            "spread": "0px",
+            "type": "dropShadow"
+          }
+        ],
+        "$type": "shadow",
+        "$figmaId": "S:10423adf28fcbc450f7bb07b5463f39b24949b54,"
+      },
+      "Medium": {
+        "$value": [
+          {
+            "color": "#00000003",
+            "offsetX": "0px",
+            "offsetY": "0.11069025844335556px",
+            "blur": "1.0515574216842651px",
+            "spread": "0px",
+            "type": "dropShadow"
+          },
+          {
+            "color": "#00000003",
+            "offsetX": "0px",
+            "offsetY": "0.2660040855407715px",
+            "blur": "2.527038812637329px",
+            "spread": "0px",
+            "type": "dropShadow"
+          },
+          {
+            "color": "#00000005",
+            "offsetX": "0px",
+            "offsetY": "0.5008620619773865px",
+            "blur": "4.758189678192139px",
+            "spread": "0px",
+            "type": "dropShadow"
+          },
+          {
+            "color": "#00000005",
+            "offsetX": "0px",
+            "offsetY": "0.8934523463249207px",
+            "blur": "8.487797737121582px",
+            "spread": "0px",
+            "type": "dropShadow"
+          },
+          {
+            "color": "#00000006",
+            "offsetX": "0px",
+            "offsetY": "1.6711044311523438px",
+            "blur": "15.87549114227295px",
+            "spread": "0px",
+            "type": "dropShadow"
+          },
+          {
+            "color": "#0000000a",
+            "offsetX": "0px",
+            "offsetY": "14px",
+            "blur": "38px",
+            "spread": "0px",
+            "type": "dropShadow"
+          }
+        ],
+        "$type": "shadow",
+        "$figmaId": "S:5d713be8691854c7e04a78b591ee60a94cab5a88,"
+      },
+      "Low": {
+        "$value": [
+          {
+            "color": "#00000026",
+            "offsetX": "0px",
+            "offsetY": "1px",
+            "blur": "1px",
+            "spread": "0px",
+            "type": "dropShadow"
+          },
+          {
+            "color": "#0000000d",
+            "offsetX": "0px",
+            "offsetY": "1px",
+            "blur": "5px",
+            "spread": "0px",
+            "type": "dropShadow"
+          }
+        ],
+        "$type": "shadow",
+        "$figmaId": "S:7ba42f11d53aba9c8f0bc813be67c154292422fb,"
+      }
+    }
+}

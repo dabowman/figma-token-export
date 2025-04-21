@@ -1,7 +1,7 @@
 ---
-description: 
+description: Design token format and usage.
 globs: 
-alwaysApply: true
+alwaysApply: false
 ---
  # Design Tokens Format
 
