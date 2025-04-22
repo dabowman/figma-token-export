@@ -294,7 +294,7 @@
   "input": {
     "background": {
       "default": {
-        "value": "#fbfbfb00",
+        "value": "#fcfafa00",
         "type": "color"
       },
       "primary": {
@@ -373,7 +373,7 @@
     "radio-box": {
       "background": {
         "default": {
-          "value": "#fbfbfb00",
+          "value": "#fcfafa00",
           "type": "color"
         },
         "hover": {
@@ -381,11 +381,11 @@
           "type": "color"
         },
         "active": {
-          "value": "#fbfbfb00",
+          "value": "#fcfafa00",
           "type": "color"
         },
         "disabled": {
-          "value": "#fbfbfb00",
+          "value": "#fcfafa00",
           "type": "color"
         }
       },
@@ -643,7 +643,7 @@
     "tertiary": {
       "background": {
         "default": {
-          "value": "#fbfbfb00",
+          "value": "#fcfafa00",
           "type": "color"
         },
         "hover": {
@@ -651,7 +651,7 @@
           "value": "#e3e0df"
         },
         "disabled": {
-          "value": "#fbfbfb00",
+          "value": "#fcfafa00",
           "type": "color"
         }
       },
@@ -687,7 +687,7 @@
     "ghost": {
       "background": {
         "default": {
-          "value": "#fbfbfb00",
+          "value": "#fcfafa00",
           "type": "color"
         },
         "hover": {
@@ -695,7 +695,7 @@
           "type": "color"
         },
         "disabled": {
-          "value": "#fbfbfb00",
+          "value": "#fcfafa00",
           "type": "color"
         }
       },
@@ -868,6 +868,14 @@
       "success": {
         "type": "color",
         "value": "#d7efdf"
+      },
+      "neutral": {
+        "type": "color",
+        "value": "#ebe9e8"
+      },
+      "feature": {
+        "value": "#e8ccff",
+        "type": "color"
       }
     },
     "text": {
@@ -886,6 +894,14 @@
       "success": {
         "type": "color",
         "value": "#003700"
+      },
+      "neutral": {
+        "type": "color",
+        "value": "#13191eff"
+      },
+      "feature": {
+        "value": "#270047ff",
+        "type": "color"
       }
     },
     "icon": {
@@ -904,6 +920,14 @@
       "success": {
         "type": "color",
         "value": "#007934"
+      },
+      "neutral": {
+        "type": "color",
+        "value": "#9b9796ff"
+      },
+      "feature": {
+        "value": "#a73dffff",
+        "type": "color"
       }
     },
     "accent": {
@@ -922,6 +946,14 @@
       "success": {
         "type": "color",
         "value": "#40ba6f"
+      },
+      "neutral": {
+        "type": "color",
+        "value": "#827f7e"
+      },
+      "feature": {
+        "value": "#8000ebff",
+        "type": "color"
       }
     },
     "link": {
@@ -1000,59 +1032,101 @@
           "type": "color",
           "value": "#00611e"
         }
+      },
+      "neutral": {
+        "default": {
+          "type": "color",
+          "value": "#13191eff"
+        },
+        "hover": {
+          "type": "color",
+          "value": "#514e4dff"
+        },
+        "active": {
+          "type": "color",
+          "value": "#514e4dff"
+        },
+        "visited": {
+          "type": "color",
+          "value": "#383635ff"
+        }
       }
     },
     "helper-text": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 400,
+        "fontFamily": "Aktiv Grotesk VF",
         "fontSize": 12,
-        "lineHeight": "150%"
+        "fontWeight": "normal",
+        "lineHeight": "150%",
+        "letterSpacing": "0%",
+        "paragraphSpacing": 0
       },
       "type": "typography"
     },
     "label-xs": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 400,
-        "lineHeight": "100%",
-        "fontSize": 11
+        "fontFamily": "Aktiv Grotesk VF",
+        "fontSize": 11.008,
+        "fontWeight": "normal",
+        "lineHeight": "110%",
+        "letterSpacing": "3%",
+        "paragraphSpacing": 0
       },
       "type": "typography"
     },
     "label-small": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 400,
-        "lineHeight": "100%",
-        "fontSize": 12
+        "fontFamily": "Aktiv Grotesk VF",
+        "fontSize": 12,
+        "fontWeight": "normal",
+        "lineHeight": "110%",
+        "letterSpacing": "0%",
+        "paragraphSpacing": 0
       },
       "type": "typography"
     },
     "label-default": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 500,
-        "lineHeight": "100%",
-        "fontSize": 14
+        "fontFamily": "Aktiv Grotesk VF",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "lineHeight": "110%",
+        "letterSpacing": "0%",
+        "paragraphSpacing": 0
       },
       "type": "typography"
     },
     "label-default-quiet": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 400,
-        "lineHeight": "100%",
-        "fontSize": 14
+        "fontFamily": "Aktiv Grotesk VF",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "lineHeight": "110%",
+        "letterSpacing": "0%",
+        "paragraphSpacing": 0
       },
       "type": "typography"
     },
     "label-default-loud": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 700,
-        "lineHeight": "100%",
-        "fontSize": 14
+        "fontFamily": "Aktiv Grotesk VF",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "lineHeight": "110%",
+        "letterSpacing": "0%",
+        "paragraphSpacing": 0
+      },
+      "type": "typography"
+    },
+    "label-caps": {
+      "value": {
+        "fontFamily": "Aktiv Grotesk VF",
+        "fontSize": 12,
+        "fontWeight": "normal",
+        "lineHeight": "110%",
+        "letterSpacing": "5%",
+        "paragraphSpacing": 0,
+        "textTransform": "upper"
       },
       "type": "typography"
     }
@@ -1605,11 +1679,11 @@
   },
   "fontFamily": {
     "body": {
-      "value": "SF Pro Text",
+      "value": "Aktiv Grotesk VF",
       "type": "fontFamilies"
     },
     "serif": {
-      "value": "Recoleta",
+      "value": "Aktiv Grotesk VF",
       "type": "fontFamilies"
     },
     "monospace": {
@@ -1667,424 +1741,6 @@
       "5": {
         "value": 20,
         "type": "fontSizes"
-      }
-    },
-    "figma": {
-      "1": {
-        "S": {
-          "value": 12.29,
-          "type": "number"
-        },
-        "M": {
-          "value": 11.25,
-          "type": "number"
-        },
-        "L": {
-          "value": 10.03,
-          "type": "number"
-        },
-        "XL": {
-          "value": 9.21,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 8.52,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 8.17,
-          "type": "number"
-        }
-      },
-      "2": {
-        "S": {
-          "value": 13.12,
-          "type": "number"
-        },
-        "M": {
-          "value": 12.28,
-          "type": "number"
-        },
-        "L": {
-          "value": 11.3,
-          "type": "number"
-        },
-        "XL": {
-          "value": 10.64,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 10.08,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 9.92,
-          "type": "number"
-        }
-      },
-      "3": {
-        "S": {
-          "value": 14.02,
-          "type": "number"
-        },
-        "M": {
-          "value": 13.44,
-          "type": "number"
-        },
-        "L": {
-          "value": 12.78,
-          "type": "number"
-        },
-        "XL": {
-          "value": 12.33,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 11.95,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 11.84,
-          "type": "number"
-        }
-      },
-      "4": {
-        "S": {
-          "value": 15.01,
-          "type": "number"
-        },
-        "M": {
-          "value": 14.81,
-          "type": "number"
-        },
-        "L": {
-          "value": 14.57,
-          "type": "number"
-        },
-        "XL": {
-          "value": 14.41,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 14.28,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 14.24,
-          "type": "number"
-        }
-      },
-      "5": {
-        "S": {
-          "value": 16,
-          "type": "number"
-        },
-        "M": {
-          "value": 16.2,
-          "type": "number"
-        },
-        "L": {
-          "value": 16.52,
-          "type": "number"
-        },
-        "XL": {
-          "value": 16.73,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 16.91,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 16.96,
-          "type": "number"
-        }
-      },
-      "6": {
-        "S": {
-          "value": 17.12,
-          "type": "number"
-        },
-        "M": {
-          "value": 17.96,
-          "type": "number"
-        },
-        "L": {
-          "value": 18.94,
-          "type": "number"
-        },
-        "XL": {
-          "value": 19.6,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 20.16,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 20.44,
-          "type": "number"
-        }
-      },
-      "7": {
-        "S": {
-          "value": 18.24,
-          "type": "number"
-        },
-        "M": {
-          "value": 19.72,
-          "type": "number"
-        },
-        "L": {
-          "value": 21.57,
-          "type": "number"
-        },
-        "XL": {
-          "value": 22.81,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 23.86,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 24.39,
-          "type": "number"
-        }
-      },
-      "8": {
-        "S": {
-          "value": 19.52,
-          "type": "number"
-        },
-        "M": {
-          "value": 22.04,
-          "type": "number"
-        },
-        "L": {
-          "value": 24.98,
-          "type": "number"
-        },
-        "XL": {
-          "value": 26.96,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 28.64,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 29.44,
-          "type": "number"
-        }
-      },
-      "9": {
-        "S": {
-          "value": 20.8,
-          "type": "number"
-        },
-        "M": {
-          "value": 24.43,
-          "type": "number"
-        },
-        "L": {
-          "value": 28.7,
-          "type": "number"
-        },
-        "XL": {
-          "value": 31.58,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 34.02,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 35.2,
-          "type": "number"
-        }
-      },
-      "10": {
-        "S": {
-          "value": 22.14,
-          "type": "number"
-        },
-        "M": {
-          "value": 27.25,
-          "type": "number"
-        },
-        "L": {
-          "value": 33.21,
-          "type": "number"
-        },
-        "XL": {
-          "value": 37.22,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 40.63,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 42.24,
-          "type": "number"
-        }
-      },
-      "11": {
-        "S": {
-          "value": 23.68,
-          "type": "number"
-        },
-        "M": {
-          "value": 30.5,
-          "type": "number"
-        },
-        "L": {
-          "value": 38.5,
-          "type": "number"
-        },
-        "XL": {
-          "value": 43.88,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 48.45,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 50.72,
-          "type": "number"
-        }
-      },
-      "12": {
-        "S": {
-          "value": 25.25,
-          "type": "number"
-        },
-        "M": {
-          "value": 34.29,
-          "type": "number"
-        },
-        "L": {
-          "value": 44.83,
-          "type": "number"
-        },
-        "XL": {
-          "value": 51.93,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 57.96,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 60.96,
-          "type": "number"
-        }
-      },
-      "13": {
-        "S": {
-          "value": 26.88,
-          "type": "number"
-        },
-        "M": {
-          "value": 38.51,
-          "type": "number"
-        },
-        "L": {
-          "value": 52.15,
-          "type": "number"
-        },
-        "XL": {
-          "value": 61.34,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 69.13,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 73.03,
-          "type": "number"
-        }
-      },
-      "14": {
-        "S": {
-          "value": 28.64,
-          "type": "number"
-        },
-        "M": {
-          "value": 43.59,
-          "type": "number"
-        },
-        "L": {
-          "value": 61.04,
-          "type": "number"
-        },
-        "XL": {
-          "value": 72.78,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 82.75,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 87.68,
-          "type": "number"
-        }
-      },
-      "15": {
-        "S": {
-          "value": 30.62,
-          "type": "number"
-        },
-        "M": {
-          "value": 49.51,
-          "type": "number"
-        },
-        "L": {
-          "value": 71.54,
-          "type": "number"
-        },
-        "XL": {
-          "value": 86.37,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 98.96,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 105.26,
-          "type": "number"
-        }
-      },
-      "12b": {
-        "S": {
-          "value": 48,
-          "type": "number"
-        },
-        "M": {
-          "value": 51.02,
-          "type": "number"
-        },
-        "L": {
-          "value": 54.55,
-          "type": "number"
-        },
-        "XL": {
-          "value": 56.93,
-          "type": "number"
-        },
-        "XXL": {
-          "value": 58.94,
-          "type": "number"
-        },
-        "MAX": {
-          "value": 59.95,
-          "type": "number"
-        }
       }
     },
     "responsive": {
@@ -2203,61 +1859,68 @@
   "heading": {
     "1": {
       "value": {
-        "fontFamily": "Recoleta",
-        "fontWeight": 400,
-        "lineHeight": "135%",
+        "fontFamily": "Aktiv Grotesk VF",
         "fontSize": 40,
-        "letterSpacing": "-1%"
+        "fontWeight": "normal",
+        "lineHeight": "135%",
+        "letterSpacing": "-1%",
+        "paragraphSpacing": 0
       },
       "type": "typography"
     },
     "2": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 500,
-        "lineHeight": "120%",
+        "fontFamily": "Aktiv Grotesk VF",
         "fontSize": 32,
-        "letterSpacing": "0%"
+        "fontWeight": "normal",
+        "lineHeight": "120%",
+        "letterSpacing": "0%",
+        "paragraphSpacing": 0
       },
       "type": "typography"
     },
     "3": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 500,
+        "fontFamily": "Aktiv Grotesk VF",
+        "fontSize": 18,
+        "fontWeight": "normal",
         "lineHeight": "150%",
-        "fontSize": 19,
-        "letterSpacing": "0%"
+        "letterSpacing": "0%",
+        "paragraphSpacing": 0
       },
       "type": "typography"
     },
     "4": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 500,
-        "lineHeight": "160%",
+        "fontFamily": "Aktiv Grotesk VF",
         "fontSize": 14,
-        "letterSpacing": "0%"
+        "fontWeight": "normal",
+        "lineHeight": "160%",
+        "letterSpacing": "0%",
+        "paragraphSpacing": 0
       },
       "type": "typography"
     },
     "5": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 500,
+        "fontFamily": "Aktiv Grotesk VF",
+        "fontSize": 12,
+        "fontWeight": "normal",
         "lineHeight": "150%",
-        "fontSize": 12
+        "letterSpacing": "0%",
+        "paragraphSpacing": 0
       },
       "type": "typography"
     },
     "caps": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 700,
-        "lineHeight": "150%",
+        "fontFamily": "Aktiv Grotesk VF",
         "fontSize": 12,
+        "fontWeight": "normal",
+        "lineHeight": "150%",
         "letterSpacing": "5%",
-        "textCase": "uppercase"
+        "paragraphSpacing": 0,
+        "textTransform": "upper"
       },
       "type": "typography"
     }
@@ -2291,46 +1954,56 @@
   "body": {
     "small": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 400,
+        "fontFamily": "Aktiv Grotesk VF",
+        "fontSize": 12,
+        "fontWeight": "normal",
         "lineHeight": "150%",
-        "fontSize": 12
+        "letterSpacing": "0%",
+        "paragraphSpacing": 12
       },
       "type": "typography"
     },
     "default": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 400,
+        "fontFamily": "Aktiv Grotesk VF",
+        "fontSize": 14,
+        "fontWeight": "normal",
         "lineHeight": "150%",
-        "fontSize": 14
+        "letterSpacing": "0%",
+        "paragraphSpacing": 14
       },
       "type": "typography"
     },
     "large": {
       "value": {
-        "fontFamily": "SF Pro Text",
-        "fontWeight": 400,
+        "fontFamily": "Aktiv Grotesk VF",
+        "fontSize": 20,
+        "fontWeight": "normal",
         "lineHeight": "150%",
-        "fontSize": 20
+        "letterSpacing": "0%",
+        "paragraphSpacing": 19
       },
       "type": "typography"
     },
     "mono": {
       "value": {
         "fontFamily": "SF Mono",
-        "fontWeight": 400,
+        "fontSize": 14,
+        "fontWeight": "normal",
         "lineHeight": "150%",
-        "fontSize": 14
+        "letterSpacing": "0%",
+        "paragraphSpacing": 14
       },
       "type": "typography"
     },
     "mono-bold": {
       "value": {
         "fontFamily": "SF Mono",
-        "lineHeight": "150%",
         "fontSize": 14,
-        "fontWeight": 700
+        "fontWeight": "normal",
+        "lineHeight": "150%",
+        "letterSpacing": "0%",
+        "paragraphSpacing": 14
       },
       "type": "typography"
     }

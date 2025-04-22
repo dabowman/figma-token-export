@@ -1,21 +1,29 @@
 {
-  "name": "figma-token-transformer",
+  "name": "token-transformer",
   "version": "1.0.0",
-  "description": "Transform Figma design tokens into platform-specific formats using Style Dictionary",
-  "main": "transform-tokens.js",
-  "scripts": {
-    "transform": "node transform-tokens.js"
-  },
+  "description": "Transforms W3C design tokens from Figma into a flattened structure",
+  "main": "transform.js",
   "bin": {
-    "token-transformer": "transform-tokens.js"
+    "token-transformer": "./transform.js"
+  },
+  "scripts": {
+    "start": "node transform.js",
+    "transform": "node transform.js",
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "dependencies": {
-    "commander": "^11.0.0",
-    "lodash": "^4.17.21",
-    "style-dictionary": "^3.8.0"
+    "commander": "^10.0.0"
   },
+  "devDependencies": {},
   "engines": {
     "node": ">=14.0.0"
   },
+  "keywords": [
+    "design-tokens",
+    "figma",
+    "w3c",
+    "token-transformer"
+  ],
+  "author": "",
   "license": "MIT"
 }
