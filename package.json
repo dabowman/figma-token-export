@@ -6,6 +6,7 @@
   "main": "code.js",
   "scripts": {
     "build": "tsc -p tsconfig.json && npm run bundle",
+    "build:tokens": "style-dictionary build --config config.json",
     "start": "tsc -p tsconfig.json --watch",
     "bundle": "rollup -c",
     "dev": "concurrently \"npm run watch\" \"rollup -c -w\""
@@ -19,6 +20,7 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "concurrently": "^8.2.2",
     "rollup": "^4.9.5",
+    "style-dictionary": "^4.4.0",
     "typescript": "^5.3.3"
   },
   "dependencies": {
