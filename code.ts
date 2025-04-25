@@ -1,3 +1,12 @@
+/**
+ * @fileoverview Figma plugin code to export raw variable, text style, and effect style data.
+ *
+ * Collects data from the current Figma file using the plugin API and sends it to a hidden UI
+ * for download as a JSON file.
+ *
+ * @since 1.0.0
+ */
+
 /// <reference types="@figma/plugin-typings" />
 
 /**

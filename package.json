@@ -2,6 +2,7 @@
   "name": "token-export",
   "version": "1.0.0",
   "description": "Your Figma Plugin",
+  "type": "module",
   "main": "code.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",

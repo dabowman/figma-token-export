@@ -1,0 +1,49 @@
+{
+  // for each variable in the collection. variables.collections[{collection.name}].variableIds[iterate over each variableId]. Fetch the variable details from variableDetails[variableId] and transform into the following format.
+  // color tokens
+  "{variableDetails.VariableID:{variableID}.{name to /}}": { // Token nesting is determined by the variable name. Figma uses / to nest. Get the variable name and nest as needed. 
+    "{variableDetails.VariableID:{variableID}.{name from last / to end or next /}": {
+      "$type": "{VariableID:{variableID}.resolvedType}", // to camelCase to match w3c format
+      "$value": {
+        "colorSpace": "srgb", // detect color space if possible. I think Figma is always srgb.
+        "components": [{VariableID:{variableID}.valuesByMode.{defaultModeId}.r}, {VariableID:{variableID}.valuesByMode.{defaultModeId}.g}, {VariableID:{variableID}.valuesByMode.{defaultModeId}.b}],
+        "alpha": {VariableID:{variableID}.valuesByMode.{defaultModeId}.a},
+        "hex":"converted hex" // convert $value to 6 digit hex (no alpha) as fallback.
+      },
+      "$description": "{variableDetails.VariableID:{variableID}.description}",
+      "$scopes": "{variableDetails.VariableID:{variableID}.scopes}",
+      "$codeSyntax": "{variableDetails.VariableID:{variableID}.codeSyntax}",
+      "$figmaId": "{variableDetails.VariableID:{variableID}.id}",
+      "$figmaKey": "{variableDetails.VariableID:{variableID}.key}",
+      "$figmaCollectionId": "{variableDetails.VariableID:{variableID}.variableCollectionId}"
+    }
+  }
+
+  // float tokens
+  "{variableDetails.VariableID:{variableID}.{name to /}}": { // Token nesting is determined by the variable name. Figma uses / to nest. Get the variable name and nest as needed. 
+  "{variableDetails.VariableID:{variableID}.{name from last / to end or next /}": {
+    "$type": "{VariableID:{variableID}.resolvedType}", // Float tokens in Figma represent several different standard token types. The standard type needs to be inferred from the variable name and/or the scopes.
+    "$value": "{VariableID:{variableID}.valuesByMode.{defaultModeId}}", // some types require a unit value. Figma outputs everythign as px values. 
+    "$description": "{variableDetails.VariableID:{variableID}.description}",
+    "$scopes": "{variableDetails.VariableID:{variableID}.scopes}",
+    "$codeSyntax": "{variableDetails.VariableID:{variableID}.codeSyntax}",
+    "$figmaId": "{variableDetails.VariableID:{variableID}.id}",
+    "$figmaKey": "{variableDetails.VariableID:{variableID}.key}",
+    "$figmaCollectionId": "{variableDetails.VariableID:{variableID}.variableCollectionId}"
+  }
+
+    // string tokens
+    "{variableDetails.VariableID:{variableID}.{name to /}}": { // Token nesting is determined by the variable name. Figma uses / to nest. Get the variable name and nest as needed. 
+    "{variableDetails.VariableID:{variableID}.{name from last / to end or next /}": {
+      "$type": "{VariableID:{variableID}.resolvedType}", // String tokens in Figma represent several different standard token types. The standard type needs to be inferred from the variable name and/or the scopes.
+      "$value": "{VariableID:{variableID}.valuesByMode.{defaultModeId}}",
+      "$description": "{variableDetails.VariableID:{variableID}.description}",
+      "$scopes": "{variableDetails.VariableID:{variableID}.scopes}",
+      "$codeSyntax": "{variableDetails.VariableID:{variableID}.codeSyntax}",
+      "$figmaId": "{variableDetails.VariableID:{variableID}.id}",
+      "$figmaKey": "{variableDetails.VariableID:{variableID}.key}",
+      "$figmaCollectionId": "{variableDetails.VariableID:{variableID}.variableCollectionId}"
+    }
+}
+
+}
