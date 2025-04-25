@@ -7527,7 +7527,7 @@
   "lineHeight": {
     "1": {
       "$type": "number",
-      "$value": 110,
+      "$value": 1.1,
       "$description": "",
       "$figmaId": "VariableID:10645:86646",
       "$figmaKey": "038cf02c4a2ddc9fda745b49879574bf1b33b292",
@@ -7537,7 +7537,7 @@
     },
     "2": {
       "$type": "number",
-      "$value": 120,
+      "$value": 1.2,
       "$description": "",
       "$figmaId": "VariableID:10645:86647",
       "$figmaKey": "e58b9792f4ee26c0773c963e59f9ada6e5a5a853",
@@ -7547,7 +7547,7 @@
     },
     "3": {
       "$type": "number",
-      "$value": 135,
+      "$value": 1.35,
       "$description": "",
       "$figmaId": "VariableID:10645:86648",
       "$figmaKey": "d1ccbbe9a0001a00742ce3d16f27d9acc8db7e95",
@@ -7557,7 +7557,7 @@
     },
     "4": {
       "$type": "number",
-      "$value": 140,
+      "$value": 1.4,
       "$description": "",
       "$figmaId": "VariableID:10645:86649",
       "$figmaKey": "554402a25b59d1f617ad87b0f8088d82b55e6008",
@@ -7567,7 +7567,7 @@
     },
     "5": {
       "$type": "number",
-      "$value": 150,
+      "$value": 1.5,
       "$description": "",
       "$figmaId": "VariableID:10645:86650",
       "$figmaKey": "643434fc5c211c25657cd16306ae50527202b597",
@@ -7577,7 +7577,7 @@
     },
     "6": {
       "$type": "number",
-      "$value": 160,
+      "$value": 1.6,
       "$description": "",
       "$figmaId": "VariableID:10650:85885",
       "$figmaKey": "6af5d822d0a5b4c1f855cc743feb3c5d33a8227c",
@@ -7653,7 +7653,7 @@
       "$type": "dimension",
       "$value": {
         "value": 0,
-        "unit": "px"
+        "unit": "%"
       },
       "$description": "",
       "$figmaId": "VariableID:10645:86656",
@@ -7668,7 +7668,7 @@
       "$type": "dimension",
       "$value": {
         "value": -1,
-        "unit": "px"
+        "unit": "%"
       },
       "$description": "",
       "$figmaId": "VariableID:10645:86657",
@@ -7683,7 +7683,7 @@
       "$type": "dimension",
       "$value": {
         "value": 3,
-        "unit": "px"
+        "unit": "%"
       },
       "$description": "",
       "$figmaId": "VariableID:10645:86658",
@@ -7698,7 +7698,7 @@
       "$type": "dimension",
       "$value": {
         "value": 5,
-        "unit": "px"
+        "unit": "%"
       },
       "$description": "",
       "$figmaId": "VariableID:10650:85886",
@@ -7746,6 +7746,953 @@
         "FONT_FAMILY"
       ],
       "$codeSyntax": {}
+    }
+  },
+  "typography": {
+    "support": {
+      "helper-text": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.regular}",
+          "fontSize": {
+            "value": 12,
+            "unit": "px"
+          },
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": {
+            "value": 1,
+            "unit": "%"
+          }
+        },
+        "$description": "",
+        "$figmaId": "S:2ffd324aff338a6dd8cd7c4cc78011e5a1b4c4af,",
+        "$figmaKey": "2ffd324aff338a6dd8cd7c4cc78011e5a1b4c4af"
+      },
+      "label-xs": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.regular}",
+          "fontSize": {
+            "value": 11,
+            "unit": "px"
+          },
+          "lineHeight": 1,
+          "letterSpacing": {
+            "value": 2,
+            "unit": "%"
+          }
+        },
+        "$description": "",
+        "$figmaId": "S:72cd491e1ff725611279ddc6d1110865ff7bfe17,",
+        "$figmaKey": "72cd491e1ff725611279ddc6d1110865ff7bfe17"
+      },
+      "label-small": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.regular}",
+          "fontSize": {
+            "value": 12,
+            "unit": "px"
+          },
+          "lineHeight": 1,
+          "letterSpacing": {
+            "value": 0.5,
+            "unit": "%"
+          }
+        },
+        "$description": "",
+        "$figmaId": "S:b43350f14fc2b6f02d947161c5eb95b64ccfb4b2,",
+        "$figmaKey": "b43350f14fc2b6f02d947161c5eb95b64ccfb4b2"
+      },
+      "label-default": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.semiBold}",
+          "fontSize": {
+            "value": 14,
+            "unit": "px"
+          },
+          "lineHeight": 1,
+          "letterSpacing": {
+            "value": 0.5,
+            "unit": "%"
+          }
+        },
+        "$description": "",
+        "$figmaId": "S:b91dafb14448c14894993730b19020fd09b4e4e9,",
+        "$figmaKey": "b91dafb14448c14894993730b19020fd09b4e4e9"
+      },
+      "label-default-quiet": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.regular}",
+          "fontSize": {
+            "value": 14,
+            "unit": "px"
+          },
+          "lineHeight": 1,
+          "letterSpacing": {
+            "value": 0.5,
+            "unit": "%"
+          }
+        },
+        "$description": "",
+        "$figmaId": "S:6086212bf26b40bd3dc1c9e694ca9f675882b896,",
+        "$figmaKey": "6086212bf26b40bd3dc1c9e694ca9f675882b896"
+      },
+      "label-default-loud": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.bold}",
+          "fontSize": {
+            "value": 14,
+            "unit": "px"
+          },
+          "lineHeight": 1,
+          "letterSpacing": {
+            "value": 0.5,
+            "unit": "%"
+          }
+        },
+        "$description": "",
+        "$figmaId": "S:47ab3b323a4a1b918655442890d3f16dafdff081,",
+        "$figmaKey": "47ab3b323a4a1b918655442890d3f16dafdff081"
+      },
+      "label-caps": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.semiBold}",
+          "fontSize": {
+            "value": 12,
+            "unit": "px"
+          },
+          "lineHeight": 1,
+          "letterSpacing": "{letterSpacing.x-loose}"
+        },
+        "$description": "",
+        "$figmaId": "S:5631cc676d769e806f854e60a0eadd68cbbec62a,",
+        "$figmaKey": "5631cc676d769e806f854e60a0eadd68cbbec62a"
+      }
+    },
+    "heading": {
+      "1": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.bold}",
+          "fontSize": {
+            "value": 40,
+            "unit": "px"
+          },
+          "lineHeight": "{lineHeight.3}",
+          "letterSpacing": "{letterSpacing.tight}"
+        },
+        "$description": "",
+        "$figmaId": "S:bb72b147d2fc7d278fdd7cac253e33603a63176a,",
+        "$figmaKey": "bb72b147d2fc7d278fdd7cac253e33603a63176a"
+      },
+      "2": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.semiBold}",
+          "fontSize": {
+            "value": 32,
+            "unit": "px"
+          },
+          "lineHeight": "{lineHeight.2}",
+          "letterSpacing": "{letterSpacing.none}"
+        },
+        "$description": "",
+        "$figmaId": "S:642cb11b7d3b027dfca7d62e623149787743b826,",
+        "$figmaKey": "642cb11b7d3b027dfca7d62e623149787743b826"
+      },
+      "3": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.semiBold}",
+          "fontSize": {
+            "value": 18,
+            "unit": "px"
+          },
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": "{letterSpacing.none}"
+        },
+        "$description": "",
+        "$figmaId": "S:c1da6743e33c4128b8bf5758a7f910a99b6f9518,",
+        "$figmaKey": "c1da6743e33c4128b8bf5758a7f910a99b6f9518"
+      },
+      "4": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.bold}",
+          "fontSize": {
+            "value": 14,
+            "unit": "px"
+          },
+          "lineHeight": "{lineHeight.6}",
+          "letterSpacing": "{letterSpacing.none}"
+        },
+        "$description": "",
+        "$figmaId": "S:7d188139e10392856be7afa936d9d69d9d6c1b0a,",
+        "$figmaKey": "7d188139e10392856be7afa936d9d69d9d6c1b0a"
+      },
+      "5": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.bold}",
+          "fontSize": {
+            "value": 12,
+            "unit": "px"
+          },
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": "{letterSpacing.none}"
+        },
+        "$description": "",
+        "$figmaId": "S:a5d346be1097d4b8c549ba3481daf4448a38aabc,",
+        "$figmaKey": "a5d346be1097d4b8c549ba3481daf4448a38aabc"
+      },
+      "caps": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.semiBold}",
+          "fontSize": {
+            "value": 12,
+            "unit": "px"
+          },
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": "{letterSpacing.x-loose}"
+        },
+        "$description": "",
+        "$figmaId": "S:9917cc916435fb8d3d7008d64ee7aef7c378f9d9,",
+        "$figmaKey": "9917cc916435fb8d3d7008d64ee7aef7c378f9d9"
+      }
+    },
+    "text": {
+      "small": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.regular}",
+          "fontSize": {
+            "value": 12,
+            "unit": "px"
+          },
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": {
+            "value": 1,
+            "unit": "%"
+          }
+        },
+        "$description": "",
+        "$figmaId": "S:7828f455ace6d3a8be8e61f51215242a34e38635,",
+        "$figmaKey": "7828f455ace6d3a8be8e61f51215242a34e38635"
+      },
+      "default": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.regular}",
+          "fontSize": {
+            "value": 14,
+            "unit": "px"
+          },
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": {
+            "value": 1,
+            "unit": "%"
+          }
+        },
+        "$description": "",
+        "$figmaId": "S:93d3170f10ae1b76c5ed804f0ec5e05e7f4ec71b,",
+        "$figmaKey": "93d3170f10ae1b76c5ed804f0ec5e05e7f4ec71b"
+      },
+      "large": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.regular}",
+          "fontSize": {
+            "value": 20,
+            "unit": "px"
+          },
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": {
+            "value": 1,
+            "unit": "%"
+          }
+        },
+        "$description": "",
+        "$figmaId": "S:3ac840cbbeddb910784b575c743df86a06f20e91,",
+        "$figmaKey": "3ac840cbbeddb910784b575c743df86a06f20e91"
+      },
+      "mono": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.regular}",
+          "fontSize": {
+            "value": 14,
+            "unit": "px"
+          },
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": "{letterSpacing.none}"
+        },
+        "$description": "",
+        "$figmaId": "S:5e42a9844f90d2c5ff6a0af5fdc97e844573b627,",
+        "$figmaKey": "5e42a9844f90d2c5ff6a0af5fdc97e844573b627"
+      },
+      "mono-bold": {
+        "$type": "typography",
+        "$value": {
+          "fontWeight": "{fontWeight.bold}",
+          "fontSize": {
+            "value": 14,
+            "unit": "px"
+          },
+          "lineHeight": "{lineHeight.5}",
+          "letterSpacing": "{letterSpacing.none}"
+        },
+        "$description": "",
+        "$figmaId": "S:bc5fa086ca21bdac62ec85a5a46765de34a446b9,",
+        "$figmaKey": "bc5fa086ca21bdac62ec85a5a46765de34a446b9"
+      }
+    }
+  },
+  "shadow": {
+    "High": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.019680192694067955,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 2.767256498336792,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 2.2138051986694336,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        },
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.028272492811083794,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 6.650102138519287,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 5.32008171081543,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        },
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.03500000014901161,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 12.521552085876465,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 10.017241477966309,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        },
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.04172750562429428,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 22.3363094329834,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 17.869047164916992,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        },
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.05031980574131012,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 41.777610778808594,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 33.422088623046875,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        },
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.07000000029802322,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 100,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 80,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        }
+      ],
+      "$description": "",
+      "$figmaId": "S:10423adf28fcbc450f7bb07b5463f39b24949b54,",
+      "$figmaKey": "10423adf28fcbc450f7bb07b5463f39b24949b54"
+    },
+    "Medium": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.009999999776482582,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 0.11069025844335556,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 1.0515574216842651,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        },
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.009999999776482582,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 0.2660040855407715,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 2.527038812637329,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        },
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.019999999552965164,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 0.5008620619773865,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 4.758189678192139,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        },
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.019999999552965164,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 0.8934523463249207,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 8.487797737121582,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        },
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.02500000037252903,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 1.6711044311523438,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 15.87549114227295,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        },
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.03999999910593033,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 14,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 38,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        }
+      ],
+      "$description": "",
+      "$figmaId": "S:5d713be8691854c7e04a78b591ee60a94cab5a88,",
+      "$figmaKey": "5d713be8691854c7e04a78b591ee60a94cab5a88"
+    },
+    "Low": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.15000000596046448,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 1,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 1,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        },
+        {
+          "color": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.05000000074505806,
+              "hex": "#000000"
+            }
+          },
+          "offsetX": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "offsetY": {
+            "$type": "dimension",
+            "value": {
+              "value": 1,
+              "unit": "px"
+            }
+          },
+          "blur": {
+            "$type": "dimension",
+            "value": {
+              "value": 5,
+              "unit": "px"
+            }
+          },
+          "spread": {
+            "$type": "dimension",
+            "value": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          "inset": false
+        }
+      ],
+      "$description": "",
+      "$figmaId": "S:7ba42f11d53aba9c8f0bc813be67c154292422fb,",
+      "$figmaKey": "7ba42f11d53aba9c8f0bc813be67c154292422fb"
     }
   }
 }
