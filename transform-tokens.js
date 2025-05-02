@@ -5,15 +5,41 @@
  * infers standard token types, resolves aliases, and writes structured JSON
  * files suitable for use with Style Dictionary or other token consumers.
  *
+ * Usage: node transform-tokens.js [--input <path_to_raw_data.json>] [--output <output_directory>]
+ *
  * @since 1.0.0
  */
 
 /* eslint-env node */
 import fs from 'fs';
+import yargs from 'yargs/yargs'; // Added yargs import
+import { hideBin } from 'yargs/helpers'; // Added helper
 // import path from 'path'; // Keep path import for potential future use - Removed for now as unused
 
-const RAW_DATA_PATH = 'output/figma-raw-data-2.json';
-const OUTPUT_DIR = 'output/transformed';
+// Removed original hardcoded paths
+// const RAW_DATA_PATH = 'output/figma-raw-data-2.json';
+// const OUTPUT_DIR = 'output/transformed';
+
+// --- Argument Parsing ---
+const argv = yargs(hideBin(process.argv))
+  .option('input', {
+    alias: 'i',
+    type: 'string',
+    description: 'Path to the raw Figma data JSON file',
+    default: 'output/figma-raw-data-2.json' // Default to original path
+  })
+  .option('output', {
+    alias: 'o',
+    type: 'string',
+    description: 'Directory to save transformed token files',
+    default: 'output/transformed' // Default to original path
+  })
+  .help()
+  .alias('help', 'h')
+  .argv;
+
+const RAW_DATA_PATH = argv.input; // Use parsed input path
+const OUTPUT_DIR = argv.output; // Use parsed output path
 
 // --- Helper Functions ---
 
