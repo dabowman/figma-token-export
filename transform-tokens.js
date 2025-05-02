@@ -12,15 +12,33 @@
 
 /* eslint-env node */
 import fs from 'fs';
-import yargs from 'yargs/yargs'; // Added yargs import
-import { hideBin } from 'yargs/helpers'; // Added helper
-// import path from 'path'; // Keep path import for potential future use - Removed for now as unused
+import { program } from 'commander'; // Added commander import
 
-// Removed original hardcoded paths
-// const RAW_DATA_PATH = 'output/figma-raw-data-2.json';
-// const OUTPUT_DIR = 'output/transformed';
+// Removed yargs import
+// import yargs from 'yargs/yargs';
+// import { hideBin } from 'yargs/helpers';
 
-// --- Argument Parsing ---
+// --- Argument Parsing using commander ---
+program
+  .option(
+    '-i, --input <path>',
+    'Path to the raw Figma data JSON file',
+    'output/figma-raw-data-2.json' // Default value
+  )
+  .option(
+    '-o, --output <path>',
+    'Directory to save transformed token files',
+    'output/transformed' // Default value
+  );
+
+program.parse(process.argv);
+
+const options = program.opts();
+const RAW_DATA_PATH = options.input; // Use parsed input path from commander
+const OUTPUT_DIR = options.output; // Use parsed output path from commander
+
+// Removed yargs parsing logic
+/*
 const argv = yargs(hideBin(process.argv))
   .option('input', {
     alias: 'i',
@@ -40,6 +58,7 @@ const argv = yargs(hideBin(process.argv))
 
 const RAW_DATA_PATH = argv.input; // Use parsed input path
 const OUTPUT_DIR = argv.output; // Use parsed output path
+*/
 
 // --- Helper Functions ---
 
