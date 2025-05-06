@@ -1,11 +1,19 @@
 {
-  "name": "Export Design Tokens",
-  "id": "design-token-exporter",
+  "name": "Token Export",
+  "id": "1497374244179142662",
   "api": "1.0.0",
   "main": "code.js",
   "ui": "ui.html",
   "capabilities": [],
   "enableProposedApi": false,
-  "editorType": ["figma", "dev"],
-  "documentAccess": "dynamic-page"
-} 
+  "documentAccess": "dynamic-page",
+  "editorType": [
+    "figma",
+    "figjam"
+  ],
+  "networkAccess": {
+    "allowedDomains": [
+      "none"
+    ]
+  }
+}

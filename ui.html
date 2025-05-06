@@ -1,334 +1,40 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <style>
-    /* Import Figma Plugin DS CSS */
-    @import url('https://cdn.jsdelivr.net/gh/thomas-lowry/figma-plugin-ds/dist/figma-plugin-ds.css');
-
-    body {
-      background-color: var(--figma-color-bg);
-      color: var(--figma-color-text);
-      height: 100%;
-    }
-
-    .container {
-      /* gap: var(--size-small); */
-      height: 100%;
-    }
-
-    .button-container {
-      gap: var(--size-xxsmall);
-    }
-
-    .button {
-      cursor: pointer;
-    }
-
-    .status {
-      font-size: var(--font-size-small);
-      border-radius: var(--border-radius-large);
-      background-color: var(--figma-color-bg-secondary);
-      color: var(--figma-color-text-secondary);
-      display: none;
-      margin-top: var(--size-xsmall);
-      padding: var(--size-xsmall);
-    }
-
-    .checkbox-section {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      gap: var(--size-xxsmall);
-    }
-
-    .options-wrapper {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      gap: var(--size-small);
-      margin-bottom: var(--size-small);
-    }
-
-    .section-title {
-      color: var(--figma-color-text);
-      font-size: var(--font-size-small);
-      font-weight: var(--font-weight-bold);
-    }
-
-    .checkbox__label {
-      color: var(--figma-color-text);
-    }
-
-    .switch__label {
-      color: var(--figma-color-text);
-    }
-
-    .switch__label:before {
-      background-color: var(--figma-color-bg-tertiary);
-      border: 1px solid var(--figma-color-bg-tertiary);
-      border-radius: 6px;
-      content: '';
-      display: block;
-      height: 10px;
-      left: 8px;
-      position: absolute;
-      top: 10px;
-      transition: background-color 0 0.2s;
-      width: 22px;
-    }
-
-    .switch__label:after {
-      background-color: var(--figma-color-text);
-      border-color: var(--figma-color-text);
-      height: var(--size-medium);
-    }
-
-    .switch__toggle:checked + .switch__label:before {
-      color: var(--figma-color-text);
-      background-color: var(--figma-color-bg-brand);
-    }
-    .switch__toggle:checked:disabled + .switch__label:before {
-      border-color: var(--figma-color-bg-brand);
-      background-color: var(--figma-color-bg-brand);
-    }
-
-    .checkbox-container {
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-    }
-
-    .switch-container {
-      display: flex;
-      flex-direction: row;
-      gap: var(--size-xxsmall);
-    }
-
-    .select-all {
-      margin-bottom: var(--size-xxsmall);
-      font-size: var(--font-size-xsmall);
-      text-decoration: underline;
-      cursor: pointer;
-      color: var(--figma-color-text-secondary);
-    }
-
-    #loading {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100px;
-    }
-
-    .spinner {
-      border: 2px solid var(--figma-color-bg-tertiary);
-      border-top: 2px solid var(--figma-color-text);
-      border-radius: 50%;
-      width: 16px;
-      height: 16px;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Downloading...</title>
 </head>
-
-<body class="p-small">
-  <div class="container flex column flex-no-wrap justify-content-start align-content-stretch">
-    <!-- Loading indicator -->
-    <div id="loading">
-      <div class="spinner"></div>
-    </div>
-
-    <!-- Export options -->
-    <div id="export-options" style="display: none;">
-
-      <div class="options-wrapper">
-        <!-- Variable Collections -->
-        <div class="checkbox-section">
-          <label class="section-title">Export:</label>
-          <div id="collections-container">
-            <!-- Collections will be added here dynamically -->
-          </div>
-
-          <div class="select-all" id="select-all-collections">Select all</div>
-
-          <div class="switch-container">
-            <div class="switch">
-              <input type="checkbox" class="switch__toggle" id="include-typography" checked>
-              <label class="switch__label" for="include-typography">Include Type Styles</label>
-            </div>
-            <div class="switch">
-              <input type="checkbox" class="switch__toggle" id="include-effects" checked>
-              <label class="switch__label" for="include-effects">Include Effect Styles</label>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Export Buttons -->
-      <div class="button-container flex column justify-content-start align-content-stretch flex-no-grow">
-        <button class="button button--primary" id="export-tokens" title="Export selected items as design tokens"
-          disabled>Export Tokens</button>
-        <button class="button button--secondary" id="export-raw" title="Export Raw Figma API data for debugging">Export
-          Raw Data</button>
-      </div>
-    </div>
-
-    <div id="status" class="status"></div>
-  </div>
-
-  <script>
-    const statusEl = document.getElementById('status');
-    const loadingEl = document.getElementById('loading');
-    const exportOptionsEl = document.getElementById('export-options');
-    const collectionsContainerEl = document.getElementById('collections-container');
-    const exportTokensBtn = document.getElementById('export-tokens');
-
-    // Initialize selected collections
-    let collections = [];
-
-    // Request collections data from the plugin
-    window.onload = () => {
-      parent.postMessage({ pluginMessage: { type: 'get-collections-data' } }, '*');
-    };
-
-    // Validate collection selection to enable/disable the Export button
-    function validateCollectionSelection() {
-      const anyCollectionSelected = Array.from(document.querySelectorAll('[id^="collection-"]'))
-        .some(checkbox => checkbox.checked);
-
-      exportTokensBtn.disabled = !anyCollectionSelected;
-    }
-
-    // Select all collections
-    document.getElementById('select-all-collections').onclick = () => {
-      const collectionCheckboxes = document.querySelectorAll('[id^="collection-"]');
-      const allChecked = Array.from(collectionCheckboxes).every(checkbox => checkbox.checked);
-
-      collectionCheckboxes.forEach(checkbox => {
-        checkbox.checked = !allChecked;
-      });
-
-      validateCollectionSelection();
-    };
-
-    // Export tokens with selected options
-    document.getElementById('export-tokens').onclick = () => {
-      const options = {
-        includeVariables: true, // Always true now
-        includeTypography: document.getElementById('include-typography').checked,
-        includeEffects: document.getElementById('include-effects').checked,
-        collections: Array.from(document.querySelectorAll('[id^="collection-"]'))
-          .filter(checkbox => checkbox.checked)
-          .map(checkbox => checkbox.dataset.id)
-      };
-
-      statusEl.textContent = 'Exporting tokens…';
-      statusEl.style.display = 'block';
-      parent.postMessage({ pluginMessage: { type: 'export-tokens-only', options } }, '*');
-    };
-
-    // Export raw data
-    document.getElementById('export-raw').onclick = () => {
-      statusEl.textContent = 'Exporting raw data…';
-      statusEl.style.display = 'block';
-      parent.postMessage({ pluginMessage: { type: 'export-raw-only' } }, '*');
-    };
-
-    // Listen for messages from the plugin code
-    window.onmessage = event => {
-      const message = event.data.pluginMessage;
-
-      if (message.type === 'collections-data') {
-        // Hide loading and show options
-        loadingEl.style.display = 'none';
-        exportOptionsEl.style.display = 'block';
-
-        // Populate collections checkboxes
-        message.collections.forEach(collection => {
-          const row = document.createElement('div');
-          row.className = 'checkbox';
-
-          const checkbox = document.createElement('input');
-          checkbox.type = 'checkbox';
-          checkbox.className = 'checkbox__box';
-          checkbox.id = `collection-${collection.id}`;
-          checkbox.dataset.id = collection.id;
-          checkbox.checked = true;
-
-          // Add change event to update the Export button status
-          checkbox.addEventListener('change', validateCollectionSelection);
-
-          const label = document.createElement('label');
-          label.className = 'checkbox__label';
-          label.htmlFor = `collection-${collection.id}`;
-          label.textContent = collection.name;
-
-          row.appendChild(checkbox);
-          row.appendChild(label);
-          collectionsContainerEl.appendChild(row);
-        });
-
-        // Initialize button state
-        validateCollectionSelection();
-      } else if (message.type === 'download') {
-        // --- Keep old logic for single file download (e.g., raw export) ---
-        const { content, filename } = message;
-        const blob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
-        triggerDownload(blob, filename);
-        // Optionally re-enable button
-        exportTokensBtn.disabled = false;
-        exportTokensBtn.textContent = 'Export Selected';
-        document.getElementById('export-raw').disabled = false;
-        document.getElementById('export-raw').textContent = 'Export Raw Data';
-      } else if (message.type === 'download-multiple') {
-        // --- NEW: Handle multiple files --- 
-        const files = message.payload; // Payload is the array [{ filename, content }, ...]
-        if (files && Array.isArray(files)) {
-          console.log(`Received ${files.length} files to download.`);
-          files.forEach((fileInfo, index) => {
-            console.log(`Preparing download ${index + 1}: ${fileInfo.filename}`);
-            try {
-              const blob = new Blob([JSON.stringify(fileInfo.content, null, 2)], { type: 'application/json' });
-              // Use a small delay between downloads if needed, though often not required
-              setTimeout(() => triggerDownload(blob, fileInfo.filename), index * 100); 
-            } catch (e) {
-              console.error(`Error creating blob for ${fileInfo.filename}:`, e);
-              // Optionally notify the user via UI element
-            }
-          });
-        } else {
-           console.error('Received invalid payload for download-multiple', message.payload);
-        }
-        // Re-enable button after attempting all downloads
-        exportTokensBtn.disabled = false;
-        exportTokensBtn.textContent = 'Export Selected';
-        document.getElementById('export-raw').disabled = false;
-        document.getElementById('export-raw').textContent = 'Export Raw Data';
-      }
-    };
-
-    // Function to trigger the download
-    function triggerDownload(blob, filename) {
+<body>
+<script>
+  window.onmessage = async (event) => {
+    const message = event.data.pluginMessage;
+    if (message.type === 'download-raw-data') {
+      const { payload, filename } = message;
+      try {
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
         link.download = filename;
-        document.body.appendChild(link); // Required for Firefox
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url); // Clean up
-    }
-  </script>
-</body>
 
-</html>
+        // Append to body to ensure click works in all browsers
+        document.body.appendChild(link);
+        link.click();
+
+        // Clean up
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        // Optional: Notify main thread that download is complete
+        // parent.postMessage({ pluginMessage: { type: 'download-complete' } }, '*');
+
+      } catch (error) {
+        console.error('Error triggering download:', error);
+        // Optionally notify the main thread of the error
+        parent.postMessage({ pluginMessage: { type: 'download-error', error: error.message } }, '*');
+      }
+    }
+  }
+</script>
+</body>
+</html> 

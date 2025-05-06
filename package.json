@@ -1,27 +1,46 @@
 {
-  "name": "figma-token-export",
+  "name": "token-export",
   "version": "1.0.0",
-  "description": "Figma plugin to export variables as design tokens",
+  "description": "Your Figma Plugin",
   "type": "module",
   "main": "code.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json && npm run bundle",
-    "start": "tsc -p tsconfig.json --watch",
-    "bundle": "rollup -c",
-    "dev": "concurrently \"npm run watch\" \"rollup -c -w\""
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint --ext .ts,.tsx --ignore-pattern node_modules .",
+    "lint:fix": "eslint --ext .ts,.tsx --ignore-pattern node_modules --fix .",
+    "watch": "npm run build -- --watch"
   },
   "author": "",
-  "license": "MIT",
+  "license": "",
   "devDependencies": {
-    "@figma/plugin-typings": "^1.109.0",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "concurrently": "^8.2.2",
-    "rollup": "^4.9.5",
-    "typescript": "^5.3.3"
+    "@figma/eslint-plugin-figma-plugins": "*",
+    "@figma/plugin-typings": "*",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "commander": "^13.1.0",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.2"
   },
-  "dependencies": {
-    "figma-plugin-ds": "^1.0.1"
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@figma/figma-plugins/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "root": true,
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
+          "caughtErrorsIgnorePattern": "^_"
+        }
+      ]
+    }
   }
 }

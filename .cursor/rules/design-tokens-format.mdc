@@ -1,7 +1,7 @@
 ---
-description: 
+description: Information and best practices for Design Tokens
 globs: 
-alwaysApply: true
+alwaysApply: false
 ---
 # Design Tokens Format
 
