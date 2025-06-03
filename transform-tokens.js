@@ -37,29 +37,6 @@ const options = program.opts();
 const RAW_DATA_PATH = options.input; // Use parsed input path from commander
 const OUTPUT_DIR = options.output; // Use parsed output path from commander
 
-// Removed yargs parsing logic
-/*
-const argv = yargs(hideBin(process.argv))
-  .option('input', {
-    alias: 'i',
-    type: 'string',
-    description: 'Path to the raw Figma data JSON file',
-    default: 'output/figma-raw-data-2.json' // Default to original path
-  })
-  .option('output', {
-    alias: 'o',
-    type: 'string',
-    description: 'Directory to save transformed token files',
-    default: 'output/transformed' // Default to original path
-  })
-  .help()
-  .alias('help', 'h')
-  .argv;
-
-const RAW_DATA_PATH = argv.input; // Use parsed input path
-const OUTPUT_DIR = argv.output; // Use parsed output path
-*/
-
 // --- Helper Functions ---
 
 /**
