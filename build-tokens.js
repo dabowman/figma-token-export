@@ -8,7 +8,12 @@ StyleDictionary.registerFormat({
 
 const sd = new StyleDictionary({
     usesDtcg: true,
-    expand: true,
+    expand: {
+        include: function(token) {
+            // Expand typography and shadow tokens, but not color tokens
+            return token.$type === 'typography' || token.$type === 'shadow';
+        }
+    },
     include: [
         'tokens/core_valet-core.json'
     ],
@@ -60,7 +65,7 @@ const sd = new StyleDictionary({
             ]
         },
         'custom-json': {
-            buildPath: 'output/custom-json',
+            buildPath: 'output/',
             transforms: [
                 'name/kebab'
             ],
