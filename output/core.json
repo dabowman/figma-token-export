@@ -1,0 +1,5257 @@
+{
+  "breakpoint": {
+    "S": {},
+    "M": {},
+    "L": {},
+    "XL": {},
+    "XXL": {},
+    "MAX": {}
+  },
+  "alignment": {
+    "center": {},
+    "wide": {},
+    "full": {}
+  },
+  "lineHeight": {
+    "1": {},
+    "2": {},
+    "3": {},
+    "4": {},
+    "5": {},
+    "6": {}
+  },
+  "fontWeight": {
+    "light": {},
+    "regular": {},
+    "medium": {},
+    "semiBold": {},
+    "bold": {}
+  },
+  "fontFamily": {
+    "body": {},
+    "heading": {},
+    "mono": {}
+  },
+  "color": {
+    "black": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "pure-white": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "pure-black": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "focus": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "gold": {
+      "0": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "3": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "7": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "10": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "15": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "20": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "25": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "30": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "35": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "40": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "45": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "50": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "55": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "60": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "65": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "70": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "73": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "75": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "78": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "80": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "83": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "85": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "88": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "90": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "93": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "95": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "100": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "gray": {
+      "0": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "3": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "7": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "10": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "15": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "20": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "25": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "30": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "35": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "40": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "45": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "50": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "55": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "60": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "65": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "70": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "73": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "75": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "78": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "80": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "83": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "85": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "88": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "90": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "93": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "95": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "100": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "green": {
+      "0": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "3": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "7": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "10": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "15": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "20": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "25": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "30": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "35": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "40": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "45": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "50": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "55": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "60": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "65": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "70": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "73": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "75": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "78": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "80": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "83": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "85": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "88": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "90": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "93": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "95": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "100": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "blue": {
+      "0": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "3": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "7": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "10": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "15": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "20": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "25": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "30": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "35": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "40": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "45": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "50": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "55": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "60": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "65": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "70": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "73": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "75": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "78": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "80": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "83": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "85": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "88": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "90": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "93": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "95": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "100": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "pink": {
+      "0": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "3": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "7": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "10": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "15": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "20": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "25": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "30": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "35": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "40": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "45": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "50": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "55": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "60": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "65": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "70": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "73": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "75": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "78": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "80": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "83": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "85": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "88": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "90": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "93": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "95": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "100": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "salmon": {
+      "0": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "3": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "7": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "10": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "15": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "20": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "25": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "30": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "35": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "40": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "45": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "50": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "55": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "60": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "65": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "70": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "73": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "75": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "78": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "80": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "83": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "85": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "88": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "90": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "93": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "95": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "100": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "orange": {
+      "0": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "3": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "7": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "10": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "15": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "20": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "25": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "30": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "35": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "40": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "45": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "50": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "55": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "60": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "65": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "70": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "73": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "75": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "78": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "80": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "83": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "85": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "88": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "90": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "93": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "95": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "100": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "yellow": {
+      "0": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "3": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "7": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "10": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "15": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "20": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "25": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "30": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "35": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "40": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "45": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "50": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "55": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "60": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "65": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "70": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "73": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "75": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "78": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "80": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "83": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "85": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "88": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "90": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "93": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "95": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "100": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "red": {
+      "0": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "3": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "7": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "10": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "15": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "20": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "25": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "30": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "35": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "40": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "45": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "50": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "55": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "60": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "65": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "70": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "73": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "75": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "78": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "80": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "83": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "85": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "88": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "90": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "93": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "95": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "100": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "purple": {
+      "0": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "3": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "7": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "10": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "15": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "20": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "25": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "30": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "35": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "40": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "45": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "50": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "55": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "60": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "65": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "70": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "73": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "75": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "78": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "80": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "83": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "85": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "88": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "90": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "93": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "95": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "100": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "gradient": {
+      "neutral-light-3": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "neutral-light-4": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "parsely-green": {
+      "0": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "3": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "7": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "10": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "15": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "20": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "25": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "30": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "35": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "40": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "45": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "50": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "55": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "60": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "65": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "70": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "73": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "75": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "78": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "80": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "83": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "85": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "88": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "90": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "93": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "95": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "100": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    }
+  },
+  "fontSize": {
+    "static": {
+      "0": {
+        "value": {},
+        "unit": {}
+      },
+      "1": {
+        "value": {},
+        "unit": {}
+      },
+      "2": {
+        "value": {},
+        "unit": {}
+      },
+      "3": {
+        "value": {},
+        "unit": {}
+      },
+      "4": {
+        "value": {},
+        "unit": {}
+      },
+      "5": {
+        "value": {},
+        "unit": {}
+      },
+      "6": {
+        "value": {},
+        "unit": {}
+      },
+      "7": {
+        "value": {},
+        "unit": {}
+      }
+    },
+    "figma": {
+      "1": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "2": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "3": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "4": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "5": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "6": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "7": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "8": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "9": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "10": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "11": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "12": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "13": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "14": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "15": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "12b": {
+        "S": {
+          "value": {},
+          "unit": {}
+        },
+        "M": {
+          "value": {},
+          "unit": {}
+        },
+        "L": {
+          "value": {},
+          "unit": {}
+        },
+        "XL": {
+          "value": {},
+          "unit": {}
+        },
+        "XXL": {
+          "value": {},
+          "unit": {}
+        },
+        "MAX": {
+          "value": {},
+          "unit": {}
+        }
+      }
+    }
+  },
+  "borderRadius": {
+    "0": {
+      "value": {},
+      "unit": {}
+    },
+    "1": {
+      "value": {},
+      "unit": {}
+    },
+    "2": {
+      "value": {},
+      "unit": {}
+    },
+    "3": {
+      "value": {},
+      "unit": {}
+    },
+    "4": {
+      "value": {},
+      "unit": {}
+    },
+    "5": {
+      "value": {},
+      "unit": {}
+    },
+    "6": {
+      "value": {},
+      "unit": {}
+    },
+    "7": {
+      "value": {},
+      "unit": {}
+    },
+    "static": {
+      "0": {
+        "value": {},
+        "unit": {}
+      },
+      "1": {
+        "value": {},
+        "unit": {}
+      },
+      "2": {
+        "value": {},
+        "unit": {}
+      },
+      "3": {
+        "value": {},
+        "unit": {}
+      },
+      "4": {
+        "value": {},
+        "unit": {}
+      },
+      "5": {
+        "value": {},
+        "unit": {}
+      },
+      "6": {
+        "value": {},
+        "unit": {}
+      }
+    }
+  },
+  "space": {
+    "0": {
+      "value": {},
+      "unit": {}
+    },
+    "1": {
+      "value": {},
+      "unit": {}
+    },
+    "2": {
+      "value": {},
+      "unit": {}
+    },
+    "3": {
+      "value": {},
+      "unit": {}
+    },
+    "4": {
+      "value": {},
+      "unit": {}
+    },
+    "5": {
+      "value": {},
+      "unit": {}
+    },
+    "6": {
+      "value": {},
+      "unit": {}
+    },
+    "7": {
+      "value": {},
+      "unit": {}
+    },
+    "8": {
+      "value": {},
+      "unit": {}
+    },
+    "9": {
+      "value": {},
+      "unit": {}
+    },
+    "static": {
+      "0": {
+        "value": {},
+        "unit": {}
+      },
+      "1": {
+        "value": {},
+        "unit": {}
+      },
+      "2": {
+        "value": {},
+        "unit": {}
+      },
+      "3": {
+        "value": {},
+        "unit": {}
+      },
+      "4": {
+        "value": {},
+        "unit": {}
+      },
+      "5": {
+        "value": {},
+        "unit": {}
+      },
+      "6": {
+        "value": {},
+        "unit": {}
+      },
+      "7": {
+        "value": {},
+        "unit": {}
+      },
+      "8": {
+        "value": {},
+        "unit": {}
+      },
+      "9": {
+        "value": {},
+        "unit": {}
+      },
+      "10": {
+        "value": {},
+        "unit": {}
+      }
+    }
+  },
+  "letterSpacing": {
+    "none": {
+      "value": {},
+      "unit": {}
+    },
+    "tight": {
+      "value": {},
+      "unit": {}
+    },
+    "loose": {
+      "value": {},
+      "unit": {}
+    },
+    "x-loose": {
+      "value": {},
+      "unit": {}
+    }
+  },
+  "typography": {
+    "support": {
+      "helper-text": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "label-xs": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "label-small": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "label-default": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "label-default-quiet": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "label-default-loud": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "label-caps": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      }
+    },
+    "heading": {
+      "1": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "2": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "3": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "4": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "5": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "caps": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      }
+    },
+    "text": {
+      "small": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "default": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "large": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "mono": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      },
+      "mono-bold": {
+        "fontWeight": {},
+        "textCase": {},
+        "textDecoration": {},
+        "fontSize": {
+          "value": {},
+          "unit": {}
+        },
+        "lineHeight": {},
+        "letterSpacing": {
+          "value": {},
+          "unit": {}
+        }
+      }
+    }
+  },
+  "shadow": {
+    "High": {
+      "1": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      },
+      "2": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      },
+      "3": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      },
+      "4": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      },
+      "5": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      },
+      "6": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      }
+    },
+    "Medium": {
+      "1": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      },
+      "2": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      },
+      "3": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      },
+      "4": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      },
+      "5": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      },
+      "6": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      }
+    },
+    "Low": {
+      "1": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      },
+      "2": {
+        "inset": {},
+        "color": {
+          "$type": {},
+          "$value": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "filePath": {},
+          "isSource": {}
+        },
+        "offsetX": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "offsetY": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "blur": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        },
+        "spread": {
+          "$type": {},
+          "value": {
+            "value": {},
+            "unit": {}
+          }
+        }
+      }
+    }
+  },
+  "background": {
+    "primary": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "overlay": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    }
+  },
+  "layer": {
+    "1": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "2": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "3": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "4": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "inverse": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "accent": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    }
+  },
+  "input": {
+    "label": {
+      "default": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "text": {
+      "default": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "placeholder": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "border": {
+      "default": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "disabled": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "error": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "read-only": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "switcher": {
+      "background": {
+        "primary": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "secondary": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      }
+    },
+    "radio-box": {
+      "background": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "active": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      },
+      "label": {
+        "primary": {
+          "default": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "hover": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "active": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "disabled": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          }
+        },
+        "secondary": {
+          "default": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "hover": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "active": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "disabled": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "active": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      }
+    },
+    "background": {
+      "default": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "primary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "success": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "brand": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "inactive": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "disabled": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "read-only": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "toggle": {
+      "switch": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      }
+    }
+  },
+  "border": {
+    "1": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "2": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "3": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "4": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "inverse": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "accent": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    }
+  },
+  "text": {
+    "primary": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "secondary": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "helper": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "disabled": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "inverse": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "inverse-secondary": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "accent": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "error": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "success": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    }
+  },
+  "link": {
+    "default": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "hover": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "active": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "visited": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    }
+  },
+  "icon": {
+    "primary": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "secondary": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "helper": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "inverse": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "disabled": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "brand": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "inverse-disabled": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    }
+  },
+  "button": {
+    "primary": {
+      "background": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      },
+      "label": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      }
+    },
+    "secondary": {
+      "background": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      },
+      "label": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      }
+    },
+    "tertiary": {
+      "background": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      },
+      "border": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      },
+      "label": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      }
+    },
+    "ghost": {
+      "background": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      },
+      "label": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      }
+    },
+    "display": {
+      "background": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      },
+      "label": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "disabled": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      }
+    },
+    "danger": {
+      "primary": {
+        "background": {
+          "default": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "hover": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "disabled": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          }
+        },
+        "label": {
+          "default": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "hover": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "disabled": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          }
+        }
+      },
+      "secondary": {
+        "background": {
+          "default": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "hover": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "disabled": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          }
+        },
+        "label": {
+          "default": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "hover": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "disabled": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          }
+        },
+        "border": {
+          "default": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "hover": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "disabled": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          }
+        }
+      },
+      "ghost": {
+        "background": {
+          "default": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "hover": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "disabled": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          }
+        },
+        "label": {
+          "default": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "hover": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          },
+          "disabled": {
+            "colorSpace": {},
+            "components": {},
+            "alpha": {},
+            "hex": {}
+          }
+        }
+      }
+    }
+  },
+  "support": {
+    "background": {
+      "error": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "warning": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "info": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "success": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "neutral": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "feature": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "text": {
+      "neutral": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "error": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "warning": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "info": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "success": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "feature": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "icon": {
+      "neutral": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "error": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "warning": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "info": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "success": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "feature": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "accent": {
+      "error": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "warning": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "info": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "success": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "neutral": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "feature": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "link": {
+      "neutral": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "active": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "visited": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      },
+      "error": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "active": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "visited": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      },
+      "warning": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "active": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "visited": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      },
+      "info": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "active": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "visited": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      },
+      "success": {
+        "default": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "hover": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "active": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        },
+        "visited": {
+          "colorSpace": {},
+          "components": {},
+          "alpha": {},
+          "hex": {}
+        }
+      }
+    }
+  },
+  "focus": {
+    "default": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "inset": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    }
+  },
+  "tag": {
+    "gray": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "blue": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "green": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "red": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "gold": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "yellow": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "orange": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "salmon": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "pink": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    }
+  },
+  "sticker": {
+    "gray": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "background-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "blue": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "background-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "green": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "background-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "red": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "background-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "gold": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "background-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "yellow": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "background-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "orange": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "background-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "salmon": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "background-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "pink": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "background-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "text-secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "active": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    }
+  },
+  "toolbar": {
+    "background": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    },
+    "text": {
+      "default": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "hover": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "brand": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    }
+  },
+  "logs": {
+    "text": {
+      "primary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "secondary": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "background": {
+      "colorSpace": {},
+      "components": {},
+      "alpha": {},
+      "hex": {}
+    }
+  },
+  "option-row": {
+    "default": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    },
+    "alt": {
+      "background": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      },
+      "icon": {
+        "colorSpace": {},
+        "components": {},
+        "alpha": {},
+        "hex": {}
+      }
+    }
+  }
+}
