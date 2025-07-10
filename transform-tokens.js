@@ -14,21 +14,17 @@
 import fs from 'fs';
 import { program } from 'commander'; // Added commander import
 
-// Removed yargs import
-// import yargs from 'yargs/yargs';
-// import { hideBin } from 'yargs/helpers';
-
 // --- Argument Parsing using commander ---
 program
   .option(
     '-i, --input <path>',
     'Path to the raw Figma data JSON file',
-    'output/figma-raw-data-2.json' // Default value
+    'figmaData/figma-raw-data-2.json' // Default value
   )
   .option(
     '-o, --output <path>',
     'Directory to save transformed token files',
-    'output/transformed' // Default value
+    'tokens/' // Default value
   );
 
 program.parse(process.argv);
@@ -36,6 +32,9 @@ program.parse(process.argv);
 const options = program.opts();
 const RAW_DATA_PATH = options.input; // Use parsed input path from commander
 const OUTPUT_DIR = options.output; // Use parsed output path from commander
+
+// --- Constants ---
+const PIXELS_PER_REM = 16; // The base pixel value for 1rem.
 
 // --- Helper Functions ---
 
@@ -132,7 +131,7 @@ function getTokenTypeAndValue(variableDetail, modeId) {
     }
     case 'FLOAT': {
       if (name.includes('fontsize') || scopes.includes('FONT_SIZE')) {
-        return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
+        return { type: 'dimension', value: { value: rawValue / PIXELS_PER_REM, unit: 'rem' }, originalValue: rawValue };
       }
       if (name.includes('fontweight') || scopes.includes('FONT_WEIGHT')) {
         return { type: 'fontWeight', value: rawValue, originalValue: rawValue };
@@ -144,10 +143,10 @@ function getTokenTypeAndValue(variableDetail, modeId) {
         return { type: 'dimension', value: { value: rawValue, unit: '%' }, originalValue: rawValue };
       }
        if (name.includes('space') || name.includes('gap') || scopes.includes('GAP')) {
-        return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
+        return { type: 'dimension', value: { value: rawValue / PIXELS_PER_REM, unit: 'rem' }, originalValue: rawValue };
       }
       if (name.includes('borderradius') || name.includes('radius') || scopes.includes('CORNER_RADIUS')) {
-         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
+         return { type: 'dimension', value: { value: rawValue / PIXELS_PER_REM, unit: 'rem' }, originalValue: rawValue };
       }
       if (name.includes('borderwidth') || name.includes('strokewidth') || scopes.includes('STROKE_WIDTH')) {
         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
@@ -236,9 +235,9 @@ function processTextStyles(textStyles, idToPathMap, errorsList) {
 
         const pathParts = style.name.split('/');
         const compositeValue = {};
-        let aliasFound = false;
 
-        // --- fontFamily --- 
+        // --- fontFamily (No change, not directly bindable) ---
+        let aliasFound = false;
         if (style.fontFamily) {
             aliasFound = false;
             for (const [, tokenInfo] of Object.entries(idToPathMap)) {
@@ -253,7 +252,7 @@ function processTextStyles(textStyles, idToPathMap, errorsList) {
             }
         }
 
-        // --- fontWeight --- 
+        // --- fontWeight (No change, not directly bindable) ---
         if (style.fontName?.style) {
             const styleWeightString = style.fontName.style;
             const numericWeight = fontWeightMap[styleWeightString];
@@ -268,22 +267,71 @@ function processTextStyles(textStyles, idToPathMap, errorsList) {
                  }
             }
              if (!aliasFound) {
-                 compositeValue.fontWeight = numericWeight !== undefined ? numericWeight : styleWeightString; 
+                 compositeValue.fontWeight = numericWeight !== undefined ? numericWeight : styleWeightString;
                  if (numericWeight === undefined) {
                      errorsList.push(`WARNING: Font weight style '${styleWeightString}' not recognized for style '${style.name}'. Using raw string.`);
                  }
             }
         }
 
-        // --- fontSize --- (Output raw dimension, no aliasing attempt)
-        if (style.fontSize !== undefined) {
-             compositeValue.fontSize = { value: style.fontSize, unit: 'px' };
+        // --- textCase ---
+        const textCaseVarId = style.boundVariables?.textCase?.id;
+        if (textCaseVarId && idToPathMap[textCaseVarId]) {
+            compositeValue.textCase = `{${idToPathMap[textCaseVarId].path}}`;
+        } else if (style.textCase) {
+            const textCaseMap = {
+                'ORIGINAL': 'none',
+                'UPPER': 'uppercase',
+                'LOWER': 'lowercase',
+                'TITLE': 'capitalize',
+            };
+            if (textCaseMap[style.textCase]) {
+                compositeValue.textCase = textCaseMap[style.textCase];
+            } else {
+                 errorsList.push(`WARNING: Unknown textCase value '${style.textCase}' in style '${style.name}'.`);
+            }
         }
 
-        // --- lineHeight --- 
-        if (style.lineHeight?.unit) {
-            aliasFound = false;
+        // --- textDecoration ---
+        const textDecorationVarId = style.boundVariables?.textDecoration?.id;
+        if (textDecorationVarId && idToPathMap[textDecorationVarId]) {
+            compositeValue.textDecoration = `{${idToPathMap[textDecorationVarId].path}}`;
+        } else if (style.textDecoration) {
+            const textDecorationMap = {
+                'NONE': 'none',
+                'UNDERLINE': 'underline',
+                'STRIKETHROUGH': 'line-through',
+            };
+             if (textDecorationMap[style.textDecoration]) {
+                compositeValue.textDecoration = textDecorationMap[style.textDecoration];
+            } else {
+                 errorsList.push(`WARNING: Unknown textDecoration value '${style.textDecoration}' in style '${style.name}'.`);
+            }
+        }
+
+        // --- fontSize ---
+        const fontSizeVarId = style.boundVariables?.fontSize?.id;
+        if (fontSizeVarId && idToPathMap[fontSizeVarId]) {
+            compositeValue.fontSize = `{${idToPathMap[fontSizeVarId].path}}`;
+        } else if (style.fontSize !== undefined) {
+            if (fontSizeVarId) { // Only warn if there was an ID we couldn't map
+                errorsList.push(`WARNING: Unresolved bound variable ID '${fontSizeVarId}' for fontSize in style '${style.name}'. Using raw value.`);
+            }
+            compositeValue.fontSize = { value: style.fontSize / PIXELS_PER_REM, unit: 'rem' };
+        }
+
+        // --- lineHeight ---
+        const lineHeightVarId = style.boundVariables?.lineHeight?.id;
+        if (lineHeightVarId && idToPathMap[lineHeightVarId]) {
+            compositeValue.lineHeight = `{${idToPathMap[lineHeightVarId].path}}`;
+        } else if (style.lineHeight?.unit) {
+             if (lineHeightVarId) { // Warn if the ID was present but couldn't be mapped
+                errorsList.push(`WARNING: Unresolved bound variable ID '${lineHeightVarId}' for lineHeight in style '${style.name}'. Falling back to manual matching.`);
+            }
+
             if (style.lineHeight.unit === 'PERCENT') {
+                 // Fallback to manual matching by value
+                let aliasFound = false;
                 const targetPercent = roundNear(style.lineHeight.value);
                 for (const [, tokenInfo] of Object.entries(idToPathMap)) {
                     if (tokenInfo.type === 'number' && tokenInfo.path.startsWith('lineHeight.') && roundNear(tokenInfo.originalValue) === targetPercent) {
@@ -292,39 +340,60 @@ function processTextStyles(textStyles, idToPathMap, errorsList) {
                         break;
                     }
                 }
-                 if (!aliasFound) {
-                    errorsList.push(`ERROR: Could not find base token alias for lineHeight: ${targetPercent}% in style '${style.name}'. Outputting calculated value.`);
+                // If no alias found, use raw calculated value
+                if (!aliasFound) {
+                    errorsList.push(`WARNING: Could not find alias for lineHeight value '${targetPercent}%' in style '${style.name}'. Using raw calculated value.`);
                     compositeValue.lineHeight = targetPercent / 100;
-                 }
+                }
             } else {
                  errorsList.push(`ERROR: Unexpected lineHeight unit '${style.lineHeight.unit}' for style '${style.name}'. Outputting raw value.`);
-                compositeValue.lineHeight = { value: style.lineHeight.value, unit: style.lineHeight.unit };
+                compositeValue.lineHeight = { value: style.lineHeight.value, unit: style.lineHeight.unit.toLowerCase() };
             }
         }
 
-        // --- letterSpacing --- 
-         if (style.letterSpacing?.unit) {
-            aliasFound = false;
+        // --- letterSpacing ---
+        const letterSpacingVarId = style.boundVariables?.letterSpacing?.id;
+        if (letterSpacingVarId && idToPathMap[letterSpacingVarId]) {
+            compositeValue.letterSpacing = `{${idToPathMap[letterSpacingVarId].path}}`;
+        } else if (style.letterSpacing?.unit) {
+            if (letterSpacingVarId) { // Warn if the ID was present but couldn't be mapped
+                errorsList.push(`WARNING: Unresolved bound variable ID '${letterSpacingVarId}' for letterSpacing in style '${style.name}'. Falling back to manual matching.`);
+            }
+
+            let aliasFound = false;
+            const tolerance = 0.01; // Tolerance for floating point comparison
+
             if (style.letterSpacing.unit === 'PERCENT') {
-                const targetPercent = style.letterSpacing.value; 
-                const tolerance = 0.01;
+                const targetPercent = style.letterSpacing.value;
                 for (const [, tokenInfo] of Object.entries(idToPathMap)) {
-                    if (tokenInfo.type === 'dimension' && tokenInfo.originalValue !== null && tokenInfo.path.startsWith('letterSpacing.') && Math.abs(tokenInfo.originalValue - targetPercent) < tolerance) {
+                    // Match percentage-based letter spacing tokens
+                    if (tokenInfo.type === 'dimension' && tokenInfo.path.startsWith('letterSpacing.') && tokenInfo.originalValue !== null && Math.abs(tokenInfo.originalValue - targetPercent) < tolerance) {
                          compositeValue.letterSpacing = `{${tokenInfo.path}}`;
                          aliasFound = true;
                          break;
                     }
                 }
-                 if (!aliasFound) {
-                     errorsList.push(`ERROR: Could not find base token alias for letterSpacing: ${targetPercent}% in style '${style.name}'. Outputting raw value.`);
+                if (!aliasFound) {
+                    errorsList.push(`WARNING: Could not find alias for letterSpacing value '${targetPercent}%' in style '${style.name}'. Using raw value.`);
                     compositeValue.letterSpacing = { value: targetPercent, unit: '%' };
-                 }
+                }
             } else if (style.letterSpacing.unit === 'PIXELS'){
-                 errorsList.push(`ERROR: Unexpected letterSpacing unit 'PIXELS' for style '${style.name}'. Outputting raw value.`);
-                 compositeValue.letterSpacing = { value: style.letterSpacing.value, unit: 'px' };
+                const targetPixels = style.letterSpacing.value;
+                // Attempt to match pixel-based tokens, though this is less common
+                for (const [, tokenInfo] of Object.entries(idToPathMap)) {
+                    if (tokenInfo.type === 'dimension' && tokenInfo.path.startsWith('letterSpacing.') && tokenInfo.originalValue === targetPixels) {
+                        compositeValue.letterSpacing = `{${tokenInfo.path}}`;
+                        aliasFound = true;
+                        break;
+                    }
+                }
+                if (!aliasFound) {
+                    errorsList.push(`WARNING: letterSpacing for style '${style.name}' is in PIXELS, not PERCENT. Could not find alias. Outputting raw px value.`);
+                    compositeValue.letterSpacing = { value: targetPixels, unit: 'px' };
+                }
             } else {
                  errorsList.push(`ERROR: Unexpected letterSpacing unit '${style.letterSpacing.unit}' for style '${style.name}'. Outputting raw value.`);
-                 compositeValue.letterSpacing = { value: style.letterSpacing.value, unit: style.letterSpacing.unit };
+                 compositeValue.letterSpacing = { value: style.letterSpacing.value, unit: style.letterSpacing.unit.toLowerCase() };
             }
         }
 
@@ -333,8 +402,10 @@ function processTextStyles(textStyles, idToPathMap, errorsList) {
                  $type: 'typography',
                  $value: compositeValue,
                  $description: style.description || "",
-                 $figmaId: style.id,
-                 $figmaKey: style.key,
+                 $extensions: {
+                    'figma.ID': style.id,
+                    'figma.key': style.key,
+                 },
              };
              setNestedValue(typographyTokens, ['typography', ...pathParts], tokenData);
          } else {
@@ -350,10 +421,11 @@ function processTextStyles(textStyles, idToPathMap, errorsList) {
  *
  * @since 1.0.0
  * @param {Array} effectStyles Array of simplified Figma Effect Style objects.
+ * @param {object} idToPathMap Map of Figma Variable IDs to { path, type, originalValue }.
  * @param {string[]} errorsList Array to push error/warning messages into.
  * @return {object} Object containing the generated shadow tokens, nested by style name.
  */
-function processEffectStyles(effectStyles, errorsList) {
+function processEffectStyles(effectStyles, idToPathMap, errorsList) {
     const shadowTokens = {};
     console.log(' Processing Effect Styles into Shadow Tokens...');
 
@@ -372,8 +444,17 @@ function processEffectStyles(effectStyles, errorsList) {
                      continue;
                  }
 
-                w3cShadowValue.push({
-                    color: {
+                const shadowLayer = { inset: effect.type === 'INNER_SHADOW' };
+
+                // --- Color ---
+                const colorVarId = effect.boundVariables?.color?.id;
+                if (colorVarId && idToPathMap[colorVarId]) {
+                    shadowLayer.color = `{${idToPathMap[colorVarId].path}}`;
+                } else {
+                     if (colorVarId) {
+                        errorsList.push(`WARNING: Unresolved bound variable ID '${colorVarId}' for shadow color in style '${style.name}'. Using raw value.`);
+                    }
+                    shadowLayer.color = {
                         $type: 'color',
                          $value: {
                              colorSpace: 'srgb',
@@ -381,13 +462,40 @@ function processEffectStyles(effectStyles, errorsList) {
                              alpha: effect.color.a,
                               hex: rgbaToHex(effect.color.r, effect.color.g, effect.color.b)
                         }
-                    },
-                    offsetX: { $type: 'dimension', value: { value: effect.offset.x, unit: 'px' } },
-                    offsetY: { $type: 'dimension', value: { value: effect.offset.y, unit: 'px' } },
-                    blur: { $type: 'dimension', value: { value: effect.radius, unit: 'px' } },
-                    spread: { $type: 'dimension', value: { value: effect.spread || 0, unit: 'px' } },
-                    inset: effect.type === 'INNER_SHADOW'
-                });
+                    };
+                }
+
+                // --- Offset X ---
+                shadowLayer.offsetX = { $type: 'dimension', value: { value: effect.offset.x / PIXELS_PER_REM, unit: 'rem' } };
+
+                // --- Offset Y ---
+                shadowLayer.offsetY = { $type: 'dimension', value: { value: effect.offset.y / PIXELS_PER_REM, unit: 'rem' } };
+
+
+                // --- Blur ---
+                const blurVarId = effect.boundVariables?.radius?.id;
+                if (blurVarId && idToPathMap[blurVarId]) {
+                    shadowLayer.blur = `{${idToPathMap[blurVarId].path}}`;
+                } else {
+                    if (blurVarId) {
+                        errorsList.push(`WARNING: Unresolved bound variable ID '${blurVarId}' for shadow blur (radius) in style '${style.name}'. Using raw value.`);
+                    }
+                    shadowLayer.blur = { $type: 'dimension', value: { value: effect.radius / PIXELS_PER_REM, unit: 'rem' } };
+                }
+
+                // --- Spread ---
+                const spreadVarId = effect.boundVariables?.spread?.id;
+                if (spreadVarId && idToPathMap[spreadVarId]) {
+                    shadowLayer.spread = `{${idToPathMap[spreadVarId].path}}`;
+                } else {
+                    if (spreadVarId) {
+                        errorsList.push(`WARNING: Unresolved bound variable ID '${spreadVarId}' for shadow spread in style '${style.name}'. Using raw value.`);
+                    }
+                     shadowLayer.spread = { $type: 'dimension', value: { value: (effect.spread || 0) / PIXELS_PER_REM, unit: 'rem' } };
+                }
+
+                w3cShadowValue.push(shadowLayer);
+
             } else {
                  errorsList.push(`WARNING: Skipping non-shadow effect type '${effect.type}' in style '${style.name}'.`);
             }
@@ -398,8 +506,10 @@ function processEffectStyles(effectStyles, errorsList) {
                  $type: 'shadow',
                  $value: w3cShadowValue,
                  $description: style.description || "",
-                 $figmaId: style.id,
-                 $figmaKey: style.key,
+                 $extensions: {
+                    'figma.ID': style.id,
+                    'figma.key': style.key,
+                 },
              };
              setNestedValue(shadowTokens, ['shadow', ...pathParts], tokenData);
          } else {
@@ -504,11 +614,13 @@ function transformTokens() {
           $type: needsResolution ? 'alias' : type, // Keep 'alias' type marker for Pass 2 detection
           $value: needsResolution ? `ALIAS:${value}` : value, // Keep 'ALIAS:' value marker
           $description: detail.description || "",
-          $figmaId: detail.id,
-          $figmaKey: detail.key,
-          $figmaCollectionId: detail.variableCollectionId,
-          $scopes: detail.scopes,
-          $codeSyntax: detail.codeSyntax,
+          $extensions: {
+            'figma.ID': detail.id,
+            'figma.key': detail.key,
+            'figma.collectionID': detail.variableCollectionId,
+            'figma.scopes': detail.scopes,
+            'figma.codeSyntax': detail.codeSyntax,
+          },
         };
 
         setNestedValue(outputTokens, pathParts, tokenData);
@@ -521,7 +633,7 @@ function transformTokens() {
   const typographyOutput = processTextStyles(rawData.textStyles || [], idToPathMap, processingErrors);
 
   // --- Process Effect Styles --- 
-  const shadowOutput = processEffectStyles(rawData.effectStyles || [], processingErrors);
+  const shadowOutput = processEffectStyles(rawData.effectStyles || [], idToPathMap, processingErrors);
 
   // --- Merge Styles into Outputs --- 
   console.log('Merging style tokens into outputs...');

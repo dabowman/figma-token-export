@@ -1,0 +1,1297 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "anyOf": [
+        {
+            "properties": {
+                "$deprecated": {
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "$description": {
+                    "type": "string"
+                },
+                "$extensions": {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                "$type": {
+                    "const": "color",
+                    "type": "string"
+                },
+                "$value": {
+                    "$ref": "#/definitions/Color.Value"
+                }
+            },
+            "required": [
+                "$value"
+            ],
+            "type": "object"
+        },
+        {
+            "properties": {
+                "$deprecated": {
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "$description": {
+                    "type": "string"
+                },
+                "$extensions": {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                "$type": {
+                    "const": "dimension",
+                    "type": "string"
+                },
+                "$value": {
+                    "$ref": "#/definitions/Dimension.Value"
+                }
+            },
+            "required": [
+                "$value"
+            ],
+            "type": "object"
+        },
+        {
+            "properties": {
+                "$deprecated": {
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "$description": {
+                    "type": "string"
+                },
+                "$extensions": {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                "$type": {
+                    "const": "fontFamily",
+                    "type": "string"
+                },
+                "$value": {
+                    "$ref": "#/definitions/FontFamily.Value"
+                }
+            },
+            "required": [
+                "$value"
+            ],
+            "type": "object"
+        },
+        {
+            "properties": {
+                "$deprecated": {
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "$description": {
+                    "type": "string"
+                },
+                "$extensions": {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                "$type": {
+                    "const": "fontWeight",
+                    "type": "string"
+                },
+                "$value": {
+                    "$ref": "#/definitions/FontWeight.Value"
+                }
+            },
+            "required": [
+                "$value"
+            ],
+            "type": "object"
+        },
+        {
+            "properties": {
+                "$deprecated": {
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "$description": {
+                    "type": "string"
+                },
+                "$extensions": {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                "$type": {
+                    "const": "duration",
+                    "type": "string"
+                },
+                "$value": {
+                    "$ref": "#/definitions/Duration.Value"
+                }
+            },
+            "required": [
+                "$value"
+            ],
+            "type": "object"
+        },
+        {
+            "properties": {
+                "$deprecated": {
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "$description": {
+                    "type": "string"
+                },
+                "$extensions": {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                "$type": {
+                    "const": "cubicBezier",
+                    "type": "string"
+                },
+                "$value": {
+                    "$ref": "#/definitions/CubicBezier.Value"
+                }
+            },
+            "required": [
+                "$value"
+            ],
+            "type": "object"
+        },
+        {
+            "properties": {
+                "$deprecated": {
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "$description": {
+                    "type": "string"
+                },
+                "$extensions": {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                "$type": {
+                    "const": "number",
+                    "type": "string"
+                },
+                "$value": {
+                    "$ref": "#/definitions/Number.Value"
+                }
+            },
+            "required": [
+                "$value"
+            ],
+            "type": "object"
+        },
+        {
+            "properties": {
+                "$deprecated": {
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "$description": {
+                    "type": "string"
+                },
+                "$extensions": {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                "$type": {
+                    "const": "strokeStyle",
+                    "type": "string"
+                },
+                "$value": {
+                    "$ref": "#/definitions/StrokeStyle.Value"
+                }
+            },
+            "required": [
+                "$value"
+            ],
+            "type": "object"
+        },
+        {
+            "properties": {
+                "$deprecated": {
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "$description": {
+                    "type": "string"
+                },
+                "$extensions": {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                "$type": {
+                    "const": "border",
+                    "type": "string"
+                },
+                "$value": {
+                    "$ref": "#/definitions/Border.Value"
+                }
+            },
+            "required": [
+                "$value"
+            ],
+            "type": "object"
+        },
+        {
+            "properties": {
+                "$deprecated": {
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "$description": {
+                    "type": "string"
+                },
+                "$extensions": {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                "$type": {
+                    "const": "transition",
+                    "type": "string"
+                },
+                "$value": {
+                    "$ref": "#/definitions/Transition.Value"
+                }
+            },
+            "required": [
+                "$value"
+            ],
+            "type": "object"
+        },
+        {
+            "properties": {
+                "$deprecated": {
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "$description": {
+                    "type": "string"
+                },
+                "$extensions": {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                "$type": {
+                    "const": "shadow",
+                    "type": "string"
+                },
+                "$value": {
+                    "$ref": "#/definitions/Shadow.Value"
+                }
+            },
+            "required": [
+                "$value"
+            ],
+            "type": "object"
+        },
+        {
+            "properties": {
+                "$deprecated": {
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "$description": {
+                    "type": "string"
+                },
+                "$extensions": {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                "$type": {
+                    "const": "gradient",
+                    "type": "string"
+                },
+                "$value": {
+                    "$ref": "#/definitions/Gradient.Value"
+                }
+            },
+            "required": [
+                "$value"
+            ],
+            "type": "object"
+        },
+        {
+            "properties": {
+                "$deprecated": {
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
+                },
+                "$description": {
+                    "type": "string"
+                },
+                "$extensions": {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                "$type": {
+                    "const": "typography",
+                    "type": "string"
+                },
+                "$value": {
+                    "$ref": "#/definitions/Typography.Value"
+                }
+            },
+            "required": [
+                "$value"
+            ],
+            "type": "object"
+        },
+        {
+            "allOf": [
+                {
+                    "properties": {
+                        "$description": {
+                            "type": "string"
+                        },
+                        "$extensions": {
+                            "$ref": "#/definitions/JSONObject"
+                        },
+                        "$type": {
+                            "enum": [
+                                "border",
+                                "color",
+                                "cubicBezier",
+                                "dimension",
+                                "duration",
+                                "fontFamily",
+                                "fontWeight",
+                                "gradient",
+                                "number",
+                                "shadow",
+                                "strokeStyle",
+                                "transition",
+                                "typography"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "$ref": "#/definitions/{[key:string]:Color.Token|Dimension.Token|FontFamily.Token|FontWeight.Token|Duration.Token|CubicBezier.Token|Number.Token|StrokeStyle.Token|Border.Token|Transition.Token|Shadow.Token|Gradient.Token|Typography.Token|GroupProperties|(GroupProperties&any);}"
+                }
+            ]
+        }
+    ],
+    "definitions": {
+        "Border.Value": {
+            "anyOf": [
+                {
+                    "pattern": "^\\{.*\\}$",
+                    "type": "string"
+                },
+                {
+                    "properties": {
+                        "color": {
+                            "$ref": "#/definitions/Color.Value"
+                        },
+                        "style": {
+                            "$ref": "#/definitions/StrokeStyle.Value"
+                        },
+                        "width": {
+                            "$ref": "#/definitions/Dimension.Value"
+                        }
+                    },
+                    "required": [
+                        "color",
+                        "style",
+                        "width"
+                    ],
+                    "type": "object"
+                }
+            ]
+        },
+        "Color.Value": {
+            "anyOf": [
+                {
+                    "pattern": "^\\{.*\\}$",
+                    "type": "string"
+                },
+                {
+                    "properties": {
+                        "alpha": {
+                            "type": "number"
+                        },
+                        "colorSpace": {
+                            "enum": [
+                                "a98-rgb",
+                                "display-p3",
+                                "hsl",
+                                "hwb",
+                                "lab",
+                                "lch",
+                                "oklab",
+                                "oklch",
+                                "prophoto-rgb",
+                                "rec2020",
+                                "srgb",
+                                "srgb-linear",
+                                "xyz-d50",
+                                "xyz-d65"
+                            ],
+                            "type": "string"
+                        },
+                        "components": {
+                            "items": [
+                                {
+                                    "anyOf": [
+                                        {
+                                            "const": "none",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "number"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "anyOf": [
+                                        {
+                                            "const": "none",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "number"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "anyOf": [
+                                        {
+                                            "const": "none",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "number"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "maxItems": 3,
+                            "minItems": 3,
+                            "type": "array"
+                        },
+                        "hex": {
+                            "pattern": "^#.*$",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "colorSpace",
+                        "components"
+                    ],
+                    "type": "object"
+                }
+            ]
+        },
+        "CubicBezier.Value": {
+            "anyOf": [
+                {
+                    "pattern": "^\\{.*\\}$",
+                    "type": "string"
+                },
+                {
+                    "items": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ],
+                    "maxItems": 4,
+                    "minItems": 4,
+                    "type": "array"
+                }
+            ]
+        },
+        "Dimension.Value": {
+            "anyOf": [
+                {
+                    "pattern": "^\\{.*\\}$",
+                    "type": "string"
+                },
+                {
+                    "properties": {
+                        "unit": {
+                            "enum": [
+                                "px",
+                                "rem"
+                            ],
+                            "type": "string"
+                        },
+                        "value": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "unit",
+                        "value"
+                    ],
+                    "type": "object"
+                }
+            ]
+        },
+        "Duration.Value": {
+            "anyOf": [
+                {
+                    "pattern": "^\\{.*\\}$",
+                    "type": "string"
+                },
+                {
+                    "properties": {
+                        "unit": {
+                            "enum": [
+                                "ms",
+                                "s"
+                            ],
+                            "type": "string"
+                        },
+                        "value": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "unit",
+                        "value"
+                    ],
+                    "type": "object"
+                }
+            ]
+        },
+        "FontFamily.Value": {
+            "anyOf": [
+                {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "FontWeight.Value": {
+            "anyOf": [
+                {
+                    "pattern": "^\\{.*\\}$",
+                    "type": "string"
+                },
+                {
+                    "enum": [
+                        "black",
+                        "bold",
+                        "book",
+                        "demi-bold",
+                        "extra-black",
+                        "extra-bold",
+                        "extra-light",
+                        "hairline",
+                        "heavy",
+                        "light",
+                        "medium",
+                        "normal",
+                        "regular",
+                        "semi-bold",
+                        "thin",
+                        "ultra-black",
+                        "ultra-bold",
+                        "ultra-light"
+                    ],
+                    "type": "string"
+                },
+                {
+                    "type": "number"
+                }
+            ]
+        },
+        "Gradient.Value": {
+            "anyOf": [
+                {
+                    "pattern": "^\\{.*\\}$",
+                    "type": "string"
+                },
+                {
+                    "items": {
+                        "properties": {
+                            "color": {
+                                "$ref": "#/definitions/Color.Value"
+                            },
+                            "position": {
+                                "$ref": "#/definitions/Number.Value"
+                            }
+                        },
+                        "required": [
+                            "color",
+                            "position"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            ]
+        },
+        "JSONObject": {
+            "additionalProperties": {
+                "$ref": "#/definitions/JSONValue"
+            },
+            "type": "object"
+        },
+        "JSONValue": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/JSONObject"
+                },
+                {
+                    "items": {
+                        "$ref": "#/definitions/JSONValue"
+                    },
+                    "type": "array"
+                },
+                {
+                    "type": [
+                        "null",
+                        "string",
+                        "number",
+                        "boolean"
+                    ]
+                }
+            ]
+        },
+        "Number.Value": {
+            "anyOf": [
+                {
+                    "pattern": "^\\{.*\\}$",
+                    "type": "string"
+                },
+                {
+                    "type": "number"
+                }
+            ]
+        },
+        "Shadow.Value": {
+            "anyOf": [
+                {
+                    "pattern": "^\\{.*\\}$",
+                    "type": "string"
+                },
+                {
+                    "items": {
+                        "properties": {
+                            "blur": {
+                                "$ref": "#/definitions/Dimension.Value"
+                            },
+                            "color": {
+                                "$ref": "#/definitions/Color.Value"
+                            },
+                            "inset": {
+                                "type": "boolean"
+                            },
+                            "offsetX": {
+                                "$ref": "#/definitions/Dimension.Value"
+                            },
+                            "offsetY": {
+                                "$ref": "#/definitions/Dimension.Value"
+                            },
+                            "spread": {
+                                "$ref": "#/definitions/Dimension.Value"
+                            }
+                        },
+                        "required": [
+                            "blur",
+                            "color",
+                            "offsetX",
+                            "offsetY",
+                            "spread"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                {
+                    "properties": {
+                        "blur": {
+                            "$ref": "#/definitions/Dimension.Value"
+                        },
+                        "color": {
+                            "$ref": "#/definitions/Color.Value"
+                        },
+                        "inset": {
+                            "type": "boolean"
+                        },
+                        "offsetX": {
+                            "$ref": "#/definitions/Dimension.Value"
+                        },
+                        "offsetY": {
+                            "$ref": "#/definitions/Dimension.Value"
+                        },
+                        "spread": {
+                            "$ref": "#/definitions/Dimension.Value"
+                        }
+                    },
+                    "required": [
+                        "blur",
+                        "color",
+                        "offsetX",
+                        "offsetY",
+                        "spread"
+                    ],
+                    "type": "object"
+                }
+            ]
+        },
+        "StrokeStyle.Value": {
+            "anyOf": [
+                {
+                    "pattern": "^\\{.*\\}$",
+                    "type": "string"
+                },
+                {
+                    "properties": {
+                        "dashArray": {
+                            "items": {
+                                "$ref": "#/definitions/Dimension.Value"
+                            },
+                            "type": "array"
+                        },
+                        "lineCap": {
+                            "enum": [
+                                "butt",
+                                "round",
+                                "square"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "dashArray",
+                        "lineCap"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "enum": [
+                        "dashed",
+                        "dotted",
+                        "double",
+                        "groove",
+                        "inset",
+                        "outset",
+                        "ridge",
+                        "solid"
+                    ],
+                    "type": "string"
+                }
+            ]
+        },
+        "Transition.Value": {
+            "anyOf": [
+                {
+                    "pattern": "^\\{.*\\}$",
+                    "type": "string"
+                },
+                {
+                    "properties": {
+                        "delay": {
+                            "$ref": "#/definitions/Duration.Value"
+                        },
+                        "duration": {
+                            "$ref": "#/definitions/Duration.Value"
+                        },
+                        "timingFunction": {
+                            "$ref": "#/definitions/CubicBezier.Value"
+                        }
+                    },
+                    "required": [
+                        "delay",
+                        "duration",
+                        "timingFunction"
+                    ],
+                    "type": "object"
+                }
+            ]
+        },
+        "Typography.Value": {
+            "anyOf": [
+                {
+                    "pattern": "^\\{.*\\}$",
+                    "type": "string"
+                },
+                {
+                    "properties": {
+                        "fontFamily": {
+                            "$ref": "#/definitions/FontFamily.Value"
+                        },
+                        "fontSize": {
+                            "$ref": "#/definitions/Dimension.Value"
+                        },
+                        "fontWeight": {
+                            "$ref": "#/definitions/FontWeight.Value"
+                        },
+                        "letterSpacing": {
+                            "$ref": "#/definitions/Dimension.Value"
+                        },
+                        "lineHeight": {
+                            "$ref": "#/definitions/Number.Value"
+                        }
+                    },
+                    "required": [
+                        "fontFamily",
+                        "fontSize",
+                        "fontWeight",
+                        "letterSpacing",
+                        "lineHeight"
+                    ],
+                    "type": "object"
+                }
+            ]
+        },
+        "{[key:string]:Color.Token|Dimension.Token|FontFamily.Token|FontWeight.Token|Duration.Token|CubicBezier.Token|Number.Token|StrokeStyle.Token|Border.Token|Transition.Token|Shadow.Token|Gradient.Token|Typography.Token|GroupProperties|(GroupProperties&any);}": {
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "properties": {
+                            "$deprecated": {
+                                "type": [
+                                    "string",
+                                    "boolean"
+                                ]
+                            },
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "const": "color",
+                                "type": "string"
+                            },
+                            "$value": {
+                                "$ref": "#/definitions/Color.Value"
+                            }
+                        },
+                        "required": [
+                            "$value"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "$deprecated": {
+                                "type": [
+                                    "string",
+                                    "boolean"
+                                ]
+                            },
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "const": "dimension",
+                                "type": "string"
+                            },
+                            "$value": {
+                                "$ref": "#/definitions/Dimension.Value"
+                            }
+                        },
+                        "required": [
+                            "$value"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "$deprecated": {
+                                "type": [
+                                    "string",
+                                    "boolean"
+                                ]
+                            },
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "const": "fontFamily",
+                                "type": "string"
+                            },
+                            "$value": {
+                                "$ref": "#/definitions/FontFamily.Value"
+                            }
+                        },
+                        "required": [
+                            "$value"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "$deprecated": {
+                                "type": [
+                                    "string",
+                                    "boolean"
+                                ]
+                            },
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "const": "fontWeight",
+                                "type": "string"
+                            },
+                            "$value": {
+                                "$ref": "#/definitions/FontWeight.Value"
+                            }
+                        },
+                        "required": [
+                            "$value"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "$deprecated": {
+                                "type": [
+                                    "string",
+                                    "boolean"
+                                ]
+                            },
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "const": "duration",
+                                "type": "string"
+                            },
+                            "$value": {
+                                "$ref": "#/definitions/Duration.Value"
+                            }
+                        },
+                        "required": [
+                            "$value"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "$deprecated": {
+                                "type": [
+                                    "string",
+                                    "boolean"
+                                ]
+                            },
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "const": "cubicBezier",
+                                "type": "string"
+                            },
+                            "$value": {
+                                "$ref": "#/definitions/CubicBezier.Value"
+                            }
+                        },
+                        "required": [
+                            "$value"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "$deprecated": {
+                                "type": [
+                                    "string",
+                                    "boolean"
+                                ]
+                            },
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "const": "number",
+                                "type": "string"
+                            },
+                            "$value": {
+                                "$ref": "#/definitions/Number.Value"
+                            }
+                        },
+                        "required": [
+                            "$value"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "$deprecated": {
+                                "type": [
+                                    "string",
+                                    "boolean"
+                                ]
+                            },
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "const": "strokeStyle",
+                                "type": "string"
+                            },
+                            "$value": {
+                                "$ref": "#/definitions/StrokeStyle.Value"
+                            }
+                        },
+                        "required": [
+                            "$value"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "$deprecated": {
+                                "type": [
+                                    "string",
+                                    "boolean"
+                                ]
+                            },
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "const": "border",
+                                "type": "string"
+                            },
+                            "$value": {
+                                "$ref": "#/definitions/Border.Value"
+                            }
+                        },
+                        "required": [
+                            "$value"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "$deprecated": {
+                                "type": [
+                                    "string",
+                                    "boolean"
+                                ]
+                            },
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "const": "transition",
+                                "type": "string"
+                            },
+                            "$value": {
+                                "$ref": "#/definitions/Transition.Value"
+                            }
+                        },
+                        "required": [
+                            "$value"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "$deprecated": {
+                                "type": [
+                                    "string",
+                                    "boolean"
+                                ]
+                            },
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "const": "shadow",
+                                "type": "string"
+                            },
+                            "$value": {
+                                "$ref": "#/definitions/Shadow.Value"
+                            }
+                        },
+                        "required": [
+                            "$value"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "$deprecated": {
+                                "type": [
+                                    "string",
+                                    "boolean"
+                                ]
+                            },
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "const": "gradient",
+                                "type": "string"
+                            },
+                            "$value": {
+                                "$ref": "#/definitions/Gradient.Value"
+                            }
+                        },
+                        "required": [
+                            "$value"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "$deprecated": {
+                                "type": [
+                                    "string",
+                                    "boolean"
+                                ]
+                            },
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "const": "typography",
+                                "type": "string"
+                            },
+                            "$value": {
+                                "$ref": "#/definitions/Typography.Value"
+                            }
+                        },
+                        "required": [
+                            "$value"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "$description": {
+                                "type": "string"
+                            },
+                            "$extensions": {
+                                "$ref": "#/definitions/JSONObject"
+                            },
+                            "$type": {
+                                "enum": [
+                                    "border",
+                                    "color",
+                                    "cubicBezier",
+                                    "dimension",
+                                    "duration",
+                                    "fontFamily",
+                                    "fontWeight",
+                                    "gradient",
+                                    "number",
+                                    "shadow",
+                                    "strokeStyle",
+                                    "transition",
+                                    "typography"
+                                ],
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "allOf": [
+                            {
+                                "properties": {
+                                    "$description": {
+                                        "type": "string"
+                                    },
+                                    "$extensions": {
+                                        "$ref": "#/definitions/JSONObject"
+                                    },
+                                    "$type": {
+                                        "enum": [
+                                            "border",
+                                            "color",
+                                            "cubicBezier",
+                                            "dimension",
+                                            "duration",
+                                            "fontFamily",
+                                            "fontWeight",
+                                            "gradient",
+                                            "number",
+                                            "shadow",
+                                            "strokeStyle",
+                                            "transition",
+                                            "typography"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "$ref": "#/definitions/{[key:string]:Color.Token|Dimension.Token|FontFamily.Token|FontWeight.Token|Duration.Token|CubicBezier.Token|Number.Token|StrokeStyle.Token|Border.Token|Transition.Token|Shadow.Token|Gradient.Token|Typography.Token|GroupProperties|(GroupProperties&any);}"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "type": "object"
+        }
+    }
+}
+

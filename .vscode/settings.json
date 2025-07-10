@@ -1,0 +1,10 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "./tokens/base.json"
+      ],
+      "url": "./design-token-schema.json"
+    }
+  ]
+} 
