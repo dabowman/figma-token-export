@@ -581,7 +581,7 @@ function transformTokens() {
 
   console.log('Starting Pass 1: Building token structure and ID map...');
   for (const collection of collections) {
-    const collectionName = collection.name.replace(/^\./, '');
+    const collectionName = collection.name.replace(/^\./, '').replace(/ /g, '-');
     for (const mode of collection.modes) {
       const modeName = mode.name;
       const outputFilename = `${collectionName}_${modeName}.json`;
