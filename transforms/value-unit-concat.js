@@ -35,6 +35,12 @@ function hasNestedValueUnit(obj) {
 		return true;
 	}
 	
+	// Check if this is a dimension token with nested value/unit
+	if (obj.$type === 'dimension' && obj.value && typeof obj.value === 'object' && 
+		obj.value.value !== undefined && obj.value.unit !== undefined) {
+		return true;
+	}
+	
 	// Recursively check all properties
 	for (const key in obj) {
 		if (Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -76,6 +82,13 @@ function transformNestedValueUnit(obj) {
 			// Return array unchanged if it doesn't contain value/unit objects
 			return obj;
 		}
+	}
+	
+	// Check if this is a dimension token with nested value/unit
+	if (obj.$type === 'dimension' && obj.value && typeof obj.value === 'object' && 
+		obj.value.value !== undefined && obj.value.unit !== undefined) {
+		// Return just the concatenated string, not the object wrapper
+		return `${obj.value.value}${obj.value.unit}`;
 	}
 	
 	// Check if this object directly has value + unit properties

@@ -178,286 +178,118 @@
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.019680192694067955)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "0.1729535311460495rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "0.1383628249168396rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "0.1729535311460495rem",
+        "blur": "0.1383628249168396rem",
+        "spread": "0rem"
       },
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.028272492811083794)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "0.41563138365745544rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "0.33250510692596436rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "0.41563138365745544rem",
+        "blur": "0.33250510692596436rem",
+        "spread": "0rem"
       },
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.03500000014901161)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "0.782597005367279rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "0.6260775923728943rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "0.782597005367279rem",
+        "blur": "0.6260775923728943rem",
+        "spread": "0rem"
       },
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.04172750562429428)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "1.3960193395614624rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "1.116815447807312rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "1.3960193395614624rem",
+        "blur": "1.116815447807312rem",
+        "spread": "0rem"
       },
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.05031980574131012)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "2.611100673675537rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "2.0888805389404297rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "2.611100673675537rem",
+        "blur": "2.0888805389404297rem",
+        "spread": "0rem"
       },
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.07000000029802322)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "6.25rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "5rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "6.25rem",
+        "blur": "5rem",
+        "spread": "0rem"
       }
     ],
     "Medium": [
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.009999999776482582)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "0.0069181411527097225rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "0.06572233885526657rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "0.0069181411527097225rem",
+        "blur": "0.06572233885526657rem",
+        "spread": "0rem"
       },
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.009999999776482582)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "0.016625255346298218rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "0.15793992578983307rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "0.016625255346298218rem",
+        "blur": "0.15793992578983307rem",
+        "spread": "0rem"
       },
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.019999999552965164)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "0.031303878873586655rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "0.29738685488700867rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "0.031303878873586655rem",
+        "blur": "0.29738685488700867rem",
+        "spread": "0rem"
       },
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.019999999552965164)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "0.05584077164530754rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "0.5304873585700989rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "0.05584077164530754rem",
+        "blur": "0.5304873585700989rem",
+        "spread": "0rem"
       },
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.02500000037252903)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "0.10444402694702148rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "0.9922181963920593rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "0.10444402694702148rem",
+        "blur": "0.9922181963920593rem",
+        "spread": "0rem"
       },
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.03999999910593033)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "0.875rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "2.375rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "0.875rem",
+        "blur": "2.375rem",
+        "spread": "0rem"
       }
     ],
     "Low": [
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.15000000596046448)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "0.0625rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "0.0625rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "0.0625rem",
+        "blur": "0.0625rem",
+        "spread": "0rem"
       },
       {
         "inset": false,
         "color": "rgba(0, 0, 0, 0.05000000074505806)",
-        "offsetX": {
-          "$type": "dimension",
-          "value": "0rem"
-        },
-        "offsetY": {
-          "$type": "dimension",
-          "value": "0.0625rem"
-        },
-        "blur": {
-          "$type": "dimension",
-          "value": "0.3125rem"
-        },
-        "spread": {
-          "$type": "dimension",
-          "value": "0rem"
-        }
+        "offsetX": "0rem",
+        "offsetY": "0.0625rem",
+        "blur": "0.3125rem",
+        "spread": "0rem"
       }
     ]
   },

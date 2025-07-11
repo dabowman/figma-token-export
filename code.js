@@ -1,5 +1,12 @@
 "use strict";
-/// <reference types="@figma/plugin-typings" />
+/**
+ * @fileoverview Figma plugin code to export raw variable, text style, and effect style data.
+ *
+ * Collects data from the current Figma file using the plugin API and sends it to a hidden UI
+ * for download as a JSON file.
+ *
+ * @since 1.0.0
+ */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -9,26 +16,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-/**
- * Sanitizes a string (like a collection name) for use as a key or filename.
- * Removes restricted characters (., $) and converts separators (/, space, _) to dashes.
- * Converts the string to lowercase.
- * @param name - The string to sanitize.
- * @returns The sanitized string.
- */
-function sanitizeCollectionName(name) {
-    return name
-        .replace(/[.$]/g, '') // Remove restricted chars first
-        .replace(/[/\s_]+/g, '-') // Replace separators with dash
-        .toLowerCase();
-}
+/// <reference types="@figma/plugin-typings" />
 /**
  * Recursively simplifies a Figma object or value for safe JSON serialization.
  * Handles primitives, arrays, and basic objects.
  * Skips functions and potentially problematic properties like 'parent' and 'children'.
  * @param obj - The object or value to simplify.
- * @returns A simplified version suitable for JSON stringification.
+ * @returns A simplified version suitable for JSON stringification (type: unknown).
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function simplifyObject(obj) {
     if (obj === null || typeof obj !== 'object') {
         return obj; // Primitives or null
