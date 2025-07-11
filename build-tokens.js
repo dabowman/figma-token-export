@@ -11,42 +11,32 @@
 
 import StyleDictionary from 'style-dictionary';
 import jsonFlatValue from './formatters/json-flat-value.js';
+import { valueUnitConcat } from './transforms/value-unit-concat.js';
 
-/**
- * Register custom Style Dictionary formatter.
- *
- * Registers the json-flat-value formatter for creating flat JSON
- * output that matches the expected structure for design tokens.
- *
- * @since 1.0.0
- */
+// Register custom transform
+StyleDictionary.registerTransform(valueUnitConcat);
+
+// Register custom formatter
 StyleDictionary.registerFormat({
     name: 'json/flat-value',
     format: jsonFlatValue
 });
 
 /**
- * Style Dictionary configuration object.
+ * Initialize and configure Style Dictionary instance.
  *
- * Defines the complete configuration for token processing including
- * source files, output platforms, transforms, and filtering rules.
+ * Processes design tokens from source files and generates
+ * platform-specific outputs with appropriate transformations.
  *
  * @since 1.0.0
- * @type {Object}
  */
 const sd = new StyleDictionary({
     usesDtcg: true,
-    expand: {
-        exclude: [
-            'color'
-        ]
-    },
     include: [
         'tokens/core_valet-core.json'
     ],
     source: [
-        'tokens/wpvip-product_light.json',
-        'tokens/wpvip-product_dark.json'
+        'tokens/wpvip-product_light.json'
     ],
     hooks: {
         filters: {
@@ -61,7 +51,8 @@ const sd = new StyleDictionary({
     platforms: {
         json: {
             transforms: [
-                'name/kebab'
+                'name/kebab',
+                'value/unit-concat'
             ],
             buildPath: 'output/json',
             files: [
@@ -77,7 +68,8 @@ const sd = new StyleDictionary({
         },
         css: {
             transforms: [
-                'name/kebab'
+                'name/kebab',
+                'value/unit-concat'
             ],
             buildPath: 'output/css',
             files: [
@@ -85,16 +77,22 @@ const sd = new StyleDictionary({
                     destination: 'light.css',
                     format: 'css/variables',
                     options: {
-                        stripMeta: true
-                    },
-                    filter: 'no-base'
+                        stripMeta: true,
+                        outputReferences: false
+                    }
                 }
             ]
         },
         'custom-json': {
+            expand: {
+                exclude: [
+                    'color'
+                ]
+            },
             buildPath: 'output/custom-json',
             transforms: [
-                'name/kebab'
+                'name/kebab',
+                'value/unit-concat'
             ],
             files: [
                 {
@@ -109,8 +107,8 @@ const sd = new StyleDictionary({
 /**
  * Execute Style Dictionary build process.
  *
- * Cleans all platform output directories and rebuilds all configured
- * platforms with the current token data.
+ * Cleans previous build artifacts and generates fresh outputs
+ * for all configured platforms.
  *
  * @since 1.0.0
  */
