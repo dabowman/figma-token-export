@@ -55,9 +55,29 @@ const sd = new StyleDictionary({
             transforms: [
                 'name/kebab',
                 'color/resolve',
-                'value/unit-concat'
+                'value/unit-concat',
+                'size/pxToRem'
             ],
             buildPath: 'output/json',
+            files: [
+                {
+                    destination: 'light.json',
+                    format: 'json/nested',
+                    options: {
+                        stripMeta: true
+                    },
+                    filter: 'no-base'
+                }
+            ],
+        },
+        'theme-ui': {
+            transforms: [
+                'name/kebab',
+                'color/resolve',
+                'value/unit-concat',
+                'size/pxToRem'
+            ],
+            buildPath: 'output/theme-ui',
             files: [
                 {
                     destination: 'light.json',

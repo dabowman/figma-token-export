@@ -6393,8 +6393,8 @@
       "0": {
         "$type": "dimension",
         "$value": {
-          "value": 0.6875,
-          "unit": "rem"
+          "value": 11,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -6410,8 +6410,8 @@
       "1": {
         "$type": "dimension",
         "$value": {
-          "value": 0.75,
-          "unit": "rem"
+          "value": 12,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -6427,8 +6427,8 @@
       "2": {
         "$type": "dimension",
         "$value": {
-          "value": 0.875,
-          "unit": "rem"
+          "value": 14,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -6444,8 +6444,8 @@
       "3": {
         "$type": "dimension",
         "$value": {
-          "value": 1,
-          "unit": "rem"
+          "value": 16,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -6461,8 +6461,8 @@
       "4": {
         "$type": "dimension",
         "$value": {
-          "value": 1.125,
-          "unit": "rem"
+          "value": 18,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -6478,8 +6478,8 @@
       "5": {
         "$type": "dimension",
         "$value": {
-          "value": 1.25,
-          "unit": "rem"
+          "value": 20,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -6495,8 +6495,8 @@
       "6": {
         "$type": "dimension",
         "$value": {
-          "value": 2,
-          "unit": "rem"
+          "value": 32,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -6512,8 +6512,8 @@
       "7": {
         "$type": "dimension",
         "$value": {
-          "value": 2.5,
-          "unit": "rem"
+          "value": 40,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -6532,8 +6532,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 0.7681249976158142,
-            "unit": "rem"
+            "value": 12.289999961853027,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6547,8 +6547,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 0.703125,
-            "unit": "rem"
+            "value": 11.25,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6562,8 +6562,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 0.6268749833106995,
-            "unit": "rem"
+            "value": 10.029999732971191,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6577,8 +6577,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 0.5756250023841858,
-            "unit": "rem"
+            "value": 9.210000038146973,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6592,8 +6592,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 0.5325000286102295,
-            "unit": "rem"
+            "value": 8.520000457763672,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6607,8 +6607,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 0.5106250047683716,
-            "unit": "rem"
+            "value": 8.170000076293945,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6624,8 +6624,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 0.8199999928474426,
-            "unit": "rem"
+            "value": 13.119999885559082,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6639,8 +6639,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 0.7674999833106995,
-            "unit": "rem"
+            "value": 12.279999732971191,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6654,8 +6654,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 0.706250011920929,
-            "unit": "rem"
+            "value": 11.300000190734863,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6669,8 +6669,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 0.6650000214576721,
-            "unit": "rem"
+            "value": 10.640000343322754,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6684,8 +6684,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 0.6299999952316284,
-            "unit": "rem"
+            "value": 10.079999923706055,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6699,8 +6699,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 0.6200000047683716,
-            "unit": "rem"
+            "value": 9.920000076293945,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6716,8 +6716,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 0.8762500286102295,
-            "unit": "rem"
+            "value": 14.020000457763672,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6731,8 +6731,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 0.8399999737739563,
-            "unit": "rem"
+            "value": 13.4399995803833,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6746,8 +6746,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 0.7987499833106995,
-            "unit": "rem"
+            "value": 12.779999732971191,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6761,8 +6761,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 0.7706249952316284,
-            "unit": "rem"
+            "value": 12.329999923706055,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6776,8 +6776,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 0.746874988079071,
-            "unit": "rem"
+            "value": 11.949999809265137,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6791,8 +6791,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 0.7400000095367432,
-            "unit": "rem"
+            "value": 11.84000015258789,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6808,8 +6808,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 0.9381250143051147,
-            "unit": "rem"
+            "value": 15.010000228881836,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6823,8 +6823,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 0.9256250262260437,
-            "unit": "rem"
+            "value": 14.8100004196167,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6838,8 +6838,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 0.9106249809265137,
-            "unit": "rem"
+            "value": 14.569999694824219,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6853,8 +6853,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 0.9006249904632568,
-            "unit": "rem"
+            "value": 14.40999984741211,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6868,8 +6868,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 0.8924999833106995,
-            "unit": "rem"
+            "value": 14.279999732971191,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6883,8 +6883,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 0.8899999856948853,
-            "unit": "rem"
+            "value": 14.239999771118164,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6900,8 +6900,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 1,
-            "unit": "rem"
+            "value": 16,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6915,8 +6915,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 1.0125000476837158,
-            "unit": "rem"
+            "value": 16.200000762939453,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6930,8 +6930,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 1.0325000286102295,
-            "unit": "rem"
+            "value": 16.520000457763672,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6945,8 +6945,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 1.0456249713897705,
-            "unit": "rem"
+            "value": 16.729999542236328,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6960,8 +6960,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 1.0568749904632568,
-            "unit": "rem"
+            "value": 16.90999984741211,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6975,8 +6975,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 1.059999942779541,
-            "unit": "rem"
+            "value": 16.959999084472656,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -6992,8 +6992,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 1.0700000524520874,
-            "unit": "rem"
+            "value": 17.1200008392334,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7007,8 +7007,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 1.122499942779541,
-            "unit": "rem"
+            "value": 17.959999084472656,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7022,8 +7022,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 1.183750033378601,
-            "unit": "rem"
+            "value": 18.940000534057617,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7037,8 +7037,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 1.225000023841858,
-            "unit": "rem"
+            "value": 19.600000381469727,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7052,8 +7052,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 1.2599999904632568,
-            "unit": "rem"
+            "value": 20.15999984741211,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7067,8 +7067,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 1.277500033378601,
-            "unit": "rem"
+            "value": 20.440000534057617,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7084,8 +7084,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 1.1399999856948853,
-            "unit": "rem"
+            "value": 18.239999771118164,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7099,8 +7099,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 1.2324999570846558,
-            "unit": "rem"
+            "value": 19.719999313354492,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7114,8 +7114,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 1.3481249809265137,
-            "unit": "rem"
+            "value": 21.56999969482422,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7129,8 +7129,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 1.425624966621399,
-            "unit": "rem"
+            "value": 22.809999465942383,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7144,8 +7144,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 1.4912500381469727,
-            "unit": "rem"
+            "value": 23.860000610351562,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7159,8 +7159,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 1.5243749618530273,
-            "unit": "rem"
+            "value": 24.389999389648438,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7176,8 +7176,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 1.2200000286102295,
-            "unit": "rem"
+            "value": 19.520000457763672,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7191,8 +7191,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 1.377500057220459,
-            "unit": "rem"
+            "value": 22.040000915527344,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7206,8 +7206,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 1.5612499713897705,
-            "unit": "rem"
+            "value": 24.979999542236328,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7221,8 +7221,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 1.684999942779541,
-            "unit": "rem"
+            "value": 26.959999084472656,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7236,8 +7236,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 1.7899999618530273,
-            "unit": "rem"
+            "value": 28.639999389648438,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7251,8 +7251,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 1.840000033378601,
-            "unit": "rem"
+            "value": 29.440000534057617,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7268,8 +7268,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 1.2999999523162842,
-            "unit": "rem"
+            "value": 20.799999237060547,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7283,8 +7283,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 1.5268750190734863,
-            "unit": "rem"
+            "value": 24.43000030517578,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7298,8 +7298,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 1.7937500476837158,
-            "unit": "rem"
+            "value": 28.700000762939453,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7313,8 +7313,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 1.9737499952316284,
-            "unit": "rem"
+            "value": 31.579999923706055,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7328,8 +7328,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 2.1262500286102295,
-            "unit": "rem"
+            "value": 34.02000045776367,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7343,8 +7343,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 2.200000047683716,
-            "unit": "rem"
+            "value": 35.20000076293945,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7360,8 +7360,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 1.3837499618530273,
-            "unit": "rem"
+            "value": 22.139999389648438,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7375,8 +7375,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 1.703125,
-            "unit": "rem"
+            "value": 27.25,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7390,8 +7390,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 2.075624942779541,
-            "unit": "rem"
+            "value": 33.209999084472656,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7405,8 +7405,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 2.3262500762939453,
-            "unit": "rem"
+            "value": 37.220001220703125,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7420,8 +7420,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 2.539375066757202,
-            "unit": "rem"
+            "value": 40.630001068115234,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7435,8 +7435,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 2.640000104904175,
-            "unit": "rem"
+            "value": 42.2400016784668,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7452,8 +7452,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 1.4800000190734863,
-            "unit": "rem"
+            "value": 23.68000030517578,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7467,8 +7467,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 1.90625,
-            "unit": "rem"
+            "value": 30.5,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7482,8 +7482,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 2.40625,
-            "unit": "rem"
+            "value": 38.5,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7497,8 +7497,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 2.742500066757202,
-            "unit": "rem"
+            "value": 43.880001068115234,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7512,8 +7512,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 3.028125047683716,
-            "unit": "rem"
+            "value": 48.45000076293945,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7527,8 +7527,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 3.1700000762939453,
-            "unit": "rem"
+            "value": 50.720001220703125,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7544,8 +7544,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 1.578125,
-            "unit": "rem"
+            "value": 25.25,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7559,8 +7559,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 2.143125057220459,
-            "unit": "rem"
+            "value": 34.290000915527344,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7574,8 +7574,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 2.801875114440918,
-            "unit": "rem"
+            "value": 44.83000183105469,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7589,8 +7589,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 3.2456250190734863,
-            "unit": "rem"
+            "value": 51.93000030517578,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7604,8 +7604,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 3.622499942779541,
-            "unit": "rem"
+            "value": 57.959999084472656,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7619,8 +7619,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 3.809999942779541,
-            "unit": "rem"
+            "value": 60.959999084472656,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7636,8 +7636,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 1.6799999475479126,
-            "unit": "rem"
+            "value": 26.8799991607666,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7651,8 +7651,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 2.406874895095825,
-            "unit": "rem"
+            "value": 38.5099983215332,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7666,8 +7666,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 3.2593750953674316,
-            "unit": "rem"
+            "value": 52.150001525878906,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7681,8 +7681,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 3.833750009536743,
-            "unit": "rem"
+            "value": 61.34000015258789,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7696,8 +7696,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 4.320624828338623,
-            "unit": "rem"
+            "value": 69.12999725341797,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7711,8 +7711,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 4.564374923706055,
-            "unit": "rem"
+            "value": 73.02999877929688,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7728,8 +7728,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 1.7899999618530273,
-            "unit": "rem"
+            "value": 28.639999389648438,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7743,8 +7743,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 2.724375009536743,
-            "unit": "rem"
+            "value": 43.59000015258789,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7758,8 +7758,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 3.815000057220459,
-            "unit": "rem"
+            "value": 61.040000915527344,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7773,8 +7773,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 4.548749923706055,
-            "unit": "rem"
+            "value": 72.77999877929688,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7788,8 +7788,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 5.171875,
-            "unit": "rem"
+            "value": 82.75,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7803,8 +7803,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 5.480000019073486,
-            "unit": "rem"
+            "value": 87.68000030517578,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7820,8 +7820,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 1.9137500524520874,
-            "unit": "rem"
+            "value": 30.6200008392334,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7835,8 +7835,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 3.094374895095825,
-            "unit": "rem"
+            "value": 49.5099983215332,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7850,8 +7850,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 4.471250057220459,
-            "unit": "rem"
+            "value": 71.54000091552734,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7865,8 +7865,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 5.398125171661377,
-            "unit": "rem"
+            "value": 86.37000274658203,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7880,8 +7880,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 6.184999942779541,
-            "unit": "rem"
+            "value": 98.95999908447266,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7895,8 +7895,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 6.578750133514404,
-            "unit": "rem"
+            "value": 105.26000213623047,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7912,8 +7912,8 @@
         "S": {
           "$type": "dimension",
           "$value": {
-            "value": 3,
-            "unit": "rem"
+            "value": 48,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7927,8 +7927,8 @@
         "M": {
           "$type": "dimension",
           "$value": {
-            "value": 3.1887500286102295,
-            "unit": "rem"
+            "value": 51.02000045776367,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7942,8 +7942,8 @@
         "L": {
           "$type": "dimension",
           "$value": {
-            "value": 3.409374952316284,
-            "unit": "rem"
+            "value": 54.54999923706055,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7957,8 +7957,8 @@
         "XL": {
           "$type": "dimension",
           "$value": {
-            "value": 3.5581250190734863,
-            "unit": "rem"
+            "value": 56.93000030517578,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7972,8 +7972,8 @@
         "XXL": {
           "$type": "dimension",
           "$value": {
-            "value": 3.6837499141693115,
-            "unit": "rem"
+            "value": 58.939998626708984,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -7987,8 +7987,8 @@
         "MAX": {
           "$type": "dimension",
           "$value": {
-            "value": 3.746875047683716,
-            "unit": "rem"
+            "value": 59.95000076293945,
+            "unit": "px"
           },
           "$description": "",
           "$extensions": {
@@ -8007,8 +8007,8 @@
       "0": {
         "$type": "dimension",
         "$value": {
-          "value": 0.12999999523162842,
-          "unit": "rem"
+          "value": 2.0799999237060547,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8022,8 +8022,8 @@
       "1": {
         "$type": "dimension",
         "$value": {
-          "value": 0.25,
-          "unit": "rem"
+          "value": 4,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8037,8 +8037,8 @@
       "2": {
         "$type": "dimension",
         "$value": {
-          "value": 0.5,
-          "unit": "rem"
+          "value": 8,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8052,8 +8052,8 @@
       "3": {
         "$type": "dimension",
         "$value": {
-          "value": 1,
-          "unit": "rem"
+          "value": 16,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8067,8 +8067,8 @@
       "4": {
         "$type": "dimension",
         "$value": {
-          "value": 2,
-          "unit": "rem"
+          "value": 32,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8082,8 +8082,8 @@
       "5": {
         "$type": "dimension",
         "$value": {
-          "value": 2.5,
-          "unit": "rem"
+          "value": 40,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8097,8 +8097,8 @@
       "6": {
         "$type": "dimension",
         "$value": {
-          "value": 3.5,
-          "unit": "rem"
+          "value": 56,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8116,8 +8116,8 @@
       "0": {
         "$type": "dimension",
         "$value": {
-          "value": 0.12999999523162842,
-          "unit": "rem"
+          "value": 2.0799999237060547,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8131,8 +8131,8 @@
       "1": {
         "$type": "dimension",
         "$value": {
-          "value": 0.25,
-          "unit": "rem"
+          "value": 4,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8146,8 +8146,8 @@
       "2": {
         "$type": "dimension",
         "$value": {
-          "value": 0.5,
-          "unit": "rem"
+          "value": 8,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8161,8 +8161,8 @@
       "3": {
         "$type": "dimension",
         "$value": {
-          "value": 0.75,
-          "unit": "rem"
+          "value": 12,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8176,8 +8176,8 @@
       "4": {
         "$type": "dimension",
         "$value": {
-          "value": 1,
-          "unit": "rem"
+          "value": 16,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8191,8 +8191,8 @@
       "5": {
         "$type": "dimension",
         "$value": {
-          "value": 1.5,
-          "unit": "rem"
+          "value": 24,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8206,8 +8206,8 @@
       "6": {
         "$type": "dimension",
         "$value": {
-          "value": 2,
-          "unit": "rem"
+          "value": 32,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8221,8 +8221,8 @@
       "7": {
         "$type": "dimension",
         "$value": {
-          "value": 3.5,
-          "unit": "rem"
+          "value": 56,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8236,8 +8236,8 @@
       "8": {
         "$type": "dimension",
         "$value": {
-          "value": 5,
-          "unit": "rem"
+          "value": 80,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8251,8 +8251,8 @@
       "9": {
         "$type": "dimension",
         "$value": {
-          "value": 7,
-          "unit": "rem"
+          "value": 112,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8266,8 +8266,8 @@
       "10": {
         "$type": "dimension",
         "$value": {
-          "value": 10,
-          "unit": "rem"
+          "value": 160,
+          "unit": "px"
         },
         "$description": "",
         "$extensions": {
@@ -8998,28 +8998,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 0.1729535311460495,
-              "unit": "rem"
+              "value": 2.767256498336792,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 0.1383628249168396,
-              "unit": "rem"
+              "value": 2.2138051986694336,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         },
@@ -9042,28 +9042,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 0.41563138365745544,
-              "unit": "rem"
+              "value": 6.650102138519287,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 0.33250510692596436,
-              "unit": "rem"
+              "value": 5.32008171081543,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         },
@@ -9086,28 +9086,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 0.782597005367279,
-              "unit": "rem"
+              "value": 12.521552085876465,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 0.6260775923728943,
-              "unit": "rem"
+              "value": 10.017241477966309,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         },
@@ -9130,28 +9130,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 1.3960193395614624,
-              "unit": "rem"
+              "value": 22.3363094329834,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 1.116815447807312,
-              "unit": "rem"
+              "value": 17.869047164916992,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         },
@@ -9174,28 +9174,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 2.611100673675537,
-              "unit": "rem"
+              "value": 41.777610778808594,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 2.0888805389404297,
-              "unit": "rem"
+              "value": 33.422088623046875,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         },
@@ -9218,28 +9218,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 6.25,
-              "unit": "rem"
+              "value": 100,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 5,
-              "unit": "rem"
+              "value": 80,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         }
@@ -9272,28 +9272,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 0.0069181411527097225,
-              "unit": "rem"
+              "value": 0.11069025844335556,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 0.06572233885526657,
-              "unit": "rem"
+              "value": 1.0515574216842651,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         },
@@ -9316,28 +9316,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 0.016625255346298218,
-              "unit": "rem"
+              "value": 0.2660040855407715,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 0.15793992578983307,
-              "unit": "rem"
+              "value": 2.527038812637329,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         },
@@ -9360,28 +9360,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 0.031303878873586655,
-              "unit": "rem"
+              "value": 0.5008620619773865,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 0.29738685488700867,
-              "unit": "rem"
+              "value": 4.758189678192139,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         },
@@ -9404,28 +9404,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 0.05584077164530754,
-              "unit": "rem"
+              "value": 0.8934523463249207,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 0.5304873585700989,
-              "unit": "rem"
+              "value": 8.487797737121582,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         },
@@ -9448,28 +9448,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 0.10444402694702148,
-              "unit": "rem"
+              "value": 1.6711044311523438,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 0.9922181963920593,
-              "unit": "rem"
+              "value": 15.87549114227295,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         },
@@ -9492,28 +9492,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 0.875,
-              "unit": "rem"
+              "value": 14,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 2.375,
-              "unit": "rem"
+              "value": 38,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         }
@@ -9546,28 +9546,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 0.0625,
-              "unit": "rem"
+              "value": 1,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 0.0625,
-              "unit": "rem"
+              "value": 1,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         },
@@ -9590,28 +9590,28 @@
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           },
           "offsetY": {
             "$type": "dimension",
             "value": {
-              "value": 0.0625,
-              "unit": "rem"
+              "value": 1,
+              "unit": "px"
             }
           },
           "blur": {
             "$type": "dimension",
             "value": {
-              "value": 0.3125,
-              "unit": "rem"
+              "value": 5,
+              "unit": "px"
             }
           },
           "spread": {
             "$type": "dimension",
             "value": {
               "value": 0,
-              "unit": "rem"
+              "unit": "px"
             }
           }
         }

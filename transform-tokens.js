@@ -19,7 +19,7 @@ program
   .option(
     '-i, --input <path>',
     'Path to the raw Figma data JSON file',
-    'figmaData/figma-raw-data-2.json' // Default value
+    'figmaData/figma-raw-data.json' // Default value
   )
   .option(
     '-o, --output <path>',
@@ -32,9 +32,6 @@ program.parse(process.argv);
 const options = program.opts();
 const RAW_DATA_PATH = options.input; // Use parsed input path from commander
 const OUTPUT_DIR = options.output; // Use parsed output path from commander
-
-// --- Constants ---
-const PIXELS_PER_REM = 16; // The base pixel value for 1rem.
 
 // --- Helper Functions ---
 
@@ -131,7 +128,7 @@ function getTokenTypeAndValue(variableDetail, modeId) {
     }
     case 'FLOAT': {
       if (name.includes('fontsize') || scopes.includes('FONT_SIZE')) {
-        return { type: 'dimension', value: { value: rawValue / PIXELS_PER_REM, unit: 'rem' }, originalValue: rawValue };
+        return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
       }
       if (name.includes('fontweight') || scopes.includes('FONT_WEIGHT')) {
         return { type: 'fontWeight', value: rawValue, originalValue: rawValue };
@@ -143,10 +140,10 @@ function getTokenTypeAndValue(variableDetail, modeId) {
         return { type: 'dimension', value: { value: rawValue, unit: '%' }, originalValue: rawValue };
       }
        if (name.includes('space') || name.includes('gap') || scopes.includes('GAP')) {
-        return { type: 'dimension', value: { value: rawValue / PIXELS_PER_REM, unit: 'rem' }, originalValue: rawValue };
+        return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
       }
       if (name.includes('borderradius') || name.includes('radius') || scopes.includes('CORNER_RADIUS')) {
-         return { type: 'dimension', value: { value: rawValue / PIXELS_PER_REM, unit: 'rem' }, originalValue: rawValue };
+         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
       }
       if (name.includes('borderwidth') || name.includes('strokewidth') || scopes.includes('STROKE_WIDTH')) {
         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
@@ -317,7 +314,7 @@ function processTextStyles(textStyles, idToPathMap, errorsList) {
             if (fontSizeVarId) { // Only warn if there was an ID we couldn't map
                 errorsList.push(`WARNING: Unresolved bound variable ID '${fontSizeVarId}' for fontSize in style '${style.name}'. Using raw value.`);
             }
-            compositeValue.fontSize = { value: style.fontSize / PIXELS_PER_REM, unit: 'rem' };
+            compositeValue.fontSize = { value: style.fontSize, unit: 'px' };
         }
 
         // --- lineHeight ---
@@ -466,10 +463,10 @@ function processEffectStyles(effectStyles, idToPathMap, errorsList) {
                 }
 
                 // --- Offset X ---
-                shadowLayer.offsetX = { $type: 'dimension', value: { value: effect.offset.x / PIXELS_PER_REM, unit: 'rem' } };
+                shadowLayer.offsetX = { $type: 'dimension', value: { value: effect.offset.x, unit: 'px' } };
 
                 // --- Offset Y ---
-                shadowLayer.offsetY = { $type: 'dimension', value: { value: effect.offset.y / PIXELS_PER_REM, unit: 'rem' } };
+                shadowLayer.offsetY = { $type: 'dimension', value: { value: effect.offset.y, unit: 'px' } };
 
 
                 // --- Blur ---
@@ -480,7 +477,7 @@ function processEffectStyles(effectStyles, idToPathMap, errorsList) {
                     if (blurVarId) {
                         errorsList.push(`WARNING: Unresolved bound variable ID '${blurVarId}' for shadow blur (radius) in style '${style.name}'. Using raw value.`);
                     }
-                    shadowLayer.blur = { $type: 'dimension', value: { value: effect.radius / PIXELS_PER_REM, unit: 'rem' } };
+                    shadowLayer.blur = { $type: 'dimension', value: { value: effect.radius, unit: 'px' } };
                 }
 
                 // --- Spread ---
@@ -491,7 +488,7 @@ function processEffectStyles(effectStyles, idToPathMap, errorsList) {
                     if (spreadVarId) {
                         errorsList.push(`WARNING: Unresolved bound variable ID '${spreadVarId}' for shadow spread in style '${style.name}'. Using raw value.`);
                     }
-                     shadowLayer.spread = { $type: 'dimension', value: { value: (effect.spread || 0) / PIXELS_PER_REM, unit: 'rem' } };
+                     shadowLayer.spread = { $type: 'dimension', value: { value: (effect.spread || 0), unit: 'px' } };
                 }
 
                 w3cShadowValue.push(shadowLayer);
