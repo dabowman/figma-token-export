@@ -1,9 +1,45 @@
+/**
+ * Custom Style Dictionary formatter for flat JSON output.
+ *
+ * Transforms design tokens into a flat JSON structure matching the expected
+ * output format. Handles color tokens, references, and various token types
+ * while filtering out expanded sub-properties and complex tokens.
+ *
+ * @since 1.0.0
+ */
+
+/**
+ * Checks if a token path represents a color sub-property.
+ *
+ * Style Dictionary can expand color tokens into sub-properties like
+ * colorSpace, components, alpha, and hex. This function identifies
+ * these sub-properties so they can be filtered out.
+ *
+ * @since 1.0.0
+ * @param {string[]} path - The token path array.
+ * @return {boolean} True if the path represents a color sub-property.
+ */
 function isColorSubProperty(path) {
     // Check if this is a sub-property of a color object
     const colorSubProps = ['colorSpace', 'components', 'alpha', 'hex'];
     return path.length > 0 && colorSubProps.includes(path[path.length - 1]);
 }
 
+/**
+ * Processes a token value into the appropriate output format.
+ *
+ * Handles different token types and formats values according to the
+ * expected output structure. Processes color tokens, references,
+ * dimensions, and other token types.
+ *
+ * @since 1.0.0
+ * @param {Object} token - The Style Dictionary token object.
+ * @param {string} token.$type - The DTCG token type.
+ * @param {*} token.value - The processed token value.
+ * @param {Object} token.original - The original token data.
+ * @param {string[]} token.path - The token path array.
+ * @return {string|null} The processed value or null if token should be skipped.
+ */
 function getProcessedValue(token) {
     // Skip color sub-properties
     if (isColorSubProperty(token.path)) {
@@ -119,6 +155,19 @@ function getProcessedValue(token) {
     return null;
 }
 
+/**
+ * Style Dictionary custom formatter for flat JSON output.
+ *
+ * Creates a flat JSON structure from Style Dictionary tokens, matching
+ * the expected output format. Filters out expanded sub-properties and
+ * complex tokens while preserving the main token structure.
+ *
+ * @since 1.0.0
+ * @param {Object} dictionary - The Style Dictionary object.
+ * @param {Object[]} dictionary.allTokens - Array of all processed tokens.
+ * @param {Object} options - Formatter options (unused).
+ * @return {string} JSON string of the formatted tokens.
+ */
 export default function(dictionary, options) {
     const tokens = dictionary.allTokens;
     let output = {};
