@@ -83,8 +83,8 @@ function setNestedValue(obj, pathParts, value) {
  * @return {number} The rounded number.
  */
 function roundNear(num, precision = 0) {
-    const factor = Math.pow(10, precision);
-    return Math.round(num * factor) / factor;
+  const factor = Math.pow(10, precision);
+  return Math.round(num * factor) / factor;
 }
 
 /**
@@ -107,7 +107,7 @@ function getTokenTypeAndValue(variableDetail, modeId) {
   const scopes = variableDetail.scopes || [];
 
   // Handle Aliases (mark for second pass)
-   if (typeof rawValue === 'object' && rawValue?.type === 'VARIABLE_ALIAS') {
+  if (typeof rawValue === 'object' && rawValue?.type === 'VARIABLE_ALIAS') {
     // Return 'alias' as temp type, the target ID as value, and mark for resolution
     return { type: 'alias', value: rawValue.id, needsResolution: true, originalValue: null };
   }
@@ -133,17 +133,17 @@ function getTokenTypeAndValue(variableDetail, modeId) {
       if (name.includes('fontweight') || scopes.includes('FONT_WEIGHT')) {
         return { type: 'fontWeight', value: rawValue, originalValue: rawValue };
       }
-       if (name.includes('lineheight') || scopes.includes('LINE_HEIGHT')) {
+      if (name.includes('lineheight') || scopes.includes('LINE_HEIGHT')) {
         return { type: 'number', value: roundNear(rawValue) / 100, originalValue: rawValue };
       }
       if (name.includes('letterspacing') || scopes.includes('LETTER_SPACING')) {
         return { type: 'dimension', value: { value: rawValue, unit: '%' }, originalValue: rawValue };
       }
-       if (name.includes('space') || name.includes('gap') || scopes.includes('GAP')) {
+      if (name.includes('space') || name.includes('gap') || scopes.includes('GAP')) {
         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
       }
       if (name.includes('borderradius') || name.includes('radius') || scopes.includes('CORNER_RADIUS')) {
-         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
+        return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
       }
       if (name.includes('borderwidth') || name.includes('strokewidth') || scopes.includes('STROKE_WIDTH')) {
         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
@@ -151,7 +151,7 @@ function getTokenTypeAndValue(variableDetail, modeId) {
       return { type: 'number', value: rawValue, originalValue: rawValue };
     }
     case 'STRING': {
-       if (name.includes('fontfamily') || scopes.includes('FONT_FAMILY')) {
+      if (name.includes('fontfamily') || scopes.includes('FONT_FAMILY')) {
         return { type: 'fontFamily', value: rawValue, originalValue: rawValue };
       }
       return { type: 'string', value: rawValue, originalValue: rawValue };
@@ -187,8 +187,8 @@ function resolveAliases(obj, idToPathMap, errorsList) {
           const targetInfo = idToPathMap[targetVariableId];
 
           if (targetInfo) {
-             node.$type = targetInfo.type;
-             node.$value = `{${targetInfo.path}}`;
+            node.$type = targetInfo.type;
+            node.$value = `{${targetInfo.path}}`;
           } else {
             errorsList.push(`WARNING: Could not resolve alias target ID: ${targetVariableId} for token ${key}`);
             node.$value = `UNRESOLVED_ALIAS:${targetVariableId}`;
@@ -212,205 +212,206 @@ function resolveAliases(obj, idToPathMap, errorsList) {
  * @return {object} Object containing the generated typography tokens, nested by style name.
  */
 function processTextStyles(textStyles, idToPathMap, errorsList) {
-    const typographyTokens = {};
-    const fontWeightMap = { // Map Figma style strings to numeric values for alias lookup
-        'Thin': 100,
-        'ExtraLight': 200,
-        'Light': 300,
-        'Regular': 400,
-        'Medium': 500,
-        'SemiBold': 600,
-        'Bold': 700,
-        'ExtraBold': 800,
-        'Black': 900,
-    };
+  const typographyTokens = {};
+  const fontWeightMap = { // Map Figma style strings to numeric values for alias lookup
+    'Thin': 100,
+    'ExtraLight': 200,
+    'Light': 300,
+    'Regular': 400,
+    'Medium': 500,
+    'SemiBold': 600,
+    'Bold': 700,
+    'ExtraBold': 800,
+    'Black': 900,
+  };
 
-    console.log(' Processing Text Styles into Typography Tokens...');
+  console.log(' Processing Text Styles into Typography Tokens...');
 
-    for (const style of textStyles) {
-        if (!style || !style.name) continue;
+  for (const style of textStyles) {
+    if (!style || !style.name) continue;
 
-        const pathParts = style.name.split('/');
-        const compositeValue = {};
+    const pathParts = style.name.split('/');
+    const compositeValue = {};
+    let aliasFound = false;
 
-        // --- fontFamily (No change, not directly bindable) ---
-        let aliasFound = false;
-        if (style.fontFamily) {
-            aliasFound = false;
-            for (const [, tokenInfo] of Object.entries(idToPathMap)) {
-                if (tokenInfo.type === 'fontFamily' && tokenInfo.originalValue === style.fontFamily) {
-                    compositeValue.fontFamily = `{${tokenInfo.path}}`;
-                    aliasFound = true;
-                    break;
-                }
-            }
-            if (!aliasFound) {
-                compositeValue.fontFamily = style.fontFamily;
-            }
-        }
-
-        // --- fontWeight (No change, not directly bindable) ---
-        if (style.fontName?.style) {
-            const styleWeightString = style.fontName.style;
-            const numericWeight = fontWeightMap[styleWeightString];
-            aliasFound = false;
-            if (numericWeight !== undefined) {
-                 for (const [, tokenInfo] of Object.entries(idToPathMap)) {
-                     if (tokenInfo.type === 'fontWeight' && tokenInfo.originalValue === numericWeight) {
-                         compositeValue.fontWeight = `{${tokenInfo.path}}`;
-                         aliasFound = true;
-                         break;
-                     }
-                 }
-            }
-             if (!aliasFound) {
-                 compositeValue.fontWeight = numericWeight !== undefined ? numericWeight : styleWeightString;
-                 if (numericWeight === undefined) {
-                     errorsList.push(`WARNING: Font weight style '${styleWeightString}' not recognized for style '${style.name}'. Using raw string.`);
-                 }
-            }
-        }
-
-        // --- textCase ---
-        const textCaseVarId = style.boundVariables?.textCase?.id;
-        if (textCaseVarId && idToPathMap[textCaseVarId]) {
-            compositeValue.textCase = `{${idToPathMap[textCaseVarId].path}}`;
-        } else if (style.textCase) {
-            const textCaseMap = {
-                'ORIGINAL': 'none',
-                'UPPER': 'uppercase',
-                'LOWER': 'lowercase',
-                'TITLE': 'capitalize',
-            };
-            if (textCaseMap[style.textCase]) {
-                compositeValue.textCase = textCaseMap[style.textCase];
-            } else {
-                 errorsList.push(`WARNING: Unknown textCase value '${style.textCase}' in style '${style.name}'.`);
-            }
-        }
-
-        // --- textDecoration ---
-        const textDecorationVarId = style.boundVariables?.textDecoration?.id;
-        if (textDecorationVarId && idToPathMap[textDecorationVarId]) {
-            compositeValue.textDecoration = `{${idToPathMap[textDecorationVarId].path}}`;
-        } else if (style.textDecoration) {
-            const textDecorationMap = {
-                'NONE': 'none',
-                'UNDERLINE': 'underline',
-                'STRIKETHROUGH': 'line-through',
-            };
-             if (textDecorationMap[style.textDecoration]) {
-                compositeValue.textDecoration = textDecorationMap[style.textDecoration];
-            } else {
-                 errorsList.push(`WARNING: Unknown textDecoration value '${style.textDecoration}' in style '${style.name}'.`);
-            }
-        }
-
-        // --- fontSize ---
-        const fontSizeVarId = style.boundVariables?.fontSize?.id;
-        if (fontSizeVarId && idToPathMap[fontSizeVarId]) {
-            compositeValue.fontSize = `{${idToPathMap[fontSizeVarId].path}}`;
-        } else if (style.fontSize !== undefined) {
-            if (fontSizeVarId) { // Only warn if there was an ID we couldn't map
-                errorsList.push(`WARNING: Unresolved bound variable ID '${fontSizeVarId}' for fontSize in style '${style.name}'. Using raw value.`);
-            }
-            compositeValue.fontSize = { value: style.fontSize, unit: 'px' };
-        }
-
-        // --- lineHeight ---
-        const lineHeightVarId = style.boundVariables?.lineHeight?.id;
-        if (lineHeightVarId && idToPathMap[lineHeightVarId]) {
-            compositeValue.lineHeight = `{${idToPathMap[lineHeightVarId].path}}`;
-        } else if (style.lineHeight?.unit) {
-             if (lineHeightVarId) { // Warn if the ID was present but couldn't be mapped
-                errorsList.push(`WARNING: Unresolved bound variable ID '${lineHeightVarId}' for lineHeight in style '${style.name}'. Falling back to manual matching.`);
-            }
-
-            if (style.lineHeight.unit === 'PERCENT') {
-                 // Fallback to manual matching by value
-                let aliasFound = false;
-                const targetPercent = roundNear(style.lineHeight.value);
-                for (const [, tokenInfo] of Object.entries(idToPathMap)) {
-                    if (tokenInfo.type === 'number' && tokenInfo.path.startsWith('lineHeight.') && roundNear(tokenInfo.originalValue) === targetPercent) {
-                        compositeValue.lineHeight = `{${tokenInfo.path}}`;
-                        aliasFound = true;
-                        break;
-                    }
-                }
-                // If no alias found, use raw calculated value
-                if (!aliasFound) {
-                    errorsList.push(`WARNING: Could not find alias for lineHeight value '${targetPercent}%' in style '${style.name}'. Using raw calculated value.`);
-                    compositeValue.lineHeight = targetPercent / 100;
-                }
-            } else {
-                 errorsList.push(`ERROR: Unexpected lineHeight unit '${style.lineHeight.unit}' for style '${style.name}'. Outputting raw value.`);
-                compositeValue.lineHeight = { value: style.lineHeight.value, unit: style.lineHeight.unit.toLowerCase() };
-            }
-        }
-
-        // --- letterSpacing ---
-        const letterSpacingVarId = style.boundVariables?.letterSpacing?.id;
-        if (letterSpacingVarId && idToPathMap[letterSpacingVarId]) {
-            compositeValue.letterSpacing = `{${idToPathMap[letterSpacingVarId].path}}`;
-        } else if (style.letterSpacing?.unit) {
-            if (letterSpacingVarId) { // Warn if the ID was present but couldn't be mapped
-                errorsList.push(`WARNING: Unresolved bound variable ID '${letterSpacingVarId}' for letterSpacing in style '${style.name}'. Falling back to manual matching.`);
-            }
-
-            let aliasFound = false;
-            const tolerance = 0.01; // Tolerance for floating point comparison
-
-            if (style.letterSpacing.unit === 'PERCENT') {
-                const targetPercent = style.letterSpacing.value;
-                for (const [, tokenInfo] of Object.entries(idToPathMap)) {
-                    // Match percentage-based letter spacing tokens
-                    if (tokenInfo.type === 'dimension' && tokenInfo.path.startsWith('letterSpacing.') && tokenInfo.originalValue !== null && Math.abs(tokenInfo.originalValue - targetPercent) < tolerance) {
-                         compositeValue.letterSpacing = `{${tokenInfo.path}}`;
-                         aliasFound = true;
-                         break;
-                    }
-                }
-                if (!aliasFound) {
-                    errorsList.push(`WARNING: Could not find alias for letterSpacing value '${targetPercent}%' in style '${style.name}'. Using raw value.`);
-                    compositeValue.letterSpacing = { value: targetPercent, unit: '%' };
-                }
-            } else if (style.letterSpacing.unit === 'PIXELS'){
-                const targetPixels = style.letterSpacing.value;
-                // Attempt to match pixel-based tokens, though this is less common
-                for (const [, tokenInfo] of Object.entries(idToPathMap)) {
-                    if (tokenInfo.type === 'dimension' && tokenInfo.path.startsWith('letterSpacing.') && tokenInfo.originalValue === targetPixels) {
-                        compositeValue.letterSpacing = `{${tokenInfo.path}}`;
-                        aliasFound = true;
-                        break;
-                    }
-                }
-                if (!aliasFound) {
-                    errorsList.push(`WARNING: letterSpacing for style '${style.name}' is in PIXELS, not PERCENT. Could not find alias. Outputting raw px value.`);
-                    compositeValue.letterSpacing = { value: targetPixels, unit: 'px' };
-                }
-            } else {
-                 errorsList.push(`ERROR: Unexpected letterSpacing unit '${style.letterSpacing.unit}' for style '${style.name}'. Outputting raw value.`);
-                 compositeValue.letterSpacing = { value: style.letterSpacing.value, unit: style.letterSpacing.unit.toLowerCase() };
-            }
-        }
-
-         if (Object.keys(compositeValue).length > 0) {
-             const tokenData = {
-                 $type: 'typography',
-                 $value: compositeValue,
-                 $description: style.description || "",
-                 $extensions: {
-                    'figma.ID': style.id,
-                    'figma.key': style.key,
-                 },
-             };
-             setNestedValue(typographyTokens, ['typography', ...pathParts], tokenData);
-         } else {
-              errorsList.push(`WARNING: Style '${style.name}' resulted in empty typography token.`);
-         }
+    // --- fontFamily ---
+    const fontFamilyVarId = style.boundVariables?.fontFamily?.id;
+    if (fontFamilyVarId && idToPathMap[fontFamilyVarId]) {
+      compositeValue.fontFamily = `{${idToPathMap[fontFamilyVarId].path}}`;
+    } else if (style.fontFamily) {
+      compositeValue.fontFamily = style.fontFamily;
     }
-     console.log(' Text style processing complete.');
-    return typographyTokens;
+
+    // --- fontWeight ---
+    const fontWeightVarId = style.boundVariables?.fontWeight?.id;
+    if (fontWeightVarId && idToPathMap[fontWeightVarId]) {
+      compositeValue.fontWeight = `{${idToPathMap[fontWeightVarId].path}}`;
+    } else if (style.fontName?.style) {
+      const styleWeightString = style.fontName.style;
+      const numericWeight = fontWeightMap[styleWeightString];
+      compositeValue.fontWeight = numericWeight !== undefined ? numericWeight : styleWeightString;
+    }
+    // if (style.fontName?.style) {
+    //     const styleWeightString = style.fontName.style;
+    //     const numericWeight = fontWeightMap[styleWeightString];
+    //     aliasFound = false;
+    //     if (numericWeight !== undefined) {
+    //          for (const [, tokenInfo] of Object.entries(idToPathMap)) {
+    //              if (tokenInfo.type === 'fontWeight' && tokenInfo.originalValue === numericWeight) {
+    //                  compositeValue.fontWeight = `{${tokenInfo.path}}`;
+    //                  aliasFound = true;
+    //                  break;
+    //              }
+    //          }
+    //     }
+    //      if (!aliasFound) {
+    //          compositeValue.fontWeight = numericWeight !== undefined ? numericWeight : styleWeightString;
+    //          if (numericWeight === undefined) {
+    //              errorsList.push(`WARNING: Font weight style '${styleWeightString}' not recognized for style '${style.name}'. Using raw string.`);
+    //          }
+    //     }
+    // }
+
+    // --- textCase ---
+    const textCaseVarId = style.boundVariables?.textCase?.id;
+    if (textCaseVarId && idToPathMap[textCaseVarId]) {
+      compositeValue.textCase = `{${idToPathMap[textCaseVarId].path}}`;
+    } else if (style.textCase) {
+      const textCaseMap = {
+        'ORIGINAL': 'none',
+        'UPPER': 'uppercase',
+        'LOWER': 'lowercase',
+        'TITLE': 'capitalize',
+      };
+      if (textCaseMap[style.textCase]) {
+        compositeValue.textCase = textCaseMap[style.textCase];
+      } else {
+        errorsList.push(`WARNING: Unknown textCase value '${style.textCase}' in style '${style.name}'.`);
+      }
+    }
+
+    // --- textDecoration ---
+    const textDecorationVarId = style.boundVariables?.textDecoration?.id;
+    if (textDecorationVarId && idToPathMap[textDecorationVarId]) {
+      compositeValue.textDecoration = `{${idToPathMap[textDecorationVarId].path}}`;
+    } else if (style.textDecoration) {
+      const textDecorationMap = {
+        'NONE': 'none',
+        'UNDERLINE': 'underline',
+        'STRIKETHROUGH': 'line-through',
+      };
+      if (textDecorationMap[style.textDecoration]) {
+        compositeValue.textDecoration = textDecorationMap[style.textDecoration];
+      } else {
+        errorsList.push(`WARNING: Unknown textDecoration value '${style.textDecoration}' in style '${style.name}'.`);
+      }
+    }
+
+    // --- fontSize ---
+    const fontSizeVarId = style.boundVariables?.fontSize?.id;
+    if (fontSizeVarId && idToPathMap[fontSizeVarId]) {
+      compositeValue.fontSize = `{${idToPathMap[fontSizeVarId].path}}`;
+    } else if (style.fontSize !== undefined) {
+      if (fontSizeVarId) { // Only warn if there was an ID we couldn't map
+        errorsList.push(`WARNING: Unresolved bound variable ID '${fontSizeVarId}' for fontSize in style '${style.name}'. Using raw value.`);
+      }
+      compositeValue.fontSize = { value: style.fontSize, unit: 'px' };
+    }
+
+    // --- lineHeight ---
+    const lineHeightVarId = style.boundVariables?.lineHeight?.id;
+    if (lineHeightVarId && idToPathMap[lineHeightVarId]) {
+      compositeValue.lineHeight = `{${idToPathMap[lineHeightVarId].path}}`;
+    } else if (style.lineHeight?.unit) {
+      if (lineHeightVarId) { // Warn if the ID was present but couldn't be mapped
+        errorsList.push(`WARNING: Unresolved bound variable ID '${lineHeightVarId}' for lineHeight in style '${style.name}'. Falling back to manual matching.`);
+      }
+
+      if (style.lineHeight.unit === 'PERCENT') {
+        // Fallback to manual matching by value
+        let aliasFound = false;
+        const targetPercent = roundNear(style.lineHeight.value);
+        for (const [, tokenInfo] of Object.entries(idToPathMap)) {
+          if (tokenInfo.type === 'number' && tokenInfo.path.startsWith('lineHeight.') && roundNear(tokenInfo.originalValue) === targetPercent) {
+            compositeValue.lineHeight = `{${tokenInfo.path}}`;
+            aliasFound = true;
+            break;
+          }
+        }
+        // If no alias found, use raw calculated value
+        if (!aliasFound) {
+          errorsList.push(`WARNING: Could not find alias for lineHeight value '${targetPercent}%' in style '${style.name}'. Using raw calculated value.`);
+          compositeValue.lineHeight = targetPercent / 100;
+        }
+      } else {
+        errorsList.push(`ERROR: Unexpected lineHeight unit '${style.lineHeight.unit}' for style '${style.name}'. Outputting raw value.`);
+        compositeValue.lineHeight = { value: style.lineHeight.value, unit: style.lineHeight.unit.toLowerCase() };
+      }
+    }
+
+    // --- letterSpacing ---
+    const letterSpacingVarId = style.boundVariables?.letterSpacing?.id;
+    if (letterSpacingVarId && idToPathMap[letterSpacingVarId]) {
+      compositeValue.letterSpacing = `{${idToPathMap[letterSpacingVarId].path}}`;
+    } else if (style.letterSpacing?.unit) {
+      if (letterSpacingVarId) { // Warn if the ID was present but couldn't be mapped
+        errorsList.push(`WARNING: Unresolved bound variable ID '${letterSpacingVarId}' for letterSpacing in style '${style.name}'. Falling back to manual matching.`);
+      }
+
+      let aliasFound = false;
+      const tolerance = 0.01; // Tolerance for floating point comparison
+
+      if (style.letterSpacing.unit === 'PERCENT') {
+        const targetPercent = style.letterSpacing.value;
+        for (const [, tokenInfo] of Object.entries(idToPathMap)) {
+          // Match percentage-based letter spacing tokens
+          if (tokenInfo.type === 'dimension' && tokenInfo.path.startsWith('letterSpacing.') && tokenInfo.originalValue !== null && Math.abs(tokenInfo.originalValue - targetPercent) < tolerance) {
+            compositeValue.letterSpacing = `{${tokenInfo.path}}`;
+            aliasFound = true;
+            break;
+          }
+        }
+        if (!aliasFound) {
+          errorsList.push(`WARNING: Could not find alias for letterSpacing value '${targetPercent}%' in style '${style.name}'. Using raw value.`);
+          compositeValue.letterSpacing = { value: targetPercent, unit: '%' };
+        }
+      } else if (style.letterSpacing.unit === 'PIXELS') {
+        const targetPixels = style.letterSpacing.value;
+        // Attempt to match pixel-based tokens, though this is less common
+        for (const [, tokenInfo] of Object.entries(idToPathMap)) {
+          if (tokenInfo.type === 'dimension' && tokenInfo.path.startsWith('letterSpacing.') && tokenInfo.originalValue === targetPixels) {
+            compositeValue.letterSpacing = `{${tokenInfo.path}}`;
+            aliasFound = true;
+            break;
+          }
+        }
+        if (!aliasFound) {
+          errorsList.push(`WARNING: letterSpacing for style '${style.name}' is in PIXELS, not PERCENT. Could not find alias. Outputting raw px value.`);
+          compositeValue.letterSpacing = { value: targetPixels, unit: 'px' };
+        }
+      } else {
+        errorsList.push(`ERROR: Unexpected letterSpacing unit '${style.letterSpacing.unit}' for style '${style.name}'. Outputting raw value.`);
+        compositeValue.letterSpacing = { value: style.letterSpacing.value, unit: style.letterSpacing.unit.toLowerCase() };
+      }
+    }
+
+    if (Object.keys(compositeValue).length > 0) {
+      const tokenData = {
+        $type: 'typography',
+        $value: compositeValue,
+        $description: style.description || "",
+        $extensions: {
+          'figma.ID': style.id,
+          'figma.key': style.key,
+        },
+      };
+      setNestedValue(typographyTokens, ['typography', ...pathParts], tokenData);
+    } else {
+      errorsList.push(`WARNING: Style '${style.name}' resulted in empty typography token.`);
+    }
+  }
+  console.log(' Text style processing complete.');
+  return typographyTokens;
 }
 
 /**
@@ -423,100 +424,100 @@ function processTextStyles(textStyles, idToPathMap, errorsList) {
  * @return {object} Object containing the generated shadow tokens, nested by style name.
  */
 function processEffectStyles(effectStyles, idToPathMap, errorsList) {
-    const shadowTokens = {};
-    console.log(' Processing Effect Styles into Shadow Tokens...');
+  const shadowTokens = {};
+  console.log(' Processing Effect Styles into Shadow Tokens...');
 
-    for (const style of effectStyles) {
-        if (!style || !style.name || !style.effects || style.effects.length === 0) {
-            continue;
-        }
-
-        const pathParts = style.name.split('/');
-        const w3cShadowValue = [];
-
-        for (const effect of style.effects) {
-            if (effect.type === 'DROP_SHADOW' || effect.type === 'INNER_SHADOW') {
-                 if (!effect.color || !effect.offset || effect.radius === undefined) {
-                     errorsList.push(`WARNING: Incomplete shadow data for effect in style '${style.name}'. Skipping this effect layer.`);
-                     continue;
-                 }
-
-                const shadowLayer = { inset: effect.type === 'INNER_SHADOW' };
-
-                // --- Color ---
-                const colorVarId = effect.boundVariables?.color?.id;
-                if (colorVarId && idToPathMap[colorVarId]) {
-                    shadowLayer.color = `{${idToPathMap[colorVarId].path}}`;
-                } else {
-                     if (colorVarId) {
-                        errorsList.push(`WARNING: Unresolved bound variable ID '${colorVarId}' for shadow color in style '${style.name}'. Using raw value.`);
-                    }
-                    shadowLayer.color = {
-                        $type: 'color',
-                         $value: {
-                             colorSpace: 'srgb',
-                             components: [effect.color.r, effect.color.g, effect.color.b],
-                             alpha: effect.color.a,
-                              hex: rgbaToHex(effect.color.r, effect.color.g, effect.color.b)
-                        }
-                    };
-                }
-
-                // --- Offset X ---
-                shadowLayer.offsetX = { $type: 'dimension', value: { value: effect.offset.x, unit: 'px' } };
-
-                // --- Offset Y ---
-                shadowLayer.offsetY = { $type: 'dimension', value: { value: effect.offset.y, unit: 'px' } };
-
-
-                // --- Blur ---
-                const blurVarId = effect.boundVariables?.radius?.id;
-                if (blurVarId && idToPathMap[blurVarId]) {
-                    shadowLayer.blur = `{${idToPathMap[blurVarId].path}}`;
-                } else {
-                    if (blurVarId) {
-                        errorsList.push(`WARNING: Unresolved bound variable ID '${blurVarId}' for shadow blur (radius) in style '${style.name}'. Using raw value.`);
-                    }
-                    shadowLayer.blur = { $type: 'dimension', value: { value: effect.radius, unit: 'px' } };
-                }
-
-                // --- Spread ---
-                const spreadVarId = effect.boundVariables?.spread?.id;
-                if (spreadVarId && idToPathMap[spreadVarId]) {
-                    shadowLayer.spread = `{${idToPathMap[spreadVarId].path}}`;
-                } else {
-                    if (spreadVarId) {
-                        errorsList.push(`WARNING: Unresolved bound variable ID '${spreadVarId}' for shadow spread in style '${style.name}'. Using raw value.`);
-                    }
-                     shadowLayer.spread = { $type: 'dimension', value: { value: (effect.spread || 0), unit: 'px' } };
-                }
-
-                w3cShadowValue.push(shadowLayer);
-
-            } else {
-                 errorsList.push(`WARNING: Skipping non-shadow effect type '${effect.type}' in style '${style.name}'.`);
-            }
-        }
-
-         if (w3cShadowValue.length > 0) {
-             const tokenData = {
-                 $type: 'shadow',
-                 $value: w3cShadowValue,
-                 $description: style.description || "",
-                 $extensions: {
-                    'figma.ID': style.id,
-                    'figma.key': style.key,
-                 },
-             };
-             setNestedValue(shadowTokens, ['shadow', ...pathParts], tokenData);
-         } else {
-              if (style.effects.every(eff => eff.type !== 'DROP_SHADOW' && eff.type !== 'INNER_SHADOW')) {
-                 errorsList.push(`WARNING: Style '${style.name}' did not contain any processable shadow effects.`);
-              }
-         }
+  for (const style of effectStyles) {
+    if (!style || !style.name || !style.effects || style.effects.length === 0) {
+      continue;
     }
-    console.log(' Effect style processing complete.');
-    return shadowTokens;
+
+    const pathParts = style.name.split('/');
+    const w3cShadowValue = [];
+
+    for (const effect of style.effects) {
+      if (effect.type === 'DROP_SHADOW' || effect.type === 'INNER_SHADOW') {
+        if (!effect.color || !effect.offset || effect.radius === undefined) {
+          errorsList.push(`WARNING: Incomplete shadow data for effect in style '${style.name}'. Skipping this effect layer.`);
+          continue;
+        }
+
+        const shadowLayer = { inset: effect.type === 'INNER_SHADOW' };
+
+        // --- Color ---
+        const colorVarId = effect.boundVariables?.color?.id;
+        if (colorVarId && idToPathMap[colorVarId]) {
+          shadowLayer.color = `{${idToPathMap[colorVarId].path}}`;
+        } else {
+          if (colorVarId) {
+            errorsList.push(`WARNING: Unresolved bound variable ID '${colorVarId}' for shadow color in style '${style.name}'. Using raw value.`);
+          }
+          shadowLayer.color = {
+            $type: 'color',
+            $value: {
+              colorSpace: 'srgb',
+              components: [effect.color.r, effect.color.g, effect.color.b],
+              alpha: effect.color.a,
+              hex: rgbaToHex(effect.color.r, effect.color.g, effect.color.b)
+            }
+          };
+        }
+
+        // --- Offset X ---
+        shadowLayer.offsetX = { value: effect.offset.x, unit: 'px' };
+
+        // --- Offset Y ---
+        shadowLayer.offsetY = { value: effect.offset.y, unit: 'px' };
+
+
+        // --- Blur ---
+        const blurVarId = effect.boundVariables?.radius?.id;
+        if (blurVarId && idToPathMap[blurVarId]) {
+          shadowLayer.blur = `{${idToPathMap[blurVarId].path}}`;
+        } else {
+          if (blurVarId) {
+            errorsList.push(`WARNING: Unresolved bound variable ID '${blurVarId}' for shadow blur (radius) in style '${style.name}'. Using raw value.`);
+          }
+          shadowLayer.blur = { value: effect.radius, unit: 'px' };
+        }
+
+        // --- Spread ---
+        const spreadVarId = effect.boundVariables?.spread?.id;
+        if (spreadVarId && idToPathMap[spreadVarId]) {
+          shadowLayer.spread = `{${idToPathMap[spreadVarId].path}}`;
+        } else {
+          if (spreadVarId) {
+            errorsList.push(`WARNING: Unresolved bound variable ID '${spreadVarId}' for shadow spread in style '${style.name}'. Using raw value.`);
+          }
+          shadowLayer.spread = { value: (effect.spread || 0), unit: 'px' };
+        }
+
+        w3cShadowValue.push(shadowLayer);
+
+      } else {
+        errorsList.push(`WARNING: Skipping non-shadow effect type '${effect.type}' in style '${style.name}'.`);
+      }
+    }
+
+    if (w3cShadowValue.length > 0) {
+      const tokenData = {
+        $type: 'shadow',
+        $value: w3cShadowValue,
+        $description: style.description || "",
+        $extensions: {
+          'figma.ID': style.id,
+          'figma.key': style.key,
+        },
+      };
+      setNestedValue(shadowTokens, ['shadow', ...pathParts], tokenData);
+    } else {
+      if (style.effects.every(eff => eff.type !== 'DROP_SHADOW' && eff.type !== 'INNER_SHADOW')) {
+        errorsList.push(`WARNING: Style '${style.name}' did not contain any processable shadow effects.`);
+      }
+    }
+  }
+  console.log(' Effect style processing complete.');
+  return shadowTokens;
 }
 
 // --- Main Transformation Logic ---
@@ -543,9 +544,9 @@ function transformTokens() {
     console.error(msg);
     processingErrors.push(msg);
     // Attempt to print summary even if file read fails
-     if (processingErrors.length > 0) {
-        console.log('\n--- Processing Errors/Warnings Summary ---');
-        processingErrors.forEach(err => console.error(`- ${err}`));
+    if (processingErrors.length > 0) {
+      console.log('\n--- Processing Errors/Warnings Summary ---');
+      processingErrors.forEach(err => console.error(`- ${err}`));
     }
     return;
   }
@@ -559,15 +560,15 @@ function transformTokens() {
     const msg = 'Invalid raw data structure: Missing collections or variableDetails.';
     console.error(msg);
     processingErrors.push(msg);
-      if (processingErrors.length > 0) {
-        console.log('\n--- Processing Errors/Warnings Summary ---');
-        processingErrors.forEach(err => console.error(`- ${err}`));
+    if (processingErrors.length > 0) {
+      console.log('\n--- Processing Errors/Warnings Summary ---');
+      processingErrors.forEach(err => console.error(`- ${err}`));
     }
     return;
   }
 
   // Ensure output directory exists
-  if (!fs.existsSync(OUTPUT_DIR)){
+  if (!fs.existsSync(OUTPUT_DIR)) {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
     console.log(`Created output directory: ${OUTPUT_DIR}`);
   }
@@ -599,8 +600,8 @@ function transformTokens() {
         const { type, value, needsResolution, originalValue } = getTokenTypeAndValue(detail, mode.modeId);
 
         if (type === 'unknown') {
-            processingErrors.push(`WARNING: Unknown resolvedType encountered for variable ${detail.name} (${variableId})`);
-            continue;
+          processingErrors.push(`WARNING: Unknown resolvedType encountered for variable ${detail.name} (${variableId})`);
+          continue;
         }
 
         // Store path AND inferred type in the map for later alias resolution
@@ -635,36 +636,36 @@ function transformTokens() {
   // --- Merge Styles into Outputs --- 
   console.log('Merging style tokens into outputs...');
   for (const filename in outputs) {
-      if (Object.hasOwn(outputs, filename)) {
-           Object.assign(outputs[filename], 
-               JSON.parse(JSON.stringify(typographyOutput)), 
-               JSON.parse(JSON.stringify(shadowOutput))
-           );
-      }
+    if (Object.hasOwn(outputs, filename)) {
+      Object.assign(outputs[filename],
+        JSON.parse(JSON.stringify(typographyOutput)),
+        JSON.parse(JSON.stringify(shadowOutput))
+      );
+    }
   }
 
   // --- Pass 2: Resolve Aliases (Now run AFTER typography merge) --- 
   console.log('Starting Pass 2: Resolving aliases...');
   for (const filename in outputs) {
     if (Object.hasOwn(outputs, filename)) {
-        console.log(` Resolving aliases in ${filename}...`);
-        resolveAliases(outputs[filename], idToPathMap, processingErrors); // Pass errorsList
+      console.log(` Resolving aliases in ${filename}...`);
+      resolveAliases(outputs[filename], idToPathMap, processingErrors); // Pass errorsList
     }
   }
   console.log('Pass 2 complete.');
 
   // --- Write Files ---
   console.log('Writing output files...');
-   for (const [filename, data] of Object.entries(outputs)) {
-     const outputFilePath = `${OUTPUT_DIR}/${filename}`;
-     try {
-       fs.writeFileSync(outputFilePath, JSON.stringify(data, null, 2));
-       console.log(` - Successfully wrote ${outputFilePath}`);
-     } catch (error) {
-        const msg = `Error writing ${outputFilePath}: ${error instanceof Error ? error.message : String(error)}`;
-        console.error(` - ${msg}`);
-        processingErrors.push(msg);
-     }
+  for (const [filename, data] of Object.entries(outputs)) {
+    const outputFilePath = `${OUTPUT_DIR}/${filename}`;
+    try {
+      fs.writeFileSync(outputFilePath, JSON.stringify(data, null, 2));
+      console.log(` - Successfully wrote ${outputFilePath}`);
+    } catch (error) {
+      const msg = `Error writing ${outputFilePath}: ${error instanceof Error ? error.message : String(error)}`;
+      console.error(` - ${msg}`);
+      processingErrors.push(msg);
+    }
   }
 
   console.log('Token transformation process finished.');
@@ -675,7 +676,7 @@ function transformTokens() {
     processingErrors.forEach(err => console.error(`- ${err}`));
     console.log(`\n(${processingErrors.length} errors/warnings found)`);
   } else {
-      console.log('\nNo errors or warnings detected during processing.');
+    console.log('\nNo errors or warnings detected during processing.');
   }
 }
 

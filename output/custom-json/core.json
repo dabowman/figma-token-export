@@ -4068,6 +4068,10 @@
   "typography": {
     "support": {
       "helper-text": {
+        "fontFamily": {
+          "value": "{fontFamily.body}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.regular}",
           "type": "fontWeight"
@@ -4106,6 +4110,10 @@
         }
       },
       "label-xs": {
+        "fontFamily": {
+          "value": "{fontFamily.body}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.regular}",
           "type": "fontWeight"
@@ -4144,6 +4152,10 @@
         }
       },
       "label-small": {
+        "fontFamily": {
+          "value": "{fontFamily.body}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.regular}",
           "type": "fontWeight"
@@ -4182,6 +4194,10 @@
         }
       },
       "label-default": {
+        "fontFamily": {
+          "value": "{fontFamily.body}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.semiBold}",
           "type": "fontWeight"
@@ -4220,6 +4236,10 @@
         }
       },
       "label-default-quiet": {
+        "fontFamily": {
+          "value": "{fontFamily.body}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.regular}",
           "type": "fontWeight"
@@ -4258,6 +4278,10 @@
         }
       },
       "label-default-loud": {
+        "fontFamily": {
+          "value": "{fontFamily.body}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.bold}",
           "type": "fontWeight"
@@ -4296,6 +4320,10 @@
         }
       },
       "label-caps": {
+        "fontFamily": {
+          "value": "{fontFamily.body}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.semiBold}",
           "type": "fontWeight"
@@ -4336,6 +4364,10 @@
     },
     "heading": {
       "1": {
+        "fontFamily": {
+          "value": "{fontFamily.heading}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.bold}",
           "type": "fontWeight"
@@ -4374,6 +4406,10 @@
         }
       },
       "2": {
+        "fontFamily": {
+          "value": "{fontFamily.heading}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.semiBold}",
           "type": "fontWeight"
@@ -4412,6 +4448,10 @@
         }
       },
       "3": {
+        "fontFamily": {
+          "value": "{fontFamily.heading}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.semiBold}",
           "type": "fontWeight"
@@ -4450,6 +4490,10 @@
         }
       },
       "4": {
+        "fontFamily": {
+          "value": "{fontFamily.heading}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.bold}",
           "type": "fontWeight"
@@ -4488,6 +4532,10 @@
         }
       },
       "5": {
+        "fontFamily": {
+          "value": "{fontFamily.heading}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.bold}",
           "type": "fontWeight"
@@ -4526,6 +4574,10 @@
         }
       },
       "caps": {
+        "fontFamily": {
+          "value": "{fontFamily.heading}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.semiBold}",
           "type": "fontWeight"
@@ -4566,6 +4618,10 @@
     },
     "text": {
       "small": {
+        "fontFamily": {
+          "value": "{fontFamily.body}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.regular}",
           "type": "fontWeight"
@@ -4604,6 +4660,10 @@
         }
       },
       "default": {
+        "fontFamily": {
+          "value": "{fontFamily.body}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.regular}",
           "type": "fontWeight"
@@ -4642,6 +4702,10 @@
         }
       },
       "large": {
+        "fontFamily": {
+          "value": "{fontFamily.body}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.regular}",
           "type": "fontWeight"
@@ -4680,6 +4744,10 @@
         }
       },
       "mono": {
+        "fontFamily": {
+          "value": "{fontFamily.mono}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.regular}",
           "type": "fontWeight"
@@ -4718,6 +4786,10 @@
         }
       },
       "mono-bold": {
+        "fontFamily": {
+          "value": "{fontFamily.mono}",
+          "type": "fontFamily"
+        },
         "fontWeight": {
           "value": "{fontWeight.bold}",
           "type": "fontWeight"
@@ -4779,67 +4851,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "2.767256498336792",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "2.767256498336792",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "2.2138051986694336",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "2.2138051986694336",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       },
@@ -4863,67 +4911,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "6.650102138519287",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "6.650102138519287",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "5.32008171081543",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "5.32008171081543",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       },
@@ -4947,67 +4971,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "12.521552085876465",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "12.521552085876465",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "10.017241477966309",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "10.017241477966309",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       },
@@ -5031,67 +5031,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "22.3363094329834",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "22.3363094329834",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "17.869047164916992",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "17.869047164916992",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       },
@@ -5115,67 +5091,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "41.777610778808594",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "41.777610778808594",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "33.422088623046875",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "33.422088623046875",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       },
@@ -5199,67 +5151,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "100",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "100",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "80",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "80",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       }
@@ -5285,67 +5213,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0.11069025844335556",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0.11069025844335556",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "1.0515574216842651",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "1.0515574216842651",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       },
@@ -5369,67 +5273,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0.2660040855407715",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0.2660040855407715",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "2.527038812637329",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "2.527038812637329",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       },
@@ -5453,67 +5333,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0.5008620619773865",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0.5008620619773865",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "4.758189678192139",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "4.758189678192139",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       },
@@ -5537,67 +5393,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0.8934523463249207",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0.8934523463249207",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "8.487797737121582",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "8.487797737121582",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       },
@@ -5621,67 +5453,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "1.6711044311523438",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "1.6711044311523438",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "15.87549114227295",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "15.87549114227295",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       },
@@ -5705,67 +5513,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "14",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "14",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "38",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "38",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       }
@@ -5791,67 +5575,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "1",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "1",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "1",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "1",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       },
@@ -5875,67 +5635,43 @@
           }
         },
         "offsetX": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "offsetY": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "1",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "1",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "blur": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "5",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "5",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         },
         "spread": {
-          "$type": {
-            "value": "dimension",
-            "type": "$type"
-          },
           "value": {
-            "value": {
-              "value": "0",
-              "type": "value"
-            },
-            "unit": {
-              "value": "px",
-              "type": "unit"
-            }
+            "value": "0",
+            "type": "value"
+          },
+          "unit": {
+            "value": "px",
+            "type": "unit"
           }
         }
       }

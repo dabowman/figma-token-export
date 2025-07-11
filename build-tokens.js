@@ -55,6 +55,7 @@ const sd = new StyleDictionary({
             transforms: [
                 'name/kebab',
                 'color/resolve',
+                'color/hex',
                 'value/unit-concat',
                 'size/pxToRem'
             ],
@@ -63,9 +64,6 @@ const sd = new StyleDictionary({
                 {
                     destination: 'light.json',
                     format: 'json/nested',
-                    options: {
-                        stripMeta: true
-                    },
                     filter: 'no-base'
                 }
             ],
@@ -74,6 +72,7 @@ const sd = new StyleDictionary({
             transforms: [
                 'name/kebab',
                 'color/resolve',
+                'color/hex',
                 'value/unit-concat',
                 'size/pxToRem'
             ],
@@ -81,11 +80,7 @@ const sd = new StyleDictionary({
             files: [
                 {
                     destination: 'light.json',
-                    format: 'json/nested',
-                    options: {
-                        stripMeta: true
-                    },
-                    filter: 'no-base'
+                    format: 'json/nested'
                 }
             ],
         },

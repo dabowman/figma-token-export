@@ -4696,6 +4696,7 @@
       "helper-text": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.body}",
           "fontWeight": "{fontWeight.regular}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4715,6 +4716,7 @@
       "label-xs": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.body}",
           "fontWeight": "{fontWeight.regular}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4734,6 +4736,7 @@
       "label-small": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.body}",
           "fontWeight": "{fontWeight.regular}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4753,6 +4756,7 @@
       "label-default": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.body}",
           "fontWeight": "{fontWeight.semiBold}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4772,6 +4776,7 @@
       "label-default-quiet": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.body}",
           "fontWeight": "{fontWeight.regular}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4791,6 +4796,7 @@
       "label-default-loud": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.body}",
           "fontWeight": "{fontWeight.bold}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4810,6 +4816,7 @@
       "label-caps": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.body}",
           "fontWeight": "{fontWeight.semiBold}",
           "textCase": "uppercase",
           "textDecoration": "none",
@@ -4828,6 +4835,7 @@
       "1": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.heading}",
           "fontWeight": "{fontWeight.bold}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4844,6 +4852,7 @@
       "2": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.heading}",
           "fontWeight": "{fontWeight.semiBold}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4860,6 +4869,7 @@
       "3": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.heading}",
           "fontWeight": "{fontWeight.semiBold}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4876,6 +4886,7 @@
       "4": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.heading}",
           "fontWeight": "{fontWeight.bold}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4892,6 +4903,7 @@
       "5": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.heading}",
           "fontWeight": "{fontWeight.bold}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4908,6 +4920,7 @@
       "caps": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.heading}",
           "fontWeight": "{fontWeight.semiBold}",
           "textCase": "uppercase",
           "textDecoration": "none",
@@ -4926,6 +4939,7 @@
       "small": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.body}",
           "fontWeight": "{fontWeight.regular}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4945,6 +4959,7 @@
       "default": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.body}",
           "fontWeight": "{fontWeight.regular}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4964,6 +4979,7 @@
       "large": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.body}",
           "fontWeight": "{fontWeight.regular}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4983,6 +4999,7 @@
       "mono": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.mono}",
           "fontWeight": "{fontWeight.regular}",
           "textCase": "none",
           "textDecoration": "none",
@@ -4999,6 +5016,7 @@
       "mono-bold": {
         "$type": "typography",
         "$value": {
+          "fontFamily": "{fontFamily.mono}",
           "fontWeight": "{fontWeight.bold}",
           "textCase": "none",
           "textDecoration": "none",
@@ -5034,32 +5052,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 2.767256498336792,
-              "unit": "px"
-            }
+            "value": 2.767256498336792,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 2.2138051986694336,
-              "unit": "px"
-            }
+            "value": 2.2138051986694336,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         },
         {
@@ -5078,32 +5084,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 6.650102138519287,
-              "unit": "px"
-            }
+            "value": 6.650102138519287,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 5.32008171081543,
-              "unit": "px"
-            }
+            "value": 5.32008171081543,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         },
         {
@@ -5122,32 +5116,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 12.521552085876465,
-              "unit": "px"
-            }
+            "value": 12.521552085876465,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 10.017241477966309,
-              "unit": "px"
-            }
+            "value": 10.017241477966309,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         },
         {
@@ -5166,32 +5148,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 22.3363094329834,
-              "unit": "px"
-            }
+            "value": 22.3363094329834,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 17.869047164916992,
-              "unit": "px"
-            }
+            "value": 17.869047164916992,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         },
         {
@@ -5210,32 +5180,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 41.777610778808594,
-              "unit": "px"
-            }
+            "value": 41.777610778808594,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 33.422088623046875,
-              "unit": "px"
-            }
+            "value": 33.422088623046875,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         },
         {
@@ -5254,32 +5212,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 100,
-              "unit": "px"
-            }
+            "value": 100,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 80,
-              "unit": "px"
-            }
+            "value": 80,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         }
       ],
@@ -5308,32 +5254,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 0.11069025844335556,
-              "unit": "px"
-            }
+            "value": 0.11069025844335556,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 1.0515574216842651,
-              "unit": "px"
-            }
+            "value": 1.0515574216842651,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         },
         {
@@ -5352,32 +5286,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 0.2660040855407715,
-              "unit": "px"
-            }
+            "value": 0.2660040855407715,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 2.527038812637329,
-              "unit": "px"
-            }
+            "value": 2.527038812637329,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         },
         {
@@ -5396,32 +5318,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 0.5008620619773865,
-              "unit": "px"
-            }
+            "value": 0.5008620619773865,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 4.758189678192139,
-              "unit": "px"
-            }
+            "value": 4.758189678192139,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         },
         {
@@ -5440,32 +5350,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 0.8934523463249207,
-              "unit": "px"
-            }
+            "value": 0.8934523463249207,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 8.487797737121582,
-              "unit": "px"
-            }
+            "value": 8.487797737121582,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         },
         {
@@ -5484,32 +5382,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 1.6711044311523438,
-              "unit": "px"
-            }
+            "value": 1.6711044311523438,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 15.87549114227295,
-              "unit": "px"
-            }
+            "value": 15.87549114227295,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         },
         {
@@ -5528,32 +5414,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 14,
-              "unit": "px"
-            }
+            "value": 14,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 38,
-              "unit": "px"
-            }
+            "value": 38,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         }
       ],
@@ -5582,32 +5456,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 1,
-              "unit": "px"
-            }
+            "value": 1,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 1,
-              "unit": "px"
-            }
+            "value": 1,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         },
         {
@@ -5626,32 +5488,20 @@
             }
           },
           "offsetX": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           },
           "offsetY": {
-            "$type": "dimension",
-            "value": {
-              "value": 1,
-              "unit": "px"
-            }
+            "value": 1,
+            "unit": "px"
           },
           "blur": {
-            "$type": "dimension",
-            "value": {
-              "value": 5,
-              "unit": "px"
-            }
+            "value": 5,
+            "unit": "px"
           },
           "spread": {
-            "$type": "dimension",
-            "value": {
-              "value": 0,
-              "unit": "px"
-            }
+            "value": 0,
+            "unit": "px"
           }
         }
       ],
