@@ -3,6 +3,7 @@
  *
  * Transforms color tokens with $type: "color" and complex $value objects
  * into valid color strings based on the colorSpace and components.
+ * Also handles nested color tokens within composite tokens (e.g., colors within shadow tokens).
  *
  * @since 1.0.0
  */
@@ -56,6 +57,92 @@ function normalizeComponents(components) {
 }
 
 /**
+ * Recursively checks if an object contains nested color tokens.
+ *
+ * @since 1.0.0
+ * @param {Object|Array} obj - The object or array to check.
+ * @return {boolean} True if nested color tokens are found.
+ */
+function hasNestedColor(obj) {
+	// Handle null or non-object values
+	if (!obj || typeof obj !== 'object') {
+		return false;
+	}
+	
+	// Handle arrays - but only if they contain objects that could have color tokens
+	if (Array.isArray(obj)) {
+		return obj.some(item => 
+			typeof item === 'object' && 
+			item !== null && 
+			hasNestedColor(item)
+		);
+	}
+	
+	// Check if this object directly is a color token
+	if (obj.$type === 'color' && obj.$value) {
+		return true;
+	}
+	
+	// Recursively check all properties
+	for (const key in obj) {
+		if (Object.prototype.hasOwnProperty.call(obj, key)) {
+			const value = obj[key];
+			if (hasNestedColor(value)) {
+				return true;
+			}
+		}
+	}
+	
+	return false;
+}
+
+/**
+ * Recursively transforms nested color tokens in an object.
+ *
+ * @since 1.0.0
+ * @param {Object|Array} obj - The object or array to transform.
+ * @return {Object|Array} The transformed object with color tokens converted to CSS strings.
+ */
+function transformNestedColor(obj) {
+	// Handle null or non-object values
+	if (!obj || typeof obj !== 'object') {
+		return obj;
+	}
+	
+	// Handle arrays - but only transform if they contain objects that might have color tokens
+	if (Array.isArray(obj)) {
+		// Check if this array contains objects that could have color tokens
+		const hasObjectsWithColor = obj.some(item => 
+			typeof item === 'object' && 
+			item !== null && 
+			hasNestedColor(item)
+		);
+		
+		if (hasObjectsWithColor) {
+			return obj.map(item => transformNestedColor(item));
+		} else {
+			// Return array unchanged if it doesn't contain color tokens
+			return obj;
+		}
+	}
+	
+	// Check if this object directly is a color token
+	if (obj.$type === 'color' && obj.$value) {
+		return convertColorValue(obj.$value);
+	}
+	
+	// Transform all properties recursively
+	const result = {};
+	for (const key in obj) {
+		if (Object.prototype.hasOwnProperty.call(obj, key)) {
+			result[key] = transformNestedColor(obj[key]);
+		}
+	}
+	
+	return result;
+}
+
+/**
  * Converts DTCG color token to valid color string.
  *
  * @since 1.0.0
@@ -66,30 +153,18 @@ function normalizeComponents(components) {
 function convertColorValue(colorValue) {
 	const { colorSpace, components, alpha, hex } = colorValue;
 	
-	// Debug logging
-	console.log('Converting color token:', { colorSpace, components, alpha, hex });
-	
 	try {
-		// Normalize components to array format
-		// const components = normalizeComponents(rawComponents);
-		
 		// Handle different color spaces
 		switch (colorSpace) {
 			case 'srgb':
-				console.log('Matched srgb case, components:', components);
 				// Convert 0-1 range to 0-255 for RGB
 				const [r, g, b] = components.map(componentTo255);
-				console.log('Converted RGB values:', { r, g, b });
 				
 				// Check if alpha exists and is not 1
 				if (alpha !== undefined && alpha !== 1) {
-					const result = `rgba(${r}, ${g}, ${b}, ${alpha})`;
-					console.log('Returning rgba:', result);
-					return result;
+					return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 				} else {
-					const result = `rgb(${r}, ${g}, ${b})`;
-					console.log('Returning rgb:', result);
-					return result;
+					return `rgb(${r}, ${g}, ${b})`;
 				}
 				
 			case 'display-p3':
@@ -177,13 +252,11 @@ function convertColorValue(colorValue) {
 				throw new Error(`Unsupported color space: ${colorSpace}`);
 		}
 	} catch (error) {
-		// Log the error and fall back to hex value
-		console.error(`Error converting color token: ${error.message}`);
+		// Fall back to hex value if available
 		if (hex) {
-			console.warn(`Falling back to hex value: ${hex}`);
 			return hex;
 		} else {
-			throw new Error('Color conversion failed and no hex fallback available');
+			throw new Error(`Color conversion failed: ${error.message}`);
 		}
 	}
 }
@@ -197,18 +270,32 @@ function convertColorValue(colorValue) {
 export const resolveColor = {
 	name: 'color/resolve',
 	type: 'value',
+	transitive: true, // This ensures the transform runs after references are resolved
 	filter: (token) => {
-		const tokenType = token.$type;
-		const tokenValue = token.$value;
+		// Check if token is a direct color token
+		if (token.$type === 'color' && token.$value) {
+			return true;
+		}
 		
-		const isColorToken = tokenType === 'color' && 
-			tokenValue;
-			
-		return isColorToken;
+		// Check if token has nested color structures (like in shadow tokens)
+		if (token.$value && typeof token.$value === 'object') {
+			return hasNestedColor(token.$value);
+		}
+		
+		return false;
 	},
 	transform: (token) => {
-		const tokenValue = token.$value;
-		return convertColorValue(tokenValue);
+		// Handle direct color token
+		if (token.$type === 'color' && token.$value) {
+			return convertColorValue(token.$value);
+		}
+		
+		// Handle nested structures
+		if (token.$value && typeof token.$value === 'object') {
+			return transformNestedColor(token.$value);
+		}
+		
+		return token.$value;
 	}
 };
 

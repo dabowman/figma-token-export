@@ -177,21 +177,7 @@
     "High": [
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.019680192694067955,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.019680192694067955)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"
@@ -211,21 +197,7 @@
       },
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.028272492811083794,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.028272492811083794)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"
@@ -245,21 +217,7 @@
       },
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.03500000014901161,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.03500000014901161)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"
@@ -279,21 +237,7 @@
       },
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.04172750562429428,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.04172750562429428)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"
@@ -313,21 +257,7 @@
       },
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.05031980574131012,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.05031980574131012)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"
@@ -347,21 +277,7 @@
       },
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.07000000029802322,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.07000000029802322)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"
@@ -383,21 +299,7 @@
     "Medium": [
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.009999999776482582,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.009999999776482582)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"
@@ -417,21 +319,7 @@
       },
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.009999999776482582,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.009999999776482582)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"
@@ -451,21 +339,7 @@
       },
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.019999999552965164,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.019999999552965164)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"
@@ -485,21 +359,7 @@
       },
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.019999999552965164,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.019999999552965164)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"
@@ -519,21 +379,7 @@
       },
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.02500000037252903,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.02500000037252903)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"
@@ -553,21 +399,7 @@
       },
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.03999999910593033,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.03999999910593033)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"
@@ -589,21 +421,7 @@
     "Low": [
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.15000000596046448,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.15000000596046448)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"
@@ -623,21 +441,7 @@
       },
       {
         "inset": false,
-        "color": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0,
-              0,
-              0
-            ],
-            "alpha": 0.05000000074505806,
-            "hex": "#000000"
-          },
-          "filePath": "tokens/wpvip-product_light.json",
-          "isSource": true
-        },
+        "color": "rgba(0, 0, 0, 0.05000000074505806)",
         "offsetX": {
           "$type": "dimension",
           "value": "0rem"

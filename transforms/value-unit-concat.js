@@ -21,9 +21,13 @@ function hasNestedValueUnit(obj) {
 		return false;
 	}
 	
-	// Handle arrays (like shadow token arrays)
+	// Handle arrays - but only if they contain objects that could have value/unit pairs
 	if (Array.isArray(obj)) {
-		return obj.some(item => hasNestedValueUnit(item));
+		return obj.some(item => 
+			typeof item === 'object' && 
+			item !== null && 
+			hasNestedValueUnit(item)
+		);
 	}
 	
 	// Check if this object directly has value + unit properties
@@ -57,9 +61,21 @@ function transformNestedValueUnit(obj) {
 		return obj;
 	}
 	
-	// Handle arrays (like shadow token arrays)
+	// Handle arrays - but only transform if they contain objects that might have value/unit pairs
 	if (Array.isArray(obj)) {
-		return obj.map(item => transformNestedValueUnit(item));
+		// Check if this array contains objects that could have value/unit pairs
+		const hasObjectsWithValueUnit = obj.some(item => 
+			typeof item === 'object' && 
+			item !== null && 
+			hasNestedValueUnit(item)
+		);
+		
+		if (hasObjectsWithValueUnit) {
+			return obj.map(item => transformNestedValueUnit(item));
+		} else {
+			// Return array unchanged if it doesn't contain value/unit objects
+			return obj;
+		}
 	}
 	
 	// Check if this object directly has value + unit properties
