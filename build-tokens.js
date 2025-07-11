@@ -12,9 +12,11 @@
 import StyleDictionary from 'style-dictionary';
 import jsonFlatValue from './formatters/json-flat-value.js';
 import { valueUnitConcat } from './transforms/value-unit-concat.js';
+import { resolveColor } from './transforms/color-to-css.js';
 
-// Register custom transform
+// Register custom transforms
 StyleDictionary.registerTransform(valueUnitConcat);
+StyleDictionary.registerTransform(resolveColor);
 
 // Register custom formatter
 StyleDictionary.registerFormat({
@@ -52,6 +54,7 @@ const sd = new StyleDictionary({
         json: {
             transforms: [
                 'name/kebab',
+                'color/resolve',
                 'value/unit-concat'
             ],
             buildPath: 'output/json',
@@ -61,14 +64,19 @@ const sd = new StyleDictionary({
                     format: 'json/nested',
                     options: {
                         stripMeta: true
-                    },
-                    filter: 'no-base'
+                    }
                 }
             ]
         },
         css: {
+            expand: {
+                include: [
+                    'typography', 'shadow'
+                ]
+            },
             transforms: [
                 'name/kebab',
+                'color/resolve',
                 'value/unit-concat'
             ],
             buildPath: 'output/css',
@@ -77,8 +85,7 @@ const sd = new StyleDictionary({
                     destination: 'light.css',
                     format: 'css/variables',
                     options: {
-                        stripMeta: true,
-                        outputReferences: false
+                        stripMeta: true
                     }
                 }
             ]
@@ -92,6 +99,7 @@ const sd = new StyleDictionary({
             buildPath: 'output/custom-json',
             transforms: [
                 'name/kebab',
+                'color/resolve',
                 'value/unit-concat'
             ],
             files: [
