@@ -12,23 +12,35 @@
  * Recursively checks if an object contains nested value + unit pairs.
  *
  * @since 1.0.0
- * @param {Object} obj - The object to check.
+ * @param {Object|Array} obj - The object or array to check.
  * @return {boolean} True if nested value + unit pairs are found.
  */
 function hasNestedValueUnit(obj) {
+	// Handle null or non-object values
+	if (!obj || typeof obj !== 'object') {
+		return false;
+	}
+	
+	// Handle arrays (like shadow token arrays)
+	if (Array.isArray(obj)) {
+		return obj.some(item => hasNestedValueUnit(item));
+	}
+	
+	// Check if this object directly has value + unit properties
+	if (obj.value !== undefined && obj.unit !== undefined) {
+		return true;
+	}
+	
+	// Recursively check all properties
 	for (const key in obj) {
-		if (obj.hasOwnProperty(key)) {
+		if (Object.prototype.hasOwnProperty.call(obj, key)) {
 			const value = obj[key];
-			if (typeof value === 'object' && value !== null) {
-				if (value.value !== undefined && value.unit !== undefined) {
-					return true;
-				}
-				if (hasNestedValueUnit(value)) {
-					return true;
-				}
+			if (hasNestedValueUnit(value)) {
+				return true;
 			}
 		}
 	}
+	
 	return false;
 }
 
@@ -36,28 +48,30 @@ function hasNestedValueUnit(obj) {
  * Recursively transforms nested value + unit pairs in an object.
  *
  * @since 1.0.0
- * @param {Object} obj - The object to transform.
- * @return {Object} The transformed object with concatenated value + unit strings.
+ * @param {Object|Array} obj - The object or array to transform.
+ * @return {Object|Array} The transformed object with concatenated value + unit strings.
  */
 function transformNestedValueUnit(obj) {
-	const result = {};
+	// Handle null or non-object values
+	if (!obj || typeof obj !== 'object') {
+		return obj;
+	}
 	
+	// Handle arrays (like shadow token arrays)
+	if (Array.isArray(obj)) {
+		return obj.map(item => transformNestedValueUnit(item));
+	}
+	
+	// Check if this object directly has value + unit properties
+	if (obj.value !== undefined && obj.unit !== undefined) {
+		return `${obj.value}${obj.unit}`;
+	}
+	
+	// Transform all properties recursively
+	const result = {};
 	for (const key in obj) {
-		if (obj.hasOwnProperty(key)) {
-			const value = obj[key];
-			
-			if (typeof value === 'object' && value !== null) {
-				// Check if this object has value + unit properties
-				if (value.value !== undefined && value.unit !== undefined) {
-					result[key] = `${value.value}${value.unit}`;
-				} else {
-					// Recursively transform nested objects
-					result[key] = transformNestedValueUnit(value);
-				}
-			} else {
-				// Keep primitive values as-is
-				result[key] = value;
-			}
+		if (Object.prototype.hasOwnProperty.call(obj, key)) {
+			result[key] = transformNestedValueUnit(obj[key]);
 		}
 	}
 	

@@ -197,7 +197,6 @@ function convertColorValue(colorValue) {
 export const resolveColor = {
 	name: 'color/resolve',
 	type: 'value',
-	transitive: false, // Run after references are resolved
 	filter: (token) => {
 		const tokenType = token.$type;
 		const tokenValue = token.$value;
@@ -208,7 +207,6 @@ export const resolveColor = {
 		return isColorToken;
 	},
 	transform: (token) => {
-		// Handle both $value and value (DTCG vs legacy format)
 		const tokenValue = token.$value;
 		return convertColorValue(tokenValue);
 	}

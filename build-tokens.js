@@ -64,31 +64,10 @@ const sd = new StyleDictionary({
                     format: 'json/nested',
                     options: {
                         stripMeta: true
-                    }
+                    },
+                    filter: 'no-base'
                 }
-            ]
-        },
-        css: {
-            expand: {
-                include: [
-                    'typography', 'shadow'
-                ]
-            },
-            transforms: [
-                'name/kebab',
-                'color/resolve',
-                'value/unit-concat'
             ],
-            buildPath: 'output/css',
-            files: [
-                {
-                    destination: 'light.css',
-                    format: 'css/variables',
-                    options: {
-                        stripMeta: true
-                    }
-                }
-            ]
         },
         'custom-json': {
             expand: {
