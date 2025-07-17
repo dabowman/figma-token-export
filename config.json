@@ -1,0 +1,33 @@
+{
+    "include": [
+        "tokens/base.json"
+    ],
+    "source": [
+        "tokens/light.json"
+    ],
+    "preprocessors": [
+        "tokens-studio"
+    ],
+    "expand": {
+        "typesMap": {
+            "color": { "hex": "color"}
+        }
+    },
+    "platforms": {
+        "css": {
+            "transformGroup": "tokens-studio",
+            "transforms": [
+                "name/kebab",
+                "color/hex"
+            ],
+            "buildPath": "output/css",
+            "files": [
+                {
+                    "destination": "base.css",
+                    "format": "css/variables",
+                    "filter": "isHexLeaf"
+                }
+            ]
+        }
+    }
+}

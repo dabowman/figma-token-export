@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @fileoverview Figma plugin code to export raw variable, text style, and effect style data.
  *
@@ -15,7 +16,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { transformTokens } from './transform';
 /// <reference types="@figma/plugin-typings" />
 /**
  * Recursively simplifies a Figma object or value for safe JSON serialization.
@@ -75,8 +75,36 @@ function collectRawFigmaData() {
                 })),
             },
             variableDetails: {}, // Store detailed variable data separately
-            textStyles: textStyles.map(style => simplifyObject(style)),
-            effectStyles: effectStyles.map(style => simplifyObject(style)),
+            textStyles: textStyles.map(style => simplifyObject({
+                id: style.id,
+                key: style.key,
+                name: style.name,
+                description: style.description,
+                remote: style.remote,
+                type: style.type,
+                fontSize: style.fontSize,
+                fontName: style.fontName,
+                letterSpacing: style.letterSpacing,
+                lineHeight: style.lineHeight,
+                listSpacing: style.listSpacing,
+                hangingList: style.hangingList,
+                hangingPunctuation: style.hangingPunctuation,
+                paragraphIndent: style.paragraphIndent,
+                paragraphSpacing: style.paragraphSpacing,
+                textCase: style.textCase,
+                textDecoration: style.textDecoration,
+                boundVariables: style.boundVariables ? simplifyObject(style.boundVariables) : undefined,
+            })),
+            effectStyles: effectStyles.map(style => simplifyObject({
+                id: style.id,
+                key: style.key,
+                name: style.name,
+                description: style.description,
+                remote: style.remote,
+                type: style.type,
+                effects: style.effects ? simplifyObject(style.effects) : undefined,
+                boundVariables: style.boundVariables ? simplifyObject(style.boundVariables) : undefined,
+            })),
         };
         // Expand variable details separately
         const variableDetails = {};
@@ -86,7 +114,18 @@ function collectRawFigmaData() {
                     const variable = yield figma.variables.getVariableByIdAsync(varId);
                     if (variable) {
                         // Simplify variable object before storing
-                        variableDetails[varId] = simplifyObject(variable);
+                        variableDetails[varId] = simplifyObject({
+                            id: variable.id,
+                            key: variable.key,
+                            name: variable.name,
+                            description: variable.description,
+                            remote: variable.remote,
+                            variableCollectionId: variable.variableCollectionId,
+                            resolvedType: variable.resolvedType,
+                            scopes: variable.scopes,
+                            codeSyntax: variable.codeSyntax,
+                            valuesByMode: simplifyObject(variable.valuesByMode) // Simplify values
+                        });
                     }
                 }
                 catch (e) {
@@ -112,28 +151,22 @@ function main() {
         figma.showUI(__html__, { visible: false, width: 1, height: 1 });
         try {
             // Collect the raw data
-            console.log('Collecting raw data from Figma...');
             const rawData = yield collectRawFigmaData();
-            console.log('Raw data collection complete.');
-            // Transform the data
-            console.log('Transforming data to W3C Design Token format...');
-            const { outputs, errors } = transformTokens(rawData);
-            console.log('Data transformation complete.');
-            if (errors.length > 0) {
-                console.warn('Transformation encountered warnings/errors:');
-                errors.forEach(e => console.warn(`- ${e}`));
-            }
-            // Send the transformed data to the UI
+            // Send the data to the UI
             figma.ui.postMessage({
-                type: 'download-tokens',
-                payload: {
-                    files: outputs, // Object with filenames as keys and token data as values
-                    errors: errors,
-                },
+                type: 'download-raw-data',
+                payload: rawData,
+                filename: 'figma-raw-data.json'
             });
+            // Optionally, wait for a confirmation from the UI before closing
+            // figma.ui.onmessage = (msg) => {
+            //   if (msg.type === 'download-complete') {
+            //      figma.closePlugin('Raw data export initiated.');
+            //   }
+            // };
             // Or close immediately after sending
             setTimeout(() => {
-                figma.closePlugin('Token export initiated.');
+                figma.closePlugin('Raw data export initiated.');
             }, 500); // Small delay to ensure message is sent
         }
         catch (error) {
