@@ -157,6 +157,7 @@ function convertColorValue(colorValue) {
 		// Handle different color spaces
 		switch (colorSpace) {
 			case 'srgb':
+			case 'sRGB':
 				// Convert 0-1 range to 0-255 for RGB
 				const [r, g, b] = components.map(componentTo255);
 				

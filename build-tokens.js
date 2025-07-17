@@ -12,17 +12,20 @@
 import StyleDictionary from 'style-dictionary';
 import { valueUnitConcat } from './transforms/value-unit-concat.js';
 import { resolveColor } from './transforms/color-to-css.js';
-// import { themeUiFormat } from './formatters/theme-ui-format.js';
+import { themeUiFormat } from './formatters/theme-ui-format.js';
+import {
+    logVerbosityLevels
+  } from 'style-dictionary/enums';
 
 // Register custom transforms
 StyleDictionary.registerTransform(valueUnitConcat);
 StyleDictionary.registerTransform(resolveColor);
 
 // Register custom formatter
-// StyleDictionary.registerFormat({
-//     name: 'theme-ui',
-//     format: themeUiFormat
-// });
+StyleDictionary.registerFormat({
+    name: 'theme-ui',
+    format: themeUiFormat
+});
 
 const themes = ['light', 'dark'];
 const platforms = {
@@ -71,6 +74,9 @@ await cleanSd.cleanAllPlatforms();
  */
 for (const theme of themes) {
 	const sd = new StyleDictionary({
+        log: {
+            verbosity: logVerbosityLevels.default
+        },
 		usesDtcg: true,
 		include: ['tokens/core_valet-core.json'],
 		source: [`tokens/wpvip-product_${theme}.json`],
@@ -90,7 +96,7 @@ for (const theme of themes) {
 				files: [
 					{
 						destination: `valet-theme-${theme}.json`,
-						format: 'json/nested',
+						format: 'theme-ui',
                         filter: 'no-base'
 					},
 				],

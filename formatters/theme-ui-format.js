@@ -5,7 +5,7 @@
  *
  * @see https://theme-ui.com/theme-spec
  */
-module.exports = function(dictionary, options) {
+export function themeUiFormat(dictionary, file, options) {
 	const theme = {
 		colors: {},
 		space: {},
@@ -27,11 +27,18 @@ module.exports = function(dictionary, options) {
 	dictionary.allTokens.forEach(token => {
 		const value = token.value;
 		const path = token.path;
+        const type = token.$type;
 
 		// Example logic to map tokens to theme scales.
 		// You will likely need to adjust this based on your token structure.
 		const category = path[0];
 		const key = path.slice(1).join('-');
+
+        switch (type) {
+            case 'color':
+                theme.colors[key] = value;
+                break;
+        }
 
 		switch (category) {
 			case 'colors':

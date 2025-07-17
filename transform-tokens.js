@@ -154,6 +154,24 @@ function getTokenTypeAndValue(variableDetail, modeId) {
       if (name.includes('fontfamily') || scopes.includes('FONT_FAMILY')) {
         return { type: 'fontFamily', value: rawValue, originalValue: rawValue };
       }
+      if (name.includes('borderstyle')) {
+        const validBorderStyles = [
+          'solid',
+          'dashed',
+          'dotted',
+          'double',
+          'groove',
+          'ridge',
+          'outset',
+          'inset',
+        ];
+        if (typeof rawValue === 'string' && validBorderStyles.includes(rawValue.toLowerCase())) {
+          return { type: 'strokeStyle', value: rawValue, originalValue: rawValue };
+        }
+        console.warn(
+          `WARNING: Invalid border-style value "${rawValue}" for variable "${variableDetail.name}". Treating as a generic string.`
+        );
+      }
       return { type: 'string', value: rawValue, originalValue: rawValue };
     }
     default: {
@@ -580,12 +598,17 @@ function transformTokens() {
   console.log('Starting Pass 1: Building token structure and ID map...');
   for (const collection of collections) {
     const collectionName = collection.name.replace(/^\./, '').replace(/ /g, '-');
-    for (const mode of collection.modes) {
-      const modeName = mode.name;
-      const outputFilename = `${collectionName}_${modeName}.json`;
+    const outputFilename = `${collectionName}.json`;
+    if (!outputs[outputFilename]) {
+      outputs[outputFilename] = {};
+    }
+
+    if (collectionName === 'core_valet-core') {
+      // Special handling for the core collection to be nested under "base"
+      const mode = collection.modes[0]; // Assuming one mode for core
       const outputTokens = {};
-      outputs[outputFilename] = outputTokens;
-      console.log(` Processing collection '${collectionName}', mode '${modeName}'...`);
+      outputs[outputFilename]['base'] = outputTokens;
+      console.log(` Processing collection '${collectionName}' as 'base'...`);
 
       for (const variableId of collection.variableIds) {
         const detail = variableDetails[variableId];
@@ -604,13 +627,11 @@ function transformTokens() {
           continue;
         }
 
-        // Store path AND inferred type in the map for later alias resolution
-        // We store the *final intended type* and the *original value* here
-        idToPathMap[variableId] = { path: tokenNamePath, type: type, originalValue: originalValue };
+        idToPathMap[variableId] = { path: `base.${tokenNamePath}`, type: type, originalValue: originalValue };
 
         const tokenData = {
-          $type: needsResolution ? 'alias' : type, // Keep 'alias' type marker for Pass 2 detection
-          $value: needsResolution ? `ALIAS:${value}` : value, // Keep 'ALIAS:' value marker
+          $type: needsResolution ? 'alias' : type,
+          $value: needsResolution ? `ALIAS:${value}` : value,
           $description: detail.description || "",
           $extensions: {
             'figma.ID': detail.id,
@@ -620,31 +641,89 @@ function transformTokens() {
             'figma.codeSyntax': detail.codeSyntax,
           },
         };
-
         setNestedValue(outputTokens, pathParts, tokenData);
+      }
+    } else {
+      // Standard handling for all other collections
+      for (const mode of collection.modes) {
+        const modeName = mode.name;
+        const outputTokens = {};
+        outputs[outputFilename][modeName] = outputTokens;
+        console.log(` Processing collection '${collectionName}', mode '${modeName}'...`);
+
+        for (const variableId of collection.variableIds) {
+          const detail = variableDetails[variableId];
+          if (!detail) {
+            processingErrors.push(`WARNING: Variable details not found for ID: ${variableId} in collection ${collectionName}`);
+            continue;
+          }
+
+          const pathParts = detail.name.split('/');
+          const tokenNamePath = pathParts.join('.');
+
+          const { type, value, needsResolution, originalValue } = getTokenTypeAndValue(detail, mode.modeId);
+
+          if (type === 'unknown') {
+            processingErrors.push(`WARNING: Unknown resolvedType encountered for variable ${detail.name} (${variableId})`);
+            continue;
+          }
+
+          // Prefix the alias path with the mode name
+          idToPathMap[variableId] = { path: `${modeName}.${tokenNamePath}`, type: type, originalValue: originalValue };
+
+          const tokenData = {
+            $type: needsResolution ? 'alias' : type,
+            $value: needsResolution ? `ALIAS:${value}` : value,
+            $description: detail.description || "",
+            $extensions: {
+              'figma.ID': detail.id,
+              'figma.key': detail.key,
+              'figma.collectionID': detail.variableCollectionId,
+              'figma.scopes': detail.scopes,
+              'figma.codeSyntax': detail.codeSyntax,
+            },
+          };
+
+          setNestedValue(outputTokens, pathParts, tokenData);
+        }
       }
     }
   }
   console.log('Pass 1 complete.');
 
-  // --- Process Text Styles --- 
+  // --- Process Text Styles ---
   const typographyOutput = processTextStyles(rawData.textStyles || [], idToPathMap, processingErrors);
 
-  // --- Process Effect Styles --- 
+  // --- Process Effect Styles ---
   const shadowOutput = processEffectStyles(rawData.effectStyles || [], idToPathMap, processingErrors);
 
-  // --- Merge Styles into Outputs --- 
+  // --- Merge Styles into Outputs ---
   console.log('Merging style tokens into outputs...');
   for (const filename in outputs) {
     if (Object.hasOwn(outputs, filename)) {
-      Object.assign(outputs[filename],
-        JSON.parse(JSON.stringify(typographyOutput)),
-        JSON.parse(JSON.stringify(shadowOutput))
-      );
+      if (filename.includes('core_valet-core')) {
+        // Merge into the 'base' property for the core file
+        Object.assign(
+          outputs[filename].base,
+          JSON.parse(JSON.stringify(typographyOutput)),
+          JSON.parse(JSON.stringify(shadowOutput))
+        );
+      } else {
+        // Merge into each mode for other files
+        for (const modeName in outputs[filename]) {
+          if (Object.hasOwn(outputs[filename], modeName)) {
+            Object.assign(
+              outputs[filename][modeName],
+              JSON.parse(JSON.stringify(typographyOutput)),
+              JSON.parse(JSON.stringify(shadowOutput))
+            );
+          }
+        }
+      }
     }
   }
 
-  // --- Pass 2: Resolve Aliases (Now run AFTER typography merge) --- 
+  // --- Pass 2: Resolve Aliases (Now run AFTER typography merge) ---
   console.log('Starting Pass 2: Resolving aliases...');
   for (const filename in outputs) {
     if (Object.hasOwn(outputs, filename)) {
@@ -670,7 +749,7 @@ function transformTokens() {
 
   console.log('Token transformation process finished.');
 
-  // --- Print Error Summary --- 
+  // --- Print Error Summary ---
   if (processingErrors.length > 0) {
     console.log('\n--- Processing Errors/Warnings Summary ---');
     processingErrors.forEach(err => console.error(`- ${err}`));
