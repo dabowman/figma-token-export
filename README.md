@@ -1,54 +1,151 @@
 # Figma Token Export Plugin
 
-This plugin exports Figma variables, text styles, and effect styles as W3C Design Tokens.
+This plugin exports Figma variables, text styles, and effect styles as W3C Design Tokens in the [DTCG Format](https://www.designtokens.org/tr/drafts/format/).
 
 ## Overview
 
-The plugin directly transforms Figma design data into W3C Design Token format, creating multiple JSON files based on your Figma collections and modes. The transformed tokens follow the W3C Design Token Community Group format specification.
+The plugin directly transforms Figma design data into W3C Design Token Community Group (DTCG) format, creating multiple JSON files based on your Figma collections and modes. All processing happens within the plugin - no external scripts required.
 
 ## How to Use
 
-1. Open your Figma file containing variables, text styles, and/or effect styles
-2. Run the plugin from Plugins → Token Export
-3. The plugin will automatically:
-   - Collect all local variables, text styles, and effect styles
-   - Transform them into W3C Design Token format
-   - Generate and download multiple JSON files (one per collection)
+1. **Open your Figma file** containing variables, text styles, and/or effect styles
+2. **Run the plugin** from Plugins → Token Export
+3. **Wait for processing** - the plugin will show "Generating tokens..." while it:
+   - Collects all local variables, text styles, and effect styles
+   - Transforms them into DTCG format with proper type inference
+   - Resolves all variable aliases to token references
+4. **Download files individually** - the UI will show download buttons for each generated file
+5. **Close the plugin** using Figma's built-in close button
 
-## Output Format
+## How the Plugin Handles Different Features
 
-The plugin generates JSON files following the W3C Design Token format:
+### 🎨 **Variables**
 
-- **Variables**: Transformed into typed tokens (color, dimension, number, etc.)
-- **Text Styles**: Converted to typography composite tokens
-- **Effect Styles**: Converted to shadow tokens
-- **Aliases**: Automatically resolved with proper token references
+The plugin processes Figma variables and automatically infers W3C token types:
 
-### Example Output Structure
+- **Colors** → `color` tokens with sRGB color space, alpha channel, and hex values
+- **Numbers** → Contextual types based on variable names and scopes:
+  - Font sizes → `dimension` tokens with `px` units  
+  - Font weights → `fontWeight` tokens with numeric values
+  - Line heights → `number` tokens (converted from percentages)
+  - Letter spacing → `dimension` tokens with `%` units
+  - Border radius/width → `dimension` tokens with `px` units
+- **Strings** → Contextual types:
+  - Font families → `fontFamily` tokens
+  - Border styles → `strokeStyle` tokens (validated against CSS values)
+  - Generic strings → `string` tokens
+
+### ✍️ **Typography Styles**
+
+Text styles are converted to `typography` composite tokens containing:
+
+- **fontFamily** - From style's font family or resolved from bound variables
+- **fontSize** - Converted to `{value, unit}` objects or token references  
+- **fontWeight** - Mapped from font style names (Regular→400, Bold→700, etc.)
+- **lineHeight** - Converted from percentages to decimal values or token references
+- **letterSpacing** - Converted to percentage or pixel units
+- **textCase** - Mapped to CSS values (UPPER→uppercase, etc.)
+- **textDecoration** - Mapped to CSS values (UNDERLINE→underline, etc.)
+
+### 🌫️ **Effect Styles (Shadows)**
+
+Drop shadows and inner shadows are converted to `shadow` tokens with:
+
+- **color** - Full color objects or token references if bound to variables
+- **offsetX/offsetY** - Pixel values from shadow offset
+- **blur** - Radius converted to pixel dimensions  
+- **spread** - Spread value in pixels
+- **inset** - Boolean flag for inner shadows
+
+### 🔗 **Alias Resolution**
+
+The plugin handles variable references intelligently:
+
+1. **First Pass**: Builds a complete map of all variable IDs to their token paths
+2. **Alias Detection**: Identifies `VARIABLE_ALIAS` references in raw data
+3. **Second Pass**: Resolves all aliases to proper token reference format (`{path.to.token}`)
+4. **Fallback Handling**: Attempts manual matching for bound variables that can't be directly resolved
+5. **Error Reporting**: Logs warnings for unresolvable references
+
+### 📁 **Collections and Modes**
+
+The plugin organizes output based on Figma's structure:
+
+- **Multiple Collections** → Separate JSON files per collection
+- **Multiple Modes** → Nested objects within each file (e.g., `light`, `dark` modes)
+- **Special Handling**: Core collections are nested under `base` key
+- **File Naming**: Collection names are sanitized for valid filenames
+
+### 📋 **DTCG Format Compliance**
+
+All tokens follow the W3C Design Token Community Group specification:
+
+- **`$type`** - Semantic token type (color, dimension, typography, etc.)
+- **`$value`** - Token value in the appropriate format for the type
+- **`$description`** - Preserved from Figma descriptions
+- **`$extensions`** - Figma metadata (ID, key, collection info, scopes)
+- **Composite Types** - Typography and shadow tokens use proper composite structures
+- **Alias Format** - References use `{path.to.token}` syntax
+
+## Output Files
+
+The plugin generates separate JSON files for each collection:
+
+- `core.json` - Base design tokens (colors, typography, spacing, etc.)
+- `wpvip-product.json` - Product-specific tokens with modes
+- `wpvip-product_light.json` - Light theme tokens  
+- `wpvip-product_dark.json` - Dark theme tokens
+- Additional files based on your Figma collections
+
+## Example Output Structure
 
 ```json
 {
   "base": {
     "color": {
       "primary": {
-        "$type": "color",
+        "$type": "color", 
         "$value": {
           "colorSpace": "srgb",
           "components": [0.2, 0.4, 0.8],
           "alpha": 1,
           "hex": "#3366cc"
+        },
+        "$description": "Primary brand color",
+        "$extensions": {
+          "figma.ID": "VariableID:123:456", 
+          "figma.key": "abc123...",
+          "figma.collectionID": "VariableCollectionId:123:789"
         }
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{base.color.primary}",
+        "$description": "Alias to primary color"
       }
     },
     "typography": {
-      "heading": {
+      "heading-large": {
         "$type": "typography",
         "$value": {
-          "fontFamily": "Inter",
-          "fontSize": { "value": 24, "unit": "px" },
+          "fontFamily": "{base.fontFamily.primary}",
+          "fontSize": { "value": 32, "unit": "px" },
           "fontWeight": 700,
-          "lineHeight": 1.2
+          "lineHeight": 1.2,
+          "letterSpacing": { "value": -0.5, "unit": "%" }
         }
+      }
+    },
+    "shadow": {
+      "card": {
+        "$type": "shadow", 
+        "$value": [{
+          "color": "{base.color.shadow}",
+          "offsetX": { "value": 0, "unit": "px" },
+          "offsetY": { "value": 4, "unit": "px" }, 
+          "blur": { "value": 8, "unit": "px" },
+          "spread": { "value": 0, "unit": "px" }
+        }]
       }
     }
   }
@@ -62,10 +159,11 @@ npm install
 npm run build
 ```
 
-## Features
+## Integration
 
-- Automatic type inference based on variable names and scopes
-- Proper alias resolution with token references
-- Support for multiple collections and modes
-- Typography and shadow token generation from styles
-- W3C Design Token format compliance
+The generated token files can be used with:
+
+- **[Style Dictionary](https://amzn.github.io/style-dictionary/)** - Transform to platform-specific formats
+- **[Tokens Studio](https://tokens.studio/)** - Token management and synchronization  
+- **Custom build tools** - Any system that consumes W3C Design Tokens
+- **Design systems** - As the source of truth for design decisions

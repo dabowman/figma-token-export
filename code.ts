@@ -63,7 +63,7 @@ function simplifyObject(obj: any): unknown {
     if (Object.prototype.hasOwnProperty.call(obj, key) && key !== 'parent' && key !== 'children') {
       const value = obj[key];
       if (typeof value !== 'function') {
-        simplified[key] = simplifyObject(value);
+          simplified[key] = simplifyObject(value);
       }
     }
   }
@@ -128,7 +128,7 @@ function getTokenTypeAndValue(variableDetail: any, modeId: string): TransformRes
   const scopes = variableDetail.scopes || [];
 
   // Handle Aliases
-  if (typeof rawValue === 'object' && rawValue?.type === 'VARIABLE_ALIAS') {
+  if (typeof rawValue === 'object' && rawValue && rawValue.type === 'VARIABLE_ALIAS') {
     return { type: 'alias', value: rawValue.id, needsResolution: true, originalValue: null };
   }
 
@@ -147,34 +147,34 @@ function getTokenTypeAndValue(variableDetail: any, modeId: string): TransformRes
       };
     }
     case 'FLOAT': {
-      if (name.includes('fontsize') || scopes.includes('FONT_SIZE')) {
+      if (name.indexOf('fontsize') !== -1 || scopes.indexOf('FONT_SIZE') !== -1) {
         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
       }
-      if (name.includes('fontweight') || scopes.includes('FONT_WEIGHT')) {
+      if (name.indexOf('fontweight') !== -1 || scopes.indexOf('FONT_WEIGHT') !== -1) {
         return { type: 'fontWeight', value: rawValue, originalValue: rawValue };
       }
-      if (name.includes('lineheight') || scopes.includes('LINE_HEIGHT')) {
+      if (name.indexOf('lineheight') !== -1 || scopes.indexOf('LINE_HEIGHT') !== -1) {
         return { type: 'number', value: roundNear(rawValue) / 100, originalValue: rawValue };
       }
-      if (name.includes('letterspacing') || scopes.includes('LETTER_SPACING')) {
+      if (name.indexOf('letterspacing') !== -1 || scopes.indexOf('LETTER_SPACING') !== -1) {
         return { type: 'dimension', value: { value: rawValue, unit: '%' }, originalValue: rawValue };
       }
-      if (name.includes('space') || name.includes('gap') || scopes.includes('GAP')) {
+      if (name.indexOf('space') !== -1 || name.indexOf('gap') !== -1 || scopes.indexOf('GAP') !== -1) {
         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
       }
-      if (name.includes('borderradius') || name.includes('radius') || scopes.includes('CORNER_RADIUS')) {
+      if (name.indexOf('borderradius') !== -1 || name.indexOf('radius') !== -1 || scopes.indexOf('CORNER_RADIUS') !== -1) {
         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
       }
-      if (name.includes('borderwidth') || name.includes('strokewidth') || scopes.includes('STROKE_WIDTH')) {
+      if (name.indexOf('borderwidth') !== -1 || name.indexOf('strokewidth') !== -1 || scopes.indexOf('STROKE_WIDTH') !== -1) {
         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
       }
       return { type: 'number', value: rawValue, originalValue: rawValue };
     }
     case 'STRING': {
-      if (name.includes('fontfamily') || scopes.includes('FONT_FAMILY')) {
+      if (name.indexOf('fontfamily') !== -1 || scopes.indexOf('FONT_FAMILY') !== -1) {
         return { type: 'fontFamily', value: rawValue, originalValue: rawValue };
       }
-      if (name.includes('borderstyle')) {
+      if (name.indexOf('borderstyle') !== -1) {
         const validBorderStyles = [
           'solid',
           'dashed',
@@ -185,7 +185,7 @@ function getTokenTypeAndValue(variableDetail: any, modeId: string): TransformRes
           'outset',
           'inset',
         ];
-        if (typeof rawValue === 'string' && validBorderStyles.includes(rawValue.toLowerCase())) {
+        if (typeof rawValue === 'string' && validBorderStyles.indexOf(rawValue.toLowerCase()) !== -1) {
           return { type: 'strokeStyle', value: rawValue, originalValue: rawValue };
         }
         console.warn(
@@ -210,10 +210,10 @@ function getTokenTypeAndValue(variableDetail: any, modeId: string): TransformRes
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function resolveAliases(obj: any, idToPathMap: Record<string, TokenInfo>, errorsList: string[]): void {
   for (const key in obj) {
-    if (Object.hasOwn(obj, key)) {
+            if (Object.prototype.hasOwnProperty.call(obj, key)) {
       const node = obj[key];
       if (typeof node === 'object' && node !== null) {
-        if (node.$type === 'alias' && typeof node.$value === 'string' && node.$value.startsWith('ALIAS:')) {
+        if (node.$type === 'alias' && typeof node.$value === 'string' && node.$value.indexOf('ALIAS:') === 0) {
           const targetVariableId = node.$value.substring(6);
           const targetInfo = idToPathMap[targetVariableId];
 
@@ -264,7 +264,7 @@ function processTextStyles(textStyles: any[], idToPathMap: Record<string, TokenI
     const compositeValue: Record<string, unknown> = {};
 
     // fontFamily
-    const fontFamilyVarId = style.boundVariables?.fontFamily?.id;
+    const fontFamilyVarId = style.boundVariables && style.boundVariables.fontFamily && style.boundVariables.fontFamily.id;
     if (fontFamilyVarId && idToPathMap[fontFamilyVarId]) {
       compositeValue.fontFamily = `{${idToPathMap[fontFamilyVarId].path}}`;
     } else if (style.fontFamily) {
@@ -272,17 +272,17 @@ function processTextStyles(textStyles: any[], idToPathMap: Record<string, TokenI
     }
 
     // fontWeight
-    const fontWeightVarId = style.boundVariables?.fontWeight?.id;
+    const fontWeightVarId = style.boundVariables && style.boundVariables.fontWeight && style.boundVariables.fontWeight.id;
     if (fontWeightVarId && idToPathMap[fontWeightVarId]) {
       compositeValue.fontWeight = `{${idToPathMap[fontWeightVarId].path}}`;
-    } else if (style.fontName?.style) {
+    } else if (style.fontName && style.fontName.style) {
       const styleWeightString = style.fontName.style;
       const numericWeight = fontWeightMap[styleWeightString];
       compositeValue.fontWeight = numericWeight !== undefined ? numericWeight : styleWeightString;
     }
 
     // textCase
-    const textCaseVarId = style.boundVariables?.textCase?.id;
+    const textCaseVarId = style.boundVariables && style.boundVariables.textCase && style.boundVariables.textCase.id;
     if (textCaseVarId && idToPathMap[textCaseVarId]) {
       compositeValue.textCase = `{${idToPathMap[textCaseVarId].path}}`;
     } else if (style.textCase) {
@@ -300,7 +300,7 @@ function processTextStyles(textStyles: any[], idToPathMap: Record<string, TokenI
     }
 
     // textDecoration
-    const textDecorationVarId = style.boundVariables?.textDecoration?.id;
+    const textDecorationVarId = style.boundVariables && style.boundVariables.textDecoration && style.boundVariables.textDecoration.id;
     if (textDecorationVarId && idToPathMap[textDecorationVarId]) {
       compositeValue.textDecoration = `{${idToPathMap[textDecorationVarId].path}}`;
     } else if (style.textDecoration) {
@@ -317,7 +317,7 @@ function processTextStyles(textStyles: any[], idToPathMap: Record<string, TokenI
     }
 
     // fontSize
-    const fontSizeVarId = style.boundVariables?.fontSize?.id;
+    const fontSizeVarId = style.boundVariables && style.boundVariables.fontSize && style.boundVariables.fontSize.id;
     if (fontSizeVarId && idToPathMap[fontSizeVarId]) {
       compositeValue.fontSize = `{${idToPathMap[fontSizeVarId].path}}`;
     } else if (style.fontSize !== undefined) {
@@ -328,10 +328,10 @@ function processTextStyles(textStyles: any[], idToPathMap: Record<string, TokenI
     }
 
     // lineHeight
-    const lineHeightVarId = style.boundVariables?.lineHeight?.id;
+    const lineHeightVarId = style.boundVariables && style.boundVariables.lineHeight && style.boundVariables.lineHeight.id;
     if (lineHeightVarId && idToPathMap[lineHeightVarId]) {
       compositeValue.lineHeight = `{${idToPathMap[lineHeightVarId].path}}`;
-    } else if (style.lineHeight?.unit) {
+    } else if (style.lineHeight && style.lineHeight.unit) {
       if (lineHeightVarId) {
         errorsList.push(`WARNING: Unresolved bound variable ID '${lineHeightVarId}' for lineHeight in style '${style.name}'. Falling back to manual matching.`);
       }
@@ -340,7 +340,7 @@ function processTextStyles(textStyles: any[], idToPathMap: Record<string, TokenI
         let aliasFound = false;
         const targetPercent = roundNear(style.lineHeight.value);
         for (const [, tokenInfo] of Object.entries(idToPathMap)) {
-          if (tokenInfo.type === 'number' && tokenInfo.path.startsWith('lineHeight.') && roundNear(tokenInfo.originalValue as number) === targetPercent) {
+          if (tokenInfo.type === 'number' && tokenInfo.path.indexOf('lineHeight.') === 0 && roundNear(tokenInfo.originalValue as number) === targetPercent) {
             compositeValue.lineHeight = `{${tokenInfo.path}}`;
             aliasFound = true;
             break;
@@ -357,10 +357,10 @@ function processTextStyles(textStyles: any[], idToPathMap: Record<string, TokenI
     }
 
     // letterSpacing
-    const letterSpacingVarId = style.boundVariables?.letterSpacing?.id;
+    const letterSpacingVarId = style.boundVariables && style.boundVariables.letterSpacing && style.boundVariables.letterSpacing.id;
     if (letterSpacingVarId && idToPathMap[letterSpacingVarId]) {
       compositeValue.letterSpacing = `{${idToPathMap[letterSpacingVarId].path}}`;
-    } else if (style.letterSpacing?.unit) {
+    } else if (style.letterSpacing && style.letterSpacing.unit) {
       if (letterSpacingVarId) {
         errorsList.push(`WARNING: Unresolved bound variable ID '${letterSpacingVarId}' for letterSpacing in style '${style.name}'. Falling back to manual matching.`);
       }
@@ -371,7 +371,7 @@ function processTextStyles(textStyles: any[], idToPathMap: Record<string, TokenI
       if (style.letterSpacing.unit === 'PERCENT') {
         const targetPercent = style.letterSpacing.value;
         for (const [, tokenInfo] of Object.entries(idToPathMap)) {
-          if (tokenInfo.type === 'dimension' && tokenInfo.path.startsWith('letterSpacing.') && 
+          if (tokenInfo.type === 'dimension' && tokenInfo.path.indexOf('letterSpacing.') === 0 && 
               tokenInfo.originalValue !== null && Math.abs((tokenInfo.originalValue as number) - targetPercent) < tolerance) {
             compositeValue.letterSpacing = `{${tokenInfo.path}}`;
             aliasFound = true;
@@ -385,7 +385,7 @@ function processTextStyles(textStyles: any[], idToPathMap: Record<string, TokenI
       } else if (style.letterSpacing.unit === 'PIXELS') {
         const targetPixels = style.letterSpacing.value;
         for (const [, tokenInfo] of Object.entries(idToPathMap)) {
-          if (tokenInfo.type === 'dimension' && tokenInfo.path.startsWith('letterSpacing.') && tokenInfo.originalValue === targetPixels) {
+          if (tokenInfo.type === 'dimension' && tokenInfo.path.indexOf('letterSpacing.') === 0 && tokenInfo.originalValue === targetPixels) {
             compositeValue.letterSpacing = `{${tokenInfo.path}}`;
             aliasFound = true;
             break;
@@ -450,7 +450,7 @@ function processEffectStyles(effectStyles: any[], idToPathMap: Record<string, To
         const shadowLayer: Record<string, unknown> = { inset: effect.type === 'INNER_SHADOW' };
 
         // Color
-        const colorVarId = effect.boundVariables?.color?.id;
+        const colorVarId = effect.boundVariables && effect.boundVariables.color && effect.boundVariables.color.id;
         if (colorVarId && idToPathMap[colorVarId]) {
           shadowLayer.color = `{${idToPathMap[colorVarId].path}}`;
         } else {
@@ -473,7 +473,7 @@ function processEffectStyles(effectStyles: any[], idToPathMap: Record<string, To
         shadowLayer.offsetY = { value: effect.offset.y, unit: 'px' };
 
         // Blur
-        const blurVarId = effect.boundVariables?.radius?.id;
+        const blurVarId = effect.boundVariables && effect.boundVariables.radius && effect.boundVariables.radius.id;
         if (blurVarId && idToPathMap[blurVarId]) {
           shadowLayer.blur = `{${idToPathMap[blurVarId].path}}`;
         } else {
@@ -484,7 +484,7 @@ function processEffectStyles(effectStyles: any[], idToPathMap: Record<string, To
         }
 
         // Spread
-        const spreadVarId = effect.boundVariables?.spread?.id;
+        const spreadVarId = effect.boundVariables && effect.boundVariables.spread && effect.boundVariables.spread.id;
         if (spreadVarId && idToPathMap[spreadVarId]) {
           shadowLayer.spread = `{${idToPathMap[spreadVarId].path}}`;
         } else {
@@ -513,7 +513,15 @@ function processEffectStyles(effectStyles: any[], idToPathMap: Record<string, To
       };
       setNestedValue(shadowTokens, ['shadow', ...pathParts], tokenData);
     } else {
-      if (style.effects.every((eff: any) => eff.type !== 'DROP_SHADOW' && eff.type !== 'INNER_SHADOW')) {
+      let hasProcessableEffect = false;
+      for (let i = 0; i < style.effects.length; i++) {
+        const eff = style.effects[i];
+        if (eff.type === 'DROP_SHADOW' || eff.type === 'INNER_SHADOW') {
+          hasProcessableEffect = true;
+          break;
+        }
+      }
+      if (!hasProcessableEffect) {
         errorsList.push(`WARNING: Style '${style.name}' did not contain any processable shadow effects.`);
       }
     }
@@ -556,7 +564,7 @@ async function collectRawFigmaData(): Promise<RawFigmaData> {
       type: style.type,
       fontSize: style.fontSize,
       fontName: style.fontName,
-      fontFamily: style.fontName?.family,
+      fontFamily: style.fontName && style.fontName.family,
       letterSpacing: style.letterSpacing,
       lineHeight: style.lineHeight,
       listSpacing: style.listSpacing,
@@ -585,24 +593,24 @@ async function collectRawFigmaData(): Promise<RawFigmaData> {
   for (const collection of collections) {
     for (const varId of collection.variableIds) {
       try {
-        const variable = await figma.variables.getVariableByIdAsync(varId);
-        if (variable) {
-          variableDetails[varId] = simplifyObject({
-            id: variable.id,
-            key: variable.key,
-            name: variable.name,
-            description: variable.description,
-            remote: variable.remote,
-            variableCollectionId: variable.variableCollectionId,
-            resolvedType: variable.resolvedType,
-            scopes: variable.scopes,
-            codeSyntax: variable.codeSyntax,
+          const variable = await figma.variables.getVariableByIdAsync(varId);
+          if (variable) {
+              variableDetails[varId] = simplifyObject({
+                  id: variable.id,
+                  key: variable.key,
+                  name: variable.name,
+                  description: variable.description,
+                  remote: variable.remote,
+                  variableCollectionId: variable.variableCollectionId,
+                  resolvedType: variable.resolvedType,
+                  scopes: variable.scopes,
+                  codeSyntax: variable.codeSyntax,
             valuesByMode: simplifyObject(variable.valuesByMode)
-          });
-        }
+              });
+          }
       } catch (e) {
-        console.error(`Error fetching variable details for ID ${varId}:`, e);
-        variableDetails[varId] = { error: `Failed to fetch details for ${varId}` };
+          console.error(`Error fetching variable details for ID ${varId}:`, e);
+          variableDetails[varId] = { error: `Failed to fetch details for ${varId}` };
       }
     }
   }
@@ -621,8 +629,8 @@ function transformTokens(rawData: RawFigmaData): { outputs: Record<string, unkno
   const idToPathMap: Record<string, TokenInfo> = {};
   const outputs: Record<string, unknown> = {};
 
-  const collections = rawData?.variables?.collections;
-  const variableDetails = rawData?.variableDetails;
+  const collections = rawData && rawData.variables && rawData.variables.collections;
+  const variableDetails = rawData && rawData.variableDetails;
 
   if (!collections || !variableDetails) {
     processingErrors.push('Invalid raw data structure: Missing collections or variableDetails.');
@@ -735,8 +743,8 @@ function transformTokens(rawData: RawFigmaData): { outputs: Record<string, unkno
   // Merge Styles into Outputs
   console.log('Merging style tokens into outputs...');
   for (const filename in outputs) {
-    if (Object.hasOwn(outputs, filename)) {
-      if (filename.includes('core_valet-core')) {
+    if (Object.prototype.hasOwnProperty.call(outputs, filename)) {
+      if (filename.indexOf('core_valet-core') !== -1) {
         // Merge into the 'base' property for the core file
         const baseObj = (outputs[filename] as Record<string, unknown>).base as Record<string, unknown>;
         Object.assign(
@@ -748,7 +756,7 @@ function transformTokens(rawData: RawFigmaData): { outputs: Record<string, unkno
         // Merge into each mode for other files
         const fileOutput = outputs[filename] as Record<string, unknown>;
         for (const modeName in fileOutput) {
-          if (Object.hasOwn(fileOutput, modeName)) {
+          if (Object.prototype.hasOwnProperty.call(fileOutput, modeName)) {
             const modeObj = fileOutput[modeName] as Record<string, unknown>;
             Object.assign(
               modeObj,
@@ -764,7 +772,7 @@ function transformTokens(rawData: RawFigmaData): { outputs: Record<string, unkno
   // Pass 2: Resolve Aliases
   console.log('Starting Pass 2: Resolving aliases...');
   for (const filename in outputs) {
-    if (Object.hasOwn(outputs, filename)) {
+    if (Object.prototype.hasOwnProperty.call(outputs, filename)) {
       console.log(` Resolving aliases in ${filename}...`);
       resolveAliases(outputs[filename], idToPathMap, processingErrors);
     }
@@ -780,8 +788,8 @@ function transformTokens(rawData: RawFigmaData): { outputs: Record<string, unkno
  * and sends each file to the UI for download.
  */
 async function main() {
-  // Show a minimal, invisible UI to handle the download
-  figma.showUI(__html__, { visible: false, width: 1, height: 1 });
+  // Show the UI with download buttons
+  figma.showUI(__html__, { width: 320, height: 400 });
 
   try {
     // Collect the raw data
@@ -806,20 +814,15 @@ async function main() {
       content: JSON.stringify(data, null, 2)
     }));
 
-    figma.ui.postMessage({
+        figma.ui.postMessage({
       type: 'download-tokens',
       files: files
     });
 
-    // Close after a delay
-    setTimeout(() => {
-      figma.closePlugin('Token export complete.');
-    }, 500);
-
   } catch (error) {
     console.error('Error during token export:', error);
-    const message = error instanceof Error ? error.message : String(error);
-    figma.closePlugin('Error: ' + message);
+     const message = error instanceof Error ? error.message : String(error);
+     figma.closePlugin('Error: ' + message);
   }
 }
 
