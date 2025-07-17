@@ -32,6 +32,7 @@ interface TokenInfo {
   path: string;
   type: string;
   originalValue: unknown;
+  aliasTargetId?: string;
 }
 
 interface TransformResult {
@@ -115,6 +116,43 @@ function roundNear(num: number, precision: number = 0): number {
 }
 
 /**
+ * Checks if a variable name contains any of the specified terms in different naming conventions.
+ * Supports camelCase, kebab-case, and space-separated formats.
+ * @param name The variable name to check (should be lowercase).
+ * @param terms Array of terms to check for (e.g., ['font', 'size'] for fontSize, font-size, font size).
+ * @returns True if the name contains the terms in any supported format.
+ */
+function nameContainsTerms(name: string, terms: string[]): boolean {
+  if (terms.length === 0) return false;
+
+  const lowerName = name.toLowerCase();
+
+  // First, check for compound variations if multiple terms are provided, as they are more specific.
+  if (terms.length > 1) {
+    const joinedTerms = terms.join('').toLowerCase(); // camelCase: fontsize
+    const kebabTerms = terms.join('-').toLowerCase(); // kebab-case: font-size
+    const spaceTerms = terms.join(' ').toLowerCase(); // space: font size
+
+    if (
+      lowerName.indexOf(joinedTerms) !== -1 ||
+      lowerName.indexOf(kebabTerms) !== -1 ||
+      lowerName.indexOf(spaceTerms) !== -1
+    ) {
+      return true;
+    }
+  }
+
+  // As a fallback, or for single terms, check if ALL individual terms are present as substrings.
+  for (const term of terms) {
+    if (lowerName.indexOf(term.toLowerCase()) === -1) {
+      return false; // If any term is missing, it's not a match.
+    }
+  }
+
+  return true; // All terms were found.
+}
+
+/**
  * Infers the W3C token type and formats the value based on Figma variable details.
  * @param variableDetail The variable detail object from Figma raw data.
  * @param modeId The mode ID to extract the value for.
@@ -147,34 +185,34 @@ function getTokenTypeAndValue(variableDetail: any, modeId: string): TransformRes
       };
     }
     case 'FLOAT': {
-      if (name.indexOf('fontsize') !== -1 || scopes.indexOf('FONT_SIZE') !== -1) {
+      if (nameContainsTerms(name, ['font', 'size']) || scopes.indexOf('FONT_SIZE') !== -1) {
         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
       }
-      if (name.indexOf('fontweight') !== -1 || scopes.indexOf('FONT_WEIGHT') !== -1) {
+      if (nameContainsTerms(name, ['font', 'weight']) || scopes.indexOf('FONT_WEIGHT') !== -1) {
         return { type: 'fontWeight', value: rawValue, originalValue: rawValue };
       }
-      if (name.indexOf('lineheight') !== -1 || scopes.indexOf('LINE_HEIGHT') !== -1) {
+      if (nameContainsTerms(name, ['line', 'height']) || scopes.indexOf('LINE_HEIGHT') !== -1) {
         return { type: 'number', value: roundNear(rawValue) / 100, originalValue: rawValue };
       }
-      if (name.indexOf('letterspacing') !== -1 || scopes.indexOf('LETTER_SPACING') !== -1) {
+      if (nameContainsTerms(name, ['letter', 'spacing']) || scopes.indexOf('LETTER_SPACING') !== -1) {
         return { type: 'dimension', value: { value: rawValue, unit: '%' }, originalValue: rawValue };
       }
-      if (name.indexOf('space') !== -1 || name.indexOf('gap') !== -1 || scopes.indexOf('GAP') !== -1) {
+      if (nameContainsTerms(name, ['space']) || nameContainsTerms(name, ['gap']) || scopes.indexOf('GAP') !== -1) {
         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
       }
-      if (name.indexOf('borderradius') !== -1 || name.indexOf('radius') !== -1 || scopes.indexOf('CORNER_RADIUS') !== -1) {
+      if (nameContainsTerms(name, ['border', 'radius']) || nameContainsTerms(name, ['radius']) || scopes.indexOf('CORNER_RADIUS') !== -1) {
         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
       }
-      if (name.indexOf('borderwidth') !== -1 || name.indexOf('strokewidth') !== -1 || scopes.indexOf('STROKE_WIDTH') !== -1) {
+      if (nameContainsTerms(name, ['border', 'width']) || nameContainsTerms(name, ['stroke', 'width']) || scopes.indexOf('STROKE_WIDTH') !== -1) {
         return { type: 'dimension', value: { value: rawValue, unit: 'px' }, originalValue: rawValue };
       }
       return { type: 'number', value: rawValue, originalValue: rawValue };
     }
     case 'STRING': {
-      if (name.indexOf('fontfamily') !== -1 || scopes.indexOf('FONT_FAMILY') !== -1) {
+      if (nameContainsTerms(name, ['font', 'family']) || scopes.indexOf('FONT_FAMILY') !== -1) {
         return { type: 'fontFamily', value: rawValue, originalValue: rawValue };
       }
-      if (name.indexOf('borderstyle') !== -1) {
+      if (nameContainsTerms(name, ['border', 'style'])) {
         const validBorderStyles = [
           'solid',
           'dashed',
@@ -202,6 +240,33 @@ function getTokenTypeAndValue(variableDetail: any, modeId: string): TransformRes
 }
 
 /**
+ * Recursively follows a chain of aliases to find the final, non-alias token.
+ * Detects cycles to prevent infinite loops.
+ * @param startVariableId The ID of the variable to start resolution from.
+ * @param idToPathMap A map of Figma Variable IDs to TokenInfo.
+ * @param visited A set to track visited variable IDs in the current resolution chain.
+ * @returns The TokenInfo of the final resolved token, or null if a cycle is detected or the chain is invalid.
+ */
+function resolveAliasChain(startVariableId: string, idToPathMap: Record<string, TokenInfo>, visited: Set<string> = new Set()): TokenInfo | null {
+  if (visited.has(startVariableId)) {
+    console.error(`Cycle detected in alias chain involving variable ID: ${startVariableId}`);
+    return null; // Cycle detected
+  }
+  visited.add(startVariableId);
+
+  const tokenInfo = idToPathMap[startVariableId];
+  if (!tokenInfo) {
+    return null; // Invalid ID
+  }
+
+  if (tokenInfo.aliasTargetId) {
+    return resolveAliasChain(tokenInfo.aliasTargetId, idToPathMap, visited);
+  }
+
+  return tokenInfo; // Found the end of the chain
+}
+
+/**
  * Recursively traverses the token object and resolves alias values.
  * @param obj The token object structure to traverse.
  * @param idToPathMap A map where keys are Figma Variable IDs and values are TokenInfo objects.
@@ -213,16 +278,30 @@ function resolveAliases(obj: any, idToPathMap: Record<string, TokenInfo>, errors
             if (Object.prototype.hasOwnProperty.call(obj, key)) {
       const node = obj[key];
       if (typeof node === 'object' && node !== null) {
+        // This function uses a "deep resolve for type, shallow resolve for value" strategy.
+        // It resolves the entire alias chain to determine the final $type (e.g., 'color', 'dimension').
+        // However, the $value is set to the *next* token in the chain, preserving the intended token structure.
         if (node.$type === 'alias' && typeof node.$value === 'string' && node.$value.indexOf('ALIAS:') === 0) {
-          const targetVariableId = node.$value.substring(6);
-          const targetInfo = idToPathMap[targetVariableId];
+          const directTargetId = node.$value.substring(6);
+          const directTargetInfo = idToPathMap[directTargetId];
 
-          if (targetInfo) {
-            node.$type = targetInfo.type;
-            node.$value = `{${targetInfo.path}}`;
+          if (!directTargetInfo) {
+            errorsList.push(`WARNING: Could not find alias target with ID: ${directTargetId} for token ${key}`);
+            node.$value = `UNRESOLVED_ALIAS:${directTargetId}`;
+            node.$type = 'error';
+            continue;
+          }
+
+          // Deeply resolve to find the final type, but don't use its path for the value.
+          const finalTokenInfo = resolveAliasChain(directTargetId, idToPathMap);
+
+          if (finalTokenInfo) {
+            node.$type = finalTokenInfo.type;
+            // Shallowly resolve the value to point to the immediate next alias.
+            node.$value = `{${directTargetInfo.path}}`;
           } else {
-            errorsList.push(`WARNING: Could not resolve alias target ID: ${targetVariableId} for token ${key}`);
-            node.$value = `UNRESOLVED_ALIAS:${targetVariableId}`;
+            errorsList.push(`WARNING: Could not resolve alias chain starting from ID: ${directTargetId} for token ${key}. It might be part of a cycle or an invalid reference.`);
+            node.$value = `UNRESOLVED_ALIAS_CHAIN:${directTargetId}`;
             node.$type = 'error';
           }
         } else {
@@ -336,6 +415,8 @@ function processTextStyles(textStyles: any[], idToPathMap: Record<string, TokenI
         errorsList.push(`WARNING: Unresolved bound variable ID '${lineHeightVarId}' for lineHeight in style '${style.name}'. Falling back to manual matching.`);
       }
 
+      // Fallback: If a lineHeight variable is not explicitly bound, attempt to find a matching
+      // variable by its raw value. This is less robust and can be slow with many variables.
       if (style.lineHeight.unit === 'PERCENT') {
         let aliasFound = false;
         const targetPercent = roundNear(style.lineHeight.value);
@@ -365,6 +446,8 @@ function processTextStyles(textStyles: any[], idToPathMap: Record<string, TokenI
         errorsList.push(`WARNING: Unresolved bound variable ID '${letterSpacingVarId}' for letterSpacing in style '${style.name}'. Falling back to manual matching.`);
       }
 
+      // Fallback: Similar to lineHeight, manually search for a matching letterSpacing token if not bound.
+      // This is a potential performance bottleneck in files with many styles and variables.
       let aliasFound = false;
       const tolerance = 0.01;
 
@@ -593,6 +676,9 @@ async function collectRawFigmaData(): Promise<RawFigmaData> {
   for (const collection of collections) {
     for (const varId of collection.variableIds) {
       try {
+          // Note: This is a potential performance bottleneck (N+1 problem).
+          // For files with thousands of variables, these sequential async calls can be slow.
+          // If the Figma API offers a bulk-fetch method in the future, it should be used here.
           const variable = await figma.variables.getVariableByIdAsync(varId);
           if (variable) {
               variableDetails[varId] = simplifyObject({
@@ -637,6 +723,10 @@ function transformTokens(rawData: RawFigmaData): { outputs: Record<string, unkno
     return { outputs, errors: processingErrors };
   }
 
+  // This script uses a two-pass approach for transformation.
+  // Pass 1: Build the basic token structure for all variables, creating a map of
+  // variable IDs to their token path and type (`idToPathMap`). Aliases are noted
+  // but not resolved.
   console.log('Starting Pass 1: Building token structure and ID map...');
   
   for (const collection of collections) {
@@ -647,12 +737,12 @@ function transformTokens(rawData: RawFigmaData): { outputs: Record<string, unkno
       outputs[outputFilename] = {};
     }
 
-    if (collectionName === 'core_valet-core') {
-      // Special handling for the core collection to be nested under "base"
-      const mode = collection.modes[0];
+    // Standard handling for all collections
+    for (const mode of collection.modes) {
+      const modeName = mode.name;
       const outputTokens: Record<string, unknown> = {};
-      (outputs[outputFilename] as Record<string, unknown>)['base'] = outputTokens;
-      console.log(` Processing collection '${collectionName}' as 'base'...`);
+      (outputs[outputFilename] as Record<string, unknown>)[modeName] = outputTokens;
+      console.log(` Processing collection '${collectionName}', mode '${modeName}'...`);
 
       for (const variableId of collection.variableIds) {
         const detail = variableDetails[variableId] as any;
@@ -671,7 +761,12 @@ function transformTokens(rawData: RawFigmaData): { outputs: Record<string, unkno
           continue;
         }
 
-        idToPathMap[variableId] = { path: `base.${tokenNamePath}`, type: type, originalValue: originalValue };
+        idToPathMap[variableId] = { 
+          path: `${modeName}.${tokenNamePath}`, 
+          type: type, 
+          originalValue: originalValue,
+          aliasTargetId: needsResolution ? (value as string) : undefined
+        };
 
         const tokenData = {
           $type: needsResolution ? 'alias' : type,
@@ -685,55 +780,15 @@ function transformTokens(rawData: RawFigmaData): { outputs: Record<string, unkno
             'figma.codeSyntax': detail.codeSyntax,
           },
         };
+
         setNestedValue(outputTokens, pathParts, tokenData);
-      }
-    } else {
-      // Standard handling for all other collections
-      for (const mode of collection.modes) {
-        const modeName = mode.name;
-        const outputTokens: Record<string, unknown> = {};
-        (outputs[outputFilename] as Record<string, unknown>)[modeName] = outputTokens;
-        console.log(` Processing collection '${collectionName}', mode '${modeName}'...`);
-
-        for (const variableId of collection.variableIds) {
-          const detail = variableDetails[variableId] as any;
-          if (!detail) {
-            processingErrors.push(`WARNING: Variable details not found for ID: ${variableId} in collection ${collectionName}`);
-            continue;
-          }
-
-          const pathParts = detail.name.split('/');
-          const tokenNamePath = pathParts.join('.');
-
-          const { type, value, needsResolution, originalValue } = getTokenTypeAndValue(detail, mode.modeId);
-
-          if (type === 'unknown') {
-            processingErrors.push(`WARNING: Unknown resolvedType encountered for variable ${detail.name} (${variableId})`);
-            continue;
-          }
-
-          idToPathMap[variableId] = { path: `${modeName}.${tokenNamePath}`, type: type, originalValue: originalValue };
-
-          const tokenData = {
-            $type: needsResolution ? 'alias' : type,
-            $value: needsResolution ? `ALIAS:${value}` : value,
-            $description: detail.description || "",
-            $extensions: {
-              'figma.ID': detail.id,
-              'figma.key': detail.key,
-              'figma.collectionID': detail.variableCollectionId,
-              'figma.scopes': detail.scopes,
-              'figma.codeSyntax': detail.codeSyntax,
-            },
-          };
-
-          setNestedValue(outputTokens, pathParts, tokenData);
-        }
       }
     }
   }
   console.log('Pass 1 complete.');
 
+  // After variables are processed, text and effect styles are converted to composite tokens.
+  // These styles may reference the variable tokens created in pass 1.
   // Process Text Styles
   const typographyOutput = processTextStyles(rawData.textStyles || [], idToPathMap, processingErrors);
 
@@ -744,32 +799,24 @@ function transformTokens(rawData: RawFigmaData): { outputs: Record<string, unkno
   console.log('Merging style tokens into outputs...');
   for (const filename in outputs) {
     if (Object.prototype.hasOwnProperty.call(outputs, filename)) {
-      if (filename.indexOf('core_valet-core') !== -1) {
-        // Merge into the 'base' property for the core file
-        const baseObj = (outputs[filename] as Record<string, unknown>).base as Record<string, unknown>;
-        Object.assign(
-          baseObj,
-          JSON.parse(JSON.stringify(typographyOutput)),
-          JSON.parse(JSON.stringify(shadowOutput))
-        );
-      } else {
-        // Merge into each mode for other files
-        const fileOutput = outputs[filename] as Record<string, unknown>;
-        for (const modeName in fileOutput) {
-          if (Object.prototype.hasOwnProperty.call(fileOutput, modeName)) {
-            const modeObj = fileOutput[modeName] as Record<string, unknown>;
-            Object.assign(
-              modeObj,
-              JSON.parse(JSON.stringify(typographyOutput)),
-              JSON.parse(JSON.stringify(shadowOutput))
-            );
-          }
+      // Merge into each mode for all files
+      const fileOutput = outputs[filename] as Record<string, unknown>;
+      for (const modeName in fileOutput) {
+        if (Object.prototype.hasOwnProperty.call(fileOutput, modeName)) {
+          const modeObj = fileOutput[modeName] as Record<string, unknown>;
+          Object.assign(
+            modeObj,
+            JSON.parse(JSON.stringify(typographyOutput)),
+            JSON.parse(JSON.stringify(shadowOutput))
+          );
         }
       }
     }
   }
 
-  // Pass 2: Resolve Aliases
+  // Pass 2: Resolve Aliases. Now that all tokens and their paths are known, traverse the
+  // entire structure again and replace the temporary alias references (`ALIAS:var_123`)
+  // with the correct W3C token reference syntax (`{path.to.token}`).
   console.log('Starting Pass 2: Resolving aliases...');
   for (const filename in outputs) {
     if (Object.prototype.hasOwnProperty.call(outputs, filename)) {

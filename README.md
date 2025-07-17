@@ -16,27 +16,76 @@ The plugin directly transforms Figma design data into W3C Design Token Community
    - Resolves all variable aliases to token references
 4. **Download files individually** - the UI will show download buttons for each generated file
 
+## Things to watch out for
+
+Figma doesn't support the full token spec, so we've created some clever workarounds. Most involve creating **blind variables**—variables that use Figma's supported types but aren't actually applied to design elements in Figma. By creating these in our variable collections, we can run smart logic to match them up and create the variable links that Figma doesn't support yet.
+
+### Line height
+
+**The Problem**: This issue has two parts. First, Figma can only create number variables that assume pixel values, eliminating the possibility for line height variables that respond to changes in font size. You can manually set line height as a percentage, but it can't be bound to a variable. Second, the Design Token spec expects unitless numbers (e.g., 1.2) that are relative to the font size—essentially an em value. To connect these two systems, we need to do some conversion.
+
+**Our Solution**:
+
+1. **Create Blind Variables**: Set up blind number variables in Figma. Using "letter" and "spacing" in the name will allow the plugin to correctly match these as letterSpacing tokens. These will represent the line height tokens of your system. Figma treats these as pixel values, but the plugin will convert them to proper unitless line heights.
+
+2. **Create Text Styles**: When creating text styles, set line height as a percentage (e.g., 120%). You can't bind this to a variable in Figma, but if the percentage matches one of your blind variables, the plugin will create the connection.
+
+3. **Export Process**: The plugin handles line height in this order:
+   - **Bound Variables**: If a text style has a line height variable bound (pixels), it preserves that as a token reference
+   - **Percentage Conversion**: Percentage line heights get converted to unitless numbers (120% → 1.2)
+   - **Smart Matching**: The plugin tries to match the converted value to your blind line height variables
+   - **Alias Creation**: When a match is found, it creates proper token references: `"lineHeight": "{base.lineHeight.normal}"`
+   - **Fallback**: If no match is found it logs an error and the raw value is passed through.
+
+### Letter spacing
+
+**The Problem**: Figma supports letter spacing in both percentage and pixel units, but similar to line height, you can only create variables that apply as pixels. It's currently impossible to bind letter spacing to a responsive unit. The design token spec is also deficient here—it accepts dimension tokens for letter spacing, but dimension tokens can only use px or rem units. This will likely change in the future, so we've chosen to pass % units even though they aren't technically allowed by the current spec. 
+
+**Our Solution**:
+
+1. **Create Blind Variables**: Set up blind number variables with "letter" and "spacing" in the name (e.g., `letterSpacing/tight = -0.5`). The plugin automatically converts these to percentage units on export.
+
+2. **Apply to Text Styles**: Set letter spacing in your text styles using percentage values. If the value matches one of your blind variables the plugin will alias to the token.
+
+3. **Export Process**: The plugin handles letter spacing in this order:
+   - **Bound Variables**: If letter spacing is bound to a pixel variable, it preserves that as a token reference
+   - **Smart Matching**: Unbound percentage values are matched against blind letter spacing variables (with floating-point tolerance)
+   - **Alias Creation**: Matches create proper token references: `"letterSpacing": "{base.letterSpacing.tight}"`
+   - **Fallback**: No matches preserve the original unit and log a warning.
+
+### Borders
+
+**The Problem**: Figma doesn't support composite border styles. It does support binding variables to border color and border width. Where these variables are supported, we can create and use them normally. Where they're missing, we can use blind variables. We can also group our tokens to simulate composite border style tokens if we want.
+
+**Our Solution**:
+
+Since Figma doesn't support composite border styles, create separate variables for each border property. You can group them to simulate the structure of composite border tokens. The plugin will match these and assign the proper types on export. 
+
+1. **Border Width**: Create number variables with "border" and "width" in the name → exports as `dimension` tokens with `px` units
+2. **Border Style**: Create blind string variables with "border" and "style" in the name → exports as `strokeStyle` tokens (validated against CSS values: solid, dashed, dotted, double, groove, ridge, outset, inset)
+3. **Border Color**: Create and use regular color variables
+
 ## How the Plugin Handles Different Features
 
 ### 🎨 **Variables**
 
 The plugin processes Figma variables and automatically infers W3C token types based on Figma's `resolvedType`:
 
-- **Colors** (`COLOR`) → `color` tokens with sRGB color space, alpha channel, and hex values
+- **Colors** if $type = `COLOR` → `color` tokens with sRGB color space, alpha channel, and hex values
 
-- **Numbers** (`FLOAT`) → Contextual types determined by checking both variable names (case-insensitive) and Figma scopes:
-  - Names containing `fontsize` OR `FONT_SIZE` scope → `dimension` tokens with `px` units  
-  - Names containing `fontweight` OR `FONT_WEIGHT` scope → `fontWeight` tokens with numeric values
-  - Names containing `lineheight` OR `LINE_HEIGHT` scope → `number` tokens (raw percentage values divided by 100)
-  - Names containing `letterspacing` OR `LETTER_SPACING` scope → `dimension` tokens with `%` units
-  - Names containing `space`/`gap` OR `GAP` scope → `dimension` tokens with `px` units
-  - Names containing `borderradius`/`radius` OR `CORNER_RADIUS` scope → `dimension` tokens with `px` units
-  - Names containing `borderwidth`/`strokewidth` OR `STROKE_WIDTH` scope → `dimension` tokens with `px` units
+- **Numbers** if $type = `FLOAT` → Contextual types determined by checking both variable names (case-insensitive, supports camelCase, kebab-case, and spaces) and Figma scopes:
+  - Names like `fontSize`, `font-size`, `font size` OR `FONT_SIZE` scope → `dimension` tokens with `px` units  
+  - Names like `fontWeight`, `font-weight`, `font weight` OR `FONT_WEIGHT` scope → `fontWeight` tokens with numeric values
+  - Names like `lineHeight`, `line-height`, `line height` OR `LINE_HEIGHT` scope → `number` tokens (raw percentage values divided by 100)
+  - Names like `letterSpacing`, `letter-spacing`, `letter spacing` OR `LETTER_SPACING` scope → `dimension` tokens with `%` units
+  - Names like `space`, `gap` OR `GAP` scope → `dimension` tokens with `px` units
+  - Names like `borderRadius`, `border-radius`, `border radius`, `radius` OR `CORNER_RADIUS` scope → `dimension` tokens with `px` units
+  - Names like `borderWidth`, `border-width`, `border width`, `strokeWidth`, `stroke-width`, `stroke width` OR `STROKE_WIDTH` scope → `dimension` tokens with `px` units
   - **Fallback**: All other numbers → `number` tokens with raw values
 
-- **Strings** (`STRING`) → Contextual types determined by variable names and scopes:
-  - Names containing `fontfamily` OR `FONT_FAMILY` scope → `fontFamily` tokens
-  - Names containing `borderstyle` → `strokeStyle` tokens (only if value matches valid CSS border styles: solid, dashed, dotted, double, groove, ridge, outset, inset)
+- **Strings** if $type = `STRING` → Contextual types determined by variable names and scopes:
+  - Names like `fontFamily`, `font-family`, `font family` OR `FONT_FAMILY` scope → `fontFamily` tokens
+  - Names like `borderStyle`, `border-style`, `border style` → `strokeStyle` tokens (only if value matches valid CSS border styles: solid, dashed, dotted, double, groove, ridge, outset, inset)
   - **Fallback**: All other strings → `string` tokens
 
 ### ✍️ **Typography Styles**

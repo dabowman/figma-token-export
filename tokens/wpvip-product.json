@@ -204,7 +204,7 @@
           },
           "label": {
             "default": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.inverse}",
               "$description": "",
               "$extensions": {
@@ -218,7 +218,7 @@
               }
             },
             "hover": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.primary}",
               "$description": "",
               "$extensions": {
@@ -232,7 +232,7 @@
               }
             },
             "disabled": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.disabled}",
               "$description": "",
               "$extensions": {
@@ -294,7 +294,7 @@
           },
           "label": {
             "default": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.primary}",
               "$description": "",
               "$extensions": {
@@ -308,7 +308,7 @@
               }
             },
             "hover": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.primary}",
               "$description": "",
               "$extensions": {
@@ -322,7 +322,7 @@
               }
             },
             "disabled": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.disabled}",
               "$description": "",
               "$extensions": {
@@ -446,7 +446,7 @@
           },
           "label": {
             "default": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.primary}",
               "$description": "",
               "$extensions": {
@@ -460,7 +460,7 @@
               }
             },
             "hover": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.primary}",
               "$description": "",
               "$extensions": {
@@ -474,7 +474,7 @@
               }
             },
             "disabled": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.disabled}",
               "$description": "",
               "$extensions": {
@@ -554,7 +554,7 @@
           },
           "label": {
             "default": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.accent}",
               "$description": "",
               "$extensions": {
@@ -568,7 +568,7 @@
               }
             },
             "hover": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.primary}",
               "$description": "",
               "$extensions": {
@@ -582,7 +582,7 @@
               }
             },
             "disabled": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.disabled}",
               "$description": "",
               "$extensions": {
@@ -644,7 +644,7 @@
           },
           "label": {
             "default": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.primary}",
               "$description": "",
               "$extensions": {
@@ -658,7 +658,7 @@
               }
             },
             "hover": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.inverse}",
               "$description": "",
               "$extensions": {
@@ -672,7 +672,7 @@
               }
             },
             "disabled": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.disabled}",
               "$description": "",
               "$extensions": {
@@ -735,7 +735,7 @@
             },
             "label": {
               "default": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.inverse}",
                 "$description": "",
                 "$extensions": {
@@ -749,7 +749,7 @@
                 }
               },
               "hover": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.inverse}",
                 "$description": "",
                 "$extensions": {
@@ -763,7 +763,7 @@
                 }
               },
               "disabled": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.disabled}",
                 "$description": "",
                 "$extensions": {
@@ -857,7 +857,7 @@
                 }
               },
               "hover": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.inverse}",
                 "$description": "",
                 "$extensions": {
@@ -871,7 +871,7 @@
                 }
               },
               "disabled": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.disabled}",
                 "$description": "",
                 "$extensions": {
@@ -1009,7 +1009,7 @@
                 }
               },
               "hover": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.inverse}",
                 "$description": "",
                 "$extensions": {
@@ -1023,7 +1023,7 @@
                 }
               },
               "disabled": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.disabled}",
                 "$description": "",
                 "$extensions": {
@@ -1217,7 +1217,7 @@
             }
           },
           "read-only": {
-            "$type": "alias",
+            "$type": "color",
             "$value": "{dark.color.border.2}",
             "$description": "",
             "$extensions": {
@@ -1352,7 +1352,7 @@
           "label": {
             "primary": {
               "default": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.primary}",
                 "$description": "",
                 "$extensions": {
@@ -1366,7 +1366,7 @@
                 }
               },
               "hover": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.primary}",
                 "$description": "",
                 "$extensions": {
@@ -1380,7 +1380,7 @@
                 }
               },
               "active": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.primary}",
                 "$description": "",
                 "$extensions": {
@@ -1394,7 +1394,7 @@
                 }
               },
               "disabled": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.disabled}",
                 "$description": "",
                 "$extensions": {
@@ -1410,7 +1410,7 @@
             },
             "secondary": {
               "default": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.secondary}",
                 "$description": "",
                 "$extensions": {
@@ -1424,7 +1424,7 @@
                 }
               },
               "hover": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.secondary}",
                 "$description": "",
                 "$extensions": {
@@ -1438,7 +1438,7 @@
                 }
               },
               "active": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.secondary}",
                 "$description": "",
                 "$extensions": {
@@ -1452,7 +1452,7 @@
                 }
               },
               "disabled": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.disabled}",
                 "$description": "",
                 "$extensions": {
@@ -1621,7 +1621,7 @@
             }
           },
           "read-only": {
-            "$type": "alias",
+            "$type": "color",
             "$value": "{dark.color.layer.1}",
             "$description": "",
             "$extensions": {
@@ -1863,7 +1863,7 @@
         },
         "alt": {
           "background": {
-            "$type": "alias",
+            "$type": "color",
             "$value": "{dark.color.layer.inverse}",
             "$description": "",
             "$extensions": {
@@ -1877,7 +1877,7 @@
             }
           },
           "icon": {
-            "$type": "alias",
+            "$type": "color",
             "$value": "{dark.color.icon.inverse}",
             "$description": "",
             "$extensions": {
@@ -4672,7 +4672,7 @@
     "border": {
       "outline": {
         "color": {
-          "$type": "alias",
+          "$type": "color",
           "$value": "{dark.color.focus.outline}",
           "$description": "",
           "$extensions": {
@@ -4680,7 +4680,7 @@
             "figma.key": "2ab19d616b590fe5c111f509cf8cc5abd3bf4272",
             "figma.collectionID": "VariableCollectionId:7973:13160",
             "figma.scopes": [
-              "ALL_SCOPES"
+              "STROKE_COLOR"
             ],
             "figma.codeSyntax": {}
           }
@@ -4714,7 +4714,7 @@
           }
         },
         "insetColor": {
-          "$type": "alias",
+          "$type": "color",
           "$value": "{dark.color.focus.inset}",
           "$description": "",
           "$extensions": {
@@ -5887,7 +5887,7 @@
               }
             },
             "hover": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.inverse}",
               "$description": "",
               "$extensions": {
@@ -5901,7 +5901,7 @@
               }
             },
             "disabled": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.disabled}",
               "$description": "",
               "$extensions": {
@@ -6025,7 +6025,7 @@
           },
           "label": {
             "default": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.primary}",
               "$description": "",
               "$extensions": {
@@ -6039,7 +6039,7 @@
               }
             },
             "hover": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.primary}",
               "$description": "",
               "$extensions": {
@@ -6053,7 +6053,7 @@
               }
             },
             "disabled": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.disabled}",
               "$description": "",
               "$extensions": {
@@ -6133,7 +6133,7 @@
           },
           "label": {
             "default": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.accent}",
               "$description": "",
               "$extensions": {
@@ -6147,7 +6147,7 @@
               }
             },
             "hover": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.primary}",
               "$description": "",
               "$extensions": {
@@ -6161,7 +6161,7 @@
               }
             },
             "disabled": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.disabled}",
               "$description": "",
               "$extensions": {
@@ -6223,7 +6223,7 @@
           },
           "label": {
             "default": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.inverse}",
               "$description": "",
               "$extensions": {
@@ -6251,7 +6251,7 @@
               }
             },
             "disabled": {
-              "$type": "alias",
+              "$type": "color",
               "$value": "{dark.color.text.disabled}",
               "$description": "",
               "$extensions": {
@@ -6328,7 +6328,7 @@
                 }
               },
               "hover": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.primary}",
                 "$description": "",
                 "$extensions": {
@@ -6342,7 +6342,7 @@
                 }
               },
               "disabled": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.disabled}",
                 "$description": "",
                 "$extensions": {
@@ -6436,7 +6436,7 @@
                 }
               },
               "hover": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.primary}",
                 "$description": "",
                 "$extensions": {
@@ -6450,7 +6450,7 @@
                 }
               },
               "disabled": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.disabled}",
                 "$description": "",
                 "$extensions": {
@@ -6588,7 +6588,7 @@
                 }
               },
               "hover": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.primary}",
                 "$description": "",
                 "$extensions": {
@@ -6602,7 +6602,7 @@
                 }
               },
               "disabled": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.disabled}",
                 "$description": "",
                 "$extensions": {
@@ -6796,7 +6796,7 @@
             }
           },
           "read-only": {
-            "$type": "alias",
+            "$type": "color",
             "$value": "{dark.color.border.2}",
             "$description": "",
             "$extensions": {
@@ -6931,7 +6931,7 @@
           "label": {
             "primary": {
               "default": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.primary}",
                 "$description": "",
                 "$extensions": {
@@ -6945,7 +6945,7 @@
                 }
               },
               "hover": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.primary}",
                 "$description": "",
                 "$extensions": {
@@ -6959,7 +6959,7 @@
                 }
               },
               "active": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.primary}",
                 "$description": "",
                 "$extensions": {
@@ -6973,7 +6973,7 @@
                 }
               },
               "disabled": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.disabled}",
                 "$description": "",
                 "$extensions": {
@@ -6989,7 +6989,7 @@
             },
             "secondary": {
               "default": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.secondary}",
                 "$description": "",
                 "$extensions": {
@@ -7003,7 +7003,7 @@
                 }
               },
               "hover": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.secondary}",
                 "$description": "",
                 "$extensions": {
@@ -7017,7 +7017,7 @@
                 }
               },
               "active": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.secondary}",
                 "$description": "",
                 "$extensions": {
@@ -7031,7 +7031,7 @@
                 }
               },
               "disabled": {
-                "$type": "alias",
+                "$type": "color",
                 "$value": "{dark.color.text.disabled}",
                 "$description": "",
                 "$extensions": {
@@ -7200,7 +7200,7 @@
             }
           },
           "read-only": {
-            "$type": "alias",
+            "$type": "color",
             "$value": "{dark.color.layer.1}",
             "$description": "",
             "$extensions": {
@@ -7442,7 +7442,7 @@
         },
         "alt": {
           "background": {
-            "$type": "alias",
+            "$type": "color",
             "$value": "{dark.color.layer.inverse}",
             "$description": "",
             "$extensions": {
@@ -7456,7 +7456,7 @@
             }
           },
           "icon": {
-            "$type": "alias",
+            "$type": "color",
             "$value": "{dark.color.icon.inverse}",
             "$description": "",
             "$extensions": {
@@ -10279,30 +10279,21 @@
       "outline": {
         "color": {
           "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              1,
-              1,
-              1
-            ],
-            "alpha": 1,
-            "hex": "#ffffff"
-          },
+          "$value": "{dark.color.focus.outline}",
           "$description": "",
           "$extensions": {
             "figma.ID": "VariableID:11165:3828",
             "figma.key": "2ab19d616b590fe5c111f509cf8cc5abd3bf4272",
             "figma.collectionID": "VariableCollectionId:7973:13160",
             "figma.scopes": [
-              "ALL_SCOPES"
+              "STROKE_COLOR"
             ],
             "figma.codeSyntax": {}
           }
         },
         "style": {
-          "$type": "string",
-          "$value": "String value",
+          "$type": "strokeStyle",
+          "$value": "{base.borderStyle.solid}",
           "$description": "",
           "$extensions": {
             "figma.ID": "VariableID:11165:3829",
@@ -10315,8 +10306,8 @@
           }
         },
         "width": {
-          "$type": "number",
-          "$value": 0,
+          "$type": "dimension",
+          "$value": "{base.borderWidth.1}",
           "$description": "",
           "$extensions": {
             "figma.ID": "VariableID:11165:4651",
@@ -10330,16 +10321,7 @@
         },
         "insetColor": {
           "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              1,
-              1,
-              1
-            ],
-            "alpha": 1,
-            "hex": "#ffffff"
-          },
+          "$value": "{dark.color.focus.inset}",
           "$description": "",
           "$extensions": {
             "figma.ID": "VariableID:11165:4652",
