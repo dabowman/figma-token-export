@@ -15,25 +15,29 @@ The plugin directly transforms Figma design data into W3C Design Token Community
    - Transforms them into DTCG format with proper type inference
    - Resolves all variable aliases to token references
 4. **Download files individually** - the UI will show download buttons for each generated file
-5. **Close the plugin** using Figma's built-in close button
 
 ## How the Plugin Handles Different Features
 
 ### 🎨 **Variables**
 
-The plugin processes Figma variables and automatically infers W3C token types:
+The plugin processes Figma variables and automatically infers W3C token types based on Figma's `resolvedType`:
 
-- **Colors** → `color` tokens with sRGB color space, alpha channel, and hex values
-- **Numbers** → Contextual types based on variable names and scopes:
-  - Font sizes → `dimension` tokens with `px` units  
-  - Font weights → `fontWeight` tokens with numeric values
-  - Line heights → `number` tokens (converted from percentages)
-  - Letter spacing → `dimension` tokens with `%` units
-  - Border radius/width → `dimension` tokens with `px` units
-- **Strings** → Contextual types:
-  - Font families → `fontFamily` tokens
-  - Border styles → `strokeStyle` tokens (validated against CSS values)
-  - Generic strings → `string` tokens
+- **Colors** (`COLOR`) → `color` tokens with sRGB color space, alpha channel, and hex values
+
+- **Numbers** (`FLOAT`) → Contextual types determined by checking both variable names (case-insensitive) and Figma scopes:
+  - Names containing `fontsize` OR `FONT_SIZE` scope → `dimension` tokens with `px` units  
+  - Names containing `fontweight` OR `FONT_WEIGHT` scope → `fontWeight` tokens with numeric values
+  - Names containing `lineheight` OR `LINE_HEIGHT` scope → `number` tokens (raw percentage values divided by 100)
+  - Names containing `letterspacing` OR `LETTER_SPACING` scope → `dimension` tokens with `%` units
+  - Names containing `space`/`gap` OR `GAP` scope → `dimension` tokens with `px` units
+  - Names containing `borderradius`/`radius` OR `CORNER_RADIUS` scope → `dimension` tokens with `px` units
+  - Names containing `borderwidth`/`strokewidth` OR `STROKE_WIDTH` scope → `dimension` tokens with `px` units
+  - **Fallback**: All other numbers → `number` tokens with raw values
+
+- **Strings** (`STRING`) → Contextual types determined by variable names and scopes:
+  - Names containing `fontfamily` OR `FONT_FAMILY` scope → `fontFamily` tokens
+  - Names containing `borderstyle` → `strokeStyle` tokens (only if value matches valid CSS border styles: solid, dashed, dotted, double, groove, ridge, outset, inset)
+  - **Fallback**: All other strings → `string` tokens
 
 ### ✍️ **Typography Styles**
 
