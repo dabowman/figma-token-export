@@ -1,57 +1,71 @@
-# Figma Raw Data Exporter Plugin & Token Transformer
+# Figma Token Export Plugin
 
-This project contains:
+This plugin exports Figma variables, text styles, and effect styles as W3C Design Tokens.
 
-1.  A Figma plugin (`code.ts`) that exports raw data (variables, text styles, effect styles, and their details) from the current Figma/FigJam file as a JSON file (`output/figma-raw-data-2.json`).
-2.  A Node.js script (`transform-tokens.js`) that processes the raw JSON data and transforms it into the standard [W3C Design Token Community Group format](https://design-tokens.github.io/community-group/format/), outputting structured JSON files into the `output/transformed/` directory (one file per Figma collection/mode combination).
+## Overview
 
-## Setup
+The plugin directly transforms Figma design data into W3C Design Token format, creating multiple JSON files based on your Figma collections and modes. The transformed tokens follow the W3C Design Token Community Group format specification.
 
-This project uses TypeScript and requires Node.js and npm.
+## How to Use
 
-1.  **Install Dependencies:**
-    Navigate to the project directory in your terminal and run:
-    ```bash
-    npm install
-    ```
-    This installs TypeScript, the necessary Figma plugin typings, and ESLint for code linting.
+1. Open your Figma file containing variables, text styles, and/or effect styles
+2. Run the plugin from Plugins → Token Export
+3. The plugin will automatically:
+   - Collect all local variables, text styles, and effect styles
+   - Transform them into W3C Design Token format
+   - Generate and download multiple JSON files (one per collection)
 
-2.  **Build the Plugin (Optional but Recommended):**
-    To ensure the plugin code (`code.ts`) is compiled to JavaScript (`code.js`) for Figma:
-    ```bash
-    npm run build
-    ```
-    Alternatively, use `npm run watch` to automatically rebuild the plugin when you save changes to `code.ts`.
+## Output Format
 
-## Usage
+The plugin generates JSON files following the W3C Design Token format:
 
-### 1. Exporting Raw Data from Figma
+- **Variables**: Transformed into typed tokens (color, dimension, number, etc.)
+- **Text Styles**: Converted to typography composite tokens
+- **Effect Styles**: Converted to shadow tokens
+- **Aliases**: Automatically resolved with proper token references
 
-1.  **Load the Plugin in Figma/FigJam:**
-    *   Go to `Plugins` -> `Development` -> `Import plugin from manifest...`
-    *   Select the `manifest.json` file located in this directory.
+### Example Output Structure
 
-2.  **Run the Plugin:**
-    *   Open the plugin from the `Plugins` -> `Development` menu.
-    *   The plugin will run, collect the data, and trigger a browser download for `output/figma-raw-data-2.json` (you may need to save this file into the `output` directory if it doesn't land there automatically).
+```json
+{
+  "base": {
+    "color": {
+      "primary": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.2, 0.4, 0.8],
+          "alpha": 1,
+          "hex": "#3366cc"
+        }
+      }
+    },
+    "typography": {
+      "heading": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "Inter",
+          "fontSize": { "value": 24, "unit": "px" },
+          "fontWeight": 700,
+          "lineHeight": 1.2
+        }
+      }
+    }
+  }
+}
+```
 
-### 2. Transforming Raw Data to W3C Format
+## Development
 
-1.  **Ensure Raw Data Exists:** Make sure the `output/figma-raw-data-2.json` file exists (generated from the previous step).
+```bash
+npm install
+npm run build
+```
 
-2.  **Run the Transformation Script:**
-    Navigate to the project directory in your terminal and run:
-    ```bash
-    node transform-tokens.js
-    ```
-    This script will process the raw data and generate the W3C-formatted JSON files in the `output/transformed/` directory.
+## Features
 
-## Next Steps
-
-The structured token files in `output/transformed/` can now be used as input for tools like [Style Dictionary](https://amzn.github.io/style-dictionary/) to generate platform-specific deliverables (CSS variables, JS objects, etc.).
-
-## Development Notes
-
-*   The main Figma plugin logic is in `code.ts`.
-*   A minimal `ui.html` is used by the plugin solely to handle the file download process.
-*   The token transformation logic is in `transform-tokens.js`.
+- Automatic type inference based on variable names and scopes
+- Proper alias resolution with token references
+- Support for multiple collections and modes
+- Typography and shadow token generation from styles
+- W3C Design Token format compliance
